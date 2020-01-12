@@ -1,0 +1,37 @@
+{
+  "configurations" : [
+    {
+      "id" : "BA6B2A03-C1F4-4A44-A3C2-A04C18A31405",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:EstonianWeather.xcodeproj",
+          "identifier" : "0913814523CB7AF30092EC04",
+          "name" : "EstonianWeather"
+        }
+      ]
+    },
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:EstonianWeather.xcodeproj",
+      "identifier" : "0913814523CB7AF30092EC04",
+      "name" : "EstonianWeather"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:EstonianWeather.xcodeproj",
+        "identifier" : "0913815B23CB7AF60092EC04",
+        "name" : "EstonianWeatherTests"
+      }
+    }
+  ],
+  "version" : 1
+}

@@ -13,7 +13,10 @@
 		0913815023CB7AF50092EC04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0913814F23CB7AF50092EC04 /* Assets.xcassets */; };
 		0913815323CB7AF60092EC04 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0913815223CB7AF60092EC04 /* Preview Assets.xcassets */; };
 		0913815623CB7AF60092EC04 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0913815423CB7AF60092EC04 /* LaunchScreen.storyboard */; };
-		0913816123CB7AF60092EC04 /* EstonianWeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0913816023CB7AF60092EC04 /* EstonianWeatherTests.swift */; };
+		0913816C23CB7B370092EC04 /* WeatherParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0913816B23CB7B370092EC04 /* WeatherParserTests.swift */; };
+		0913816E23CB7CC20092EC04 /* WeatherParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0913816D23CB7CC10092EC04 /* WeatherParser.swift */; };
+		0913817023CB81340092EC04 /* TestForecast.xml in Resources */ = {isa = PBXBuildFile; fileRef = 0913816F23CB81340092EC04 /* TestForecast.xml */; };
+		097EDE9523CBA9E500F8E617 /* EWDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097EDE9423CBA9E500F8E617 /* EWDocument.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,8 +39,12 @@
 		0913815523CB7AF60092EC04 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0913815723CB7AF60092EC04 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0913815C23CB7AF60092EC04 /* EstonianWeatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EstonianWeatherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0913816023CB7AF60092EC04 /* EstonianWeatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstonianWeatherTests.swift; sourceTree = "<group>"; };
 		0913816223CB7AF60092EC04 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0913816B23CB7B370092EC04 /* WeatherParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherParserTests.swift; sourceTree = "<group>"; };
+		0913816D23CB7CC10092EC04 /* WeatherParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherParser.swift; sourceTree = "<group>"; };
+		0913816F23CB81340092EC04 /* TestForecast.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TestForecast.xml; sourceTree = "<group>"; };
+		097EDE9423CBA9E500F8E617 /* EWDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EWDocument.swift; sourceTree = "<group>"; };
+		097EDE9623CBC0FC00F8E617 /* EstonianWeather.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = EstonianWeather.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +68,7 @@
 		0913813D23CB7AF30092EC04 = {
 			isa = PBXGroup;
 			children = (
+				097EDE9623CBC0FC00F8E617 /* EstonianWeather.xctestplan */,
 				0913814823CB7AF30092EC04 /* EstonianWeather */,
 				0913815F23CB7AF60092EC04 /* EstonianWeatherTests */,
 				0913814723CB7AF30092EC04 /* Products */,
@@ -86,6 +94,8 @@
 				0913815423CB7AF60092EC04 /* LaunchScreen.storyboard */,
 				0913815723CB7AF60092EC04 /* Info.plist */,
 				0913815123CB7AF60092EC04 /* Preview Content */,
+				0913816D23CB7CC10092EC04 /* WeatherParser.swift */,
+				097EDE9423CBA9E500F8E617 /* EWDocument.swift */,
 			);
 			path = EstonianWeather;
 			sourceTree = "<group>";
@@ -101,8 +111,9 @@
 		0913815F23CB7AF60092EC04 /* EstonianWeatherTests */ = {
 			isa = PBXGroup;
 			children = (
-				0913816023CB7AF60092EC04 /* EstonianWeatherTests.swift */,
+				0913816F23CB81340092EC04 /* TestForecast.xml */,
 				0913816223CB7AF60092EC04 /* Info.plist */,
+				0913816B23CB7B370092EC04 /* WeatherParserTests.swift */,
 			);
 			path = EstonianWeatherTests;
 			sourceTree = "<group>";
@@ -160,6 +171,7 @@
 					};
 					0913815B23CB7AF60092EC04 = {
 						CreatedOnToolsVersion = 11.3;
+						LastSwiftMigration = 1130;
 						TestTargetID = 0913814523CB7AF30092EC04;
 					};
 				};
@@ -198,6 +210,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0913817023CB81340092EC04 /* TestForecast.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,9 +221,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				097EDE9523CBA9E500F8E617 /* EWDocument.swift in Sources */,
 				0913814A23CB7AF30092EC04 /* AppDelegate.swift in Sources */,
 				0913814C23CB7AF30092EC04 /* SceneDelegate.swift in Sources */,
 				0913814E23CB7AF30092EC04 /* ContentView.swift in Sources */,
+				0913816E23CB7CC20092EC04 /* WeatherParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,7 +233,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0913816123CB7AF60092EC04 /* EstonianWeatherTests.swift in Sources */,
+				0913816C23CB7B370092EC04 /* WeatherParserTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,6 +418,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NFA8F38A32;
 				INFOPLIST_FILE = EstonianWeatherTests/Info.plist;
@@ -414,6 +430,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.shiaulis.EstonianWeatherTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EstonianWeather.app/EstonianWeather";
@@ -425,6 +442,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NFA8F38A32;
 				INFOPLIST_FILE = EstonianWeatherTests/Info.plist;
