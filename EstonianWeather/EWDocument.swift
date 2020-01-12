@@ -27,7 +27,7 @@ struct EWDocument {
             var sea: String?
             var peipsi: String?
 
-            enum EWDayPartType {
+            enum EWDayPartType: String {
                 case day, night
             }
 

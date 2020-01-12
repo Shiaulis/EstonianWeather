@@ -17,6 +17,21 @@
 		0913816E23CB7CC20092EC04 /* WeatherParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0913816D23CB7CC10092EC04 /* WeatherParser.swift */; };
 		0913817023CB81340092EC04 /* TestForecast.xml in Resources */ = {isa = PBXBuildFile; fileRef = 0913816F23CB81340092EC04 /* TestForecast.xml */; };
 		097EDE9523CBA9E500F8E617 /* EWDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097EDE9423CBA9E500F8E617 /* EWDocument.swift */; };
+		097EDE9923CBC3CE00F8E617 /* EstonianWeather.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 097EDE9723CBC3CE00F8E617 /* EstonianWeather.xcdatamodeld */; };
+		097EDEA623CBC71700F8E617 /* Phenomenon+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097EDE9A23CBC71700F8E617 /* Phenomenon+CoreDataClass.swift */; };
+		097EDEA723CBC71700F8E617 /* Phenomenon+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097EDE9B23CBC71700F8E617 /* Phenomenon+CoreDataProperties.swift */; };
+		097EDEA823CBC71700F8E617 /* Forecast+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097EDE9C23CBC71700F8E617 /* Forecast+CoreDataClass.swift */; };
+		097EDEA923CBC71700F8E617 /* Forecast+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097EDE9D23CBC71700F8E617 /* Forecast+CoreDataProperties.swift */; };
+		097EDEAA23CBC71700F8E617 /* ForecastDocument+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097EDE9E23CBC71700F8E617 /* ForecastDocument+CoreDataClass.swift */; };
+		097EDEAB23CBC71700F8E617 /* ForecastDocument+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097EDE9F23CBC71700F8E617 /* ForecastDocument+CoreDataProperties.swift */; };
+		097EDEAC23CBC71700F8E617 /* Wind+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097EDEA023CBC71700F8E617 /* Wind+CoreDataClass.swift */; };
+		097EDEAD23CBC71700F8E617 /* Wind+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097EDEA123CBC71700F8E617 /* Wind+CoreDataProperties.swift */; };
+		097EDEAE23CBC71700F8E617 /* DayPartForecast+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097EDEA223CBC71700F8E617 /* DayPartForecast+CoreDataClass.swift */; };
+		097EDEAF23CBC71700F8E617 /* DayPartForecast+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097EDEA323CBC71700F8E617 /* DayPartForecast+CoreDataProperties.swift */; };
+		097EDEB023CBC71700F8E617 /* Place+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097EDEA423CBC71700F8E617 /* Place+CoreDataClass.swift */; };
+		097EDEB123CBC71700F8E617 /* Place+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097EDEA523CBC71700F8E617 /* Place+CoreDataProperties.swift */; };
+		097EDEB323CBC76B00F8E617 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097EDEB223CBC76B00F8E617 /* CoreDataStack.swift */; };
+		097EDEB523CBC83400F8E617 /* DataMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097EDEB423CBC83400F8E617 /* DataMapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +60,21 @@
 		0913816F23CB81340092EC04 /* TestForecast.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TestForecast.xml; sourceTree = "<group>"; };
 		097EDE9423CBA9E500F8E617 /* EWDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EWDocument.swift; sourceTree = "<group>"; };
 		097EDE9623CBC0FC00F8E617 /* EstonianWeather.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = EstonianWeather.xctestplan; sourceTree = "<group>"; };
+		097EDE9823CBC3CE00F8E617 /* EstonianWeather.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EstonianWeather.xcdatamodel; sourceTree = "<group>"; };
+		097EDE9A23CBC71700F8E617 /* Phenomenon+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Phenomenon+CoreDataClass.swift"; sourceTree = "<group>"; };
+		097EDE9B23CBC71700F8E617 /* Phenomenon+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Phenomenon+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		097EDE9C23CBC71700F8E617 /* Forecast+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Forecast+CoreDataClass.swift"; sourceTree = "<group>"; };
+		097EDE9D23CBC71700F8E617 /* Forecast+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Forecast+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		097EDE9E23CBC71700F8E617 /* ForecastDocument+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForecastDocument+CoreDataClass.swift"; sourceTree = "<group>"; };
+		097EDE9F23CBC71700F8E617 /* ForecastDocument+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForecastDocument+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		097EDEA023CBC71700F8E617 /* Wind+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Wind+CoreDataClass.swift"; sourceTree = "<group>"; };
+		097EDEA123CBC71700F8E617 /* Wind+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Wind+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		097EDEA223CBC71700F8E617 /* DayPartForecast+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DayPartForecast+CoreDataClass.swift"; sourceTree = "<group>"; };
+		097EDEA323CBC71700F8E617 /* DayPartForecast+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DayPartForecast+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		097EDEA423CBC71700F8E617 /* Place+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Place+CoreDataClass.swift"; sourceTree = "<group>"; };
+		097EDEA523CBC71700F8E617 /* Place+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Place+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		097EDEB223CBC76B00F8E617 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		097EDEB423CBC83400F8E617 /* DataMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataMapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +117,18 @@
 		0913814823CB7AF30092EC04 /* EstonianWeather */ = {
 			isa = PBXGroup;
 			children = (
+				097EDE9A23CBC71700F8E617 /* Phenomenon+CoreDataClass.swift */,
+				097EDE9B23CBC71700F8E617 /* Phenomenon+CoreDataProperties.swift */,
+				097EDE9C23CBC71700F8E617 /* Forecast+CoreDataClass.swift */,
+				097EDE9D23CBC71700F8E617 /* Forecast+CoreDataProperties.swift */,
+				097EDE9E23CBC71700F8E617 /* ForecastDocument+CoreDataClass.swift */,
+				097EDE9F23CBC71700F8E617 /* ForecastDocument+CoreDataProperties.swift */,
+				097EDEA023CBC71700F8E617 /* Wind+CoreDataClass.swift */,
+				097EDEA123CBC71700F8E617 /* Wind+CoreDataProperties.swift */,
+				097EDEA223CBC71700F8E617 /* DayPartForecast+CoreDataClass.swift */,
+				097EDEA323CBC71700F8E617 /* DayPartForecast+CoreDataProperties.swift */,
+				097EDEA423CBC71700F8E617 /* Place+CoreDataClass.swift */,
+				097EDEA523CBC71700F8E617 /* Place+CoreDataProperties.swift */,
 				0913814923CB7AF30092EC04 /* AppDelegate.swift */,
 				0913814B23CB7AF30092EC04 /* SceneDelegate.swift */,
 				0913814D23CB7AF30092EC04 /* ContentView.swift */,
@@ -96,6 +138,9 @@
 				0913815123CB7AF60092EC04 /* Preview Content */,
 				0913816D23CB7CC10092EC04 /* WeatherParser.swift */,
 				097EDE9423CBA9E500F8E617 /* EWDocument.swift */,
+				097EDE9723CBC3CE00F8E617 /* EstonianWeather.xcdatamodeld */,
+				097EDEB223CBC76B00F8E617 /* CoreDataStack.swift */,
+				097EDEB423CBC83400F8E617 /* DataMapper.swift */,
 			);
 			path = EstonianWeather;
 			sourceTree = "<group>";
@@ -221,11 +266,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				097EDEA723CBC71700F8E617 /* Phenomenon+CoreDataProperties.swift in Sources */,
+				097EDEAD23CBC71700F8E617 /* Wind+CoreDataProperties.swift in Sources */,
+				097EDEAA23CBC71700F8E617 /* ForecastDocument+CoreDataClass.swift in Sources */,
 				097EDE9523CBA9E500F8E617 /* EWDocument.swift in Sources */,
+				097EDEA823CBC71700F8E617 /* Forecast+CoreDataClass.swift in Sources */,
+				097EDEAC23CBC71700F8E617 /* Wind+CoreDataClass.swift in Sources */,
+				097EDEB523CBC83400F8E617 /* DataMapper.swift in Sources */,
+				097EDEB023CBC71700F8E617 /* Place+CoreDataClass.swift in Sources */,
 				0913814A23CB7AF30092EC04 /* AppDelegate.swift in Sources */,
+				097EDEB323CBC76B00F8E617 /* CoreDataStack.swift in Sources */,
+				097EDEA923CBC71700F8E617 /* Forecast+CoreDataProperties.swift in Sources */,
 				0913814C23CB7AF30092EC04 /* SceneDelegate.swift in Sources */,
+				097EDE9923CBC3CE00F8E617 /* EstonianWeather.xcdatamodeld in Sources */,
+				097EDEAF23CBC71700F8E617 /* DayPartForecast+CoreDataProperties.swift in Sources */,
+				097EDEA623CBC71700F8E617 /* Phenomenon+CoreDataClass.swift in Sources */,
+				097EDEB123CBC71700F8E617 /* Place+CoreDataProperties.swift in Sources */,
+				097EDEAB23CBC71700F8E617 /* ForecastDocument+CoreDataProperties.swift in Sources */,
 				0913814E23CB7AF30092EC04 /* ContentView.swift in Sources */,
 				0913816E23CB7CC20092EC04 /* WeatherParser.swift in Sources */,
+				097EDEAE23CBC71700F8E617 /* DayPartForecast+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,6 +551,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		097EDE9723CBC3CE00F8E617 /* EstonianWeather.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				097EDE9823CBC3CE00F8E617 /* EstonianWeather.xcdatamodel */,
+			);
+			currentVersion = 097EDE9823CBC3CE00F8E617 /* EstonianWeather.xcdatamodel */;
+			path = EstonianWeather.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 0913813E23CB7AF30092EC04 /* Project object */;
 }

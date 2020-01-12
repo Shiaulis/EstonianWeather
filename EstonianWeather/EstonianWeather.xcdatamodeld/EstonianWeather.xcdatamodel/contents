@@ -1,4 +1,53 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+    <entity name="DayPartForecast" representedClassName="DayPartForecast" syncable="YES">
+        <attribute name="peipsi" optional="YES" attributeType="String"/>
+        <attribute name="sea" optional="YES" attributeType="String"/>
+        <attribute name="tempmax" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="tempmin" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="text" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+        <relationship name="dayForecast" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Forecast" inverseName="day" inverseEntity="Forecast"/>
+        <relationship name="nightForecast" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Forecast" inverseName="night" inverseEntity="Forecast"/>
+        <relationship name="phenomenon" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Phenomenon" inverseName="dayPartForecasts" inverseEntity="Phenomenon"/>
+        <relationship name="places" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Place" inverseName="datePartForecast" inverseEntity="Place"/>
+        <relationship name="winds" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Wind" inverseName="datePartForecast" inverseEntity="Wind"/>
+    </entity>
+    <entity name="Forecast" representedClassName="Forecast" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="day" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DayPartForecast" inverseName="dayForecast" inverseEntity="DayPartForecast"/>
+        <relationship name="forecastDocument" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ForecastDocument" inverseName="forecasts" inverseEntity="ForecastDocument"/>
+        <relationship name="night" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DayPartForecast" inverseName="nightForecast" inverseEntity="DayPartForecast"/>
+    </entity>
+    <entity name="ForecastDocument" representedClassName="ForecastDocument" syncable="YES">
+        <relationship name="forecasts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Forecast" inverseName="forecastDocument" inverseEntity="Forecast"/>
+    </entity>
+    <entity name="Phenomenon" representedClassName="Phenomenon" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="dayPartForecasts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DayPartForecast" inverseName="phenomenon" inverseEntity="DayPartForecast"/>
+        <relationship name="places" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Place" inverseName="phenomenon" inverseEntity="Place"/>
+    </entity>
+    <entity name="Place" representedClassName="Place" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="tempmax" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="tempmin" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="datePartForecast" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DayPartForecast" inverseName="places" inverseEntity="DayPartForecast"/>
+        <relationship name="phenomenon" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Phenomenon" inverseName="places" inverseEntity="Phenomenon"/>
+    </entity>
+    <entity name="Wind" representedClassName="Wind" syncable="YES">
+        <attribute name="direction" optional="YES" attributeType="String"/>
+        <attribute name="gust" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="speedmax" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="speedmin" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="datePartForecast" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DayPartForecast" inverseName="winds" inverseEntity="DayPartForecast"/>
+    </entity>
+    <elements>
+        <element name="Wind" positionX="-63" positionY="-18" width="128" height="133"/>
+        <element name="Place" positionX="-54" positionY="27" width="128" height="118"/>
+        <element name="DayPartForecast" positionX="-36" positionY="54" width="128" height="208"/>
+        <element name="Phenomenon" positionX="-18" positionY="81" width="128" height="88"/>
+        <element name="Forecast" positionX="0" positionY="126" width="128" height="103"/>
+        <element name="ForecastDocument" positionX="18" positionY="153" width="128" height="58"/>
+    </elements>
 </model>
