@@ -39,30 +39,6 @@ class WeatherParserTests: XCTestCase {
 
     // MARK: - Tests
 
-    func testParser_whenParseWithCorrectData_completionCalled() {
-        // given
-        givenCorrectData()
-
-        // when
-        whenParse()
-
-        // then
-        let result = XCTWaiter.wait(for: self.parseExpectation)
-        XCTAssertEqual(result, .completed)
-    }
-
-    func testParser_whenParseWithIncorrectData_completionCalled() {
-        // given
-        givenNilData()
-
-        // when
-        whenParse()
-
-        // then
-        let result = XCTWaiter.wait(for: self.parseExpectation)
-        XCTAssertEqual(result, .completed)
-    }
-
     func testParser_whenParseWithCorrectData_receivedXMLDocument() {
         // given
         givenCorrectData()
@@ -71,7 +47,6 @@ class WeatherParserTests: XCTestCase {
         whenParse()
 
         // then
-        wait(for: self.parseExpectation)
         XCTAssertNotNil(self.receivedDocument)
     }
 
@@ -83,7 +58,6 @@ class WeatherParserTests: XCTestCase {
         whenParse()
 
         // then
-        wait(for: self.parseExpectation)
         XCTAssertEqual(self.receivedError, .incorrectInputData)
     }
 
@@ -95,7 +69,6 @@ class WeatherParserTests: XCTestCase {
         whenParse()
 
         // then
-        wait(for: self.parseExpectation)
         XCTAssertEqual(self.receivedDocument.forecasts?.count, 4)
     }
 
@@ -112,29 +85,12 @@ class WeatherParserTests: XCTestCase {
 
     // MARK: - When
     private func whenParse() {
-        self.parseExpectation = expectation(description: "Parse completion gets called")
+        let serviceInfo = EWDocument.ServiceInfo(date: Date(), languageCode: "en")
+        let parseResult = self.sut.parse(data: self.data, serviceInfo: serviceInfo)
 
-        self.sut.parse(data: self.data) { result in
-            switch result {
-            case .success(let document): self.receivedDocument = document
-            case .failure(let error): self.receivedError = error
-            }
-
-            self.parseExpectation.fulfill()
+        switch parseResult {
+        case .success(let document): self.receivedDocument = document
+        case .failure(let error): self.receivedError = error
         }
-
     }
-}
-
-extension XCTestCase {
-    func wait(for expectation: XCTestExpectation) {
-        wait(for: [expectation], timeout: defaultTimeout)
-    }
-}
-
-extension XCTWaiter {
-    static func wait(for expectation: XCTestExpectation) -> XCTWaiter.Result {
-        wait(for: [expectation], timeout: defaultTimeout)
-    }
-
 }

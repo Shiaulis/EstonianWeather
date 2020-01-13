@@ -30,31 +30,30 @@ final class WeatherParser: NSObject {
     private var currentWind: EWDocument.EWForecast.EWDayPartForecast.EWWind!
     private var ownError: WeatherParser.Error?
 
-    func parse(data: Data?, completion: (Result<EWDocument, Error>) -> Void) {
+    func parse(data: Data?, serviceInfo: EWDocument.ServiceInfo) -> Result<EWDocument, Error> {
         guard let data = data else {
-            completion(.failure(.incorrectInputData))
-            return
+            return .failure(.incorrectInputData)
         }
 
         let xmlParser = configureParser(with: data)
+        self.document = EWDocument(serviceInfo: serviceInfo)
         let success = xmlParser.parse()
 
+        let documentToReturn: EWDocument! = self.document
+        self.document = nil
         if success {
-            completion(.success(self.document))
-        }
-        else {
-            if let error = xmlParser.parserError {
-                completion(.failure(.xmlError(error as NSError)))
-            }
-            else if let error = self.ownError {
-                completion(.failure(error))
-            }
-            else {
-                completion(.failure(.unknownError))
-            }
+            return .success(documentToReturn)
         }
 
-        self.document = nil
+        if let error = xmlParser.parserError {
+            return .failure(.xmlError(error as NSError))
+        }
+
+        if let error = self.ownError {
+            return .failure(error)
+        }
+
+        return .failure(.unknownError)
     }
 
     private func configureParser(with data: Data) -> XMLParser {
@@ -66,10 +65,6 @@ final class WeatherParser: NSObject {
 }
 
 extension WeatherParser: XMLParserDelegate {
-
-    func parserDidStartDocument(_ parser: XMLParser) {
-        self.document = EWDocument()
-    }
 
     func parser(_ parser: XMLParser, foundCharacters string: String) {
         switch self.currentParsedElement {

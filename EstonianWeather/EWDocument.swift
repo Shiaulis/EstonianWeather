@@ -10,6 +10,12 @@ import Foundation
 
 struct EWDocument {
     var forecasts: [EWForecast]?
+    let serviceInfo: ServiceInfo
+
+    struct ServiceInfo {
+        let date: Date
+        let languageCode: String
+    }
 
     struct EWForecast {
         var date: Date?

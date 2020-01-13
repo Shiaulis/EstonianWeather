@@ -1,8 +1,8 @@
 //
-//  ForecastDocument+CoreDataProperties.swift
+//  ForecastResponse+CoreDataProperties.swift
 //  EstonianWeather
 //
-//  Created by Andrius Shiaulis on 12.01.2020.
+//  Created by Andrius Shiaulis on 13.01.2020.
 //  Copyright © 2020 Andrius Shiaulis. All rights reserved.
 //
 //
@@ -11,18 +11,20 @@ import Foundation
 import CoreData
 
 
-extension ForecastDocument {
+extension ForecastResponse {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<ForecastDocument> {
-        return NSFetchRequest<ForecastDocument>(entityName: "ForecastDocument")
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<ForecastResponse> {
+        return NSFetchRequest<ForecastResponse>(entityName: "ForecastResponse")
     }
 
+    @NSManaged public var date: Date?
+    @NSManaged public var language: String?
     @NSManaged public var forecasts: NSSet?
 
 }
 
 // MARK: Generated accessors for forecasts
-extension ForecastDocument {
+extension ForecastResponse {
 
     @objc(addForecastsObject:)
     @NSManaged public func addToForecasts(_ value: Forecast)
