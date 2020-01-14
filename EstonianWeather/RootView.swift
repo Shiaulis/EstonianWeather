@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  RootView.swift
 //  EstonianWeather
 //
 //  Created by Andrius Shiaulis on 12.01.2020.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct RootView: View {
     var body: some View {
         Text("Hello, World!")
     }
@@ -16,6 +16,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        RootView()
     }
 }

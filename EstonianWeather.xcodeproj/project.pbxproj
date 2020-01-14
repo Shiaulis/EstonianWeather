@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		0913814A23CB7AF30092EC04 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0913814923CB7AF30092EC04 /* AppDelegate.swift */; };
 		0913814C23CB7AF30092EC04 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0913814B23CB7AF30092EC04 /* SceneDelegate.swift */; };
-		0913814E23CB7AF30092EC04 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0913814D23CB7AF30092EC04 /* ContentView.swift */; };
+		0913814E23CB7AF30092EC04 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0913814D23CB7AF30092EC04 /* RootView.swift */; };
 		0913815023CB7AF50092EC04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0913814F23CB7AF50092EC04 /* Assets.xcassets */; };
 		0913815323CB7AF60092EC04 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0913815223CB7AF60092EC04 /* Preview Assets.xcassets */; };
 		0913815623CB7AF60092EC04 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0913815423CB7AF60092EC04 /* LaunchScreen.storyboard */; };
@@ -33,6 +33,8 @@
 		097EDEB723CC939D00F8E617 /* DataMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097EDEB623CC939D00F8E617 /* DataMapperTests.swift */; };
 		097EDEBE23CCC33C00F8E617 /* ForecastResponse+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097EDEBC23CCC33C00F8E617 /* ForecastResponse+CoreDataClass.swift */; };
 		097EDEBF23CCC33C00F8E617 /* ForecastResponse+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097EDEBD23CCC33C00F8E617 /* ForecastResponse+CoreDataProperties.swift */; };
+		097EDEC323CD067D00F8E617 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097EDEC223CD067C00F8E617 /* RootViewModel.swift */; };
+		097EDEC523CD08FD00F8E617 /* RootViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097EDEC423CD08FD00F8E617 /* RootViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,7 +51,7 @@
 		0913814623CB7AF30092EC04 /* EstonianWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EstonianWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0913814923CB7AF30092EC04 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0913814B23CB7AF30092EC04 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0913814D23CB7AF30092EC04 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0913814D23CB7AF30092EC04 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		0913814F23CB7AF50092EC04 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0913815223CB7AF60092EC04 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0913815523CB7AF60092EC04 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -77,6 +79,8 @@
 		097EDEB623CC939D00F8E617 /* DataMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataMapperTests.swift; sourceTree = "<group>"; };
 		097EDEBC23CCC33C00F8E617 /* ForecastResponse+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForecastResponse+CoreDataClass.swift"; sourceTree = "<group>"; };
 		097EDEBD23CCC33C00F8E617 /* ForecastResponse+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForecastResponse+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		097EDEC223CD067C00F8E617 /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
+		097EDEC423CD08FD00F8E617 /* RootViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,30 +123,14 @@
 		0913814823CB7AF30092EC04 /* EstonianWeather */ = {
 			isa = PBXGroup;
 			children = (
-				097EDEBC23CCC33C00F8E617 /* ForecastResponse+CoreDataClass.swift */,
-				097EDEBD23CCC33C00F8E617 /* ForecastResponse+CoreDataProperties.swift */,
-				097EDE9A23CBC71700F8E617 /* Phenomenon+CoreDataClass.swift */,
-				097EDE9B23CBC71700F8E617 /* Phenomenon+CoreDataProperties.swift */,
-				097EDE9C23CBC71700F8E617 /* Forecast+CoreDataClass.swift */,
-				097EDE9D23CBC71700F8E617 /* Forecast+CoreDataProperties.swift */,
-				097EDEA023CBC71700F8E617 /* Wind+CoreDataClass.swift */,
-				097EDEA123CBC71700F8E617 /* Wind+CoreDataProperties.swift */,
-				097EDEA223CBC71700F8E617 /* DayPartForecast+CoreDataClass.swift */,
-				097EDEA323CBC71700F8E617 /* DayPartForecast+CoreDataProperties.swift */,
-				097EDEA423CBC71700F8E617 /* Place+CoreDataClass.swift */,
-				097EDEA523CBC71700F8E617 /* Place+CoreDataProperties.swift */,
-				0913814923CB7AF30092EC04 /* AppDelegate.swift */,
-				0913814B23CB7AF30092EC04 /* SceneDelegate.swift */,
-				0913814D23CB7AF30092EC04 /* ContentView.swift */,
-				0913814F23CB7AF50092EC04 /* Assets.xcassets */,
-				0913815423CB7AF60092EC04 /* LaunchScreen.storyboard */,
-				0913815723CB7AF60092EC04 /* Info.plist */,
+				0913814D23CB7AF30092EC04 /* RootView.swift */,
+				097EDEC023CCC82B00F8E617 /* Core Data */,
+				097EDEC123CCC84500F8E617 /* Supporting Files */,
 				0913815123CB7AF60092EC04 /* Preview Content */,
 				0913816D23CB7CC10092EC04 /* WeatherParser.swift */,
 				097EDE9423CBA9E500F8E617 /* EWDocument.swift */,
-				097EDE9723CBC3CE00F8E617 /* EstonianWeather.xcdatamodeld */,
-				097EDEB223CBC76B00F8E617 /* CoreDataStack.swift */,
 				097EDEB423CBC83400F8E617 /* DataMapper.swift */,
+				097EDEC223CD067C00F8E617 /* RootViewModel.swift */,
 			);
 			path = EstonianWeather;
 			sourceTree = "<group>";
@@ -162,8 +150,42 @@
 				0913816223CB7AF60092EC04 /* Info.plist */,
 				0913816B23CB7B370092EC04 /* WeatherParserTests.swift */,
 				097EDEB623CC939D00F8E617 /* DataMapperTests.swift */,
+				097EDEC423CD08FD00F8E617 /* RootViewModelTests.swift */,
 			);
 			path = EstonianWeatherTests;
+			sourceTree = "<group>";
+		};
+		097EDEC023CCC82B00F8E617 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				097EDEBC23CCC33C00F8E617 /* ForecastResponse+CoreDataClass.swift */,
+				097EDEBD23CCC33C00F8E617 /* ForecastResponse+CoreDataProperties.swift */,
+				097EDE9A23CBC71700F8E617 /* Phenomenon+CoreDataClass.swift */,
+				097EDE9B23CBC71700F8E617 /* Phenomenon+CoreDataProperties.swift */,
+				097EDE9C23CBC71700F8E617 /* Forecast+CoreDataClass.swift */,
+				097EDE9D23CBC71700F8E617 /* Forecast+CoreDataProperties.swift */,
+				097EDEA023CBC71700F8E617 /* Wind+CoreDataClass.swift */,
+				097EDEA123CBC71700F8E617 /* Wind+CoreDataProperties.swift */,
+				097EDEA223CBC71700F8E617 /* DayPartForecast+CoreDataClass.swift */,
+				097EDEA323CBC71700F8E617 /* DayPartForecast+CoreDataProperties.swift */,
+				097EDEA423CBC71700F8E617 /* Place+CoreDataClass.swift */,
+				097EDEA523CBC71700F8E617 /* Place+CoreDataProperties.swift */,
+				097EDE9723CBC3CE00F8E617 /* EstonianWeather.xcdatamodeld */,
+				097EDEB223CBC76B00F8E617 /* CoreDataStack.swift */,
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
+		097EDEC123CCC84500F8E617 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0913814923CB7AF30092EC04 /* AppDelegate.swift */,
+				0913814B23CB7AF30092EC04 /* SceneDelegate.swift */,
+				0913814F23CB7AF50092EC04 /* Assets.xcassets */,
+				0913815423CB7AF60092EC04 /* LaunchScreen.storyboard */,
+				0913815723CB7AF60092EC04 /* Info.plist */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				097EDEA723CBC71700F8E617 /* Phenomenon+CoreDataProperties.swift in Sources */,
+				097EDEC323CD067D00F8E617 /* RootViewModel.swift in Sources */,
 				097EDEAD23CBC71700F8E617 /* Wind+CoreDataProperties.swift in Sources */,
 				097EDEBE23CCC33C00F8E617 /* ForecastResponse+CoreDataClass.swift in Sources */,
 				097EDE9523CBA9E500F8E617 /* EWDocument.swift in Sources */,
@@ -286,7 +309,7 @@
 				097EDEAF23CBC71700F8E617 /* DayPartForecast+CoreDataProperties.swift in Sources */,
 				097EDEA623CBC71700F8E617 /* Phenomenon+CoreDataClass.swift in Sources */,
 				097EDEB123CBC71700F8E617 /* Place+CoreDataProperties.swift in Sources */,
-				0913814E23CB7AF30092EC04 /* ContentView.swift in Sources */,
+				0913814E23CB7AF30092EC04 /* RootView.swift in Sources */,
 				0913816E23CB7CC20092EC04 /* WeatherParser.swift in Sources */,
 				097EDEAE23CBC71700F8E617 /* DayPartForecast+CoreDataClass.swift in Sources */,
 			);
@@ -298,6 +321,7 @@
 			files = (
 				097EDEB723CC939D00F8E617 /* DataMapperTests.swift in Sources */,
 				0913816C23CB7B370092EC04 /* WeatherParserTests.swift in Sources */,
+				097EDEC523CD08FD00F8E617 /* RootViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,7 +469,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"EstonianWeather/Preview Content\"";
 				DEVELOPMENT_TEAM = NFA8F38A32;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = EstonianWeather/Info.plist;
+				INFOPLIST_FILE = "EstonianWeather/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -465,7 +489,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"EstonianWeather/Preview Content\"";
 				DEVELOPMENT_TEAM = NFA8F38A32;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = EstonianWeather/Info.plist;
+				INFOPLIST_FILE = "EstonianWeather/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
