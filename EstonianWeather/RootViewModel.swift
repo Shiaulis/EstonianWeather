@@ -30,12 +30,4 @@ final class RootViewMolel {
         .store(in: &disposables)
     }
 
-    func map() {
-        self.networkPublisher
-            .map { WeatherParser().parse(data: $0.data, serviceInfo: .init(date: Date(), languageCode: "en")) }
-            .sink(receiveCompletion: <#T##((Subscribers.Completion<URLError>) -> Void)##((Subscribers.Completion<URLError>) -> Void)##(Subscribers.Completion<URLError>) -> Void#>, receiveValue: { (<#Result<EWDocument, WeatherParser.Error>#>) in
-                <#code#>
-            })
-    }
-
 }
