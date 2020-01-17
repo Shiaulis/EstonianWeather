@@ -2,7 +2,7 @@
 //  DayPartForecast+CoreDataProperties.swift
 //  EstonianWeather
 //
-//  Created by Andrius Shiaulis on 13.01.2020.
+//  Created by Andrius Shiaulis on 18.01.2020.
 //  Copyright © 2020 Andrius Shiaulis. All rights reserved.
 //
 //
@@ -19,15 +19,15 @@ extension DayPartForecast {
 
     @NSManaged public var peipsi: String?
     @NSManaged public var sea: String?
-    @NSManaged public var tempmax: Int16
-    @NSManaged public var tempmin: Int16
+    @NSManaged public var tempmax: NSNumber?
+    @NSManaged public var tempmin: NSNumber?
     @NSManaged public var text: String?
     @NSManaged public var type: String?
     @NSManaged public var dayForecast: Forecast?
     @NSManaged public var nightForecast: Forecast?
     @NSManaged public var phenomenon: Phenomenon?
-    @NSManaged public var places: NSSet?
-    @NSManaged public var winds: NSSet?
+    @NSManaged public var places: Set<Place>?
+    @NSManaged public var winds: Set<Wind>?
 
 }
 
@@ -41,10 +41,10 @@ extension DayPartForecast {
     @NSManaged public func removeFromPlaces(_ value: Place)
 
     @objc(addPlaces:)
-    @NSManaged public func addToPlaces(_ values: NSSet)
+    @NSManaged public func addToPlaces(_ values: Set<Place>)
 
     @objc(removePlaces:)
-    @NSManaged public func removeFromPlaces(_ values: NSSet)
+    @NSManaged public func removeFromPlaces(_ values: Set<Place>)
 
 }
 
@@ -58,9 +58,9 @@ extension DayPartForecast {
     @NSManaged public func removeFromWinds(_ value: Wind)
 
     @objc(addWinds:)
-    @NSManaged public func addToWinds(_ values: NSSet)
+    @NSManaged public func addToWinds(_ values: Set<Wind>)
 
     @objc(removeWinds:)
-    @NSManaged public func removeFromWinds(_ values: NSSet)
+    @NSManaged public func removeFromWinds(_ values: Set<Wind>)
 
 }

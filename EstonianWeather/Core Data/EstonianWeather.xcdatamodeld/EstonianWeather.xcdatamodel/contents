@@ -3,8 +3,8 @@
     <entity name="DayPartForecast" representedClassName="DayPartForecast" syncable="YES">
         <attribute name="peipsi" optional="YES" attributeType="String"/>
         <attribute name="sea" optional="YES" attributeType="String"/>
-        <attribute name="tempmax" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="tempmin" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="tempmax" optional="YES" attributeType="Integer 64" usesScalarValueType="YES"/>
+        <attribute name="tempmin" optional="YES" attributeType="Integer 64" usesScalarValueType="YES"/>
         <attribute name="text" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>
         <relationship name="dayForecast" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Forecast" inverseName="day" inverseEntity="Forecast"/>
@@ -31,8 +31,8 @@
     </entity>
     <entity name="Place" representedClassName="Place" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="tempmax" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="tempmin" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="tempmax" optional="YES" attributeType="Integer 64" usesScalarValueType="NO"/>
+        <attribute name="tempmin" optional="YES" attributeType="Integer 64" usesScalarValueType="NO"/>
         <relationship name="datePartForecast" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DayPartForecast" inverseName="places" inverseEntity="DayPartForecast"/>
         <relationship name="phenomenon" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Phenomenon" inverseName="places" inverseEntity="Phenomenon"/>
     </entity>
@@ -40,8 +40,8 @@
         <attribute name="direction" optional="YES" attributeType="String"/>
         <attribute name="gust" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="speedmax" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="speedmin" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="speedmax" optional="YES" attributeType="Integer 64" usesScalarValueType="NO"/>
+        <attribute name="speedmin" optional="YES" attributeType="Integer 64" usesScalarValueType="NO"/>
         <relationship name="datePartForecast" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DayPartForecast" inverseName="winds" inverseEntity="DayPartForecast"/>
     </entity>
     <elements>

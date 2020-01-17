@@ -43,7 +43,7 @@ final class DataMapper {
             mappedForecasts.append(mappedForecast)
         }
 
-        forecastResponse.forecasts = NSSet(array: mappedForecasts)
+        forecastResponse.forecasts = Set(mappedForecasts)
     }
 
     private func existingForecast(for forecastToMap: EWDocument.EWForecast) -> Forecast? {
@@ -99,8 +99,8 @@ final class DataMapper {
         mappedDayPartForecast.phenomenon = map(dayPartForecastToMap.phenomenon)
         mappedDayPartForecast.sea = dayPartForecastToMap.sea
         mappedDayPartForecast.peipsi = dayPartForecastToMap.peipsi
-        mappedDayPartForecast.tempmax = .init(int: dayPartForecastToMap.tempmax)
-        mappedDayPartForecast.tempmin = .init(int: dayPartForecastToMap.tempmin)
+        mappedDayPartForecast.tempmax = NSNumber(int: dayPartForecastToMap.tempmax)
+        mappedDayPartForecast.tempmin = NSNumber(int: dayPartForecastToMap.tempmin)
 
         
         var mappedPlaces: Set<Place> = []
@@ -113,8 +113,8 @@ final class DataMapper {
             mappedWinds.insert(map(windToMap))
         }
 
-        mappedDayPartForecast.places = mappedPlaces as NSSet
-        mappedDayPartForecast.winds = mappedWinds as NSSet
+        mappedDayPartForecast.places = mappedPlaces
+        mappedDayPartForecast.winds = mappedWinds
 
         return mappedDayPartForecast
     }
@@ -136,8 +136,8 @@ final class DataMapper {
         let mappedPlace = Place(context: self.context)
         mappedPlace.name = placeToMap.name
         mappedPlace.phenomenon = map(placeToMap.phenomenon)
-        mappedPlace.tempmin = .init(int: placeToMap.tempmin)
-        mappedPlace.tempmax = .init(int: placeToMap.tempmax)
+        mappedPlace.tempmin = NSNumber(int: placeToMap.tempmin)
+        mappedPlace.tempmax = NSNumber(int: placeToMap.tempmax)
 
         return mappedPlace
     }
@@ -145,8 +145,8 @@ final class DataMapper {
     private func map(_ windToMap: EWDocument.EWForecast.EWDayPartForecast.EWWind) -> Wind {
         let mappedWind = Wind(context: self.context)
         mappedWind.name = windToMap.name
-        mappedWind.speedmin = .init(int: windToMap.speedmin)
-        mappedWind.speedmax = .init(int: windToMap.speedmax)
+        mappedWind.speedmin = NSNumber(int: windToMap.speedmin)
+        mappedWind.speedmax = NSNumber(int: windToMap.speedmax)
         mappedWind.gust = windToMap.gust
         mappedWind.direction = windToMap.direction
 
@@ -169,13 +169,13 @@ final class DataMapper {
 }
 
 
-private extension Int16 {
-    init(int: Int?) {
+private extension NSNumber {
+
+    convenience init?(int: Int?) {
         guard let int = int else {
-            self = 0
-            return
+            return nil
         }
 
-        self.init(truncatingIfNeeded: int)
+        self.init(value: int)
     }
 }

@@ -2,7 +2,7 @@
 //  Place+CoreDataProperties.swift
 //  EstonianWeather
 //
-//  Created by Andrius Shiaulis on 13.01.2020.
+//  Created by Andrius Shiaulis on 18.01.2020.
 //  Copyright © 2020 Andrius Shiaulis. All rights reserved.
 //
 //
@@ -18,8 +18,8 @@ extension Place {
     }
 
     @NSManaged public var name: String?
-    @NSManaged public var tempmax: Int16
-    @NSManaged public var tempmin: Int16
+    @NSManaged public var tempmax: NSNumber?
+    @NSManaged public var tempmin: NSNumber?
     @NSManaged public var datePartForecast: DayPartForecast?
     @NSManaged public var phenomenon: Phenomenon?
 

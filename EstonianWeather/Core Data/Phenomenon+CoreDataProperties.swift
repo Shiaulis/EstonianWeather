@@ -18,8 +18,8 @@ extension Phenomenon {
     }
 
     @NSManaged public var name: String?
-    @NSManaged public var dayPartForecasts: NSSet?
-    @NSManaged public var places: NSSet?
+    @NSManaged public var dayPartForecasts: Set<DayPartForecast>?
+    @NSManaged public var places: Set<Place>?
 
 }
 
@@ -33,10 +33,10 @@ extension Phenomenon {
     @NSManaged public func removeFromDayPartForecasts(_ value: DayPartForecast)
 
     @objc(addDayPartForecasts:)
-    @NSManaged public func addToDayPartForecasts(_ values: NSSet)
+    @NSManaged public func addToDayPartForecasts(_ values: Set<DayPartForecast>)
 
     @objc(removeDayPartForecasts:)
-    @NSManaged public func removeFromDayPartForecasts(_ values: NSSet)
+    @NSManaged public func removeFromDayPartForecasts(_ values: Set<DayPartForecast>)
 
 }
 
@@ -50,9 +50,9 @@ extension Phenomenon {
     @NSManaged public func removeFromPlaces(_ value: Place)
 
     @objc(addPlaces:)
-    @NSManaged public func addToPlaces(_ values: NSSet)
+    @NSManaged public func addToPlaces(_ values: Set<Place>)
 
     @objc(removePlaces:)
-    @NSManaged public func removeFromPlaces(_ values: NSSet)
+    @NSManaged public func removeFromPlaces(_ values: Set<Place>)
 
 }

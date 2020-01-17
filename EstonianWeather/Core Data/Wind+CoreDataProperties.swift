@@ -20,8 +20,8 @@ extension Wind {
     @NSManaged public var direction: String?
     @NSManaged public var gust: String?
     @NSManaged public var name: String?
-    @NSManaged public var speedmax: Int16
-    @NSManaged public var speedmin: Int16
+    @NSManaged public var speedmax: NSNumber?
+    @NSManaged public var speedmin: NSNumber?
     @NSManaged public var datePartForecast: DayPartForecast?
 
 }

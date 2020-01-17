@@ -19,7 +19,7 @@ extension ForecastResponse {
 
     @NSManaged public var date: Date?
     @NSManaged public var language: String?
-    @NSManaged public var forecasts: NSSet?
+    @NSManaged public var forecasts: Set<Forecast>?
 
 }
 
@@ -33,9 +33,9 @@ extension ForecastResponse {
     @NSManaged public func removeFromForecasts(_ value: Forecast)
 
     @objc(addForecasts:)
-    @NSManaged public func addToForecasts(_ values: NSSet)
+    @NSManaged public func addToForecasts(_ values: Set<Forecast>)
 
     @objc(removeForecasts:)
-    @NSManaged public func removeFromForecasts(_ values: NSSet)
+    @NSManaged public func removeFromForecasts(_ values: Set<Forecast>)
 
 }
