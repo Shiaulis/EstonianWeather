@@ -8,11 +8,13 @@
 
 import Foundation
 import Combine
+import CoreData
 
-final class RootViewMolel {
+final class RootViewMolel: ObservableObject {
 
+    @Published var displayItems: [ForecastDisplayItem] = []
     private var disposables: Set<AnyCancellable> = []
-    private(set) var data: Data?
+    private let context = CoreDataStack().persistentContainer.viewContext
 
     var networkPublisher: AnyPublisher<(data: Data, response: URLResponse), URLError> {
         let url = URL(string: "http://www.ilmateenistus.ee/ilma_andmed/xml/forecast.php?lang=eng")!
@@ -21,13 +23,33 @@ final class RootViewMolel {
         .eraseToAnyPublisher()
     }
 
-    func fetch(completion: @escaping (Result<Data, Error>) -> Void) {
-        networkPublisher.sink(receiveCompletion: {
+    func fetch() {
+        self.networkPublisher
+            .map { WeatherParser().parse(data: $0.data, serviceInfo: EWDocument.ServiceInfo(date: Date(), languageCode: "en")) }
+            .receive(on: RunLoop.main)
+            .sink(receiveCompletion: {
             print("received completion", $0)
         }) {
-            completion(.success($0.data))
+            guard let value = try? $0.get() else { return }
+            DataMapper(context: self.context).performMapping(value)
+
+            guard let items = self.fetchFromPersistentLayer() else { return }
+            self.displayItems = items
         }
         .store(in: &disposables)
     }
 
+
+    private func fetchFromPersistentLayer() -> [ForecastDisplayItem]? {
+        let request: NSFetchRequest<Forecast> = Forecast.fetchRequest()
+
+        request.sortDescriptors = [.init(key: #keyPath(Forecast.date), ascending: true)]
+
+        guard let result = try? self.context.fetch(request) else { return nil }
+
+        let controller = ForecastController()
+        let displayItems = result.map { controller.displayItem(for: $0) }
+
+        return displayItems
+    }
 }

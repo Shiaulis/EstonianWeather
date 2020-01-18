@@ -10,59 +10,64 @@ import SwiftUI
 
 struct RootView: View {
 
-    @State var forecast: ForecastDisplayItem
+    @ObservedObject var viewModel: RootViewMolel = RootViewMolel()
 
     var body: some View {
-        VStack {
-            HStack {
-                Text("Today")
-                    .font(Font.body.weight(.bold))
-                Text(self.forecast.date)
-                    .font(Font.body.weight(.regular))
-                Spacer()
-            }
-
+        List(self.viewModel.displayItems) { item in
             VStack {
-                ForEach(self.forecast.dayParts, id: \.id) { dayPart in
-                    VStack {
-                        HStack {
-                            Text(dayPart.type)
-                            Spacer()
-                        }
+                HStack {
+                    Text("Today")
+                        .font(Font.body.weight(.bold))
+                    Text(item.date)
+                        .font(Font.body.weight(.regular))
+                    Spacer()
+                }
 
-                        HStack {
-                            Spacer()
-                            Image(dayPart.weatherIconName)
-                                .resizable()
-                                .frame(width: 64, height: 64)
-                            Spacer()
-                            Text(dayPart.temperatureRange)
-                                .font(.largeTitle)
-                            Spacer()
-                        }
+                VStack {
+                    ForEach(item.dayParts, id: \.id) { dayPart in
+                        VStack {
+                            HStack {
+                                Text(dayPart.type)
+                                Spacer()
+                            }
 
-                        Text(dayPart.description)
-                            .fixedSize(horizontal: false, vertical: true)
-                            .font(.caption)
-
-                        ForEach(dayPart.places, id: \.id) { place in
                             HStack {
                                 Spacer()
-                                Text(place.name)
-                                Spacer()
-                                Image(place.weatherIconName)
+                                Image(dayPart.weatherIconName)
                                     .resizable()
-                                    .frame(width: 20, height: 20)
+                                    .frame(width: 64, height: 64)
                                 Spacer()
-                                Text(place.temperature)
+                                Text(dayPart.temperatureRange)
+                                    .font(.largeTitle)
                                 Spacer()
+                            }
+
+                            Text(dayPart.description)
+                                .fixedSize(horizontal: false, vertical: true)
+                                .font(.caption)
+
+                            ForEach(dayPart.places, id: \.id) { place in
+                                HStack {
+                                    Spacer()
+                                    Text(place.name)
+                                    Spacer()
+                                    Image(place.weatherIconName)
+                                        .resizable()
+                                        .frame(width: 20, height: 20)
+                                    Spacer()
+                                    Text(place.temperature)
+                                    Spacer()
+                                }
                             }
                         }
                     }
                 }
             }
+            .padding(.horizontal)
         }
-        .padding(.horizontal)
+        .onAppear {
+            self.viewModel.fetch()
+        }
     }
 }
 
@@ -117,6 +122,6 @@ struct ForecastDisplayItem: Identifiable {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
 
-        RootView(forecast: ForecastDisplayItem.test)
+        RootView()
     }
 }

@@ -130,15 +130,15 @@
 			isa = PBXGroup;
 			children = (
 				0913814D23CB7AF30092EC04 /* RootView.swift */,
+				097EDEC223CD067C00F8E617 /* RootViewModel.swift */,
 				0976A38023D242B70074A709 /* ForecastController.swift */,
-				097EDEC023CCC82B00F8E617 /* Core Data */,
-				097EDEC123CCC84500F8E617 /* Supporting Files */,
-				0913815123CB7AF60092EC04 /* Preview Content */,
 				0913816D23CB7CC10092EC04 /* WeatherParser.swift */,
 				097EDE9423CBA9E500F8E617 /* EWDocument.swift */,
 				097EDEB423CBC83400F8E617 /* DataMapper.swift */,
-				097EDEC223CD067C00F8E617 /* RootViewModel.swift */,
 				09A8EE5423D23151007E3249 /* WeatherType.swift */,
+				097EDEC023CCC82B00F8E617 /* Core Data */,
+				097EDEC123CCC84500F8E617 /* Supporting Files */,
+				0913815123CB7AF60092EC04 /* Preview Content */,
 			);
 			path = EstonianWeather;
 			sourceTree = "<group>";
