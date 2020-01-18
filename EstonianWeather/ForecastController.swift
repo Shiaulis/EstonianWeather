@@ -16,6 +16,7 @@ final class ForecastController {
 
     func displayItem(for forecast: Forecast) -> ForecastDisplayItem {
         .init(
+            naturalDateDescription: "Today",
             date: dateString(from: forecast.date),
             dayParts: [forecast.night, forecast.day].compactMap { dayPartDisplayItem(for: $0) }
         )

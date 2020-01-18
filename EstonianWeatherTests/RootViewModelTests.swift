@@ -31,20 +31,20 @@ class RootViewModelTests: XCTestCase {
 
     // MARK: - Tests
 
-    func testViewModel_whenFetch_receivedData() {
-        // given
-        let exp = expectation(description: "completion gets called")
-
-        // when
-        var receivedData: Data?
-        self.sut.fetch { result in
-            receivedData = try! result.get()
-            exp.fulfill()
-        }
-
-        // then
-        wait(for: [exp], timeout: 100)
-        XCTAssertNotNil(receivedData)
-    }
+//    func testViewModel_whenFetch_receivedData() {
+//        // given
+//        let exp = expectation(description: "completion gets called")
+//
+//        // when
+//        var receivedData: Data?
+//        self.sut.fetch { result in
+//            receivedData = try! result.get()
+//            exp.fulfill()
+//        }
+//
+//        // then
+//        wait(for: [exp], timeout: 100)
+//        XCTAssertNotNil(receivedData)
+//    }
 
 }
