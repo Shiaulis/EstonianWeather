@@ -63,11 +63,11 @@ class DataMapperTests: XCTestCase {
         XCTAssertEqual(result.count, 4)
     }
 
-    func testPerformanceExample() {
-        self.measure {
-            self.sut.performMapping(self.ewDocument)
-        }
-    }
+//    func testPerformanceExample() {
+//        self.measure {
+//            self.sut.performMapping(self.ewDocument)
+//        }
+//    }
 
     // MARK: - Private
 
