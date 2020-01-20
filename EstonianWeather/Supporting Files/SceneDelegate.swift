@@ -13,6 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
+    private lazy var isUnitTesting = ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -23,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let contentView = RootView()
 
         // Use a UIHostingController as window root view controller.
-        if let windowScene = scene as? UIWindowScene {
+        if let windowScene = scene as? UIWindowScene, !self.isUnitTesting {
             let window = UIWindow(windowScene: windowScene)
             window.rootViewController = UIHostingController(rootView: contentView)
             self.window = window

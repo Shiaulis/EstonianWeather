@@ -58,6 +58,7 @@ final class DataMapper {
     private func existingPhenomenon(for phenomenonToMap: EWDocument.EWForecast.EWPhenomenon) -> Phenomenon? {
         let request: NSFetchRequest<Phenomenon> = Phenomenon.fetchRequest()
         request.predicate = NSPredicate(format: "%K == %@", #keyPath(Phenomenon.name), phenomenonToMap.rawValue)
+        request.includesPendingChanges = true
 
         return fetchFromContext(request: request)
     }
