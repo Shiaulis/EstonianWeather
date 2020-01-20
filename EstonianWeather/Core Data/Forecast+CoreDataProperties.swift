@@ -2,7 +2,7 @@
 //  Forecast+CoreDataProperties.swift
 //  EstonianWeather
 //
-//  Created by Andrius Shiaulis on 13.01.2020.
+//  Created by Andrius Shiaulis on 20.01.2020.
 //  Copyright © 2020 Andrius Shiaulis. All rights reserved.
 //
 //
@@ -17,26 +17,10 @@ extension Forecast {
         return NSFetchRequest<Forecast>(entityName: "Forecast")
     }
 
-    @NSManaged public var date: Date?
+    @NSManaged public var forecastDate: Date?
+    @NSManaged public var languageCode: String?
+    @NSManaged public var receivedDate: Date?
     @NSManaged public var day: DayPartForecast?
-    @NSManaged public var responses: Set<ForecastResponse>?
     @NSManaged public var night: DayPartForecast?
-
-}
-
-// MARK: Generated accessors for responses
-extension Forecast {
-
-    @objc(addResponsesObject:)
-    @NSManaged public func addToResponses(_ value: ForecastResponse)
-
-    @objc(removeResponsesObject:)
-    @NSManaged public func removeFromResponses(_ value: ForecastResponse)
-
-    @objc(addResponses:)
-    @NSManaged public func addToResponses(_ values: Set<ForecastResponse>)
-
-    @objc(removeResponses:)
-    @NSManaged public func removeFromResponses(_ values: Set<ForecastResponse>)
 
 }

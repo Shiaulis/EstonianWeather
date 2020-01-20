@@ -19,7 +19,7 @@ class WeatherParserTests: XCTestCase {
     var data: Data!
     var parseExpectation: XCTestExpectation!
     var receivedError: WeatherParser.Error!
-    var receivedDocument: EWDocument!
+    var receivedForecasts: [EWForecast]!
 
     // MARK: - Setup and teardown
 
@@ -33,7 +33,7 @@ class WeatherParserTests: XCTestCase {
         self.data = nil
         self.parseExpectation = nil
         self.receivedError = nil
-        self.receivedDocument = nil
+        self.receivedForecasts = nil
         super.tearDown()
     }
 
@@ -47,7 +47,7 @@ class WeatherParserTests: XCTestCase {
         whenParse()
 
         // then
-        XCTAssertNotNil(self.receivedDocument)
+        XCTAssertNotNil(self.receivedForecasts)
     }
 
     func testParser_whenParseWithIncorrectData_receivedError() throws {
@@ -69,7 +69,7 @@ class WeatherParserTests: XCTestCase {
         whenParse()
 
         // then
-        XCTAssertEqual(self.receivedDocument.forecasts?.count, 4)
+        XCTAssertEqual(self.receivedForecasts?.count, 4)
     }
 
     // MARK: - Given
@@ -85,11 +85,10 @@ class WeatherParserTests: XCTestCase {
 
     // MARK: - When
     private func whenParse() {
-        let serviceInfo = EWDocument.ServiceInfo(date: Date(), languageCode: "en")
-        let parseResult = self.sut.parse(data: self.data, serviceInfo: serviceInfo)
+        let parseResult = self.sut.parse(data: self.data)
 
         switch parseResult {
-        case .success(let document): self.receivedDocument = document
+        case .success(let forecasts): self.receivedForecasts = forecasts
         case .failure(let error): self.receivedError = error
         }
     }

@@ -41,7 +41,7 @@ final class ForecastControllerTests: XCTestCase {
         // given
         let expectedDate = "January 17"
         let givenDate = day(forDay: 17, month: 01)
-        self.forecast.date = givenDate
+        self.forecast.forecastDate = givenDate
 
         // when
         whenCreateDisplayItem()

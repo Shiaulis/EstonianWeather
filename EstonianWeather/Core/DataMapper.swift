@@ -17,8 +17,8 @@ final class DataMapper {
         self.context = context
     }
 
-    func performMapping(_ documentToMap: EWDocument) {
-        map(documentToMap)
+    func performMapping(_ forecastsToMap: [EWForecast]) {
+        map(forecastsToMap)
 
         self.context.perform {
             do {
@@ -30,32 +30,26 @@ final class DataMapper {
         }
     }
 
-    private func map(_ documentToMap: EWDocument) {
-        let forecastResponse = ForecastResponse(context: self.context)
-        forecastResponse.date = documentToMap.serviceInfo.date
-        forecastResponse.language = documentToMap.serviceInfo.languageCode
-
-        guard let forecastsToMap = documentToMap.forecasts else { return }
-
+    private func map(_ forecastsToMap: [EWForecast]) {
         var mappedForecasts: [Forecast] = []
         for forecastToMap in forecastsToMap {
             let mappedForecast = map(forecastToMap)
+            mappedForecast.receivedDate = forecastToMap.dateReceived
+            mappedForecast.languageCode = forecastToMap.language?.rawValue
             mappedForecasts.append(mappedForecast)
         }
-
-        forecastResponse.forecasts = Set(mappedForecasts)
     }
 
-    private func existingForecast(for forecastToMap: EWDocument.EWForecast) -> Forecast? {
-        guard let requestedDate = forecastToMap.date else { return nil }
+    private func existingForecast(for forecastToMap: EWForecast) -> Forecast? {
+        guard let requestedDate = forecastToMap.forecastDate else { return nil }
 
         let request: NSFetchRequest<Forecast> = Forecast.fetchRequest()
-        request.predicate = NSPredicate(format: "%K == %@", #keyPath(Forecast.date), requestedDate as NSDate)
+        request.predicate = NSPredicate(format: "%K == %@", #keyPath(Forecast.forecastDate), requestedDate as NSDate)
 
         return fetchFromContext(request: request)
     }
 
-    private func existingPhenomenon(for phenomenonToMap: EWDocument.EWForecast.EWPhenomenon) -> Phenomenon? {
+    private func existingPhenomenon(for phenomenonToMap: EWForecast.EWPhenomenon) -> Phenomenon? {
         let request: NSFetchRequest<Phenomenon> = Phenomenon.fetchRequest()
         request.predicate = NSPredicate(format: "%K == %@", #keyPath(Phenomenon.name), phenomenonToMap.rawValue)
         request.includesPendingChanges = true
@@ -63,10 +57,10 @@ final class DataMapper {
         return fetchFromContext(request: request)
     }
 
-    private func map(_ forecastToMap: EWDocument.EWForecast) -> Forecast {
+    private func map(_ forecastToMap: EWForecast) -> Forecast {
         // We use existing (fetched by the same date) or create a new one
         let mappedForecast = existingForecast(for: forecastToMap) ?? Forecast(context: self.context)
-        mappedForecast.date = forecastToMap.date
+        mappedForecast.forecastDate = forecastToMap.forecastDate
 
         // Delete previous if they were existed
         // All winds and places should also be deleted
@@ -93,7 +87,7 @@ final class DataMapper {
         return mappedForecast
     }
 
-    private func map(_ dayPartForecastToMap: EWDocument.EWForecast.EWDayPartForecast) -> DayPartForecast {
+    private func map(_ dayPartForecastToMap: EWForecast.EWDayPartForecast) -> DayPartForecast {
         let mappedDayPartForecast = DayPartForecast(context: self.context)
 
         mappedDayPartForecast.type = dayPartForecastToMap.type.rawValue
@@ -120,7 +114,7 @@ final class DataMapper {
         return mappedDayPartForecast
     }
 
-    private func map(_ phenomenonToMap: EWDocument.EWForecast.EWPhenomenon?) -> Phenomenon? {
+    private func map(_ phenomenonToMap: EWForecast.EWPhenomenon?) -> Phenomenon? {
         guard let phenomenonToMap = phenomenonToMap else { return nil }
 
         if let existing = existingPhenomenon(for: phenomenonToMap) {
@@ -133,7 +127,7 @@ final class DataMapper {
         }
     }
 
-    private func map(_ placeToMap: EWDocument.EWForecast.EWDayPartForecast.EWPlace) -> Place {
+    private func map(_ placeToMap: EWForecast.EWDayPartForecast.EWPlace) -> Place {
         let mappedPlace = Place(context: self.context)
         mappedPlace.name = placeToMap.name
         mappedPlace.phenomenon = map(placeToMap.phenomenon)
@@ -143,7 +137,7 @@ final class DataMapper {
         return mappedPlace
     }
 
-    private func map(_ windToMap: EWDocument.EWForecast.EWDayPartForecast.EWWind) -> Wind {
+    private func map(_ windToMap: EWForecast.EWDayPartForecast.EWWind) -> Wind {
         let mappedWind = Wind(context: self.context)
         mappedWind.name = windToMap.name
         mappedWind.speedmin = NSNumber(int: windToMap.speedmin)

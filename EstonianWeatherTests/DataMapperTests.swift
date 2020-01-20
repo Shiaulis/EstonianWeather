@@ -15,15 +15,13 @@ class DataMapperTests: XCTestCase {
     // MARK: - Properties
     private var container: NSPersistentContainer!
 
-    private lazy var ewDocument: EWDocument = {
+    private lazy var ewForecasts: [EWForecast] = {
         let parser = WeatherParser()
         let bundle = Bundle(for: WeatherParserTests.self)
         let url = bundle.url(forResource: "TestForecast", withExtension: "xml")!
         let data = try! Data(contentsOf: url)
 
-        var receivedDocument: EWDocument?
-        let serviceInfo = EWDocument.ServiceInfo(date: Date(), languageCode: "en")
-        let parseResult = parser.parse(data: data, serviceInfo: serviceInfo)
+        let parseResult = parser.parse(data: data)
 
         return try! parseResult.get()
     }()
@@ -44,7 +42,7 @@ class DataMapperTests: XCTestCase {
 
     func testMapper_whenAddData_containCorrectAmountOfForecasts() throws {
         // when
-        self.sut.performMapping(self.ewDocument)
+        self.sut.performMapping(self.ewForecasts)
 
         // then
         let fetchRequest :NSFetchRequest<Forecast> = Forecast.fetchRequest()
@@ -54,8 +52,8 @@ class DataMapperTests: XCTestCase {
 
     func testMapper_whenAddSameDocumentTwice_containCorrectAmountOfForecasts() throws {
         // when
-        self.sut.performMapping(self.ewDocument)
-        self.sut.performMapping(self.ewDocument)
+        self.sut.performMapping(self.ewForecasts)
+        self.sut.performMapping(self.ewForecasts)
 
         // then
         let fetchRequest :NSFetchRequest<Forecast> = Forecast.fetchRequest()

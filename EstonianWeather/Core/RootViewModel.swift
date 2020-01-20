@@ -25,7 +25,9 @@ final class RootViewMolel: ObservableObject {
 
     func fetch() {
         self.networkPublisher
-            .map { WeatherParser().parse(data: $0.data, serviceInfo: EWDocument.ServiceInfo(date: Date(), languageCode: "en")) }
+            .map {
+                WeatherParser().parse(data: $0.data, requestDate: Date(), requestedLanguageCode: "en")
+            }
             .receive(on: RunLoop.main)
             .sink(receiveCompletion: {
             print("received completion", $0)
@@ -43,7 +45,7 @@ final class RootViewMolel: ObservableObject {
     private func fetchFromPersistentLayer() -> [ForecastDisplayItem]? {
         let request: NSFetchRequest<Forecast> = Forecast.fetchRequest()
 
-        request.sortDescriptors = [.init(key: #keyPath(Forecast.date), ascending: true)]
+        request.sortDescriptors = [.init(key: #keyPath(Forecast.forecastDate), ascending: true)]
 
         guard let result = try? self.context.fetch(request) else { return nil }
 

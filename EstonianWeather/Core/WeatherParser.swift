@@ -21,28 +21,29 @@ final class WeatherParser: NSObject {
 
     // MARK: - Properties
 
-    private var document: EWDocument!
-    private var currentForecast: EWDocument.EWForecast!
-    private var currentDayPartForecast: EWDocument.EWForecast.EWDayPartForecast!
+    private var forecasts: [EWForecast]?
+    private var currentForecast: EWForecast!
+    private var currentDayPartForecast: EWForecast.EWDayPartForecast!
     private var currentParsedElement: Element!
     private var currentParsedElementText: String!
-    private var currentPlace: EWDocument.EWForecast.EWDayPartForecast.EWPlace!
-    private var currentWind: EWDocument.EWForecast.EWDayPartForecast.EWWind!
+    private var currentPlace: EWForecast.EWDayPartForecast.EWPlace!
+    private var currentWind: EWForecast.EWDayPartForecast.EWWind!
     private var ownError: WeatherParser.Error?
 
-    func parse(data: Data?, serviceInfo: EWDocument.ServiceInfo) -> Result<EWDocument, Error> {
+    func parse(data: Data?, requestDate: Date? = nil, requestedLanguageCode: String? = nil) -> Result<[EWForecast], Error> {
         guard let data = data else {
             return .failure(.incorrectInputData)
         }
 
         let xmlParser = configureParser(with: data)
-        self.document = EWDocument(serviceInfo: serviceInfo)
+        self.forecasts = []
         let success = xmlParser.parse()
 
-        let documentToReturn: EWDocument! = self.document
-        self.document = nil
-        if success {
-            return .success(documentToReturn)
+        if let forecastsToReturn = self.forecasts {
+            self.forecasts = nil
+            if success {
+                return .success(forecastsToReturn)
+            }
         }
 
         if let error = xmlParser.parserError {
@@ -68,24 +69,21 @@ extension WeatherParser: XMLParserDelegate {
 
     func parser(_ parser: XMLParser, foundCharacters string: String) {
         switch self.currentParsedElement {
-        case .forecasts, .forecast, .night, .day, .place, .wind, .gust: break
         case .phenomenon, .tempmin, .tempmax, .text, .name, .direction, .speedmin, .speedmax, .sea, .peipsi:
             if self.currentParsedElement != nil {
                 self.currentParsedElementText += string
             }
 
-        case .none: break
+        case .none, .forecasts, .forecast, .night, .day, .place, .wind, .gust: break
         }
     }
 
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         let element = Element(elementName)
         switch element {
-        case .forecasts:
-            self.document.forecasts = []
         case .forecast:
-            self.currentForecast = EWDocument.EWForecast()
-            self.currentForecast.date = parseForecastDate(from: attributeDict)
+            self.currentForecast = EWForecast()
+            self.currentForecast.forecastDate = parseForecastDate(from: attributeDict)
         case .night:
             self.currentDayPartForecast = .init(type: .night)
         case .day:
@@ -96,7 +94,7 @@ extension WeatherParser: XMLParserDelegate {
             self.currentPlace = .init()
         case .wind:
             self.currentWind = .init()
-        case .none:
+        case .none, .forecasts:
             break
         }
 
@@ -108,14 +106,14 @@ extension WeatherParser: XMLParserDelegate {
         case .forecasts:
             break
         case .forecast:
-            self.document.forecasts!.append(self.currentForecast)
+            self.forecasts?.append(self.currentForecast)
             self.currentForecast = nil
         case .night:
             self.currentForecast.night = self.currentDayPartForecast
         case .day:
             self.currentForecast.day = self.currentDayPartForecast
         case .phenomenon:
-            let phenomenon = EWDocument.EWForecast.EWPhenomenon(rawValue: self.currentParsedElementText)
+            let phenomenon = EWForecast.EWPhenomenon(rawValue: self.currentParsedElementText)
 
             if self.currentPlace != nil {
                 self.currentPlace.phenomenon = phenomenon
