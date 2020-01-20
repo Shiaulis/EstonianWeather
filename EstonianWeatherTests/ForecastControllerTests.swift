@@ -181,7 +181,10 @@ final class ForecastControllerTests: XCTestCase {
     }
 
     private func createContainer() -> NSPersistentContainer {
-        let container = NSPersistentContainer(name: "EstonianWeather")
+
+        let modelURL = Bundle.main.url(forResource: "EstonianWeather", withExtension: "momd")!
+        let model = NSManagedObjectModel(contentsOf: modelURL)!
+        let container = NSPersistentContainer(name: "EstonianWeatherTests", managedObjectModel: model)
         let description = container.persistentStoreDescriptions.first!
         description.url = URL(fileURLWithPath: "/dev/null")
 
