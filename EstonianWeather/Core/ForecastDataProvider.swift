@@ -1,5 +1,5 @@
 //
-//  ForecastController.swift
+//  ForecastDataProvider.swift
 //  EstonianWeather
 //
 //  Created by Andrius Shiaulis on 17.01.2020.
@@ -7,22 +7,40 @@
 //
 
 import Foundation
+import CoreData
+import Combine
 
-final class ForecastController {
+final class ForecastDataProvider {
 
-    // MARK: - Properties
+    // MARK: - Public
 
-    // MARK: - Init
+    func provide(with context: NSManagedObjectContext) -> Result<[ForecastDisplayItem], Error> {
+        let request: NSFetchRequest<Forecast> = Forecast.fetchRequest()
 
-    func displayItem(for forecast: Forecast) -> ForecastDisplayItem {
+        request.sortDescriptors = [.init(key: #keyPath(Forecast.forecastDate), ascending: true)]
+
+        let result: [Forecast]
+        do {
+            result = try context.fetch(request)
+        }
+        catch {
+            return .failure(error)
+        }
+
+        let displayItems = result.map { self.displayItem(for: $0) }
+
+        return .success(displayItems)
+    }
+
+    // MARK: - Private
+
+    private func displayItem(for forecast: Forecast) -> ForecastDisplayItem {
         .init(
             naturalDateDescription: "Today",
             date: dateString(from: forecast.forecastDate),
             dayParts: [forecast.night, forecast.day].compactMap { dayPartDisplayItem(for: $0) }
         )
     }
-
-    // MARK: - Private
 
     private func dayPartDisplayItem(for dayPartForecast: DayPartForecast?) -> ForecastDisplayItem.DayPartForecastDisplayItem? {
         guard let dayPartForecast = dayPartForecast else { return nil }

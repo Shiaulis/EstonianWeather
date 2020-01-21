@@ -9,8 +9,6 @@
 import XCTest
 @testable import EstonianWeather
 
-private let defaultTimeout: TimeInterval = 1000
-
 class WeatherParserTests: XCTestCase {
 
     // MARK: - Properties

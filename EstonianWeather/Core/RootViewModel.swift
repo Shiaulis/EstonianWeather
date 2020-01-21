@@ -14,43 +14,17 @@ final class RootViewMolel: ObservableObject {
 
     @Published var displayItems: [ForecastDisplayItem] = []
     private var disposables: Set<AnyCancellable> = []
-    private let context = CoreDataStack().persistentContainer.viewContext
 
-    var networkPublisher: AnyPublisher<(data: Data, response: URLResponse), URLError> {
-        let url = URL(string: "http://www.ilmateenistus.ee/ilma_andmed/xml/forecast.php?lang=eng")!
-        let session  = URLSession.shared
-        return session.dataTaskPublisher(for: url)
-        .eraseToAnyPublisher()
-    }
-
-    func fetch() {
-        self.networkPublisher
-            .map {
-                WeatherParser().parse(data: $0.data, requestDate: Date(), requestedLanguageCode: "en")
+    init(dataProvider: ForecastDataProvider) {
+        NotificationCenter.default
+            .publisher(for: .NSManagedObjectContextDidSave)
+            .tryMap { notification in
+                guard let context = notification.object as? NSManagedObjectContext else { fatalError() }
+                return try dataProvider.provide(with: context).get() }
+            .sink(receiveCompletion: { _ in }) { displayItems in
+                self.displayItems = displayItems
             }
-            .receive(on: RunLoop.main)
-            .sink(receiveCompletion: { _ in
-            }) {
-                guard let value = try? $0.get() else { return }
-                DataMapper(context: self.context).performMapping(value)
-
-                guard let items = self.fetchFromPersistentLayer() else { return }
-                self.displayItems = items
-            }
-            .store(in: &disposables)
+            .store(in: &self.disposables)
     }
 
-
-    private func fetchFromPersistentLayer() -> [ForecastDisplayItem]? {
-        let request: NSFetchRequest<Forecast> = Forecast.fetchRequest()
-
-        request.sortDescriptors = [.init(key: #keyPath(Forecast.forecastDate), ascending: true)]
-
-        guard let result = try? self.context.fetch(request) else { return nil }
-
-        let controller = ForecastController()
-        let displayItems = result.map { controller.displayItem(for: $0) }
-
-        return displayItems
-    }
 }

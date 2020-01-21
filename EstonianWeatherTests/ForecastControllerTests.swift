@@ -15,8 +15,9 @@ final class ForecastControllerTests: XCTestCase {
     // MARK: - Properties
     private var container: NSPersistentContainer!
     private var forecast: Forecast!
-    private var sut: ForecastController!
-    private var displayItem: ForecastDisplayItem!
+    private var sut: ForecastDataProvider!
+    private var displayItems: [ForecastDisplayItem]!
+    private var firstDisplayItem: ForecastDisplayItem! { self.displayItems.first }
 
     // MARK: - Setup and teardown
 
@@ -24,11 +25,11 @@ final class ForecastControllerTests: XCTestCase {
         super.setUp()
         self.container = createContainer()
         self.forecast = .init(context: self.container.viewContext)
-        self.sut = ForecastController()
+        self.sut = ForecastDataProvider()
     }
 
     override func tearDown() {
-        self.displayItem = nil
+        self.displayItems = nil
         self.sut = nil
         self.forecast = nil
         self.container = nil
@@ -37,33 +38,37 @@ final class ForecastControllerTests: XCTestCase {
 
     // MARK: - Tests forecast display item
 
-    func testController_whenCreateDisplayItem_containCorrectDateString() {
+    func testProvider_whenProvide_returnSuccess() {
+        XCTAssertNoThrow(try self.sut.provide(with: self.container.viewContext).get())
+    }
+
+    func testProvider_whenProvide_returnsForecastCorrectDateString() {
         // given
         let expectedDate = "January 17"
         let givenDate = day(forDay: 17, month: 01)
         self.forecast.forecastDate = givenDate
 
         // when
-        whenCreateDisplayItem()
+        whenRequestDisplayItems()
 
         // then
-        XCTAssertEqual(self.displayItem.date, expectedDate)
+        XCTAssertEqual(self.firstDisplayItem.date, expectedDate)
     }
 
-    func testController_whenCreateDisplayItem_containCorrectNumberOfDayParts() {
+    func testProvider_whenProvide_returnsCorrectNumberOfDayParts() {
         // given
         givenForecastWithDayAndNight()
 
         // when
-        whenCreateDisplayItem()
+        whenRequestDisplayItems()
 
         // then
-        XCTAssertEqual(self.displayItem.dayParts.count, 2)
+        XCTAssertEqual(self.firstDisplayItem.dayParts.count, 2)
     }
 
     // MARK: - Tests day part display item
 
-    func testController_whenCreateDayPartDisplayItem_containCorrectTempRangeString() {
+    func testProvider_whenProvide_returnsCorrectTempRangeString() {
         // given
         givenForecastWithDayAndNight()
         let minTemperature = -5
@@ -73,50 +78,50 @@ final class ForecastControllerTests: XCTestCase {
         self.forecast.night?.tempmax = NSNumber(value: maxTemperature)
 
         // when
-        whenCreateDisplayItem()
+        whenRequestDisplayItems()
 
         // then
-        XCTAssertEqual(self.displayItem.dayParts.first?.temperatureRange, expectedSting)
+        XCTAssertEqual(self.firstDisplayItem.dayParts.first?.temperatureRange, expectedSting)
     }
 
-    func testController_whenCreateDayPartDisplayItem_containCorrectDescription() {
+    func testProvider_whenProvide_returnsCorrectDescription() {
         // given
         givenForecastWithDayAndNight()
         let expectedDescription = String.loremIpsum
         self.forecast.night?.text = expectedDescription
 
         // when
-        whenCreateDisplayItem()
+        whenRequestDisplayItems()
 
         // then
-        XCTAssertEqual(self.displayItem.dayParts.first?.description, expectedDescription)
+        XCTAssertEqual(self.firstDisplayItem.dayParts.first?.description, expectedDescription)
     }
 
-    func testController_whenCreateDayPartDisplayItem_containCorrectNumberOfPlaces() {
+    func testProvider_whenProvide_returnsCorrectNumberOfPlaces() {
         // given
         givenForecastWithNigthContainTwoPlaces()
 
         // when
-        whenCreateDisplayItem()
+        whenRequestDisplayItems()
 
         // then
-        XCTAssertEqual(self.displayItem.dayParts.first?.places.count, 2)
+        XCTAssertEqual(self.firstDisplayItem.dayParts.first?.places.count, 2)
     }
 
-    func testController_whenCreatePlaceDisplayItem_containCorrectName() {
+    func testProvider_whenProvide_returnsCorrectName() {
         // given
         givenForecastWithNigthContainTwoPlaces()
         let expectedPlaceName = "Pärnu"
         self.forecast.night?.places?.first?.name = expectedPlaceName
 
         // when
-        whenCreateDisplayItem()
+        whenRequestDisplayItems()
 
         // then
-        XCTAssertEqual(self.displayItem.dayParts.first?.places.first?.name, expectedPlaceName)
+        XCTAssertEqual(self.firstDisplayItem.dayParts.first?.places.first?.name, expectedPlaceName)
     }
 
-    func testController_whenCreatePlaceDisplayItem_containCorrectTemperatureRange() {
+    func testProvider_whenProvide_returnsCorrectTemperatureRange() {
         // given
         givenForecastWithNigthContainTwoPlaces()
         let minTemperature = -5
@@ -126,13 +131,13 @@ final class ForecastControllerTests: XCTestCase {
         self.forecast.night?.places?.first?.tempmax = NSNumber(value: maxTemperature)
 
         // when
-        whenCreateDisplayItem()
+        whenRequestDisplayItems()
 
         // then
-        XCTAssertEqual(self.displayItem.dayParts.first?.places.first?.temperature, expectedSting)
+        XCTAssertEqual(self.firstDisplayItem.dayParts.first?.places.first?.temperature, expectedSting)
     }
 
-    func testController_whenCreatePlaceDisplayItem_containCorrectMinTemperature() {
+    func testProvider_whenProvide_returnsCorrectMinTemperature() {
         // given
         givenForecastWithNigthContainTwoPlaces()
         let minTemperature = -5
@@ -140,12 +145,11 @@ final class ForecastControllerTests: XCTestCase {
         self.forecast.night?.places?.first?.tempmin = NSNumber(value: minTemperature)
 
         // when
-        whenCreateDisplayItem()
+        whenRequestDisplayItems()
 
         // then
-        XCTAssertEqual(self.displayItem.dayParts.first?.places.first?.temperature, expectedSting)
+        XCTAssertEqual(self.firstDisplayItem.dayParts.first?.places.first?.temperature, expectedSting)
     }
-
 
     // MARK: - Given
 
@@ -166,8 +170,8 @@ final class ForecastControllerTests: XCTestCase {
 
     // MARK: - When
 
-    private func whenCreateDisplayItem() {
-        self.displayItem = self.sut.displayItem(for: self.forecast)
+    private func whenRequestDisplayItems() {
+        self.displayItems = try! self.sut.provide(with: self.container.viewContext).get()
     }
 
     // MARK: - Private

@@ -10,15 +10,12 @@ import SwiftUI
 
 struct RootView: View {
 
-    @ObservedObject var viewModel: RootViewMolel = RootViewMolel()
+    @ObservedObject var viewModel: RootViewMolel = RootViewMolel(dataProvider: ForecastDataProvider())
 
     var body: some View {
         List(self.viewModel.displayItems) { item in
             ForecastView(item: item)
                 .padding(.horizontal)
-        }
-        .onAppear {
-            self.viewModel.fetch()
         }
     }
 }
