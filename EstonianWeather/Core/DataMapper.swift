@@ -11,87 +11,94 @@ import CoreData
 
 final class DataMapper {
 
-    private let context: NSManagedObjectContext
-
-    init(context: NSManagedObjectContext) {
-        self.context = context
+    enum Error: Swift.Error {
+        case emptyResponse, nonValidData, nonValidEntityDescription
     }
 
-    func performMapping(_ forecastsToMap: [EWForecast]) {
-        map(forecastsToMap)
-
-        self.context.perform {
+    func performMapping(_ forecastsToMap: [EWForecast], context: NSManagedObjectContext, completionHandler: ((Swift.Error?) -> Void)? = nil) {
+        context.perform {
             do {
-                try self.context.save()
+                try self.map(forecastsToMap, context: context)
+                try context.save()
+                completionHandler?(nil)
             }
             catch {
-                assertionFailure()
+                completionHandler?(error)
             }
         }
     }
 
-    private func map(_ forecastsToMap: [EWForecast]) {
+    private func map(_ forecastsToMap: [EWForecast], context: NSManagedObjectContext) throws {
         var mappedForecasts: [Forecast] = []
         for forecastToMap in forecastsToMap {
-            let mappedForecast = map(forecastToMap)
+            let mappedForecast = try map(forecastToMap, context: context)
             mappedForecast.receivedDate = forecastToMap.dateReceived
             mappedForecast.languageCode = forecastToMap.language?.rawValue
             mappedForecasts.append(mappedForecast)
         }
     }
 
-    private func existingForecast(for forecastToMap: EWForecast) -> Forecast? {
-        guard let requestedDate = forecastToMap.forecastDate else { return nil }
+    private func existingForecast(for forecastToMap: EWForecast, context: NSManagedObjectContext) throws -> Forecast {
+        guard let requestedDate = forecastToMap.forecastDate else {
+            throw DataMapper.Error.nonValidData
+        }
 
         let request: NSFetchRequest<Forecast> = Forecast.fetchRequest()
         request.predicate = NSPredicate(format: "%K == %@", #keyPath(Forecast.forecastDate), requestedDate as NSDate)
 
-        return fetchFromContext(request: request)
+        return try fetch(request: request)
     }
 
-    private func existingPhenomenon(for phenomenonToMap: EWForecast.EWPhenomenon) -> Phenomenon? {
+    private func existingPhenomenon(for phenomenonToMap: EWForecast.EWPhenomenon) throws -> Phenomenon {
         let request: NSFetchRequest<Phenomenon> = Phenomenon.fetchRequest()
         request.predicate = NSPredicate(format: "%K == %@", #keyPath(Phenomenon.name), phenomenonToMap.rawValue)
         request.includesPendingChanges = true
 
-        return fetchFromContext(request: request)
+        return try fetch(request: request)
     }
 
-    private func map(_ forecastToMap: EWForecast) -> Forecast {
+    private func map(_ forecastToMap: EWForecast, context: NSManagedObjectContext) throws -> Forecast {
         // We use existing (fetched by the same date) or create a new one
-        let mappedForecast = existingForecast(for: forecastToMap) ?? Forecast(context: self.context)
+        let mappedForecast: Forecast
+        do {
+            mappedForecast = try existingForecast(for: forecastToMap, context: context)
+        }
+        catch DataMapper.Error.emptyResponse {
+            mappedForecast = try create(in: context)
+        }
+
         mappedForecast.forecastDate = forecastToMap.forecastDate
 
         // Delete previous if they were existed
         // All winds and places should also be deleted
         // according to core data delete rules
         if let nightToDelete = mappedForecast.night {
-            self.context.delete(nightToDelete)
+            context.delete(nightToDelete)
         }
 
         if let dayToDelete = mappedForecast.day {
-            self.context.delete(dayToDelete)
+            context.delete(dayToDelete)
         }
 
         
         if let nigthToMap = forecastToMap.night {
-            let mappedNight = map(nigthToMap)
+            let mappedNight = try map(nigthToMap, context: context)
             mappedForecast.night = mappedNight
         }
 
         if let dayToMap = forecastToMap.day {
-            let mappedDay = map(dayToMap)
+            let mappedDay = try map(dayToMap, context: context)
             mappedForecast.day = mappedDay
         }
 
         return mappedForecast
     }
 
-    private func map(_ dayPartForecastToMap: EWForecast.EWDayPartForecast) -> DayPartForecast {
-        let mappedDayPartForecast = DayPartForecast(context: self.context)
+    private func map(_ dayPartForecastToMap: EWForecast.EWDayPartForecast, context: NSManagedObjectContext) throws -> DayPartForecast {
+        let mappedDayPartForecast: DayPartForecast = try create(in: context)
 
         mappedDayPartForecast.type = dayPartForecastToMap.type.rawValue
-        mappedDayPartForecast.phenomenon = map(dayPartForecastToMap.phenomenon)
+        mappedDayPartForecast.phenomenon = try map(dayPartForecastToMap.phenomenon, context: context)
         mappedDayPartForecast.sea = dayPartForecastToMap.sea
         mappedDayPartForecast.peipsi = dayPartForecastToMap.peipsi
         mappedDayPartForecast.tempmax = NSNumber(int: dayPartForecastToMap.tempmax)
@@ -100,12 +107,12 @@ final class DataMapper {
         
         var mappedPlaces: Set<Place> = []
         for placeToMap in dayPartForecastToMap.places {
-            mappedPlaces.insert(map(placeToMap))
+            mappedPlaces.insert(try map(placeToMap, context: context))
         }
 
         var mappedWinds: Set<Wind> = []
         for windToMap in dayPartForecastToMap.winds {
-            mappedWinds.insert(map(windToMap))
+            mappedWinds.insert(try map(windToMap, context: context))
         }
 
         mappedDayPartForecast.places = mappedPlaces
@@ -114,31 +121,29 @@ final class DataMapper {
         return mappedDayPartForecast
     }
 
-    private func map(_ phenomenonToMap: EWForecast.EWPhenomenon?) -> Phenomenon? {
+    private func map(_ phenomenonToMap: EWForecast.EWPhenomenon?, context: NSManagedObjectContext) throws -> Phenomenon? {
         guard let phenomenonToMap = phenomenonToMap else { return nil }
-
-        if let existing = existingPhenomenon(for: phenomenonToMap) {
-            return existing
-        }
-        else {
-            let phenomenonToAdd = Phenomenon(context: self.context)
+        do {
+            return try existingPhenomenon(for: phenomenonToMap)
+        } catch DataMapper.Error.emptyResponse {
+            let phenomenonToAdd: Phenomenon = try create(in: context)
             phenomenonToAdd.name = phenomenonToMap.rawValue
             return phenomenonToAdd
         }
     }
 
-    private func map(_ placeToMap: EWForecast.EWDayPartForecast.EWPlace) -> Place {
-        let mappedPlace = Place(context: self.context)
+    private func map(_ placeToMap: EWForecast.EWDayPartForecast.EWPlace, context: NSManagedObjectContext) throws -> Place {
+        let mappedPlace: Place = try create(in: context)
         mappedPlace.name = placeToMap.name
-        mappedPlace.phenomenon = map(placeToMap.phenomenon)
+        mappedPlace.phenomenon = try map(placeToMap.phenomenon, context: context)
         mappedPlace.tempmin = NSNumber(int: placeToMap.tempmin)
         mappedPlace.tempmax = NSNumber(int: placeToMap.tempmax)
 
         return mappedPlace
     }
 
-    private func map(_ windToMap: EWForecast.EWDayPartForecast.EWWind) -> Wind {
-        let mappedWind = Wind(context: self.context)
+    private func map(_ windToMap: EWForecast.EWDayPartForecast.EWWind, context: NSManagedObjectContext) throws -> Wind {
+        let mappedWind: Wind = try create(in: context)
         mappedWind.name = windToMap.name
         mappedWind.speedmin = NSNumber(int: windToMap.speedmin)
         mappedWind.speedmax = NSNumber(int: windToMap.speedmax)
@@ -148,19 +153,23 @@ final class DataMapper {
         return mappedWind
     }
 
-    private func fetchFromContext<T>(request: NSFetchRequest<T>) -> T? {
-        var result: [T]?
-        self.context.performAndWait {
-            do {
-                result = try self.context.fetch(request)
-            }
-            catch {
-                assertionFailure()
-            }
+    private func fetch<T>(request: NSFetchRequest<T>) throws -> T {
+        guard let object = try request.execute().first else {
+            throw DataMapper.Error.emptyResponse
         }
 
-        return result?.first
+        return object
     }
+
+    private func create<T: NSManagedObject>(in context: NSManagedObjectContext) throws -> T {
+        let entityName = String(describing: T.self)
+        guard let entityDescription = NSEntityDescription.entity(forEntityName: entityName, in: context) else {
+            throw DataMapper.Error.nonValidEntityDescription
+        }
+
+        return T(entity: entityDescription, insertInto: context)
+    }
+
 }
 
 

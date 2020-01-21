@@ -27,33 +27,38 @@ class DataMapperTests: XCTestCase {
     }()
 
     private var sut: DataMapper!
+    private var completionExpectation: XCTestExpectation!
 
     override func setUp() {
         super.setUp()
-        self.container = createContainer()
-        self.sut = DataMapper(context: self.container.viewContext)
+        self.container = NSPersistentContainer.createContainerForTesting()
+        self.sut = DataMapper()
     }
 
     override func tearDown() {
         self.sut = nil
         self.container = nil
+        self.completionExpectation = nil
         super.tearDown()
     }
 
     func testMapper_whenAddData_containCorrectAmountOfForecasts() throws {
         // when
-        self.sut.performMapping(self.ewForecasts)
+        whenPerformMapping()
 
         // then
-        let fetchRequest :NSFetchRequest<Forecast> = Forecast.fetchRequest()
+        wait(for: [self.completionExpectation], timeout: 100)
+        let fetchRequest: NSFetchRequest<Forecast> = Forecast.fetchRequest()
         let result = try XCTUnwrap(try? self.container.viewContext.fetch(fetchRequest))
         XCTAssertEqual(result.count, 4)
     }
 
     func testMapper_whenAddSameDocumentTwice_containCorrectAmountOfForecasts() throws {
         // when
-        self.sut.performMapping(self.ewForecasts)
-        self.sut.performMapping(self.ewForecasts)
+        whenPerformMapping()
+        wait(for: [self.completionExpectation], timeout: 1)
+        whenPerformMapping()
+        wait(for: [self.completionExpectation], timeout: 1)
 
         // then
         let fetchRequest :NSFetchRequest<Forecast> = Forecast.fetchRequest()
@@ -61,25 +66,18 @@ class DataMapperTests: XCTestCase {
         XCTAssertEqual(result.count, 4)
     }
 
-//    func testPerformanceExample() {
-//        self.measure {
-//            self.sut.performMapping(self.ewDocument)
-//        }
-//    }
+    // MARK: - When
 
-    // MARK: - Private
+    private func whenPerformMapping() {
+        self.completionExpectation = expectation(description: "mapping completed")
+        self.sut.performMapping(self.ewForecasts, context: self.container.viewContext) {
+            if let error = $0 {
+                XCTFail("Failed to perform mapping. Error: \(error.localizedDescription)")
+            }
 
-    private func createContainer() -> NSPersistentContainer {
-        let container = NSPersistentContainer(name: "EstonianWeather")
-        let description = container.persistentStoreDescriptions.first!
-        description.url = URL(fileURLWithPath: "/dev/null")
-
-        container.loadPersistentStores { (_, error) in
-            guard let error = error as NSError? else { return }
-            fatalError("###\(#function): Failed to load persistent stores: \(error)")
+            self.completionExpectation.fulfill()
+            self.completionExpectation = nil
         }
-
-        return container
     }
 
 }

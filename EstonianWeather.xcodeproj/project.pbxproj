@@ -21,6 +21,8 @@
 		09230C6F23D3B2D100E31406 /* ForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09230C6E23D3B2D100E31406 /* ForecastView.swift */; };
 		09230C7123D3B6C000E31406 /* DayPartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09230C7023D3B6C000E31406 /* DayPartView.swift */; };
 		09230C7323D3B73C00E31406 /* PlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09230C7223D3B73C00E31406 /* PlaceView.swift */; };
+		093B2F9723D78D4D006F27FE /* NSPersistentContainer+tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093B2F9623D78D4C006F27FE /* NSPersistentContainer+tests.swift */; };
+		093B2F9923D79545006F27FE /* MockPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093B2F9823D79545006F27FE /* MockPersistentContainer.swift */; };
 		0976A38123D242B70074A709 /* ForecastDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0976A38023D242B70074A709 /* ForecastDataProvider.swift */; };
 		0976A38323D2432A0074A709 /* ForecastControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0976A38223D2432A0074A709 /* ForecastControllerTests.swift */; };
 		097EDE9523CBA9E500F8E617 /* EWForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097EDE9423CBA9E500F8E617 /* EWForecast.swift */; };
@@ -74,6 +76,8 @@
 		09230C6E23D3B2D100E31406 /* ForecastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastView.swift; sourceTree = "<group>"; };
 		09230C7023D3B6C000E31406 /* DayPartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPartView.swift; sourceTree = "<group>"; };
 		09230C7223D3B73C00E31406 /* PlaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceView.swift; sourceTree = "<group>"; };
+		093B2F9623D78D4C006F27FE /* NSPersistentContainer+tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPersistentContainer+tests.swift"; sourceTree = "<group>"; };
+		093B2F9823D79545006F27FE /* MockPersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPersistentContainer.swift; sourceTree = "<group>"; };
 		0976A38023D242B70074A709 /* ForecastDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDataProvider.swift; sourceTree = "<group>"; };
 		0976A38223D2432A0074A709 /* ForecastControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastControllerTests.swift; sourceTree = "<group>"; };
 		097EDE9423CBA9E500F8E617 /* EWForecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EWForecast.swift; sourceTree = "<group>"; };
@@ -162,6 +166,8 @@
 				0913816B23CB7B370092EC04 /* WeatherParserTests.swift */,
 				097EDEB623CC939D00F8E617 /* DataMapperTests.swift */,
 				0976A38223D2432A0074A709 /* ForecastControllerTests.swift */,
+				093B2F9623D78D4C006F27FE /* NSPersistentContainer+tests.swift */,
+				093B2F9823D79545006F27FE /* MockPersistentContainer.swift */,
 			);
 			path = EstonianWeatherTests;
 			sourceTree = "<group>";
@@ -366,6 +372,8 @@
 				097EDEB723CC939D00F8E617 /* DataMapperTests.swift in Sources */,
 				0913816C23CB7B370092EC04 /* WeatherParserTests.swift in Sources */,
 				0976A38323D2432A0074A709 /* ForecastControllerTests.swift in Sources */,
+				093B2F9723D78D4D006F27FE /* NSPersistentContainer+tests.swift in Sources */,
+				093B2F9923D79545006F27FE /* MockPersistentContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

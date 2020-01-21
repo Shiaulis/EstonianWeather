@@ -11,10 +11,12 @@ import Combine
 
 final class MainService {
 
+    private lazy var isUnitTesting = ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
+
     private var disposables: Set<AnyCancellable> = []
-    private let context = CoreDataStack().persistentContainer.viewContext
 
     init() {
+//        guard !self.isUnitTesting else { return }
         let url = URL(string: "http://www.ilmateenistus.ee/ilma_andmed/xml/forecast.php?lang=eng")!
 
         URLSession.shared
@@ -23,10 +25,14 @@ final class MainService {
                 WeatherParser().parse(data: $0.data, requestDate: Date(), requestedLanguageCode: "en")
         }
         .receive(on: RunLoop.main)
-        .sink(receiveCompletion: { _ in
-        }) {
+        .sink(receiveCompletion: { _ in }) {
             guard let value = try? $0.get() else { return }
-            DataMapper(context: self.context).performMapping(value)
+            let context = CoreDataStack().persistentContainer.newBackgroundContext()
+            DataMapper().performMapping(value, context: context) { error in
+                if let error = error {
+                    assertionFailure("Error: \(error.localizedDescription)")
+                }
+            }
         }
         .store(in: &self.disposables)
     }
