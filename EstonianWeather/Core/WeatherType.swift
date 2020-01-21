@@ -14,8 +14,18 @@ enum WeatherType: String {
 
     var imageName: String? {
         switch self {
-        case .lightShower: return "015-rain-1"
-        default: return nil
+        case .snowstorm: return "snowstorm"
+        case .lightSnowfall, .moderateSnowfall, .heavySnowfall: return "snowFall"
+        case .lightSnowShower, .moderateSnowShower, .heavySnowShower, .driftingSnow: return "snowShower"
+        case .lightSleet, .moderateSleet: return "sleet"
+        case .thunderstorm, .thunder: return "thunderstorm"
+        case .lightRain, .moderateRain, .heavyRain: return "rain"
+        case .lightShower, .moderateShower, .heavyShower: return "shower"
+        case .clear: return "clear-day"
+        case .fog, .mist: return "fog-day"
+        case .fewClouds, .variableClouds, .cloudyWithClearSpells, .cloudy: return "fewClouds-day"
+        case .riskOfGlaze: return "glaze"
+        case .hail: return "rain"
         }
     }
 

@@ -29,16 +29,15 @@ final class RootViewMolel: ObservableObject {
                 WeatherParser().parse(data: $0.data, requestDate: Date(), requestedLanguageCode: "en")
             }
             .receive(on: RunLoop.main)
-            .sink(receiveCompletion: {
-            print("received completion", $0)
-        }) {
-            guard let value = try? $0.get() else { return }
-            DataMapper(context: self.context).performMapping(value)
+            .sink(receiveCompletion: { _ in
+            }) {
+                guard let value = try? $0.get() else { return }
+                DataMapper(context: self.context).performMapping(value)
 
-            guard let items = self.fetchFromPersistentLayer() else { return }
-            self.displayItems = items
-        }
-        .store(in: &disposables)
+                guard let items = self.fetchFromPersistentLayer() else { return }
+                self.displayItems = items
+            }
+            .store(in: &disposables)
     }
 
 
