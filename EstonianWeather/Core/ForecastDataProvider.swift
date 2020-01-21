@@ -15,7 +15,7 @@ final class ForecastDataProvider {
     // MARK: - Public
 
     func provide(with context: NSManagedObjectContext) -> Result<[ForecastDisplayItem], Error> {
-        let request: NSFetchRequest<Forecast> = Forecast.fetchRequest()
+        let request: NSFetchRequest<Forecast> = NSFetchRequest<Forecast>(entityName: "Forecast")
 
         request.sortDescriptors = [.init(key: #keyPath(Forecast.forecastDate), ascending: true)]
 

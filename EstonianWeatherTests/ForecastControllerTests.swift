@@ -23,8 +23,8 @@ final class ForecastControllerTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        self.container = createContainer()
-        self.forecast = .init(context: self.container.viewContext)
+        self.container = NSPersistentContainer.createContainerForTesting()
+        self.forecast = try! create(in: self.container.viewContext)
         self.sut = ForecastDataProvider()
     }
 
@@ -154,17 +154,17 @@ final class ForecastControllerTests: XCTestCase {
     // MARK: - Given
 
     private func givenForecastWithDayAndNight() {
-        self.forecast.day = .init(context: self.container.viewContext)
-        self.forecast.night = .init(context: self.container.viewContext)
+        self.forecast.day = try! create(in: self.container.viewContext)
+        self.forecast.night = try! create(in: self.container.viewContext)
     }
 
     private func givenForecastWithNigthContainTwoPlaces() {
         let places: [Place] = [
-            .init(context: self.container.viewContext),
-            .init(context: self.container.viewContext)
+            try! create(in: self.container.viewContext),
+            try! create(in: self.container.viewContext)
         ]
 
-        self.forecast.night = .init(context: self.container.viewContext)
+        self.forecast.night = try! create(in: self.container.viewContext)
         self.forecast.night?.places = Set(places)
     }
 
@@ -184,20 +184,13 @@ final class ForecastControllerTests: XCTestCase {
         return Calendar.current.date(from: components)!
     }
 
-    private func createContainer() -> NSPersistentContainer {
-
-        let modelURL = Bundle.main.url(forResource: "EstonianWeather", withExtension: "momd")!
-        let model = NSManagedObjectModel(contentsOf: modelURL)!
-        let container = NSPersistentContainer(name: "EstonianWeatherTests", managedObjectModel: model)
-        let description = container.persistentStoreDescriptions.first!
-        description.url = URL(fileURLWithPath: "/dev/null")
-
-        container.loadPersistentStores { (_, error) in
-            guard let error = error as NSError? else { return }
-            fatalError("###\(#function): Failed to load persistent stores: \(error)")
+    private func create<T: NSManagedObject>(in context: NSManagedObjectContext) throws -> T {
+        let entityName = String(describing: T.self)
+        guard let entityDescription = NSEntityDescription.entity(forEntityName: entityName, in: context) else {
+            throw DataMapper.Error.nonValidEntityDescription
         }
 
-        return container
+        return T(entity: entityDescription, insertInto: context)
     }
 
 }

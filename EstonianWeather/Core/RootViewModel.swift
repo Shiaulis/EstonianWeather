@@ -21,6 +21,7 @@ final class RootViewMolel: ObservableObject {
             .tryMap { notification in
                 guard let context = notification.object as? NSManagedObjectContext else { fatalError() }
                 return try dataProvider.provide(with: context).get() }
+            .receive(on: RunLoop.main)
             .sink(receiveCompletion: { _ in }) { displayItems in
                 self.displayItems = displayItems
             }
