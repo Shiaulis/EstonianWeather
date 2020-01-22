@@ -11,24 +11,40 @@ import Combine
 
 final class MainService {
 
-    private lazy var isUnitTesting = ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
+    // MARK: - Properties
 
     private var disposables: Set<AnyCancellable> = []
+    private let persistentContainer = CoreDataStack().persistentContainer
+    private let parser = WeatherParser()
+    private let mapper = DataMapper()
+    private let localization: AppLocalization
+    private var url: URL { self.localization.sourceLink }
+
+    private lazy var networkDataPublisher: AnyPublisher<Data, URLError> = {
+        URLSession.shared
+            .dataTaskPublisher(for: self.url)
+            .map { $0.data }
+            .eraseToAnyPublisher()
+    }()
+
+    // MARK: - Initialization
 
     init() {
-//        guard !self.isUnitTesting else { return }
-        let url = URL(string: "http://www.ilmateenistus.ee/ilma_andmed/xml/forecast.php?lang=eng")!
+        let locale = Locale.current
+        self.localization = AppLocalization(locale: locale)
+        
+        requestAndMapData()
+    }
 
-        URLSession.shared
-            .dataTaskPublisher(for: url)
+    private func requestAndMapData() {
+        self.networkDataPublisher
             .map {
-                WeatherParser().parse(data: $0.data, requestDate: Date(), requestedLanguageCode: "en")
-        }
-        .receive(on: RunLoop.main)
+                self.parser.parse(data: $0, receivedDate: Date(), languageCode: self.localization.languageCode)
+            }
         .sink(receiveCompletion: { _ in }) {
             guard let value = try? $0.get() else { return }
-            let context = CoreDataStack().persistentContainer.newBackgroundContext()
-            DataMapper().performMapping(value, context: context) { error in
+            let context = self.persistentContainer.newBackgroundContext()
+            self.mapper.performMapping(value, context: context) { error in
                 if let error = error {
                     assertionFailure("Error: \(error.localizedDescription)")
                 }

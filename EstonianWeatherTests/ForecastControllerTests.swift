@@ -14,17 +14,22 @@ final class ForecastControllerTests: XCTestCase {
 
     // MARK: - Properties
     private var container: NSPersistentContainer!
+    private var locale: Locale!
     private var forecast: Forecast!
     private var sut: ForecastDataProvider!
     private var displayItems: [ForecastDisplayItem]!
     private var firstDisplayItem: ForecastDisplayItem! { self.displayItems.first }
+
+    private var localization: AppLocalization { .init(locale: self.locale) }
 
     // MARK: - Setup and teardown
 
     override func setUp() {
         super.setUp()
         self.container = NSPersistentContainer.createContainerForTesting()
+        self.locale = .current
         self.forecast = try! create(in: self.container.viewContext)
+        self.forecast.languageCode = localization.languageCode
         self.sut = ForecastDataProvider()
     }
 
@@ -32,6 +37,7 @@ final class ForecastControllerTests: XCTestCase {
         self.displayItems = nil
         self.sut = nil
         self.forecast = nil
+        self.locale = nil
         self.container = nil
         super.tearDown()
     }
@@ -39,7 +45,7 @@ final class ForecastControllerTests: XCTestCase {
     // MARK: - Tests forecast display item
 
     func testProvider_whenProvide_returnSuccess() {
-        XCTAssertNoThrow(try self.sut.provide(with: self.container.viewContext).get())
+        XCTAssertNoThrow(try self.sut.provide(with: self.container.viewContext, for: self.localization).get())
     }
 
     func testProvider_whenProvide_returnsForecastCorrectDateString() {
@@ -171,7 +177,7 @@ final class ForecastControllerTests: XCTestCase {
     // MARK: - When
 
     private func whenRequestDisplayItems() {
-        self.displayItems = try! self.sut.provide(with: self.container.viewContext).get()
+        self.displayItems = try! self.sut.provide(with: self.container.viewContext, for: self.localization).get()
     }
 
     // MARK: - Private

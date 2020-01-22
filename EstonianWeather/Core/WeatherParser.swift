@@ -30,17 +30,25 @@ final class WeatherParser: NSObject {
     private var currentWind: EWForecast.EWDayPartForecast.EWWind!
     private var ownError: WeatherParser.Error?
 
-    func parse(data: Data?, requestDate: Date? = nil, requestedLanguageCode: String? = nil) -> Result<[EWForecast], Error> {
-        guard let data = data else {
-            return .failure(.incorrectInputData)
-        }
+    private var forecastReceivedDate: Date?
+    private var forecastLanguageCode: String?
+
+    // MARK: - Public
+
+    func parse(data: Data?, receivedDate: Date? = nil, languageCode: String? = nil) -> Result<[EWForecast], Error> {
+        guard let data = data else { return .failure(.incorrectInputData) }
 
         let xmlParser = configureParser(with: data)
         self.forecasts = []
+        self.forecastReceivedDate = receivedDate
+        self.forecastLanguageCode = languageCode
         let success = xmlParser.parse()
 
         if let forecastsToReturn = self.forecasts {
             self.forecasts = nil
+            self.forecastReceivedDate = nil
+            self.forecastLanguageCode = nil
+
             if success {
                 return .success(forecastsToReturn)
             }
@@ -57,6 +65,8 @@ final class WeatherParser: NSObject {
         return .failure(.unknownError)
     }
 
+    // MARK: - Private
+
     private func configureParser(with data: Data) -> XMLParser {
         let xmlParser = XMLParser(data: data)
         xmlParser.delegate = self
@@ -64,6 +74,8 @@ final class WeatherParser: NSObject {
         return xmlParser
     }
 }
+
+// MARK: - XMLParserDelegate
 
 extension WeatherParser: XMLParserDelegate {
 
@@ -106,6 +118,8 @@ extension WeatherParser: XMLParserDelegate {
         case .forecasts:
             break
         case .forecast:
+            self.currentForecast.dateReceived = self.forecastReceivedDate
+            self.currentForecast.languageCode = self.forecastLanguageCode
             self.forecasts?.append(self.currentForecast)
             self.currentForecast = nil
         case .night:
@@ -210,6 +224,8 @@ extension WeatherParser: XMLParserDelegate {
     }
 
 }
+
+// MARK: - Error
 
 extension WeatherParser {
     enum Error: Swift.Error, Equatable {

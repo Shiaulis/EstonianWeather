@@ -43,6 +43,7 @@
 		097EDEC323CD067D00F8E617 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097EDEC223CD067C00F8E617 /* RootViewModel.swift */; };
 		09A8EE5523D23151007E3249 /* WeatherType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A8EE5423D23151007E3249 /* WeatherType.swift */; };
 		B163A6C123D753C600459EED /* MainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B163A6C023D753C600459EED /* MainService.swift */; };
+		B1EF6E3023D8961A00DDE5F5 /* AppLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EF6E2F23D8961900DDE5F5 /* AppLocalization.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,7 @@
 		097EDEC223CD067C00F8E617 /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
 		09A8EE5423D23151007E3249 /* WeatherType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherType.swift; sourceTree = "<group>"; };
 		B163A6C023D753C600459EED /* MainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainService.swift; sourceTree = "<group>"; };
+		B1EF6E2F23D8961900DDE5F5 /* AppLocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLocalization.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +196,7 @@
 				09A8EE5423D23151007E3249 /* WeatherType.swift */,
 				097EDEC223CD067C00F8E617 /* RootViewModel.swift */,
 				09230C6C23D3B2B500E31406 /* ForecastDisplayItem.swift */,
+				B1EF6E2F23D8961900DDE5F5 /* AppLocalization.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				09230C7323D3B73C00E31406 /* PlaceView.swift in Sources */,
 				B163A6C123D753C600459EED /* MainService.swift in Sources */,
 				097EDEB023CBC71700F8E617 /* Place+CoreDataClass.swift in Sources */,
+				B1EF6E3023D8961A00DDE5F5 /* AppLocalization.swift in Sources */,
 				0913814A23CB7AF30092EC04 /* AppDelegate.swift in Sources */,
 				097EDEB323CBC76B00F8E617 /* CoreDataStack.swift in Sources */,
 				097EDEA923CBC71700F8E617 /* Forecast+CoreDataProperties.swift in Sources */,

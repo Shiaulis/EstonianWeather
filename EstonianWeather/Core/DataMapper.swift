@@ -33,7 +33,7 @@ final class DataMapper {
         for forecastToMap in forecastsToMap {
             let mappedForecast = try map(forecastToMap, context: context)
             mappedForecast.receivedDate = forecastToMap.dateReceived
-            mappedForecast.languageCode = forecastToMap.language?.rawValue
+            mappedForecast.languageCode = forecastToMap.languageCode
             mappedForecasts.append(mappedForecast)
         }
     }

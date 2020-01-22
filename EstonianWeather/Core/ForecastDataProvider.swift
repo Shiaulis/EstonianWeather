@@ -14,10 +14,16 @@ final class ForecastDataProvider {
 
     // MARK: - Public
 
-    func provide(with context: NSManagedObjectContext) -> Result<[ForecastDisplayItem], Error> {
+    func provide(with context: NSManagedObjectContext, for localization: AppLocalization) -> Result<[ForecastDisplayItem], Error> {
         let request: NSFetchRequest<Forecast> = NSFetchRequest<Forecast>(entityName: "Forecast")
 
-        request.sortDescriptors = [.init(key: #keyPath(Forecast.forecastDate), ascending: true)]
+        request.predicate = .init(format:"%K = %@",
+                                  #keyPath(Forecast.languageCode),
+                                  localization.languageCode)
+
+        request.sortDescriptors = [
+            .init(key: #keyPath(Forecast.forecastDate), ascending: true)
+        ]
 
         let result: [Forecast]
         do {

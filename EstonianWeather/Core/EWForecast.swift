@@ -11,15 +11,9 @@ import Foundation
 struct EWForecast {
     var forecastDate: Date?
     var dateReceived: Date?
-    var language: EWLanguage?
+    var languageCode: String?
     var night: EWDayPartForecast?
     var day: EWDayPartForecast?
-
-    enum EWLanguage: String {
-        case estonian = "et"
-        case russian = "ru"
-        case english = "en"
-    }
 
     struct EWDayPartForecast {
         var type: EWDayPartType
