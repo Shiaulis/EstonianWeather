@@ -9,6 +9,7 @@
 import Foundation
 import Combine
 import CoreData
+import UIKit
 
 final class RootViewMolel: ObservableObject {
 
@@ -16,12 +17,18 @@ final class RootViewMolel: ObservableObject {
     private var disposables: Set<AnyCancellable> = []
     private let dataProvider: ForecastDataProvider
     private let localization: AppLocalization
+    private let settingsURL = URL(string: UIApplication.openSettingsURLString)
 
     init(dataProvider: ForecastDataProvider) {
         self.dataProvider = dataProvider
         self.localization = AppLocalization(locale: Locale.current)
 
         listenForData()
+    }
+
+    func openApplicationSettings() {
+        guard let settingsURL = self.settingsURL else { return }
+        UIApplication.shared.open(settingsURL, options: [:])
     }
 
     private func listenForData() {

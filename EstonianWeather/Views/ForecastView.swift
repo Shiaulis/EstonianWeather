@@ -22,18 +22,21 @@ struct ForecastView: View {
         VStack {
             HStack {
                 Text(self.item.naturalDateDescription)
-                    .font(Font.body.weight(.bold))
                 Text(self.item.date)
-                    .font(Font.body.weight(.regular))
                 Spacer()
             }
+            .font(.headline)
+
+            Divider()
 
             VStack {
-                ForEach(self.item.dayParts, id: \.id) { dayPart in
-                    DayPartView(item: dayPart)
-                }
+                DayPartView(item: self.item.dayParts[0])
+                Divider()
+                    .padding()
+                DayPartView(item: self.item.dayParts[1])
             }
         }
+        .padding(.vertical)
     }
 }
 

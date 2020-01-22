@@ -12,6 +12,10 @@ import Combine
 
 final class ForecastDataProvider {
 
+    // MARK: - Properties
+
+    private let formatter: ForecastDateFormatter = .init(locale: .current)
+
     // MARK: - Public
 
     func provide(with context: NSManagedObjectContext, for localization: AppLocalization) -> Result<[ForecastDisplayItem], Error> {
@@ -42,8 +46,8 @@ final class ForecastDataProvider {
 
     private func displayItem(for forecast: Forecast) -> ForecastDisplayItem {
         .init(
-            naturalDateDescription: "Today",
-            date: dateString(from: forecast.forecastDate),
+            naturalDateDescription: self.formatter.humanReadableDescription(for: forecast.forecastDate) ?? "",
+            date: self.formatter.dateString(from: forecast.forecastDate) ?? "",
             dayParts: [forecast.night, forecast.day].compactMap { dayPartDisplayItem(for: $0) }
         )
     }
@@ -52,8 +56,9 @@ final class ForecastDataProvider {
         guard let dayPartForecast = dayPartForecast else { return nil }
 
         return ForecastDisplayItem.DayPartForecastDisplayItem(
-            type: dayPartForecast.type ?? "",
+            type: dayPartForecast.type?.capitalized ?? "",
             weatherIconName: weatherIconName(for: dayPartForecast.phenomenon) ?? "",
+            weatherDescription: dayPartForecast.phenomenon?.name ?? "",
             temperatureRange: temperatureRangeSting(
                 min: dayPartForecast.tempmin?.intValue,
                 max: dayPartForecast.tempmax?.intValue) ?? "",
@@ -95,16 +100,7 @@ final class ForecastDataProvider {
         }
     }
 
-    private func dateString(from date: Date?) -> String {
-        guard let date = date else { return "" }
-        let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        formatter.setLocalizedDateFormatFromTemplate("dMMMM")
-        
-        return formatter.string(from: date)
-    }
-
-    private func weatherIconName(for phenomenon: Phenomenon?) -> String? {
+    func weatherIconName(for phenomenon: Phenomenon?) -> String? {
         guard let phenomenon = phenomenon else { return nil }
 
         let weatherType = WeatherType(phenomenon: phenomenon)

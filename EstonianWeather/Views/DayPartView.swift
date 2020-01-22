@@ -15,28 +15,29 @@ struct DayPartView: View {
     var body: some View {
         VStack {
             HStack {
-                Text(item.type)
-                Spacer()
+                VStack {
+                    Text(item.type)
+                        .font(.headline)
+                    Image(item.weatherIconName)
+                        .resizable()
+                        .frame(width: 64, height: 64)
+                    Text(self.item.weatherDescription)
+                    Text(item.temperatureRange)
+                        .font(.title)
+                    
+                }
+                .padding(.trailing)
+                VStack {
+                    Text(self.item.description)
+                        .multilineTextAlignment(.leading)
+                        .font(.caption)
+                }
             }
 
-            HStack {
-                Spacer()
-                Image(item.weatherIconName)
-                    .resizable()
-                    .frame(width: 64, height: 64)
-                Spacer()
-                Text(item.temperatureRange)
-                    .font(.largeTitle)
-                Spacer()
-            }
+//            ForEach(item.places, id: \.id) { place in
+//                PlaceView(place: place)
+//            }
 
-            Text(item.description)
-                .fixedSize(horizontal: false, vertical: true)
-                .font(.caption)
-
-            ForEach(item.places, id: \.id) { place in
-                PlaceView(place: place)
-            }
         }
     }
 }

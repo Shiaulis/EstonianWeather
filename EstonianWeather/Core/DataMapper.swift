@@ -99,6 +99,7 @@ final class DataMapper {
 
         mappedDayPartForecast.type = dayPartForecastToMap.type.rawValue
         mappedDayPartForecast.phenomenon = try map(dayPartForecastToMap.phenomenon, context: context)
+        mappedDayPartForecast.text = dayPartForecastToMap.text
         mappedDayPartForecast.sea = dayPartForecastToMap.sea
         mappedDayPartForecast.peipsi = dayPartForecastToMap.peipsi
         mappedDayPartForecast.tempmax = NSNumber(int: dayPartForecastToMap.tempmax)

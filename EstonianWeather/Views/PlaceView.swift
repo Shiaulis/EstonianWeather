@@ -20,9 +20,8 @@ struct PlaceView: View {
             Image(place.weatherIconName)
                 .resizable()
                 .frame(width: 20, height: 20)
-            Spacer()
             Text(place.temperature)
-            Spacer()
+                .padding(.horizontal)
         }
     }
 }

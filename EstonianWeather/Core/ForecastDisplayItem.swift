@@ -19,6 +19,7 @@ struct ForecastDisplayItem: Identifiable {
         let id = UUID()
         let type: String
         let weatherIconName: String
+        let weatherDescription: String
         let temperatureRange: String
         let description: String
         let places: [PlaceDisplayItem]
@@ -51,7 +52,8 @@ extension ForecastDisplayItem.DayPartForecastDisplayItem {
     static var test: ForecastDisplayItem.DayPartForecastDisplayItem {
         .init(
             type: "Night",
-            weatherIconName: "015-rain-1",
+            weatherIconName: "rain",
+            weatherDescription: "Rain",
             temperatureRange: "–2…+3",
             description: "Partly cloudy. At first locally some rain. West wind 5-11, on coasts in gusts 15, at first on northern coast up to 18 m/s. Air temperature -2..+3∞C. Slippery roads!",
             places: [
@@ -64,7 +66,8 @@ extension ForecastDisplayItem.DayPartForecastDisplayItem {
     static var test2: ForecastDisplayItem.DayPartForecastDisplayItem {
         .init(
             type: "Day",
-            weatherIconName: "015-rain-1",
+            weatherIconName: "rain",
+            weatherDescription: "Rain",
             temperatureRange: "–2…+3",
             description: "Partly cloudy. At first locally some rain. West wind 5-11, on coasts in gusts 15, at first on northern coast up to 18 m/s. Air temperature -2..+3∞C. Slippery roads!",
             places: [
@@ -81,7 +84,7 @@ extension ForecastDisplayItem.DayPartForecastDisplayItem.PlaceDisplayItem {
     static var test1: ForecastDisplayItem.DayPartForecastDisplayItem.PlaceDisplayItem {
         .init(
             name: "Harku",
-            weatherIconName: "015-rain-1",
+            weatherIconName: "rain",
             temperature: "+1"
         )
     }
@@ -89,7 +92,7 @@ extension ForecastDisplayItem.DayPartForecastDisplayItem.PlaceDisplayItem {
     static var test2: ForecastDisplayItem.DayPartForecastDisplayItem.PlaceDisplayItem {
         .init(
             name: "Jõhvi",
-            weatherIconName: "015-rain-1",
+            weatherIconName: "rain",
             temperature: "+1"
         )
     }
