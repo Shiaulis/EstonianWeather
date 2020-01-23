@@ -10,7 +10,18 @@ import SwiftUI
 
 struct RootView: View {
 
+    // MARK: - Properties
+
     @ObservedObject var viewModel: RootViewMolel = RootViewMolel(dataProvider: ForecastDataProvider())
+
+    // MARK: - Initialization
+
+    init() {
+        // For now this is the only way to remove separators in list
+        UITableView.appearance().separatorStyle = .none
+    }
+
+    // MARK: - Body
 
     var body: some View {
         NavigationView {
