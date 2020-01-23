@@ -15,7 +15,7 @@ final class CoreDataStack {
 
     init() {
         self.persistentContainer = .init(name: "EstonianWeather")
-        self.persistentContainer.loadPersistentStores { (description, error) in
+        self.persistentContainer.loadPersistentStores { _, error in
             if error != nil {
                 assertionFailure()
             }

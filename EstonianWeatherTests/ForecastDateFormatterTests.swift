@@ -82,7 +82,6 @@ final class ForecastDateFormatterTests: XCTestCase {
         }
     }
 
-
     // MARK: - Given
 
     private func givenToday() {

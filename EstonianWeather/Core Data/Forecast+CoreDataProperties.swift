@@ -10,7 +10,6 @@
 import Foundation
 import CoreData
 
-
 extension Forecast {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Forecast> {

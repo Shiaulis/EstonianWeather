@@ -4,7 +4,7 @@
 //
 //  Created by Andrius Shiaulis on 13.01.2020.
 //  Copyright © 2020 Andrius Shiaulis. All rights reserved.
-//
+//  swiftlint:disable force_try
 
 import XCTest
 import CoreData
@@ -61,7 +61,7 @@ class DataMapperTests: XCTestCase {
         wait(for: [self.completionExpectation], timeout: 1)
 
         // then
-        let fetchRequest :NSFetchRequest<Forecast> = Forecast.fetchRequest()
+        let fetchRequest: NSFetchRequest<Forecast> = Forecast.fetchRequest()
         let result = try XCTUnwrap(try? self.container.viewContext.fetch(fetchRequest))
         XCTAssertEqual(result.count, 4)
     }

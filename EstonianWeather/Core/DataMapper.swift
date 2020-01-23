@@ -80,7 +80,6 @@ final class DataMapper {
             context.delete(dayToDelete)
         }
 
-        
         if let nigthToMap = forecastToMap.night {
             let mappedNight = try map(nigthToMap, context: context)
             mappedForecast.night = mappedNight
@@ -105,7 +104,6 @@ final class DataMapper {
         mappedDayPartForecast.tempmax = NSNumber(int: dayPartForecastToMap.tempmax)
         mappedDayPartForecast.tempmin = NSNumber(int: dayPartForecastToMap.tempmin)
 
-        
         var mappedPlaces: Set<Place> = []
         for placeToMap in dayPartForecastToMap.places {
             mappedPlaces.insert(try map(placeToMap, context: context))
@@ -126,7 +124,8 @@ final class DataMapper {
         guard let phenomenonToMap = phenomenonToMap else { return nil }
         do {
             return try existingPhenomenon(for: phenomenonToMap)
-        } catch DataMapper.Error.emptyResponse {
+        }
+        catch DataMapper.Error.emptyResponse {
             let phenomenonToAdd: Phenomenon = try create(in: context)
             phenomenonToAdd.name = phenomenonToMap.rawValue
             return phenomenonToAdd
@@ -172,7 +171,6 @@ final class DataMapper {
     }
 
 }
-
 
 private extension NSNumber {
 

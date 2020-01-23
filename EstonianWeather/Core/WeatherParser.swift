@@ -90,7 +90,9 @@ extension WeatherParser: XMLParserDelegate {
         }
     }
 
-    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
+    func parser(_ parser: XMLParser, didStartElement elementName: String,
+                namespaceURI: String?, qualifiedName qName: String?,
+                attributes attributeDict: [String: String] = [:]) {
         let element = Element(elementName)
         switch element {
         case .forecast:
@@ -113,6 +115,8 @@ extension WeatherParser: XMLParserDelegate {
         self.currentParsedElement = element
     }
 
+    //swiftlint:disable cyclomatic_complexity
+    //swiftlint:disable function_body_length
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         switch Element(elementName) {
         case .forecasts:
@@ -213,6 +217,8 @@ extension WeatherParser: XMLParserDelegate {
         self.currentParsedElement = nil
         self.currentParsedElementText = nil
     }
+    //swiftlint:enable cyclomatic_complexity
+    //swiftlint:enable function_body_length
 
     private func parseForecastDate(from attributes: [String: String]) -> Date? {
         guard let dateString = attributes["date"] else { return nil }

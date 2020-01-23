@@ -10,7 +10,6 @@
 import Foundation
 import CoreData
 
-
 extension Place {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Place> {

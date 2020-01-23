@@ -32,7 +32,7 @@ final class MainService {
     init() {
         let locale = Locale.current
         self.localization = AppLocalization(locale: locale)
-        
+
         requestAndMapData()
     }
 

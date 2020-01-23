@@ -4,7 +4,7 @@
 //
 //  Created by Andrius Shiaulis on 21.01.2020.
 //  Copyright © 2020 Andrius Shiaulis. All rights reserved.
-//
+//swiftlint:disable force_try
 
 import Foundation
 import CoreData

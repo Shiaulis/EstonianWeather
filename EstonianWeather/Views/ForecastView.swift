@@ -8,8 +8,6 @@
 
 import SwiftUI
 
-
-
 struct ForecastView: View {
 
     private let item: ForecastDisplayItem
