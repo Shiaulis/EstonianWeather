@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -107,6 +107,8 @@
 		09DBF3B523D8E00E00ABF5E1 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		09DBF3B723D8E5F100ABF5E1 /* EstonianWeather.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = EstonianWeather.xctestplan; sourceTree = "<group>"; };
 		09DBF3BB23D8E6D500ABF5E1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		09DBF3C223DA2D6600ABF5E1 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		09DBF3C423DA2D7400ABF5E1 /* et */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = et; path = et.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B163A6C023D753C600459EED /* MainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainService.swift; sourceTree = "<group>"; };
 		B1EF6E2F23D8961900DDE5F5 /* AppLocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLocalization.swift; sourceTree = "<group>"; };
 		B1EF6E3123D8A67100DDE5F5 /* ForecastDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDateFormatter.swift; sourceTree = "<group>"; };
@@ -308,12 +310,14 @@
 				};
 			};
 			buildConfigurationList = 0913814123CB7AF30092EC04 /* Build configuration list for PBXProject "EstonianWeather" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 11.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				ru,
+				et,
 			);
 			mainGroup = 0913813D23CB7AF30092EC04;
 			productRefGroup = 0913814723CB7AF30092EC04 /* Products */;
@@ -424,6 +428,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				09DBF3BB23D8E6D500ABF5E1 /* en */,
+				09DBF3C223DA2D6600ABF5E1 /* ru */,
+				09DBF3C423DA2D7400ABF5E1 /* et */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
