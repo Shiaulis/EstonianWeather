@@ -53,8 +53,8 @@ extension ForecastDisplayItem.DayPartForecastDisplayItem {
         .init(
             type: "Night",
             weatherIconName: "rain",
-            weatherDescription: "Rain",
-            temperatureRange: "–2…+3",
+            weatherDescription: "Moderate showwwwer",
+            temperatureRange: "–20…+30 ℃",
             description: "Partly cloudy. At first locally some rain. West wind 5-11, on coasts in gusts 15, at first on northern coast up to 18 m/s. Air temperature -2..+3∞C. Slippery roads!",
             places: [
                 ForecastDisplayItem.DayPartForecastDisplayItem.PlaceDisplayItem.test1,

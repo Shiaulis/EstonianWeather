@@ -43,6 +43,6 @@ struct ForecastView: View {
 struct ForecastView_Previews: PreviewProvider {
     static var previews: some View {
         ForecastView(item: ForecastDisplayItem.test)
-            .previewLayout(.fixed(width: 414, height: 600))
+            .previewLayout(.fixed(width: 313, height: 600))
     }
 }
