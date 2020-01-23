@@ -18,6 +18,8 @@
         }
       ]
     },
+    "language" : "en",
+    "region" : "EE",
     "targetForVariableExpansion" : {
       "containerPath" : "container:EstonianWeather.xcodeproj",
       "identifier" : "0913814523CB7AF30092EC04",

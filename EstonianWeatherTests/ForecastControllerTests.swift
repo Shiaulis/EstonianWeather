@@ -50,7 +50,7 @@ final class ForecastControllerTests: XCTestCase {
 
     func testProvider_whenProvide_returnsForecastCorrectDateString() {
         // given
-        let expectedDate = "January 17"
+        let expectedDate = "17. January"
         let givenDate = day(forDay: 17, month: 01)
         self.forecast.forecastDate = givenDate
 
@@ -79,7 +79,7 @@ final class ForecastControllerTests: XCTestCase {
         givenForecastWithDayAndNight()
         let minTemperature = -5
         let maxTemperature = 5
-        let expectedSting = "–\(abs(minTemperature))…+\(maxTemperature)"
+        let expectedSting = "–\(abs(minTemperature))…+\(maxTemperature) ℃"
         self.forecast.night?.tempmin = NSNumber(value: minTemperature)
         self.forecast.night?.tempmax = NSNumber(value: maxTemperature)
 
@@ -132,7 +132,7 @@ final class ForecastControllerTests: XCTestCase {
         givenForecastWithNigthContainTwoPlaces()
         let minTemperature = -5
         let maxTemperature = 5
-        let expectedSting = "–\(abs(minTemperature))…+\(maxTemperature)"
+        let expectedSting = "–\(abs(minTemperature))…+\(maxTemperature) ℃"
         self.forecast.night?.places?.first?.tempmin = NSNumber(value: minTemperature)
         self.forecast.night?.places?.first?.tempmax = NSNumber(value: maxTemperature)
 
@@ -147,7 +147,7 @@ final class ForecastControllerTests: XCTestCase {
         // given
         givenForecastWithNigthContainTwoPlaces()
         let minTemperature = -5
-        let expectedSting = "–\(abs(minTemperature))"
+        let expectedSting = "–\(abs(minTemperature)) ℃"
         self.forecast.night?.places?.first?.tempmin = NSNumber(value: minTemperature)
 
         // when
