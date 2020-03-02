@@ -12,11 +12,12 @@ struct RootView: View {
 
     // MARK: - Properties
 
-    @ObservedObject var viewModel: RootViewMolel = RootViewMolel(dataProvider: ForecastDataProvider())
+    @ObservedObject var viewModel: RootViewMolel
 
     // MARK: - Initialization
 
-    init() {
+    init(viewModel: RootViewMolel = .init(dataProvider: ForecastDataProvider())) {
+        self.viewModel = viewModel
         // For now this is the only way to remove separators in list
         UITableView.appearance().separatorStyle = .none
     }
