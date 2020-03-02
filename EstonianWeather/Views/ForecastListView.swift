@@ -1,5 +1,5 @@
 //
-//  RootView.swift
+//  ForecastListView.swift
 //  EstonianWeather
 //
 //  Created by Andrius Shiaulis on 12.01.2020.
@@ -8,15 +8,15 @@
 
 import SwiftUI
 
-struct RootView: View {
+struct ForecastListView: View {
 
     // MARK: - Properties
 
-    @ObservedObject var viewModel: ForecastViewModel
+    @ObservedObject var viewModel: ForecastListViewModel
 
     // MARK: - Initialization
 
-    init(viewModel: ForecastViewModel = .init(dataProvider: ForecastDataProvider())) {
+    init(viewModel: ForecastListViewModel = .init(dataProvider: ForecastDataProvider())) {
         self.viewModel = viewModel
         // For now this is the only way to remove separators in list
         UITableView.appearance().separatorStyle = .none
@@ -45,9 +45,9 @@ struct RootView: View {
 
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct ForecastListView_Previews: PreviewProvider {
     static var previews: some View {
-        RootView()
+        ForecastListView()
     }
 }
 
