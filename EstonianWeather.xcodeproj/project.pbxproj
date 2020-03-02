@@ -162,7 +162,7 @@
 			children = (
 				B14EB062240D5EB5009CF144 /* ViewControllers */,
 				096EFE2F23D6338400B08E1D /* Core */,
-				09230C7423D3B79200E31406 /* Views */,
+				09230C7423D3B79200E31406 /* SwiftUI Views */,
 				097EDEC023CCC82B00F8E617 /* Core Data */,
 				097EDEC123CCC84500F8E617 /* Supporting Files */,
 				0913815123CB7AF60092EC04 /* Preview Content */,
@@ -193,7 +193,7 @@
 			path = EstonianWeatherTests;
 			sourceTree = "<group>";
 		};
-		09230C7423D3B79200E31406 /* Views */ = {
+		09230C7423D3B79200E31406 /* SwiftUI Views */ = {
 			isa = PBXGroup;
 			children = (
 				0913814D23CB7AF30092EC04 /* ForecastListView.swift */,
@@ -203,7 +203,7 @@
 				09DBF3AF23D8D71800ABF5E1 /* SettingsView.swift */,
 				09DBF3B123D8D82700ABF5E1 /* LanguageCell.swift */,
 			);
-			path = Views;
+			path = "SwiftUI Views";
 			sourceTree = "<group>";
 		};
 		096EFE2F23D6338400B08E1D /* Core */ = {
