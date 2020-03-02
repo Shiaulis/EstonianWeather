@@ -26,7 +26,7 @@ final class RootViewController: UIViewController {
 
     private lazy var swiftUIViewController: UIViewController = {
         let dataProvider = self.applicationViewModel.forecastDataProvider()
-        let viewModel = RootViewMolel(dataProvider: dataProvider)
+        let viewModel = ForecastViewModel(dataProvider: dataProvider)
         let rootView = RootView(viewModel: viewModel)
         let viewController = UIHostingController(rootView: rootView)
         viewController.view.translatesAutoresizingMaskIntoConstraints = false

@@ -1,5 +1,5 @@
 //
-//  RootViewModel.swift
+//  ForecastViewModel.swift
 //  EstonianWeather
 //
 //  Created by Andrius Shiaulis on 13.01.2020.
@@ -11,7 +11,7 @@ import Combine
 import CoreData
 import UIKit
 
-final class RootViewMolel: ObservableObject {
+final class ForecastViewModel: ObservableObject {
 
     @Published var displayItems: [ForecastDisplayItem] = []
     private var disposables: Set<AnyCancellable> = []
