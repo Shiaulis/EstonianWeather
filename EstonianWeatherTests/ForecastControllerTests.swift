@@ -50,7 +50,7 @@ final class ForecastControllerTests: XCTestCase {
 
     func testProvider_whenProvide_returnsForecastCorrectDateString() {
         // given
-        let expectedDate = "17. January"
+        let expectedDate = "January 17"
         let givenDate = day(forDay: 17, month: 01)
         self.forecast.forecastDate = givenDate
 
