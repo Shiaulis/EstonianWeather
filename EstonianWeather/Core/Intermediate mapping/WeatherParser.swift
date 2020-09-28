@@ -7,17 +7,24 @@
 //
 
 import Foundation
+import Combine
 
-final class WeatherParser: NSObject {
+protocol WeatherParser {
+    func parse(data: Data?, receivedDate: Date?, languageCode: String?) -> Result<[EWForecast], Swift.Error>
+}
 
-    enum Element: String {
+extension Publisher where Output == Data {
 
-        case forecasts, forecast, night, day, phenomenon, tempmin, tempmax, text, place, name, wind, direction, speedmin, speedmax, gust, sea, peipsi
-
-        init?(_ name: String) {
-            self.init(rawValue: name)
-        }
+    func parse(using parser: WeatherParser, date: Date, languageCode: String) -> AnyPublisher<[EWForecast], Swift.Error> {
+        self
+            .tryMap { data in
+                try parser.parse(data: data, receivedDate: date, languageCode: languageCode).get()
+            }
+            .eraseToAnyPublisher()
     }
+}
+
+final class XMLWeatherParser: NSObject, WeatherParser {
 
     // MARK: - Properties
 
@@ -28,21 +35,41 @@ final class WeatherParser: NSObject {
     private var currentParsedElementText: String!
     private var currentPlace: EWForecast.EWDayPartForecast.EWPlace!
     private var currentWind: EWForecast.EWDayPartForecast.EWWind!
-    private var ownError: WeatherParser.Error?
+    private var ownError: XMLWeatherParser.Error?
 
     private var forecastReceivedDate: Date?
     private var forecastLanguageCode: String?
+    private var isParsing = false
+
+    private let logger: Logger
+
+    init(logger: Logger = PrintLogger()) {
+        self.logger = logger
+    }
 
     // MARK: - Public
 
-    func parse(data: Data?, receivedDate: Date? = nil, languageCode: String? = nil) -> Result<[EWForecast], Error> {
-        guard let data = data else { return .failure(.incorrectInputData) }
+    func parse(data: Data?, receivedDate: Date? = nil, languageCode: String? = nil) -> Result<[EWForecast], Swift.Error> {
+        guard self.isParsing == false else {
+            let error: Error = .attemptToRunMultipleParsing
+            self.logger.log(message: "Not expected multiple parsing", error: error, module: .dataParser)
+            return .failure(error)
+        }
+
+        self.isParsing = true
+
+        guard let data = data else {
+            let error: Error = .incorrectInputData
+            return .failure(error)
+        }
 
         let xmlParser = configureParser(with: data)
         self.forecasts = []
         self.forecastReceivedDate = receivedDate
         self.forecastLanguageCode = languageCode
+        logParsingStarted(for: data)
         let success = xmlParser.parse()
+        self.isParsing = false
 
         if let forecastsToReturn = self.forecasts {
             self.forecasts = nil
@@ -50,19 +77,20 @@ final class WeatherParser: NSObject {
             self.forecastLanguageCode = nil
 
             if success {
+                self.logger.log(successState: "Parsing finished successfully", module: .dataParser)
                 return .success(forecastsToReturn)
             }
         }
 
         if let error = xmlParser.parserError {
-            return .failure(.xmlError(error as NSError))
+            return .failure(XMLWeatherParser.Error.xmlError(error as NSError))
         }
 
         if let error = self.ownError {
             return .failure(error)
         }
 
-        return .failure(.unknownError)
+        return .failure(XMLWeatherParser.Error.unknownError)
     }
 
     // MARK: - Private
@@ -73,11 +101,22 @@ final class WeatherParser: NSObject {
 
         return xmlParser
     }
+
+    private func logParsingStarted(for data: Data) {
+        let dataCount = data.count
+        let receivedDateString = self.forecastReceivedDate?.dateShortString() ?? "???"
+        let receivedLanguageCodeString = self.forecastLanguageCode ?? "???"
+        let logString =
+            "Parsing started for data with length \(dataCount), received date \"\(receivedDateString)\", language code \"\(receivedLanguageCodeString)\""
+
+        self.logger.log(information: logString, module: .dataParser)
+    }
+
 }
 
 // MARK: - XMLParserDelegate
 
-extension WeatherParser: XMLParserDelegate {
+extension XMLWeatherParser: XMLParserDelegate {
 
     func parser(_ parser: XMLParser, foundCharacters string: String) {
         switch self.currentParsedElement {
@@ -108,8 +147,10 @@ extension WeatherParser: XMLParserDelegate {
             self.currentPlace = .init()
         case .wind:
             self.currentWind = .init()
-        case .none, .forecasts:
+        case .forecasts:
             break
+        case .none:
+            self.logger.log(information: "⚠️ Unknown element detected with name \"\(elementName)\"", module: .dataParser)
         }
 
         self.currentParsedElement = element
@@ -231,12 +272,33 @@ extension WeatherParser: XMLParserDelegate {
 
 }
 
-// MARK: - Error
+// MARK: - Types
 
-extension WeatherParser {
+extension XMLWeatherParser {
+
     enum Error: Swift.Error, Equatable {
         case incorrectInputData
         case xmlError(NSError)
+        case attemptToRunMultipleParsing
         case unknownError
+    }
+
+    private enum Element: String {
+
+        case forecasts, forecast, night, day, phenomenon, tempmin, tempmax, text, place, name, wind, direction, speedmin, speedmax, gust, sea, peipsi
+
+        init?(_ name: String) {
+            self.init(rawValue: name)
+        }
+    }
+
+}
+
+private extension Date {
+    func dateShortString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+
+        return formatter.string(from: self)
     }
 }

@@ -16,14 +16,14 @@ class WeatherParserTests: XCTestCase {
     var sut: WeatherParser!
     var data: Data!
     var parseExpectation: XCTestExpectation!
-    var receivedError: WeatherParser.Error!
+    var receivedError: Error!
     var receivedForecasts: [EWForecast]!
 
     // MARK: - Setup and teardown
 
     override func setUp() {
         super.setUp()
-        self.sut = WeatherParser()
+        self.sut = XMLWeatherParser()
     }
 
     override func tearDown() {
@@ -56,7 +56,7 @@ class WeatherParserTests: XCTestCase {
         whenParse()
 
         // then
-        XCTAssertEqual(self.receivedError, .incorrectInputData)
+        XCTAssertEqual(self.receivedError as? XMLWeatherParser.Error, XMLWeatherParser.Error.incorrectInputData)
     }
 
     func testParser_whenParseCorrectData_receivedForecasts() {
@@ -83,7 +83,7 @@ class WeatherParserTests: XCTestCase {
 
     // MARK: - When
     private func whenParse() {
-        let parseResult = self.sut.parse(data: self.data)
+        let parseResult = self.sut.parse(data: self.data, receivedDate: Date(), languageCode: "ru")
 
         switch parseResult {
         case .success(let forecasts): self.receivedForecasts = forecasts

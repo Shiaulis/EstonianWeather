@@ -15,10 +15,11 @@ final class MainService {
 
     private var disposables: Set<AnyCancellable> = []
     private let persistentContainer = CoreDataStack().persistentContainer
-    private let parser = WeatherParser()
-    private let mapper = DataMapper()
+    private let parser: WeatherParser = XMLWeatherParser()
+    private let mapper: DataMapper = CoreDataMapper()
     private let localization: AppLocalization
     private var url: URL { self.localization.sourceLink }
+    private let logger: Logger = PrintLogger()
 
     private lazy var networkDataPublisher: AnyPublisher<Data, URLError> = {
         URLSession.shared
@@ -38,19 +39,12 @@ final class MainService {
 
     private func requestAndMapData() {
         self.networkDataPublisher
-            .map {
-                self.parser.parse(data: $0, receivedDate: Date(), languageCode: self.localization.languageCode)
-            }
-        .sink(receiveCompletion: { _ in }) {
-            guard let value = try? $0.get() else { return }
-            let context = self.persistentContainer.newBackgroundContext()
-            self.mapper.performMapping(value, context: context) { error in
-                if let error = error {
-                    assertionFailure("Error: \(error.localizedDescription)")
-                }
-            }
-        }
-        .store(in: &self.disposables)
+            .parse(using: self.parser, date: Date(), languageCode: self.localization.languageCode)
+            .map(using: self.mapper, in: self.persistentContainer.newBackgroundContext())
+            .sink(receiveCompletion: { _ in
+                self.logger.logNotImplemented(functionality: "Data request completion", module: .mainService)
+            }, receiveValue: { _ in })
+            .store(in: &self.disposables)
     }
 
 }

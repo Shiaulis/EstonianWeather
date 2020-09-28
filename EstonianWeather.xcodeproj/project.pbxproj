@@ -46,13 +46,14 @@
 		0968CE0C252269AF00D409FF /* DayPartForecast+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CE00252269AF00D409FF /* DayPartForecast+CoreDataClass.swift */; };
 		0968CE1725226A0600D409FF /* NSPersistentContainer+tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CE1025226A0500D409FF /* NSPersistentContainer+tests.swift */; };
 		0968CE1825226A0600D409FF /* ForecastControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CE1125226A0500D409FF /* ForecastControllerTests.swift */; };
-		0968CE1925226A0600D409FF /* DataMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CE1225226A0500D409FF /* DataMapperTests.swift */; };
+		0968CE1925226A0600D409FF /* CoreDataMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CE1225226A0500D409FF /* CoreDataMapperTests.swift */; };
 		0968CE1A25226A0600D409FF /* WeatherParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CE1325226A0600D409FF /* WeatherParserTests.swift */; };
 		0968CE1B25226A0600D409FF /* MockPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CE1425226A0600D409FF /* MockPersistentContainer.swift */; };
 		0968CE1C25226A0600D409FF /* ForecastDateFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CE1525226A0600D409FF /* ForecastDateFormatterTests.swift */; };
 		0968CE1D25226A0600D409FF /* TestForecast.xml in Resources */ = {isa = PBXBuildFile; fileRef = 0968CE1625226A0600D409FF /* TestForecast.xml */; };
 		0968CE2625226A2B00D409FF /* EstonianWeather.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 0968CE2425226A2B00D409FF /* EstonianWeather.xctestplan */; };
 		0968CE2725226A2B00D409FF /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0968CE2525226A2B00D409FF /* Settings.bundle */; };
+		0968CE3D25227D2500D409FF /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CE3C25227D2500D409FF /* Logger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,13 +119,14 @@
 		0968CE00252269AF00D409FF /* DayPartForecast+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DayPartForecast+CoreDataClass.swift"; sourceTree = "<group>"; };
 		0968CE1025226A0500D409FF /* NSPersistentContainer+tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSPersistentContainer+tests.swift"; sourceTree = "<group>"; };
 		0968CE1125226A0500D409FF /* ForecastControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastControllerTests.swift; sourceTree = "<group>"; };
-		0968CE1225226A0500D409FF /* DataMapperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataMapperTests.swift; sourceTree = "<group>"; };
+		0968CE1225226A0500D409FF /* CoreDataMapperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataMapperTests.swift; sourceTree = "<group>"; };
 		0968CE1325226A0600D409FF /* WeatherParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherParserTests.swift; sourceTree = "<group>"; };
 		0968CE1425226A0600D409FF /* MockPersistentContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockPersistentContainer.swift; sourceTree = "<group>"; };
 		0968CE1525226A0600D409FF /* ForecastDateFormatterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastDateFormatterTests.swift; sourceTree = "<group>"; };
 		0968CE1625226A0600D409FF /* TestForecast.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TestForecast.xml; sourceTree = "<group>"; };
 		0968CE2425226A2B00D409FF /* EstonianWeather.xctestplan */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EstonianWeather.xctestplan; sourceTree = "<group>"; };
 		0968CE2525226A2B00D409FF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		0968CE3C25227D2500D409FF /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,7 +202,7 @@
 		0968CDA62522667B00D409FF /* EstonianWeatherTests */ = {
 			isa = PBXGroup;
 			children = (
-				0968CE1225226A0500D409FF /* DataMapperTests.swift */,
+				0968CE1225226A0500D409FF /* CoreDataMapperTests.swift */,
 				0968CE1125226A0500D409FF /* ForecastControllerTests.swift */,
 				0968CE1525226A0600D409FF /* ForecastDateFormatterTests.swift */,
 				0968CE1425226A0600D409FF /* MockPersistentContainer.swift */,
@@ -244,13 +246,13 @@
 				0968CDDA252268E600D409FF /* SettingsViewModel.swift */,
 				0968CDDB252268E600D409FF /* WeatherType.swift */,
 				0968CDDC252268E600D409FF /* ForecastDateFormatter.swift */,
-				0968CDDD252268E600D409FF /* EWForecast.swift */,
+				0968CE3825227CE100D409FF /* Intermediate mapping */,
 				0968CDDE252268E600D409FF /* DataMapper.swift */,
 				0968CDDF252268E600D409FF /* ForecastDataProvider.swift */,
 				0968CDE0252268E600D409FF /* ForecastDisplayItem.swift */,
 				0968CDE1252268E600D409FF /* AppLocalization.swift */,
-				0968CDE2252268E600D409FF /* WeatherParser.swift */,
 				0968CDE3252268E600D409FF /* ApplicationController.swift */,
+				0968CE3C25227D2500D409FF /* Logger.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -272,6 +274,15 @@
 				0968CE00252269AF00D409FF /* DayPartForecast+CoreDataClass.swift */,
 			);
 			path = "Core Data";
+			sourceTree = "<group>";
+		};
+		0968CE3825227CE100D409FF /* Intermediate mapping */ = {
+			isa = PBXGroup;
+			children = (
+				0968CDDD252268E600D409FF /* EWForecast.swift */,
+				0968CDE2252268E600D409FF /* WeatherParser.swift */,
+			);
+			path = "Intermediate mapping";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -453,6 +464,7 @@
 				0968CDEA252268E600D409FF /* DataMapper.swift in Sources */,
 				0968CDE9252268E600D409FF /* EWForecast.swift in Sources */,
 				0968CDEB252268E600D409FF /* ForecastDataProvider.swift in Sources */,
+				0968CE3D25227D2500D409FF /* Logger.swift in Sources */,
 				0968CDE7252268E600D409FF /* WeatherType.swift in Sources */,
 				0968CE0C252269AF00D409FF /* DayPartForecast+CoreDataClass.swift in Sources */,
 				0968CDE8252268E600D409FF /* ForecastDateFormatter.swift in Sources */,
@@ -472,7 +484,7 @@
 				0968CDA82522667B00D409FF /* EstonianWeatherTests.swift in Sources */,
 				0968CE1825226A0600D409FF /* ForecastControllerTests.swift in Sources */,
 				0968CE1A25226A0600D409FF /* WeatherParserTests.swift in Sources */,
-				0968CE1925226A0600D409FF /* DataMapperTests.swift in Sources */,
+				0968CE1925226A0600D409FF /* CoreDataMapperTests.swift in Sources */,
 				0968CE1C25226A0600D409FF /* ForecastDateFormatterTests.swift in Sources */,
 				0968CE1725226A0600D409FF /* NSPersistentContainer+tests.swift in Sources */,
 			);

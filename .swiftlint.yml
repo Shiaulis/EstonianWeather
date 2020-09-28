@@ -89,7 +89,7 @@ type_name:
   max_length:
     warning: 50
 line_length:
-  warning: 150
+  warning: 160
   error: 300
 file_length:
   warning: 500

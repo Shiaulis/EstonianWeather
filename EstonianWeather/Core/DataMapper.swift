@@ -8,27 +8,62 @@
 
 import Foundation
 import CoreData
+import Combine
 
-final class DataMapper {
+protocol DataMapper {
+    func performMapping(_ forecastsToMap: [EWForecast], context: NSManagedObjectContext) throws -> [Forecast]
+}
+
+extension Publisher where Output == [EWForecast] {
+    func map(using mapper: DataMapper, in context: NSManagedObjectContext) -> AnyPublisher<[Forecast], Swift.Error> {
+        self
+            .tryMap { forecasts in
+                try mapper.performMapping(forecasts, context: context)
+            }
+            .eraseToAnyPublisher()
+    }
+}
+
+/*
+ extension Publisher where Output == Data {
+
+     func parse(using parser: WeatherParser, date: Date, languageCode: String) -> AnyPublisher<[EWForecast], Swift.Error> {
+         self
+             .tryMap { data in
+                 try parser.parse(data: data, receivedDate: date, languageCode: languageCode).get()
+             }
+             .eraseToAnyPublisher()
+     }
+ }
+ */
+
+final class CoreDataMapper: DataMapper {
 
     enum Error: Swift.Error {
         case emptyResponse, nonValidData, nonValidEntityDescription
     }
 
-    func performMapping(_ forecastsToMap: [EWForecast], context: NSManagedObjectContext, completionHandler: ((Swift.Error?) -> Void)? = nil) {
-        context.perform {
+    func performMapping(_ forecastsToMap: [EWForecast], context: NSManagedObjectContext) throws -> [Forecast] {
+        var contextError: Swift.Error?
+        var mappedForecasts: [Forecast] = []
+        context.performAndWait {
             do {
-                try self.map(forecastsToMap, context: context)
+                mappedForecasts = try self.map(forecastsToMap, context: context)
                 try context.save()
-                completionHandler?(nil)
             }
             catch {
-                completionHandler?(error)
+                contextError = error
             }
         }
+
+        if let contextError = contextError {
+            throw contextError
+        }
+
+        return mappedForecasts
     }
 
-    private func map(_ forecastsToMap: [EWForecast], context: NSManagedObjectContext) throws {
+    private func map(_ forecastsToMap: [EWForecast], context: NSManagedObjectContext) throws -> [Forecast] {
         var mappedForecasts: [Forecast] = []
         for forecastToMap in forecastsToMap {
             let mappedForecast = try map(forecastToMap, context: context)
@@ -36,11 +71,13 @@ final class DataMapper {
             mappedForecast.languageCode = forecastToMap.languageCode
             mappedForecasts.append(mappedForecast)
         }
+
+        return mappedForecasts
     }
 
     private func existingForecast(for forecastToMap: EWForecast, context: NSManagedObjectContext) throws -> Forecast {
         guard let requestedDate = forecastToMap.forecastDate else {
-            throw DataMapper.Error.nonValidData
+            throw Error.nonValidData
         }
 
         let request: NSFetchRequest<Forecast> = Forecast.fetchRequest()
@@ -63,7 +100,7 @@ final class DataMapper {
         do {
             mappedForecast = try existingForecast(for: forecastToMap, context: context)
         }
-        catch DataMapper.Error.emptyResponse {
+        catch Error.emptyResponse {
             mappedForecast = try create(in: context)
         }
 
@@ -125,7 +162,7 @@ final class DataMapper {
         do {
             return try existingPhenomenon(for: phenomenonToMap)
         }
-        catch DataMapper.Error.emptyResponse {
+        catch Error.emptyResponse {
             let phenomenonToAdd: Phenomenon = try create(in: context)
             phenomenonToAdd.name = phenomenonToMap.rawValue
             return phenomenonToAdd
@@ -155,7 +192,7 @@ final class DataMapper {
 
     private func fetch<T>(request: NSFetchRequest<T>) throws -> T {
         guard let object = try request.execute().first else {
-            throw DataMapper.Error.emptyResponse
+            throw Error.emptyResponse
         }
 
         return object
@@ -164,7 +201,7 @@ final class DataMapper {
     private func create<T: NSManagedObject>(in context: NSManagedObjectContext) throws -> T {
         let entityName = String(describing: T.self)
         guard let entityDescription = NSEntityDescription.entity(forEntityName: entityName, in: context) else {
-            throw DataMapper.Error.nonValidEntityDescription
+            throw Error.nonValidEntityDescription
         }
 
         return T(entity: entityDescription, insertInto: context)

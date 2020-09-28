@@ -193,7 +193,7 @@ final class ForecastControllerTests: XCTestCase {
     private func create<T: NSManagedObject>(in context: NSManagedObjectContext) throws -> T {
         let entityName = String(describing: T.self)
         guard let entityDescription = NSEntityDescription.entity(forEntityName: entityName, in: context) else {
-            throw DataMapper.Error.nonValidEntityDescription
+            throw CoreDataMapper.Error.nonValidEntityDescription
         }
 
         return T(entity: entityDescription, insertInto: context)

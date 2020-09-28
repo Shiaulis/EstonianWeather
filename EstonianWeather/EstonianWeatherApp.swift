@@ -25,10 +25,10 @@ struct EstonianWeatherApp: App {
         let forecastListView = ForecastListView(viewModel: viewModel)
         let settingsView = SettingsView()
         let tabbarView = TabbarView(forecastListView: forecastListView, settingsView: settingsView)
-        
+
         return tabbarView
     }
-    
+
     var body: some Scene {
         WindowGroup {
             tabbarView()
