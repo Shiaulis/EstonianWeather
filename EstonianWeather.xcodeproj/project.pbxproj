@@ -20,7 +20,7 @@
 		0968CDD1252267F600D409FF /* ForecastListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDCA252267F600D409FF /* ForecastListView.swift */; };
 		0968CDD2252267F600D409FF /* PlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDCB252267F600D409FF /* PlaceView.swift */; };
 		0968CDD3252267F600D409FF /* LanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDCC252267F600D409FF /* LanguageCell.swift */; };
-		0968CDE4252268E600D409FF /* ForecastListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDD8252268E600D409FF /* ForecastListViewModel.swift */; };
+		0968CDE4252268E600D409FF /* ForecastController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDD8252268E600D409FF /* ForecastController.swift */; };
 		0968CDE5252268E600D409FF /* MainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDD9252268E600D409FF /* MainService.swift */; };
 		0968CDE6252268E600D409FF /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDDA252268E600D409FF /* SettingsViewModel.swift */; };
 		0968CDE7252268E600D409FF /* WeatherType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDDB252268E600D409FF /* WeatherType.swift */; };
@@ -54,6 +54,8 @@
 		0968CE2625226A2B00D409FF /* EstonianWeather.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 0968CE2425226A2B00D409FF /* EstonianWeather.xctestplan */; };
 		0968CE2725226A2B00D409FF /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0968CE2525226A2B00D409FF /* Settings.bundle */; };
 		0968CE3D25227D2500D409FF /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CE3C25227D2500D409FF /* Logger.swift */; };
+		09D6C9E825239EA5008C9ABB /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D6C9E725239EA5008C9ABB /* Endpoint.swift */; };
+		09D6C9EE25239F38008C9ABB /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D6C9ED25239F38008C9ABB /* NetworkClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,7 +95,7 @@
 		0968CDCA252267F600D409FF /* ForecastListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastListView.swift; sourceTree = "<group>"; };
 		0968CDCB252267F600D409FF /* PlaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceView.swift; sourceTree = "<group>"; };
 		0968CDCC252267F600D409FF /* LanguageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageCell.swift; sourceTree = "<group>"; };
-		0968CDD8252268E600D409FF /* ForecastListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastListViewModel.swift; sourceTree = "<group>"; };
+		0968CDD8252268E600D409FF /* ForecastController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastController.swift; sourceTree = "<group>"; };
 		0968CDD9252268E600D409FF /* MainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainService.swift; sourceTree = "<group>"; };
 		0968CDDA252268E600D409FF /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		0968CDDB252268E600D409FF /* WeatherType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherType.swift; sourceTree = "<group>"; };
@@ -127,6 +129,8 @@
 		0968CE2425226A2B00D409FF /* EstonianWeather.xctestplan */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EstonianWeather.xctestplan; sourceTree = "<group>"; };
 		0968CE2525226A2B00D409FF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		0968CE3C25227D2500D409FF /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		09D6C9E725239EA5008C9ABB /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		09D6C9ED25239F38008C9ABB /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,7 +183,6 @@
 		0968CD942522667A00D409FF /* EstonianWeather */ = {
 			isa = PBXGroup;
 			children = (
-				0968CDF3252269AF00D409FF /* Core Data */,
 				0968CDD7252268E600D409FF /* Core */,
 				0968CDC5252267F600D409FF /* Views */,
 				0968CD952522667A00D409FF /* EstonianWeatherApp.swift */,
@@ -227,13 +230,9 @@
 		0968CDC5252267F600D409FF /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				0968CDC6252267F600D409FF /* SettingsView.swift */,
-				0968CDC7252267F600D409FF /* DayPartView.swift */,
 				0968CDC8252267F600D409FF /* TabbarView.swift */,
-				0968CDC9252267F600D409FF /* ForecastView.swift */,
-				0968CDCA252267F600D409FF /* ForecastListView.swift */,
-				0968CDCB252267F600D409FF /* PlaceView.swift */,
-				0968CDCC252267F600D409FF /* LanguageCell.swift */,
+				09D123A2252660EE0050DC34 /* Forecast */,
+				09D123A6252661010050DC34 /* Settings */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -241,18 +240,19 @@
 		0968CDD7252268E600D409FF /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				0968CDD8252268E600D409FF /* ForecastListViewModel.swift */,
+				0968CDD8252268E600D409FF /* ForecastController.swift */,
 				0968CDD9252268E600D409FF /* MainService.swift */,
 				0968CDDA252268E600D409FF /* SettingsViewModel.swift */,
 				0968CDDB252268E600D409FF /* WeatherType.swift */,
 				0968CDDC252268E600D409FF /* ForecastDateFormatter.swift */,
 				0968CE3825227CE100D409FF /* Intermediate mapping */,
-				0968CDDE252268E600D409FF /* DataMapper.swift */,
+				0968CDF3252269AF00D409FF /* Core Data */,
 				0968CDDF252268E600D409FF /* ForecastDataProvider.swift */,
 				0968CDE0252268E600D409FF /* ForecastDisplayItem.swift */,
 				0968CDE1252268E600D409FF /* AppLocalization.swift */,
 				0968CDE3252268E600D409FF /* ApplicationController.swift */,
 				0968CE3C25227D2500D409FF /* Logger.swift */,
+				09D6C9EC25239F29008C9ABB /* Network */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -260,6 +260,7 @@
 		0968CDF3252269AF00D409FF /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
+				0968CDDE252268E600D409FF /* DataMapper.swift */,
 				0968CDF4252269AF00D409FF /* Phenomenon+CoreDataClass.swift */,
 				0968CDF5252269AF00D409FF /* CoreDataStack.swift */,
 				0968CDF6252269AF00D409FF /* DayPartForecast+CoreDataProperties.swift */,
@@ -283,6 +284,35 @@
 				0968CDE2252268E600D409FF /* WeatherParser.swift */,
 			);
 			path = "Intermediate mapping";
+			sourceTree = "<group>";
+		};
+		09D123A2252660EE0050DC34 /* Forecast */ = {
+			isa = PBXGroup;
+			children = (
+				0968CDCA252267F600D409FF /* ForecastListView.swift */,
+				0968CDC7252267F600D409FF /* DayPartView.swift */,
+				0968CDC9252267F600D409FF /* ForecastView.swift */,
+				0968CDCB252267F600D409FF /* PlaceView.swift */,
+			);
+			path = Forecast;
+			sourceTree = "<group>";
+		};
+		09D123A6252661010050DC34 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				0968CDCC252267F600D409FF /* LanguageCell.swift */,
+				0968CDC6252267F600D409FF /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		09D6C9EC25239F29008C9ABB /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				09D6C9E725239EA5008C9ABB /* Endpoint.swift */,
+				09D6C9ED25239F38008C9ABB /* NetworkClient.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -453,6 +483,7 @@
 				0968CE04252269AF00D409FF /* Forecast+CoreDataClass.swift in Sources */,
 				0968CDD1252267F600D409FF /* ForecastListView.swift in Sources */,
 				0968CDD2252267F600D409FF /* PlaceView.swift in Sources */,
+				09D6C9E825239EA5008C9ABB /* Endpoint.swift in Sources */,
 				0968CDCD252267F600D409FF /* SettingsView.swift in Sources */,
 				0968CD982522667A00D409FF /* ContentView.swift in Sources */,
 				0968CDCF252267F600D409FF /* TabbarView.swift in Sources */,
@@ -461,6 +492,7 @@
 				0968CDEF252268E600D409FF /* ApplicationController.swift in Sources */,
 				0968CDE5252268E600D409FF /* MainService.swift in Sources */,
 				0968CDD0252267F600D409FF /* ForecastView.swift in Sources */,
+				09D6C9EE25239F38008C9ABB /* NetworkClient.swift in Sources */,
 				0968CDEA252268E600D409FF /* DataMapper.swift in Sources */,
 				0968CDE9252268E600D409FF /* EWForecast.swift in Sources */,
 				0968CDEB252268E600D409FF /* ForecastDataProvider.swift in Sources */,
@@ -468,7 +500,7 @@
 				0968CDE7252268E600D409FF /* WeatherType.swift in Sources */,
 				0968CE0C252269AF00D409FF /* DayPartForecast+CoreDataClass.swift in Sources */,
 				0968CDE8252268E600D409FF /* ForecastDateFormatter.swift in Sources */,
-				0968CDE4252268E600D409FF /* ForecastListViewModel.swift in Sources */,
+				0968CDE4252268E600D409FF /* ForecastController.swift in Sources */,
 				0968CDED252268E600D409FF /* AppLocalization.swift in Sources */,
 				0968CE05252269AF00D409FF /* Wind+CoreDataProperties.swift in Sources */,
 				0968CDE6252268E600D409FF /* SettingsViewModel.swift in Sources */,

@@ -16,20 +16,6 @@ enum AppLocalization {
 
     // MARK: - Properties
 
-    var sourceLink: URL {
-        let link: String
-        switch self {
-        case .english:
-            link = "http://www.ilmateenistus.ee/ilma_andmed/xml/forecast.php?lang=eng"
-        case .estonian:
-            link = "http://www.ilmateenistus.ee/ilma_andmed/xml/forecast.php"
-        case .russian:
-            link = "http://www.ilmateenistus.ee/ilma_andmed/xml/forecast.php?lang=rus"
-        }
-
-        return URL(string: link)!
-    }
-
     var languageCode: String {
         switch self {
         case .english: return "en"
@@ -40,7 +26,7 @@ enum AppLocalization {
 
     // MARK: - Initialization
 
-    init(locale: Locale) {
+    init?(locale: Locale) {
         switch locale.languageCode {
         case "en": self = .english
         case "ru": self = .russian
@@ -48,7 +34,7 @@ enum AppLocalization {
 
         default:
             assertionFailure("Locale is not implemented")
-            self = .english
+            return nil
         }
     }
 }

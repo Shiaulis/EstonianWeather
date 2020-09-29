@@ -11,7 +11,7 @@ import Combine
 import CoreData
 import UIKit
 
-final class ForecastListViewModel: ObservableObject {
+final class ForecastController: ForecastViewModel {
 
     @Published var displayItems: [ForecastDisplayItem] = []
     private var disposables: Set<AnyCancellable> = []
@@ -19,9 +19,9 @@ final class ForecastListViewModel: ObservableObject {
     private let localization: AppLocalization
     private let settingsURL = URL(string: UIApplication.openSettingsURLString)
 
-    init(dataProvider: ForecastDataProvider) {
+    init(dataProvider: ForecastDataProvider = .init()) {
         self.dataProvider = dataProvider
-        self.localization = AppLocalization(locale: Locale.current)
+        self.localization = AppLocalization(locale: Locale.current) ?? .english
 
         listenForData()
     }

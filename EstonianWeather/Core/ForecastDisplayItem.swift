@@ -52,7 +52,7 @@ extension ForecastDisplayItem.DayPartForecastDisplayItem {
     static var test: ForecastDisplayItem.DayPartForecastDisplayItem {
         .init(
             type: "Night",
-            weatherIconName: "rain",
+            weatherIconName: "cloud.sun.bolt.fill",
             weatherDescription: "Moderate showwwwer",
             temperatureRange: "–20…+30 ℃",
             description:
@@ -71,7 +71,7 @@ extension ForecastDisplayItem.DayPartForecastDisplayItem {
     static var test2: ForecastDisplayItem.DayPartForecastDisplayItem {
         .init(
             type: "Day",
-            weatherIconName: "rain",
+            weatherIconName: "cloud.sun.bolt.fill",
             weatherDescription: "Rain",
             temperatureRange: "–2…+3",
             description:
@@ -94,7 +94,7 @@ extension ForecastDisplayItem.DayPartForecastDisplayItem.PlaceDisplayItem {
     static var test1: ForecastDisplayItem.DayPartForecastDisplayItem.PlaceDisplayItem {
         .init(
             name: "Harku",
-            weatherIconName: "rain",
+            weatherIconName: "cloud.sun.bolt.fill",
             temperature: "+1"
         )
     }
@@ -102,7 +102,7 @@ extension ForecastDisplayItem.DayPartForecastDisplayItem.PlaceDisplayItem {
     static var test2: ForecastDisplayItem.DayPartForecastDisplayItem.PlaceDisplayItem {
         .init(
             name: "Jõhvi",
-            weatherIconName: "rain",
+            weatherIconName: "cloud.sun.bolt.fill",
             temperature: "+1"
         )
     }

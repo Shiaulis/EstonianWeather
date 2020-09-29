@@ -18,27 +18,23 @@ final class MainService {
     private let parser: WeatherParser = XMLWeatherParser()
     private let mapper: DataMapper = CoreDataMapper()
     private let localization: AppLocalization
-    private var url: URL { self.localization.sourceLink }
     private let logger: Logger = PrintLogger()
-
-    private lazy var networkDataPublisher: AnyPublisher<Data, URLError> = {
-        URLSession.shared
-            .dataTaskPublisher(for: self.url)
-            .map { $0.data }
-            .eraseToAnyPublisher()
-    }()
+    private let networkClient: NetworkClient = URLSessionNetworkClient()
 
     // MARK: - Initialization
 
     init() {
         let locale = Locale.current
-        self.localization = AppLocalization(locale: locale)
+        self.localization = AppLocalization(locale: locale) ?? .english
 
         requestAndMapData()
     }
 
     private func requestAndMapData() {
-        self.networkDataPublisher
+        let endpoint = Endpoint.forecast(for: self.localization)
+        self.networkClient.requestPublisher(for: endpoint)
+            // TODOx: Should validate response code as well
+            .map { $0.data }
             .parse(using: self.parser, date: Date(), languageCode: self.localization.languageCode)
             .map(using: self.mapper, in: self.persistentContainer.newBackgroundContext())
             .sink(receiveCompletion: { _ in

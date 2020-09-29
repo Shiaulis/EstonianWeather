@@ -25,13 +25,15 @@
       "identifier" : "0913814523CB7AF30092EC04",
       "name" : "EstonianWeather"
     },
-    "testExecutionOrdering" : "random"
+    "testExecutionOrdering" : "random",
+    "uiTestingScreenshotsLifetime" : "keepNever",
+    "userAttachmentLifetime" : "keepNever"
   },
   "testTargets" : [
     {
       "target" : {
         "containerPath" : "container:EstonianWeather.xcodeproj",
-        "identifier" : "0913815B23CB7AF60092EC04",
+        "identifier" : "0968CDA22522667B00D409FF",
         "name" : "EstonianWeatherTests"
       }
     }

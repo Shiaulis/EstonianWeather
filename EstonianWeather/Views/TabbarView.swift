@@ -28,13 +28,21 @@ enum Tab {
     func item() -> some View {
         VStack {
             Image(systemName: self.imageName)
+                .foregroundColor(.white)
             Text(self.title)
         }
     }
 }
 
 struct TabbarView: View {
-    let forecastListView: ForecastListView
+
+    init(forecastListView: ForecastListView<ForecastController>, settingsView: SettingsView) {
+        self.forecastListView = forecastListView
+        self.settingsView = settingsView
+
+        UITabBar.appearance().barTintColor = .bottomBarColor
+    }
+    let forecastListView: ForecastListView<ForecastController>
     let settingsView: SettingsView
 
     var body: some View {
@@ -42,13 +50,12 @@ struct TabbarView: View {
             self.forecastListView.tabItem { Tab.forecastList.item() }
             self.settingsView.tabItem { Tab.settings.item() }
         }
+        .accentColor(.white)
     }
 }
 
-/*
 struct TabbarView_Previews: PreviewProvider {
     static var previews: some View {
-        TabbarView()
+        TabbarView(forecastListView: ForecastListView(viewModel: ForecastController()), settingsView: SettingsView())
     }
 }
-*/

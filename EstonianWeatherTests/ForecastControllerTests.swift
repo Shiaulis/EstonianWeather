@@ -20,7 +20,7 @@ final class ForecastControllerTests: XCTestCase {
     private var displayItems: [ForecastDisplayItem]!
     private var firstDisplayItem: ForecastDisplayItem! { self.displayItems.first }
 
-    private var localization: AppLocalization { .init(locale: self.locale) }
+    private var localization: AppLocalization { AppLocalization(locale: self.locale) ?? .english }
 
     // MARK: - Setup and teardown
 

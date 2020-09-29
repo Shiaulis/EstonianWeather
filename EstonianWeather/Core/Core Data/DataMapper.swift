@@ -24,19 +24,6 @@ extension Publisher where Output == [EWForecast] {
     }
 }
 
-/*
- extension Publisher where Output == Data {
-
-     func parse(using parser: WeatherParser, date: Date, languageCode: String) -> AnyPublisher<[EWForecast], Swift.Error> {
-         self
-             .tryMap { data in
-                 try parser.parse(data: data, receivedDate: date, languageCode: languageCode).get()
-             }
-             .eraseToAnyPublisher()
-     }
- }
- */
-
 final class CoreDataMapper: DataMapper {
 
     enum Error: Swift.Error {
