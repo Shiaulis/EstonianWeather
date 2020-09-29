@@ -18,7 +18,7 @@ struct DayPartView: View {
                 VStack {
                     Text(self.item.type)
                         .font(.headline)
-                    Image(self.item.weatherIconName)
+                    Image(systemName: self.item.weatherIconName)
                         .resizable()
                         .frame(width: 64, height: 64)
                     Text(self.item.weatherDescription)
