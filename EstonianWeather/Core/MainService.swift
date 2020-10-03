@@ -7,13 +7,17 @@
 //
 
 import Foundation
+import UIKit
 import Combine
 
 final class MainService {
 
     // MARK: - Properties
 
+    private let defaultRequestsInterval: TimeInterval = 60 * 60
+
     private var disposables: Set<AnyCancellable> = []
+    private var timerDisposable: AnyCancellable?
     private let persistentContainer = CoreDataStack().persistentContainer
     private let parser: WeatherParser = XMLWeatherParser()
     private let mapper: DataMapper = CoreDataMapper()
@@ -26,8 +30,9 @@ final class MainService {
     init() {
         let locale = Locale.current
         self.localization = AppLocalization(locale: locale) ?? .english
+        setTimerForRequests(with: self.defaultRequestsInterval)
 
-        requestAndMapData()
+        subscribeForNotifications()
     }
 
     private func requestAndMapData() {
@@ -40,6 +45,32 @@ final class MainService {
             .sink(receiveCompletion: { _ in
                 self.logger.logNotImplemented(functionality: "Data request completion", module: .mainService)
             }, receiveValue: { _ in })
+            .store(in: &self.disposables)
+    }
+
+    private func setTimerForRequests(with interval: TimeInterval) {
+        self.requestAndMapData()
+        self.timerDisposable =
+        Timer
+            .publish(every: interval, on: RunLoop.main, in: .default)
+            .sink { _ in self.requestAndMapData() }
+    }
+
+    private func subscribeForNotifications() {
+        NotificationCenter
+            .default
+            .publisher(for: UIApplication.didEnterBackgroundNotification, object: self)
+            .sink { _ in
+                self.timerDisposable = nil
+            }
+            .store(in: &self.disposables)
+
+        NotificationCenter
+            .default
+            .publisher(for: UIApplication.didBecomeActiveNotification, object: self)
+            .sink { _ in
+                self.setTimerForRequests(with: self.defaultRequestsInterval)
+            }
             .store(in: &self.disposables)
     }
 

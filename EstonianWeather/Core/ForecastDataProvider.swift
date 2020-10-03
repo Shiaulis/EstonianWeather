@@ -47,7 +47,6 @@ final class ForecastDataProvider {
     private func displayItem(for forecast: Forecast) -> ForecastDisplayItem {
         .init(
             naturalDateDescription: self.formatter.humanReadableDescription(for: forecast.forecastDate) ?? "",
-            date: self.formatter.dateString(from: forecast.forecastDate) ?? "",
             dayParts: [forecast.night, forecast.day].compactMap { dayPartDisplayItem(for: $0) }
         )
     }

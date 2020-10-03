@@ -48,19 +48,6 @@ final class ForecastControllerTests: XCTestCase {
         XCTAssertNoThrow(try self.sut.provide(with: self.container.viewContext, for: self.localization).get())
     }
 
-    func testProvider_whenProvide_returnsForecastCorrectDateString() {
-        // given
-        let expectedDate = "January 17"
-        let givenDate = day(forDay: 17, month: 01)
-        self.forecast.forecastDate = givenDate
-
-        // when
-        whenRequestDisplayItems()
-
-        // then
-        XCTAssertEqual(self.firstDisplayItem.date, expectedDate)
-    }
-
     func testProvider_whenProvide_returnsCorrectNumberOfDayParts() {
         // given
         givenForecastWithDayAndNight()

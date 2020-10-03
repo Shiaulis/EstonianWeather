@@ -21,38 +21,29 @@ struct ForecastView: View {
             VStack {
                 HStack {
                     Text(self.item.naturalDateDescription)
-                    Text(self.item.date)
                     Spacer()
                 }
                 .font(.headline)
-                .padding(.vertical)
 
                 VStack {
                     DayPartView(item: self.item.dayParts[0])
-                        .padding()
                     DayPartView(item: self.item.dayParts[1])
-                        .padding()
                 }
             }
             .padding(.vertical)
-            .foregroundColor(.white)
         }
     }
 }
 
 struct ForecastView_Previews: PreviewProvider {
     static var previews: some View {
-        ZStack {
-            LinearGradient(
-                gradient: .init(colors: [
-                    .topBackgroundGradient,
-                    .bottomBackgroundGradient
-                ]),
-                startPoint: .topTrailing,
-                endPoint: .bottomLeading
-            )
+        Group {
             ForecastView(item: ForecastDisplayItem.test)
+                .environment(\.colorScheme, .light)
+                .previewLayout(.fixed(width: 313, height: 600))
+            ForecastView(item: ForecastDisplayItem.test)
+                .environment(\.colorScheme, .dark)
+                .previewLayout(.fixed(width: 313, height: 600))
         }
-            .previewLayout(.fixed(width: 313, height: 600))
     }
 }

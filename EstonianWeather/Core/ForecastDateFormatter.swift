@@ -22,11 +22,22 @@ final class ForecastDateFormatter {
 
     // MARK: - Public
 
-    func humanReadableDescription(for date: Date?) -> String? {
+    func humanReadableDescription(for date: Date?, calendar: Calendar = .current) -> String? {
         guard let date = date else { return nil }
 
+        guard var humanReadableDescription = string(from: date, calendar: calendar, locale: self.locale) else { return nil }
+
+        if let description = textDescription(from: date, calendar: calendar, locale: self.locale) {
+            humanReadableDescription += ", \(description)"
+        }
+
+        return humanReadableDescription
+    }
+
+    private func textDescription(from date: Date, calendar: Calendar, locale: Locale) -> String? {
         let formatter: DateFormatter = .init()
-        formatter.locale = self.locale
+        formatter.locale = locale
+        formatter.calendar = calendar
         formatter.timeStyle = .none
         formatter.dateStyle = .short
         formatter.doesRelativeDateFormatting = true
@@ -39,11 +50,10 @@ final class ForecastDateFormatter {
         return description.capitalized
     }
 
-    func dateString(from date: Date?) -> String? {
-        guard let date = date else { return nil }
-
+    private func string(from date: Date, calendar: Calendar, locale: Locale) -> String? {
         let formatter: DateFormatter = .init()
         formatter.locale = self.locale
+        formatter.calendar = calendar
         formatter.setLocalizedDateFormatFromTemplate("dMMMM")
 
         return formatter.string(from: date)

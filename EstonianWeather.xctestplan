@@ -2,9 +2,23 @@
   "configurations" : [
     {
       "id" : "BA6B2A03-C1F4-4A44-A3C2-A04C18A31405",
-      "name" : "Configuration 1",
+      "name" : "English locale",
       "options" : {
 
+      }
+    },
+    {
+      "id" : "440A93DC-580D-44FD-A995-14FD3B57AB61",
+      "name" : "Russian locale",
+      "options" : {
+        "language" : "ru"
+      }
+    },
+    {
+      "id" : "DDB07C1E-FFDE-4FBD-A325-4DB7F318A36C",
+      "name" : "Ukrainian locale",
+      "options" : {
+        "language" : "uk"
       }
     }
   ],

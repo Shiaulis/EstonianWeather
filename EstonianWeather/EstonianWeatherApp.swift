@@ -21,7 +21,7 @@ struct EstonianWeatherApp: App {
     private func tabbarView() -> TabbarView {
         let applicationViewModel: ApplicationViewModel = ApplicationController()
         let dataProvider = applicationViewModel.forecastDataProvider()
-        let viewModel = ForecastController(dataProvider: dataProvider)
+        let viewModel = ForecastListController(dataProvider: dataProvider)
         let forecastListView = ForecastListView(viewModel: viewModel)
         let settingsView = SettingsView()
         let tabbarView = TabbarView(forecastListView: forecastListView, settingsView: settingsView)

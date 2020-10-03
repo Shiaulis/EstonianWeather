@@ -1,5 +1,5 @@
 //
-//  ForecastListViewModel.swift
+//  ForecastListController.swift
 //  EstonianWeather
 //
 //  Created by Andrius Shiaulis on 13.01.2020.
@@ -11,7 +11,7 @@ import Combine
 import CoreData
 import UIKit
 
-final class ForecastController: ForecastViewModel {
+final class ForecastListController: ForecastListViewModel {
 
     @Published var displayItems: [ForecastDisplayItem] = []
     private var disposables: Set<AnyCancellable> = []

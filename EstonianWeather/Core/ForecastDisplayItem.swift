@@ -12,7 +12,6 @@ struct ForecastDisplayItem: Identifiable {
 
     let id = UUID()
     let naturalDateDescription: String
-    let date: String
     let dayParts: [DayPartForecastDisplayItem]
 
     struct DayPartForecastDisplayItem: Identifiable {
@@ -37,8 +36,7 @@ struct ForecastDisplayItem: Identifiable {
 extension ForecastDisplayItem {
     static var test: ForecastDisplayItem {
         .init(
-            naturalDateDescription: "Today",
-            date: "17 January",
+            naturalDateDescription: "Today, 17 January",
             dayParts: [
                 ForecastDisplayItem.DayPartForecastDisplayItem.test,
                 ForecastDisplayItem.DayPartForecastDisplayItem.test2
