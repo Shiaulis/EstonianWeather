@@ -12,7 +12,7 @@ enum AppLocalization {
 
     // MARK: - Cases
 
-    case english, russian, estonian
+    case english, russian, estonian, ukrainian
 
     // MARK: - Properties
 
@@ -21,6 +21,7 @@ enum AppLocalization {
         case .english: return "en"
         case .estonian: return "et"
         case .russian: return "ru"
+        case .ukrainian: return "uk"
         }
     }
 
@@ -31,9 +32,10 @@ enum AppLocalization {
         case "en": self = .english
         case "ru": self = .russian
         case "et": self = .estonian
+        case "uk": self = .ukrainian
 
         default:
-            assertionFailure("Locale is not implemented")
+            assertionFailure("Locale \(locale.languageCode ?? "") is not implemented")
             return nil
         }
     }

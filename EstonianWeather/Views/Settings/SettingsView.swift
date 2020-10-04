@@ -20,7 +20,7 @@ struct SettingsView: View {
                     didSelected: self.viewModel.openApplicationSettings
                 )
             }
-            .navigationBarTitle("Settings")
+            .navigationBarTitle("settings")
         }
     }
 

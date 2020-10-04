@@ -22,13 +22,19 @@ struct DayPartView: View {
             )
             SecondaryForecastView(descriptionText: self.item.description)
         }
+        .background(Color(UIColor.systemBackground))
     }
 }
 
 struct DayPartView_Previews: PreviewProvider {
     static var previews: some View {
-        DayPartView(item: ForecastDisplayItem.DayPartForecastDisplayItem.test)
-            .previewLayout(.fixed(width: 414, height: 150))
+        Group {
+            DayPartView(item: ForecastDisplayItem.DayPartForecastDisplayItem.test)
+                .previewLayout(.fixed(width: 414, height: 200))
+            DayPartView(item: ForecastDisplayItem.DayPartForecastDisplayItem.test)
+                .previewLayout(.fixed(width: 414, height: 200))
+                .environment(\.colorScheme, .dark)
+        }
     }
 }
 
@@ -50,17 +56,22 @@ struct PrimaryForecastView: View {
     let weatherIconName: String
 
     var body: some View {
-        HStack {
-            Text(self.temperatureRange)
-                .font(.title)
-            Spacer()
-            VStack {
-                Image(systemName: self.weatherIconName)
+        VStack {
+            HStack {
+                Text(self.temperatureRange)
                     .font(.largeTitle)
+                VStack {
+                    Image(systemName: self.weatherIconName)
+                        .font(.largeTitle)
+
+                }
+                Spacer()
+            }
+            HStack {
                 Text(self.weatherDescription)
                     .font(.caption2)
+                Spacer()
             }
-
         }
     }
 }

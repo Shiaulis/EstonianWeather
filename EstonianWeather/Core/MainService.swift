@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Combine
+import CoreData
 
 final class MainService {
 
@@ -18,9 +19,12 @@ final class MainService {
 
     private var disposables: Set<AnyCancellable> = []
     private var timerDisposable: AnyCancellable?
-    private let persistentContainer = CoreDataStack().persistentContainer
+
+    private let coreDataStack: CoreDataStack
+    private var persistentContainer: NSPersistentContainer { self.coreDataStack.persistentContainer }
+    private let settingsService: SettingsService
     private let parser: WeatherParser = XMLWeatherParser()
-    private let mapper: DataMapper = CoreDataMapper()
+    private lazy var mapper: DataMapper = { CoreDataMapper(logger: self.logger) }()
     private let localization: AppLocalization
     private let logger: Logger = PrintLogger()
     private let networkClient: NetworkClient = URLSessionNetworkClient()
@@ -30,6 +34,8 @@ final class MainService {
     init() {
         let locale = Locale.current
         self.localization = AppLocalization(locale: locale) ?? .english
+        self.coreDataStack = .init()
+        self.settingsService = .init(userDefaults: .standard, coreDataStack: self.coreDataStack)
         setTimerForRequests(with: self.defaultRequestsInterval)
 
         subscribeForNotifications()
@@ -37,11 +43,14 @@ final class MainService {
 
     private func requestAndMapData() {
         let endpoint = Endpoint.forecast(for: self.localization)
+        let today = Date()
+        let context = self.persistentContainer.newBackgroundContext()
         self.networkClient.requestPublisher(for: endpoint)
             // TODOx: Should validate response code as well
             .map { $0.data }
-            .parse(using: self.parser, date: Date(), languageCode: self.localization.languageCode)
-            .map(using: self.mapper, in: self.persistentContainer.newBackgroundContext())
+            .parse(using: self.parser, date: today, languageCode: self.localization.languageCode)
+            .removeForecastOlderThan(today, using: self.mapper, in: context)
+            .map(using: self.mapper, in: context)
             .sink(receiveCompletion: { _ in
                 self.logger.logNotImplemented(functionality: "Data request completion", module: .mainService)
             }, receiveValue: { _ in })

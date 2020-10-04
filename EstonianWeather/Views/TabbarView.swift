@@ -20,8 +20,8 @@ enum Tab {
 
     private var title: LocalizedStringKey {
         switch self {
-        case .forecastList: return "Forecast"
-        case .settings: return "Settings"
+        case .forecastList: return "forecast"
+        case .settings: return "settings"
         }
     }
 

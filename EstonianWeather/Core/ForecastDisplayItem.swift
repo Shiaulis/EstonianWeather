@@ -52,7 +52,7 @@ extension ForecastDisplayItem.DayPartForecastDisplayItem {
             type: "Night",
             weatherIconName: "cloud.sun.bolt.fill",
             weatherDescription: "Moderate showwwwer",
-            temperatureRange: "–20…+30 ℃",
+            temperatureRange: "-20 | 30",
             description:
             """
             Partly cloudy. At first locally some rain. West wind 5-11,

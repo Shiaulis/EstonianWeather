@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  EstonianWeather
+
+  Created by Andrius Shiaulis on 04.10.2020.
+  
+*/
+
+"4_days_forecast" = "4 Days Forecast";
+"forecast" = "Forecast";
+"settings" = "Settings";
+"current_language" = "Current language";

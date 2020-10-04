@@ -37,8 +37,9 @@ final class ForecastDateFormatterTests: XCTestCase {
         // then
         switch Locale.current.languageCode {
         case "en": XCTAssertEqual(receivedDescription, "\(expectedString(from: today)), Today")
-        case "et": XCTAssertEqual(receivedDescription, "Täna")
-        case "ru": XCTAssertEqual(receivedDescription, "Сегодня")
+        case "et": XCTAssertEqual(receivedDescription, "\(expectedString(from: today)), Täna")
+        case "ru": XCTAssertEqual(receivedDescription, "\(expectedString(from: today)), Сегодня")
+        case "uk": XCTAssertEqual(receivedDescription, "\(expectedString(from: today)), Сьогодні")
         default: fatalError("Language doesn't supported")
         }
     }
@@ -50,40 +51,11 @@ final class ForecastDateFormatterTests: XCTestCase {
         let receivedDescription = self.sut.humanReadableDescription(for: tomorrow)
         switch Locale.current.languageCode {
         case "en": XCTAssertEqual(receivedDescription, "\(expectedString(from: tomorrow)), Tomorrow")
-        case "et": XCTAssertEqual(receivedDescription, "Homme")
-        case "ru": XCTAssertEqual(receivedDescription, "Завтра")
+        case "et": XCTAssertEqual(receivedDescription, "\(expectedString(from: tomorrow)), Homme")
+        case "ru": XCTAssertEqual(receivedDescription, "\(expectedString(from: tomorrow)), Завтра")
+        case "uk": XCTAssertEqual(receivedDescription, "\(expectedString(from: tomorrow)), Завтра")
         default: fatalError("Language doesn't supported")
         }
-    }
-
-    func testFormatter_whenRequestHumanReadableStringForDayAfterTomorrow_returnsNil() {
-//        // given
-//        givenDayAfterTomorrow()
-//
-//        // when
-//        whenHumanReadableDescriptionRequested()
-//
-//        // then
-//        switch Locale.current.languageCode {
-//        case "en": XCTAssertEqual(self.receivedDateDescription, nil)
-//        case "et": XCTAssertEqual(self.receivedDateDescription, nil)
-//        case "ru": XCTAssertEqual(self.receivedDateDescription, nil)
-//        default: fatalError("Language doesn't supported")
-//        }
-    }
-
-    // MARK: - Dates
-
-    private func januaryFirstMorning() -> Date! {
-        var components = DateComponents()
-        components.year = 2020
-        components.month = 1
-        components.day = 1
-        components.hour = 8
-        components.minute = 0
-        components.timeZone = TimeZone(abbreviation: "EEST")
-        components.calendar = .current
-        return components.date!
     }
 
     private func expectedString(from date: Date) -> String {

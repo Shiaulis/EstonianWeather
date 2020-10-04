@@ -4,7 +4,7 @@
       "id" : "BA6B2A03-C1F4-4A44-A3C2-A04C18A31405",
       "name" : "English locale",
       "options" : {
-
+        "language" : "en"
       }
     },
     {
@@ -32,8 +32,6 @@
         }
       ]
     },
-    "language" : "en",
-    "region" : "EE",
     "targetForVariableExpansion" : {
       "containerPath" : "container:EstonianWeather.xcodeproj",
       "identifier" : "0913814523CB7AF30092EC04",

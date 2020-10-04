@@ -85,17 +85,17 @@ final class ForecastDataProvider {
         case (.none, .some(let max)): string = temperatureString(for: max)
         case (.some(let min), .none): string = temperatureString(for: min)
         case (.none, .none): return nil
-        case (.some(let min), .some(let max)): string = "\(temperatureString(for: min))…\(temperatureString(for: max))"
+        case (.some(let min), .some(let max)): string = "\(temperatureString(for: min)) | \(temperatureString(for: max))"
         }
 
-        return "\(string) ℃"
+        return string
     }
 
     private func temperatureString(for value: Int) -> String {
         switch value {
-        case 1...: return "+\(String(describing: value))"
-        case 0: return "0"
-        case (Int.min..<0): return "–\(String(describing: abs(Int32(value))))"
+        case 1...: return "\(String(describing: value))°"
+        case 0: return "0°"
+        case (Int.min..<0): return "-\(String(describing: abs(Int32(value))))°"
         default:
             assertionFailure("Should be unreachable")
             return ""

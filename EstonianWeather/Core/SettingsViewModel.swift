@@ -13,7 +13,7 @@ final class SettingsViewModel {
     // MARK: - Properties
 
     var currentLanguageName: String {
-        Locale.current.localizedString(forLanguageCode: "en") ?? ""
+        Locale.current.localizedString(forLanguageCode: "uk") ?? ""
     }
 
     private let settingsURL = URL(string: UIApplication.openSettingsURLString)

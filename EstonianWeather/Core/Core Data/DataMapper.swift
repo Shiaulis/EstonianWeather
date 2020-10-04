@@ -11,10 +11,20 @@ import CoreData
 import Combine
 
 protocol DataMapper {
+    func removeAllForecasts(from context: NSManagedObjectContext, olderThan cutOffDate: Date) throws
     func performMapping(_ forecastsToMap: [EWForecast], context: NSManagedObjectContext) throws -> [Forecast]
 }
 
 extension Publisher where Output == [EWForecast] {
+    func removeForecastOlderThan(_ date: Date, using dataMapper: DataMapper, in context: NSManagedObjectContext) -> AnyPublisher<[EWForecast], Swift.Error> {
+        self
+            .tryMap { forecasts in
+                try dataMapper.removeAllForecasts(from: context, olderThan: date)
+                return forecasts
+            }
+            .eraseToAnyPublisher()
+    }
+
     func map(using mapper: DataMapper, in context: NSManagedObjectContext) -> AnyPublisher<[Forecast], Swift.Error> {
         self
             .tryMap { forecasts in
@@ -26,8 +36,32 @@ extension Publisher where Output == [EWForecast] {
 
 final class CoreDataMapper: DataMapper {
 
+    private let logger: Logger
+
+    init(logger: Logger) {
+        self.logger = logger
+    }
+
     enum Error: Swift.Error {
         case emptyResponse, nonValidData, nonValidEntityDescription
+    }
+
+    func removeAllForecasts(from context: NSManagedObjectContext, olderThan cutOffDate: Date) throws {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Forecast.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "%K < %@", #keyPath(Forecast.forecastDate), cutOffDate as NSDate)
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        var contextError: Swift.Error?
+
+        do {
+            try context.execute(batchDeleteRequest)
+        }
+        catch {
+            contextError = error
+        }
+
+        if let contextError = contextError {
+            throw contextError
+        }
     }
 
     func performMapping(_ forecastsToMap: [EWForecast], context: NSManagedObjectContext) throws -> [Forecast] {

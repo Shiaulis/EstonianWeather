@@ -16,7 +16,7 @@ struct LanguageCell: View {
     var body: some View {
         Button(action: self.didSelected) {
             HStack {
-                Text("Current language")
+                Text("current_language")
                     .foregroundColor(Color(.label))
                 Spacer()
                 Text(self.currentLanguage)

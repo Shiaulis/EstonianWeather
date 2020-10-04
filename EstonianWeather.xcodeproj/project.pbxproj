@@ -53,8 +53,10 @@
 		0968CE1C25226A0600D409FF /* ForecastDateFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CE1525226A0600D409FF /* ForecastDateFormatterTests.swift */; };
 		0968CE1D25226A0600D409FF /* TestForecast.xml in Resources */ = {isa = PBXBuildFile; fileRef = 0968CE1625226A0600D409FF /* TestForecast.xml */; };
 		0968CE2625226A2B00D409FF /* EstonianWeather.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 0968CE2425226A2B00D409FF /* EstonianWeather.xctestplan */; };
-		0968CE2725226A2B00D409FF /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0968CE2525226A2B00D409FF /* Settings.bundle */; };
 		0968CE3D25227D2500D409FF /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CE3C25227D2500D409FF /* Logger.swift */; };
+		09769674252A5ADC00FA1764 /* SettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09769673252A5ADC00FA1764 /* SettingsService.swift */; };
+		09769689252A667E00FA1764 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0976968B252A667E00FA1764 /* Localizable.strings */; };
+		09769696252A682800FA1764 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 09769695252A682800FA1764 /* Settings.bundle */; };
 		09D6C9E825239EA5008C9ABB /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D6C9E725239EA5008C9ABB /* Endpoint.swift */; };
 		09D6C9EE25239F38008C9ABB /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D6C9ED25239F38008C9ABB /* NetworkClient.swift */; };
 /* End PBXBuildFile section */
@@ -129,8 +131,14 @@
 		0968CE1525226A0600D409FF /* ForecastDateFormatterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastDateFormatterTests.swift; sourceTree = "<group>"; };
 		0968CE1625226A0600D409FF /* TestForecast.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TestForecast.xml; sourceTree = "<group>"; };
 		0968CE2425226A2B00D409FF /* EstonianWeather.xctestplan */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EstonianWeather.xctestplan; sourceTree = "<group>"; };
-		0968CE2525226A2B00D409FF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		0968CE3C25227D2500D409FF /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		09769673252A5ADC00FA1764 /* SettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsService.swift; sourceTree = "<group>"; };
+		09769680252A61F500FA1764 /* EstonianWeather.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EstonianWeather.entitlements; sourceTree = "<group>"; };
+		0976968A252A667E00FA1764 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0976968F252A668300FA1764 /* et */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = et; path = et.lproj/Localizable.strings; sourceTree = "<group>"; };
+		09769690252A668700FA1764 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		09769691252A668800FA1764 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		09769695252A682800FA1764 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		09D6C9E725239EA5008C9ABB /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		09D6C9ED25239F38008C9ABB /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -163,8 +171,9 @@
 		0968CD892522667A00D409FF = {
 			isa = PBXGroup;
 			children = (
+				09769695252A682800FA1764 /* Settings.bundle */,
+				0976968B252A667E00FA1764 /* Localizable.strings */,
 				0968CE2425226A2B00D409FF /* EstonianWeather.xctestplan */,
-				0968CE2525226A2B00D409FF /* Settings.bundle */,
 				0968CD942522667A00D409FF /* EstonianWeather */,
 				0968CDA62522667B00D409FF /* EstonianWeatherTests */,
 				0968CDB12522667B00D409FF /* EstonianWeatherUITests */,
@@ -185,6 +194,7 @@
 		0968CD942522667A00D409FF /* EstonianWeather */ = {
 			isa = PBXGroup;
 			children = (
+				09769680252A61F500FA1764 /* EstonianWeather.entitlements */,
 				0968CDD7252268E600D409FF /* Core */,
 				0968CDC5252267F600D409FF /* Views */,
 				0968CD952522667A00D409FF /* EstonianWeatherApp.swift */,
@@ -254,6 +264,7 @@
 				0968CDE3252268E600D409FF /* ApplicationController.swift */,
 				0968CE3C25227D2500D409FF /* Logger.swift */,
 				09D6C9EC25239F29008C9ABB /* Network */,
+				09769673252A5ADC00FA1764 /* SettingsService.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -404,6 +415,9 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
+				uk,
+				et,
 			);
 			mainGroup = 0968CD892522667A00D409FF;
 			productRefGroup = 0968CD932522667A00D409FF /* Products */;
@@ -422,7 +436,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09769696252A682800FA1764 /* Settings.bundle in Resources */,
 				0968CD9D2522667B00D409FF /* Preview Assets.xcassets in Resources */,
+				09769689252A667E00FA1764 /* Localizable.strings in Resources */,
 				0968CD9A2522667B00D409FF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -432,7 +448,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0968CE1D25226A0600D409FF /* TestForecast.xml in Resources */,
-				0968CE2725226A2B00D409FF /* Settings.bundle in Resources */,
 				0968CE2625226A2B00D409FF /* EstonianWeather.xctestplan in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -490,6 +505,7 @@
 				09D6C9E825239EA5008C9ABB /* Endpoint.swift in Sources */,
 				0968CDCD252267F600D409FF /* SettingsView.swift in Sources */,
 				0968CD982522667A00D409FF /* ContentView.swift in Sources */,
+				09769674252A5ADC00FA1764 /* SettingsService.swift in Sources */,
 				0968CDCF252267F600D409FF /* TabbarView.swift in Sources */,
 				0968CE03252269AF00D409FF /* DayPartForecast+CoreDataProperties.swift in Sources */,
 				0968CD962522667A00D409FF /* EstonianWeatherApp.swift in Sources */,
@@ -548,6 +564,20 @@
 			targetProxy = 0968CDAF2522667B00D409FF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		0976968B252A667E00FA1764 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0976968A252A667E00FA1764 /* en */,
+				0976968F252A668300FA1764 /* et */,
+				09769690252A668700FA1764 /* ru */,
+				09769691252A668800FA1764 /* uk */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		0968CDB52522667B00D409FF /* Debug */ = {
@@ -671,6 +701,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = EstonianWeather/EstonianWeather.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"EstonianWeather/Preview Content\"";
 				DEVELOPMENT_TEAM = NFA8F38A32;
@@ -693,6 +724,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = EstonianWeather/EstonianWeather.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"EstonianWeather/Preview Content\"";
 				DEVELOPMENT_TEAM = NFA8F38A32;

@@ -40,6 +40,8 @@ extension Endpoint {
 
 extension Endpoint {
 
+    // https://www.ilmateenistus.ee/ilma_andmed/xml/forecast.php?lang=rus
+
     static func forecast(for localization: AppLocalization) -> Endpoint {
         .init(
             path: "/ilma_andmed/xml/forecast.php",
@@ -55,6 +57,7 @@ private extension AppLocalization {
         case .english: return "eng"
         case .estonian: return "est"
         case .russian: return "rus"
+        case .ukrainian: return "eng"
         }
     }
 }

@@ -25,7 +25,7 @@ struct ForecastListView<ViewModel: ForecastListViewModel>: View {
                     }
                 }
             }
-            .navigationTitle("4 Days Forecast")
+            .navigationTitle("4_days_forecast")
         }
     }
 
