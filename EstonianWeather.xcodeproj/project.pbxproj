@@ -61,11 +61,11 @@
 		097698B5252A708A00FA1764 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 097698B4252A708A00FA1764 /* SwiftUI.framework */; };
 		097698B8252A708A00FA1764 /* EstonianWeatherWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097698B7252A708A00FA1764 /* EstonianWeatherWidget.swift */; };
 		097698BB252A708C00FA1764 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 097698BA252A708C00FA1764 /* Assets.xcassets */; };
-		097698BD252A708C00FA1764 /* EstonianWeatherWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 097698B9252A708A00FA1764 /* EstonianWeatherWidget.intentdefinition */; };
-		097698BE252A708C00FA1764 /* EstonianWeatherWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 097698B9252A708A00FA1764 /* EstonianWeatherWidget.intentdefinition */; };
 		097698C1252A708C00FA1764 /* EstonianWeatherWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 097698B0252A708A00FA1764 /* EstonianWeatherWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		09D6C9E825239EA5008C9ABB /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D6C9E725239EA5008C9ABB /* Endpoint.swift */; };
 		09D6C9EE25239F38008C9ABB /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D6C9ED25239F38008C9ABB /* NetworkClient.swift */; };
+		B158270B252B57150064A42C /* EstonianWeatherWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = B158270E252B57150064A42C /* EstonianWeatherWidget.intentdefinition */; };
+		B158270C252B57150064A42C /* EstonianWeatherWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = B158270E252B57150064A42C /* EstonianWeatherWidget.intentdefinition */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -171,11 +171,14 @@
 		097698B2252A708A00FA1764 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		097698B4252A708A00FA1764 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		097698B7252A708A00FA1764 /* EstonianWeatherWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstonianWeatherWidget.swift; sourceTree = "<group>"; };
-		097698B9252A708A00FA1764 /* EstonianWeatherWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = EstonianWeatherWidget.intentdefinition; sourceTree = "<group>"; };
 		097698BA252A708C00FA1764 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		097698BC252A708C00FA1764 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09D6C9E725239EA5008C9ABB /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		09D6C9ED25239F38008C9ABB /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		B158270D252B57150064A42C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = en; path = en.lproj/EstonianWeatherWidget.intentdefinition; sourceTree = "<group>"; };
+		B1582714252B57190064A42C /* et */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = et; path = et.lproj/EstonianWeatherWidget.strings; sourceTree = "<group>"; };
+		B158271A252B571B0064A42C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/EstonianWeatherWidget.strings; sourceTree = "<group>"; };
+		B158272E252B57440064A42C /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/EstonianWeatherWidget.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -358,7 +361,7 @@
 			isa = PBXGroup;
 			children = (
 				097698B7252A708A00FA1764 /* EstonianWeatherWidget.swift */,
-				097698B9252A708A00FA1764 /* EstonianWeatherWidget.intentdefinition */,
+				B158270E252B57150064A42C /* EstonianWeatherWidget.intentdefinition */,
 				097698BA252A708C00FA1764 /* Assets.xcassets */,
 				097698BC252A708C00FA1764 /* Info.plist */,
 			);
@@ -602,7 +605,7 @@
 				0968CDD2252267F600D409FF /* PlaceView.swift in Sources */,
 				09D6C9E825239EA5008C9ABB /* Endpoint.swift in Sources */,
 				0968CDCD252267F600D409FF /* SettingsView.swift in Sources */,
-				097698BE252A708C00FA1764 /* EstonianWeatherWidget.intentdefinition in Sources */,
+				B158270B252B57150064A42C /* EstonianWeatherWidget.intentdefinition in Sources */,
 				0968CD982522667A00D409FF /* ContentView.swift in Sources */,
 				09769674252A5ADC00FA1764 /* SettingsService.swift in Sources */,
 				0968CDCF252267F600D409FF /* TabbarView.swift in Sources */,
@@ -653,7 +656,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				097698BD252A708C00FA1764 /* EstonianWeatherWidget.intentdefinition in Sources */,
+				B158270C252B57150064A42C /* EstonianWeatherWidget.intentdefinition in Sources */,
 				097698B8252A708A00FA1764 /* EstonianWeatherWidget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -688,6 +691,17 @@
 				09769691252A668800FA1764 /* uk */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		B158270E252B57150064A42C /* EstonianWeatherWidget.intentdefinition */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B158270D252B57150064A42C /* en */,
+				B1582714252B57190064A42C /* et */,
+				B158271A252B571B0064A42C /* ru */,
+				B158272E252B57440064A42C /* uk */,
+			);
+			name = EstonianWeatherWidget.intentdefinition;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -817,7 +831,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = EstonianWeather/EstonianWeather.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"EstonianWeather/Preview Content\"";
 				DEVELOPMENT_TEAM = NFA8F38A32;
 				ENABLE_PREVIEWS = YES;
@@ -842,7 +856,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = EstonianWeather/EstonianWeather.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"EstonianWeather/Preview Content\"";
 				DEVELOPMENT_TEAM = NFA8F38A32;
 				ENABLE_PREVIEWS = YES;
@@ -949,6 +963,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = NFA8F38A32;
 				INFOPLIST_FILE = EstonianWeatherWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -970,6 +985,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = NFA8F38A32;
 				INFOPLIST_FILE = EstonianWeatherWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
