@@ -221,6 +221,7 @@
 				09769695252A682800FA1764 /* Settings.bundle */,
 				0976968B252A667E00FA1764 /* Localizable.strings */,
 				0968CE2425226A2B00D409FF /* EstonianWeather.xctestplan */,
+				B158270E252B57150064A42C /* EstonianWeatherWidget.intentdefinition */,
 				0968CD942522667A00D409FF /* EstonianWeather */,
 				0968CDA62522667B00D409FF /* EstonianWeatherTests */,
 				0968CDB12522667B00D409FF /* EstonianWeatherUITests */,
@@ -361,7 +362,6 @@
 			isa = PBXGroup;
 			children = (
 				097698B7252A708A00FA1764 /* EstonianWeatherWidget.swift */,
-				B158270E252B57150064A42C /* EstonianWeatherWidget.intentdefinition */,
 				097698BA252A708C00FA1764 /* Assets.xcassets */,
 				097698BC252A708C00FA1764 /* Info.plist */,
 			);
@@ -831,7 +831,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = EstonianWeather/EstonianWeather.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"EstonianWeather/Preview Content\"";
 				DEVELOPMENT_TEAM = NFA8F38A32;
 				ENABLE_PREVIEWS = YES;
@@ -856,7 +856,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = EstonianWeather/EstonianWeather.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"EstonianWeather/Preview Content\"";
 				DEVELOPMENT_TEAM = NFA8F38A32;
 				ENABLE_PREVIEWS = YES;
@@ -963,7 +963,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = NFA8F38A32;
 				INFOPLIST_FILE = EstonianWeatherWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -985,7 +985,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = NFA8F38A32;
 				INFOPLIST_FILE = EstonianWeatherWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
