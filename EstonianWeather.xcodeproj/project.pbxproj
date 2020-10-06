@@ -246,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				09769680252A61F500FA1764 /* EstonianWeather.entitlements */,
+				09DCE574252D0A1E00FD330B /* Settings */,
 				0968CDD7252268E600D409FF /* Core */,
 				0968CDC5252267F600D409FF /* Views */,
 				0968CD952522667A00D409FF /* EstonianWeatherApp.swift */,
@@ -304,18 +305,15 @@
 			isa = PBXGroup;
 			children = (
 				0968CDD9252268E600D409FF /* MainService.swift */,
-				0968CDDA252268E600D409FF /* SettingsViewModel.swift */,
 				0968CDDB252268E600D409FF /* WeatherType.swift */,
 				0968CDDC252268E600D409FF /* ForecastDateFormatter.swift */,
 				0968CE3825227CE100D409FF /* Intermediate mapping */,
 				0968CDF3252269AF00D409FF /* Core Data */,
 				0968CDDF252268E600D409FF /* ForecastDataProvider.swift */,
 				0968CDE0252268E600D409FF /* ForecastDisplayItem.swift */,
-				0968CDE1252268E600D409FF /* AppLocalization.swift */,
 				0968CDE3252268E600D409FF /* ApplicationController.swift */,
 				0968CE3C25227D2500D409FF /* Logger.swift */,
 				09D6C9EC25239F29008C9ABB /* Network */,
-				09769673252A5ADC00FA1764 /* SettingsService.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -384,6 +382,7 @@
 		09D123A6252661010050DC34 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				0968CDDA252268E600D409FF /* SettingsViewModel.swift */,
 				0968CDCC252267F600D409FF /* LanguageCell.swift */,
 				0968CDC6252267F600D409FF /* SettingsView.swift */,
 			);
@@ -397,6 +396,15 @@
 				09D6C9ED25239F38008C9ABB /* NetworkClient.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		09DCE574252D0A1E00FD330B /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				09769673252A5ADC00FA1764 /* SettingsService.swift */,
+				0968CDE1252268E600D409FF /* AppLocalization.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

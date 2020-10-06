@@ -53,6 +53,8 @@ struct TabbarView: View {
 
 struct TabbarView_Previews: PreviewProvider {
     static var previews: some View {
-        TabbarView(forecastListView: ForecastListView(viewModel: ForecastListController()), settingsView: SettingsView())
+        TabbarView(
+            forecastListView: ForecastListView(viewModel: ForecastListController()),
+            settingsView: SettingsView(viewModel: SettingsViewModel(settingsService: SettingsService())))
     }
 }

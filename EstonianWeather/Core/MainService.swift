@@ -15,6 +15,8 @@ final class MainService {
 
     // MARK: - Properties
 
+    let settingsService: SettingsService
+
     private let defaultRequestsInterval: TimeInterval = 60 * 60
 
     private var disposables: Set<AnyCancellable> = []
@@ -22,18 +24,14 @@ final class MainService {
 
     private let coreDataStack: CoreDataStack
     private var persistentContainer: NSPersistentContainer { self.coreDataStack.persistentContainer }
-    private let settingsService: SettingsService
     private let parser: WeatherParser = XMLWeatherParser()
     private lazy var mapper: DataMapper = { CoreDataMapper(logger: self.logger) }()
-    private let localization: AppLocalization
     private let logger: Logger = PrintLogger()
     private let networkClient: NetworkClient = URLSessionNetworkClient()
 
     // MARK: - Initialization
 
     init() {
-        let locale = Locale.current
-        self.localization = AppLocalization(locale: locale) ?? .english
         self.coreDataStack = .init()
         self.settingsService = .init(userDefaults: .standard, coreDataStack: self.coreDataStack)
         setTimerForRequests(with: self.defaultRequestsInterval)
@@ -42,13 +40,13 @@ final class MainService {
     }
 
     private func requestAndMapData() {
-        let endpoint = Endpoint.forecast(for: self.localization)
+        let endpoint = Endpoint.forecast(for: self.settingsService.appLocalization)
         let today = Date()
         let context = self.persistentContainer.newBackgroundContext()
         self.networkClient.requestPublisher(for: endpoint)
             // TODOx: Should validate response code as well
             .map { $0.data }
-            .parse(using: self.parser, date: today, languageCode: self.localization.languageCode)
+            .parse(using: self.parser, date: today, languageCode: self.settingsService.appLocalization.languageCode)
             .removeForecastOlderThan(today, using: self.mapper, in: context)
             .map(using: self.mapper, in: context)
             .sink(receiveCompletion: { _ in

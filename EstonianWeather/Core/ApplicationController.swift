@@ -11,6 +11,7 @@ import Foundation
 final class ApplicationController {
 
     private let mainService: MainService
+    var settingsService: SettingsService { self.mainService.settingsService }
 
     init() {
         self.mainService = .init()
