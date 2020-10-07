@@ -6,19 +6,21 @@
 //
 
 import Foundation
+import UIKit
 
 final class SettingsService {
 
+    let appLocalization: AppLocalization
     private let userDefaults: UserDefaults
     private let coreDataStack: CoreDataStack
 
-    init(userDefaults: UserDefaults, coreDataStack: CoreDataStack) {
+    init(userDefaults: UserDefaults = .standard, coreDataStack: CoreDataStack = .init(), locale: Locale = .current) {
         self.userDefaults = userDefaults
         self.coreDataStack = coreDataStack
+        self.appLocalization = AppLocalization(locale: locale) ?? .english
 
         checkAndExecuteSettings()
         setVersionAndBuildNumber()
-
     }
 
     func checkAndExecuteSettings() {
@@ -39,6 +41,15 @@ final class SettingsService {
         }
     }
 
+    func openApplicationSettings() {
+        guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else {
+            assertionFailure("Unable to construct settings URL")
+            return
+        }
+
+        UIApplication.shared.open(settingsURL, options: [:])
+    }
+
 }
 
 extension SettingsService {
@@ -49,4 +60,20 @@ extension SettingsService {
         static let AppVersionKey = "version_preference"
     }
 
+}
+
+private extension AppLocalization {
+
+    init?(locale: Locale) {
+        switch locale.languageCode {
+        case "en": self = .english
+        case "ru": self = .russian
+        case "et": self = .estonian
+        case "uk": self = .ukrainian
+
+        default:
+            assertionFailure("Locale \(locale.languageCode ?? "") is not implemented")
+            return nil
+        }
+    }
 }
