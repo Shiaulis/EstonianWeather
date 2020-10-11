@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="20A5384c" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="DayPartForecast" representedClassName="DayPartForecast" syncable="YES">
         <attribute name="peipsi" optional="YES" attributeType="String"/>
         <attribute name="sea" optional="YES" attributeType="String"/>
@@ -20,10 +20,14 @@
         <relationship name="day" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DayPartForecast" inverseName="dayForecast" inverseEntity="DayPartForecast"/>
         <relationship name="night" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DayPartForecast" inverseName="nightForecast" inverseEntity="DayPartForecast"/>
     </entity>
+    <entity name="Observation" representedClassName="Observation" syncable="YES">
+        <relationship name="stations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Station" inverseName="observation" inverseEntity="Station"/>
+    </entity>
     <entity name="Phenomenon" representedClassName="Phenomenon" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="dayPartForecasts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DayPartForecast" inverseName="phenomenon" inverseEntity="DayPartForecast"/>
         <relationship name="places" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Place" inverseName="phenomenon" inverseEntity="Place"/>
+        <relationship name="stations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Station" inverseName="phenomenon" inverseEntity="Station"/>
     </entity>
     <entity name="Place" representedClassName="Place" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String"/>
@@ -32,19 +36,41 @@
         <relationship name="datePartForecast" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DayPartForecast" inverseName="places" inverseEntity="DayPartForecast"/>
         <relationship name="phenomenon" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Phenomenon" inverseName="places" inverseEntity="Phenomenon"/>
     </entity>
+    <entity name="Station" representedClassName="Station" syncable="YES">
+        <attribute name="airPressure" optional="YES" attributeType="String"/>
+        <attribute name="airTemperature" optional="YES" attributeType="Double" usesScalarValueType="NO"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" usesScalarValueType="NO"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="precipitations" optional="YES" attributeType="String"/>
+        <attribute name="relativeHumidity" optional="YES" attributeType="Double" usesScalarValueType="NO"/>
+        <attribute name="uvIndex" optional="YES" attributeType="Double" usesScalarValueType="NO"/>
+        <attribute name="visibility" optional="YES" attributeType="String"/>
+        <attribute name="waterLevel" optional="YES" attributeType="String"/>
+        <attribute name="waterlLevelEH2000" optional="YES" attributeType="String"/>
+        <attribute name="waterTemperature" optional="YES" attributeType="Double" usesScalarValueType="NO"/>
+        <attribute name="wmoCode" optional="YES" attributeType="String"/>
+        <relationship name="observation" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Observation" inverseName="stations" inverseEntity="Observation"/>
+        <relationship name="phenomenon" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Phenomenon" inverseName="stations" inverseEntity="Phenomenon"/>
+        <relationship name="wind" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Wind" inverseName="stations" inverseEntity="Wind"/>
+    </entity>
     <entity name="Wind" representedClassName="Wind" syncable="YES">
         <attribute name="direction" optional="YES" attributeType="String"/>
         <attribute name="gust" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="speed" optional="YES" attributeType="Integer 64" usesScalarValueType="NO"/>
         <attribute name="speedmax" optional="YES" attributeType="Integer 64" usesScalarValueType="NO"/>
         <attribute name="speedmin" optional="YES" attributeType="Integer 64" usesScalarValueType="NO"/>
         <relationship name="datePartForecast" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DayPartForecast" inverseName="winds" inverseEntity="DayPartForecast"/>
+        <relationship name="stations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Station" inverseName="wind" inverseEntity="Station"/>
     </entity>
     <elements>
-        <element name="DayPartForecast" positionX="-36" positionY="54" width="128" height="208"/>
-        <element name="Forecast" positionX="0" positionY="126" width="128" height="118"/>
-        <element name="Phenomenon" positionX="-18" positionY="81" width="128" height="88"/>
-        <element name="Place" positionX="-54" positionY="27" width="128" height="118"/>
-        <element name="Wind" positionX="-63" positionY="-18" width="128" height="133"/>
+        <element name="DayPartForecast" positionX="-98.69439697265625" positionY="-257.6822662353516" width="128" height="208"/>
+        <element name="Forecast" positionX="256.82080078125" positionY="-212.5294342041016" width="128" height="118"/>
+        <element name="Observation" positionX="504.9544677734375" positionY="-118.6074523925781" width="128" height="58"/>
+        <element name="Phenomenon" positionX="294.3947143554688" positionY="-47.3558349609375" width="128" height="103"/>
+        <element name="Place" positionX="-2.2120361328125" positionY="74.79168701171875" width="128" height="118"/>
+        <element name="Station" positionX="504.2176513671875" positionY="-2.4163818359375" width="128" height="283"/>
+        <element name="Wind" positionX="292.2064208984375" positionY="79.55567932128906" width="128" height="163"/>
     </elements>
 </model>

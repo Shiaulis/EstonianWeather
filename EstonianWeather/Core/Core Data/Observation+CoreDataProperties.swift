@@ -1,5 +1,5 @@
 //
-//  Wind+CoreDataProperties.swift
+//  Observation+CoreDataProperties.swift
 //  EstonianWeather
 //
 //  Created by Andrius Shiaulis on 10.10.2020.
@@ -10,25 +10,18 @@ import Foundation
 import CoreData
 
 
-extension Wind {
+extension Observation {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Wind> {
-        return NSFetchRequest<Wind>(entityName: "Wind")
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Observation> {
+        return NSFetchRequest<Observation>(entityName: "Observation")
     }
 
-    @NSManaged public var direction: String?
-    @NSManaged public var gust: String?
-    @NSManaged public var name: String?
-    @NSManaged public var speedmax: NSNumber?
-    @NSManaged public var speedmin: NSNumber?
-    @NSManaged public var speed: NSNumber?
-    @NSManaged public var datePartForecast: DayPartForecast?
     @NSManaged public var stations: NSSet?
 
 }
 
 // MARK: Generated accessors for stations
-extension Wind {
+extension Observation {
 
     @objc(addStationsObject:)
     @NSManaged public func addToStations(_ value: Station)
@@ -44,6 +37,6 @@ extension Wind {
 
 }
 
-extension Wind : Identifiable {
+extension Observation : Identifiable {
 
 }

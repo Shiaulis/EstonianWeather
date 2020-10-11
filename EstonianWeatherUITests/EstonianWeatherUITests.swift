@@ -7,23 +7,41 @@
 
 import XCTest
 
-class EstonianWeatherUITests: XCTestCase {
+final class EstonianWeatherUITests: XCTestCase {
 
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
+    private lazy var app = XCUIApplication()
 
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    struct ExpectedStrings {
+        static func navigationTitle(for locale: TestableLocale) -> String {
+            switch locale {
+            case .english: return "4 Days Forecast"
+            case .estonian: return "4 päeva"
+            case .russian: return "Прогноз на 4 дня"
+            case .ukrainian: return "Прогноз на 4 дні"
+            }
+        }
+    }
+
+    private var navigationBarTitle: XCUIElement {
+        self.app.navigationBars.firstMatch.staticTexts.firstMatch
+    }
+
+    override func setUp() {
+        super.setUp()
+        self.app.launch()
+    }
+
+    func test_defaultScreen_correctNavigationTitle() throws {
+        XCTAssertEqual(
+            self.navigationBarTitle.label,
+            ExpectedStrings.navigationTitle(for: .current),
+            "Unexpected navigation bar title for \(TestableLocale.current.rawValue) locale"
+            )
     }
 
     func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
+        measure(metrics: [XCTApplicationLaunchMetric()]) {
+            XCUIApplication().launch()
         }
     }
 }
