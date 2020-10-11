@@ -13,6 +13,6 @@ import SwiftUI
 struct EstonianWeatherWidgetBundle: WidgetBundle {
     @WidgetBundleBuilder
     var body: some Widget {
-        EstonianWeatherWidget()
+        ForecastWidget()
     }
 }

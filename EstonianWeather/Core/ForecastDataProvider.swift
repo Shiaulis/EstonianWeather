@@ -47,14 +47,25 @@ final class ForecastDataProvider {
     private func displayItem(for forecast: Forecast) -> ForecastDisplayItem {
         .init(
             naturalDateDescription: self.formatter.humanReadableDescription(for: forecast.forecastDate) ?? "",
-            dayParts: [forecast.night, forecast.day].compactMap { dayPartDisplayItem(for: $0) }
+            shortDateDescription: self.formatter.shortReadableDescription(for: forecast.forecastDate) ?? "",
+            day: dayPartDisplayItem(
+                for: forecast.day,
+                shortDateDescription: self.formatter.shortReadableDescription(for: forecast.forecastDate) ?? ""
+            ),
+            night: dayPartDisplayItem(
+                for: forecast.night,
+                shortDateDescription: self.formatter.shortReadableDescription(for: forecast.forecastDate) ?? ""
+            )
         )
     }
 
-    private func dayPartDisplayItem(for dayPartForecast: DayPartForecast?) -> ForecastDisplayItem.DayPartForecastDisplayItem? {
+    private func dayPartDisplayItem(
+        for dayPartForecast: DayPartForecast?,
+        shortDateDescription: String = "") -> ForecastDisplayItem.DayPartForecastDisplayItem? {
         guard let dayPartForecast = dayPartForecast else { return nil }
 
         return ForecastDisplayItem.DayPartForecastDisplayItem(
+            shortDateDescription: shortDateDescription,
             type: dayPartForecast.type?.capitalized ?? "",
             weatherIconName: weatherIconName(for: dayPartForecast.phenomenon) ?? "",
             weatherDescription: dayPartForecast.phenomenon?.name ?? "",

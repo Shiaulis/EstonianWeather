@@ -17,8 +17,8 @@
         <attribute name="forecastDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="languageCode" optional="YES" attributeType="String"/>
         <attribute name="receivedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="day" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DayPartForecast" inverseName="dayForecast" inverseEntity="DayPartForecast"/>
-        <relationship name="night" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DayPartForecast" inverseName="nightForecast" inverseEntity="DayPartForecast"/>
+        <relationship name="day" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="DayPartForecast" inverseName="dayForecast" inverseEntity="DayPartForecast"/>
+        <relationship name="night" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="DayPartForecast" inverseName="nightForecast" inverseEntity="DayPartForecast"/>
     </entity>
     <entity name="Observation" representedClassName="Observation" syncable="YES">
         <relationship name="stations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Station" inverseName="observation" inverseEntity="Station"/>

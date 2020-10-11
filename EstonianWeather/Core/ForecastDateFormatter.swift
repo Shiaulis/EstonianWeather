@@ -34,6 +34,19 @@ final class ForecastDateFormatter {
         return humanReadableDescription
     }
 
+    func shortReadableDescription(for date: Date?, calendar: Calendar = .current) -> String? {
+        guard let date = date else { return nil }
+
+        let formatter: DateFormatter = .init()
+        formatter.locale = locale
+        formatter.calendar = calendar
+        formatter.dateStyle = .short
+        formatter.timeStyle = .none
+        formatter.doesRelativeDateFormatting = true
+
+        return formatter.string(from: date)
+    }
+
     private func textDescription(from date: Date, calendar: Calendar, locale: Locale) -> String? {
         let formatter: DateFormatter = .init()
         formatter.locale = locale

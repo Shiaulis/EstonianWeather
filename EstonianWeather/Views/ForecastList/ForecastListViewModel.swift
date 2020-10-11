@@ -15,7 +15,7 @@ protocol ForecastListViewModel: ObservableObject {
 
 final class MockForecastListViewModel: ForecastListViewModel {
 
-    let displayItems: [ForecastDisplayItem] = [ForecastDisplayItem.test]
+    let displayItems: [ForecastDisplayItem] = [ForecastDisplayItem.test1]
     func openApplicationSettings() {}
 
 }
