@@ -12,10 +12,14 @@ struct ForecastDisplayItem: Identifiable {
 
     let id = UUID()
     let naturalDateDescription: String
-    let dayParts: [DayPartForecastDisplayItem]
+    let shortDateDescription: String
+    var dayParts: [DayPartForecastDisplayItem] { [self.night, self.day].compactMap { $0 } }
+    let day: DayPartForecastDisplayItem?
+    let night: DayPartForecastDisplayItem?
 
     struct DayPartForecastDisplayItem: Identifiable {
         let id = UUID()
+        let shortDateDescription: String
         let type: String
         let weatherIconName: String
         let weatherDescription: String
@@ -34,13 +38,21 @@ struct ForecastDisplayItem: Identifiable {
 }
 
 extension ForecastDisplayItem {
-    static var test: ForecastDisplayItem {
+    static var test1: ForecastDisplayItem {
         .init(
             naturalDateDescription: "Today, 17 January",
-            dayParts: [
-                ForecastDisplayItem.DayPartForecastDisplayItem.test,
-                ForecastDisplayItem.DayPartForecastDisplayItem.test2
-            ]
+            shortDateDescription: "Today",
+            day: ForecastDisplayItem.DayPartForecastDisplayItem.test2,
+            night: ForecastDisplayItem.DayPartForecastDisplayItem.test
+        )
+    }
+
+    static var test2: ForecastDisplayItem {
+        .init(
+            naturalDateDescription: "19 January",
+            shortDateDescription: "19.01",
+            day: ForecastDisplayItem.DayPartForecastDisplayItem.test2,
+            night: ForecastDisplayItem.DayPartForecastDisplayItem.test
         )
     }
 }
@@ -49,6 +61,7 @@ extension ForecastDisplayItem.DayPartForecastDisplayItem {
 
     static var test: ForecastDisplayItem.DayPartForecastDisplayItem {
         .init(
+            shortDateDescription: "Today",
             type: "Night",
             weatherIconName: "cloud.sun.bolt.fill",
             weatherDescription: "Moderate showwwwer",
@@ -68,6 +81,7 @@ extension ForecastDisplayItem.DayPartForecastDisplayItem {
 
     static var test2: ForecastDisplayItem.DayPartForecastDisplayItem {
         .init(
+            shortDateDescription: "Today",
             type: "Day",
             weatherIconName: "cloud.sun.bolt.fill",
             weatherDescription: "Rain",

@@ -27,7 +27,7 @@ final class CoreDataStack {
     private func initialize() {
         self.persistentContainer = .init(name: CoreDataStack.databaseName)
         let storeDescription = NSPersistentStoreDescription(url: self.storeURL)
-        self.persistentContainer.persistentStoreDescriptions.append(storeDescription)
+        self.persistentContainer.persistentStoreDescriptions = [storeDescription]
         self.persistentContainer.loadPersistentStores { _, error in
             if error != nil {
                 assertionFailure()

@@ -29,4 +29,17 @@ enum AppLocalization {
         Locale.current.localizedString(forLanguageCode: self.languageCode)
     }
 
+    init?(locale: Locale) {
+        switch locale.languageCode {
+        case "en": self = .english
+        case "ru": self = .russian
+        case "et": self = .estonian
+        case "uk": self = .ukrainian
+
+        default:
+            assertionFailure("Locale \(locale.languageCode ?? "") is not implemented")
+            return nil
+        }
+    }
+
 }
