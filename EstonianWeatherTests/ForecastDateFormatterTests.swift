@@ -35,12 +35,11 @@ final class ForecastDateFormatterTests: XCTestCase {
 
         let receivedDescription = self.sut.humanReadableDescription(for: today)
         // then
-        switch Locale.current.languageCode {
-        case "en": XCTAssertEqual(receivedDescription, "\(expectedString(from: today)), Today")
-        case "et": XCTAssertEqual(receivedDescription, "\(expectedString(from: today)), Täna")
-        case "ru": XCTAssertEqual(receivedDescription, "\(expectedString(from: today)), Сегодня")
-        case "uk": XCTAssertEqual(receivedDescription, "\(expectedString(from: today)), Сьогодні")
-        default: fatalError("Language doesn't supported")
+        switch TestableLocale.current {
+        case .english: XCTAssertEqual(receivedDescription, "\(expectedString(from: today)), Today")
+        case .estonian: XCTAssertEqual(receivedDescription, "\(expectedString(from: today)), Täna")
+        case .russian: XCTAssertEqual(receivedDescription, "\(expectedString(from: today)), Сегодня")
+        case .ukrainian: XCTAssertEqual(receivedDescription, "\(expectedString(from: today)), Сьогодні")
         }
     }
 
@@ -49,12 +48,11 @@ final class ForecastDateFormatterTests: XCTestCase {
         let tomorrow = today.addingTimeInterval(24 * 60 * 60)
 
         let receivedDescription = self.sut.humanReadableDescription(for: tomorrow)
-        switch Locale.current.languageCode {
-        case "en": XCTAssertEqual(receivedDescription, "\(expectedString(from: tomorrow)), Tomorrow")
-        case "et": XCTAssertEqual(receivedDescription, "\(expectedString(from: tomorrow)), Homme")
-        case "ru": XCTAssertEqual(receivedDescription, "\(expectedString(from: tomorrow)), Завтра")
-        case "uk": XCTAssertEqual(receivedDescription, "\(expectedString(from: tomorrow)), Завтра")
-        default: fatalError("Language doesn't supported")
+        switch TestableLocale.current {
+        case .english: XCTAssertEqual(receivedDescription, "\(expectedString(from: tomorrow)), Tomorrow")
+        case .estonian: XCTAssertEqual(receivedDescription, "\(expectedString(from: tomorrow)), Homme")
+        case .russian: XCTAssertEqual(receivedDescription, "\(expectedString(from: tomorrow)), Завтра")
+        case .ukrainian: XCTAssertEqual(receivedDescription, "\(expectedString(from: tomorrow)), Завтра")
         }
     }
 

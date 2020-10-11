@@ -14,7 +14,7 @@ enum MockPersistentContainerError: Error {
     case incorrectDescriptionTypeError
 }
 
-class MockPersistentContainer: NSPersistentContainer {
+final class MockPersistentContainer: NSPersistentContainer {
 
     private var insertedEntities: [String] = []
 

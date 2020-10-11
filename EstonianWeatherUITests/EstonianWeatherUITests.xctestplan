@@ -1,0 +1,54 @@
+{
+  "configurations" : [
+    {
+      "id" : "3EFA5493-D4AE-415B-9239-9793B43CB3B2",
+      "name" : "English",
+      "options" : {
+        "language" : "en"
+      }
+    },
+    {
+      "id" : "08B9B2C7-A1A0-4C8E-8A5F-43A6D4B2ACFF",
+      "name" : "Russian",
+      "options" : {
+        "language" : "ru"
+      }
+    },
+    {
+      "id" : "2861B325-6F8A-4CCA-B613-DFA49B154EBE",
+      "name" : "Ukrainian",
+      "options" : {
+        "language" : "uk"
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:EstonianWeather.xcodeproj",
+          "identifier" : "0968CD912522667A00D409FF",
+          "name" : "EstonianWeather"
+        }
+      ]
+    },
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:EstonianWeather.xcodeproj",
+      "identifier" : "0968CD912522667A00D409FF",
+      "name" : "EstonianWeather"
+    },
+    "testExecutionOrdering" : "random",
+    "testTimeoutsEnabled" : true,
+    "userAttachmentLifetime" : "keepNever"
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:EstonianWeather.xcodeproj",
+        "identifier" : "0968CDAD2522667B00D409FF",
+        "name" : "EstonianWeatherUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

@@ -40,26 +40,3 @@ extension URLSessionNetworkClient: NetworkClient {
     }
 
 }
-
-private extension Endpoint {
-
-    func generateURL() throws -> URL {
-        var components = URLComponents()
-        components.scheme = Endpoint.scheme
-        components.host = Endpoint.host
-        components.path = self.path
-        components.queryItems = self.urlQueryItems
-
-        guard let url = components.url else { throw Error.badURL }
-
-        return url
-    }
-
-    func generateRequest() throws -> URLRequest {
-        var request = URLRequest(url: try generateURL())
-        request.httpMethod = self.method.string
-        request.setValue("application/x-www-form-urlencoded;charset=UTF-8", forHTTPHeaderField: "Content-Type")
-        return request
-    }
-
-}

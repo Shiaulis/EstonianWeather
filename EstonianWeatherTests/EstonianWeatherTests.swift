@@ -8,7 +8,7 @@
 import XCTest
 @testable import EstonianWeather
 
-class EstonianWeatherTests: XCTestCase {
+final class EstonianWeatherTests: XCTestCase {
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
