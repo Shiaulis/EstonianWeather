@@ -66,6 +66,7 @@
 		097698B8252A708A00FA1764 /* EstonianWeatherWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097698B7252A708A00FA1764 /* EstonianWeatherWidget.swift */; };
 		097698BB252A708C00FA1764 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 097698BA252A708C00FA1764 /* Assets.xcassets */; };
 		097698C1252A708C00FA1764 /* EstonianWeatherWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 097698B0252A708A00FA1764 /* EstonianWeatherWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		09779C5E2532E87E00957B1F /* EstonianWeatherWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09779C542532E82300957B1F /* EstonianWeatherWidgetBundle.swift */; };
 		09D6C9E825239EA5008C9ABB /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D6C9E725239EA5008C9ABB /* Endpoint.swift */; };
 		09D6C9EE25239F38008C9ABB /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D6C9ED25239F38008C9ABB /* NetworkClient.swift */; };
 		09DCE56B252D075500FD330B /* EndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09DCE56A252D075500FD330B /* EndpointTests.swift */; };
@@ -188,6 +189,7 @@
 		097698B7252A708A00FA1764 /* EstonianWeatherWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstonianWeatherWidget.swift; sourceTree = "<group>"; };
 		097698BA252A708C00FA1764 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		097698BC252A708C00FA1764 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		09779C542532E82300957B1F /* EstonianWeatherWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstonianWeatherWidgetBundle.swift; sourceTree = "<group>"; };
 		09974221252B93290011193F /* et */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = et; path = et.lproj/EstonianWeatherWidget.strings; sourceTree = "<group>"; };
 		09974227252B932A0011193F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/EstonianWeatherWidget.strings; sourceTree = "<group>"; };
 		0997422D252B932B0011193F /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/EstonianWeatherWidget.strings; sourceTree = "<group>"; };
@@ -395,6 +397,7 @@
 				097698B7252A708A00FA1764 /* EstonianWeatherWidget.swift */,
 				097698BA252A708C00FA1764 /* Assets.xcassets */,
 				097698BC252A708C00FA1764 /* Info.plist */,
+				09779C542532E82300957B1F /* EstonianWeatherWidgetBundle.swift */,
 			);
 			path = EstonianWeatherWidget;
 			sourceTree = "<group>";
@@ -710,6 +713,7 @@
 			files = (
 				B158270C252B57150064A42C /* EstonianWeatherWidget.intentdefinition in Sources */,
 				097698B8252A708A00FA1764 /* EstonianWeatherWidget.swift in Sources */,
+				09779C5E2532E87E00957B1F /* EstonianWeatherWidgetBundle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

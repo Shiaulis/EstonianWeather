@@ -48,7 +48,6 @@ struct EstonianWeatherWidgetEntryView: View {
     }
 }
 
-@main
 struct EstonianWeatherWidget: Widget {
     let kind: String = "EstonianWeatherWidget"
 
