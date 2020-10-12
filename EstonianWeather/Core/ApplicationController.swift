@@ -30,8 +30,8 @@ extension ApplicationController: ApplicationViewModel {
         return .swiftUI
     }
 
-    func forecastDataProvider() -> ForecastDataProvider {
-        ForecastDataProvider()
+    func forecastDataProvider() -> DataProvider {
+        DataProvider()
     }
 
 }

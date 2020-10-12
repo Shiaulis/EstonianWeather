@@ -32,7 +32,7 @@ private struct HeaderView: View {
 
     var body: some View {
         ZStack {
-            Color(UIColor(red: 0.90, green: 0.53, blue: 0.53, alpha: 1.00))
+            Color(.appRose)
                 .layoutPriority(-1)
             HStack {
                 Spacer()

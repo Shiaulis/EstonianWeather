@@ -8,26 +8,20 @@
 import Foundation
 
 struct EWObservation {
-
-    var stations: [EWStation]?
-    var timeStamp: Date?
-
-    struct EWStation {
-        var name: String?
-        var wmoCode: String?
-        var longitude: Double?
-        var latitude: Double?
-        var phenomenon: EWPhenomenon?
-        var visibility: String?
-        var precipitations: String?
-        var airPressure: String?
-        var relativeHumidity: Double?
-        var airTemperature: Double?
-        var wind: EWWind?
-        var waterLevel: String?
-        var waterlLevelEH2000: String?
-        var waterTemperature: Double?
-        var uvIndex: Double?
-    }
-
+    var stationName: String?
+    var wmoCode: String?
+    var longitude: Double?
+    var latitude: Double?
+    var phenomenon: EWPhenomenon?
+    var visibility: String?
+    var precipitations: String?
+    var airPressure: String?
+    var relativeHumidity: Double?
+    var airTemperature: Double?
+    var wind: EWWind?
+    var waterLevel: String?
+    var waterlLevelEH2000: String?
+    var waterTemperature: Double?
+    var uvIndex: Double?
+    var observationDate: Date?
 }

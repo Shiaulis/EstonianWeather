@@ -13,12 +13,12 @@ final class ServerResponseParserTests: XCTestCase {
 
     // MARK: - Properties
 
-    var sut: ServerResponseParser!
-    var data: Data!
-    var parseExpectation: XCTestExpectation!
-    var receivedError: Error!
-    var receivedForecasts: [EWForecast]!
-    var receivedObservation: EWObservation!
+    private var sut: ServerResponseParser!
+    private var data: Data!
+    private var parseExpectation: XCTestExpectation!
+    private var receivedError: Error!
+    private var receivedForecasts: [EWForecast]!
+    private var receivedObservations: [EWObservation]!
 
     // MARK: - Setup and teardown
 
@@ -81,7 +81,7 @@ final class ServerResponseParserTests: XCTestCase {
         whenParseObservations()
 
         // then
-        XCTAssertNotNil(self.receivedObservation)
+        XCTAssertNotNil(self.receivedObservations)
     }
 
     func testParser_whenParseObservationsWithIncorrectData_receivedError() throws {
@@ -103,7 +103,7 @@ final class ServerResponseParserTests: XCTestCase {
         whenParseObservations()
 
         // then
-        XCTAssertEqual(self.receivedObservation?.stations?.count, 105)
+        XCTAssertEqual(self.receivedObservations?.count, 105)
     }
 
     // MARK: - Given
@@ -136,10 +136,10 @@ final class ServerResponseParserTests: XCTestCase {
     }
 
     private func whenParseObservations() {
-        let parseResult = self.sut.parse(observationsData: self.data, receivedDate: Date())
+        let parseResult = self.sut.parse(observationData: self.data, receivedDate: Date())
 
         switch parseResult {
-        case .success(let observation): self.receivedObservation = observation
+        case .success(let observations): self.receivedObservations = observations
         case .failure(let error): self.receivedError = error
         }
     }
