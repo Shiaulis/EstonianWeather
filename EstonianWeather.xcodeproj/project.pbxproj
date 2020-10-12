@@ -382,6 +382,7 @@
 		0968CDF3252269AF00D409FF /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
+				0968CDFA252269AF00D409FF /* EstonianWeather.xcdatamodeld */,
 				0968CDF5252269AF00D409FF /* CoreDataStack.swift */,
 				0943927E2532423F006A37F7 /* Observation+CoreDataClass.swift */,
 				0943927F2532423F006A37F7 /* Observation+CoreDataProperties.swift */,
@@ -394,7 +395,6 @@
 				0968CDF7252269AF00D409FF /* Forecast+CoreDataClass.swift */,
 				0968CDF8252269AF00D409FF /* Wind+CoreDataProperties.swift */,
 				0968CDF9252269AF00D409FF /* Wind+CoreDataClass.swift */,
-				0968CDFA252269AF00D409FF /* EstonianWeather.xcdatamodeld */,
 				0968CDFC252269AF00D409FF /* Place+CoreDataProperties.swift */,
 				0968CDFD252269AF00D409FF /* Place+CoreDataClass.swift */,
 				0968CDFF252269AF00D409FF /* Forecast+CoreDataProperties.swift */,

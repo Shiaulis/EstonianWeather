@@ -215,6 +215,7 @@ extension ServerResponseXMLParser: XMLParserDelegate {
         case .observations:
             assert(self.observartion == nil)
             self.observartion = EWObservation()
+            self.observartion?.timeStamp = parseObservationDate(from: attributeDict)
         case .station:
             assert(self.currentStation == nil)
             self.currentStation = EWObservation.EWStation()
@@ -411,6 +412,13 @@ extension ServerResponseXMLParser: XMLParserDelegate {
         dateFormatter.locale = .init(identifier: "et-EE")
         dateFormatter.dateFormat = "yyyy-MM-dd"
         return dateFormatter.date(from: dateString)
+    }
+
+    private func parseObservationDate(from attributes: [String: String]) -> Date? {
+        guard let timestampString = attributes["timestamp"] else { return nil }
+        guard let timestamp = Double(timestampString) else { return nil }
+
+        return Date(timeIntervalSince1970: timestamp)
     }
 
 }

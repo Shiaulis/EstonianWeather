@@ -11,25 +11,27 @@ import CoreData
 import Combine
 
 protocol DataMapper {
-    func removeAllForecasts(from context: NSManagedObjectContext, olderThan cutOffDate: Date) throws
     func performForecastMapping(_ forecastsToMap: [EWForecast], context: NSManagedObjectContext) throws -> [Forecast]
     func performObservationMapping(observationToMap: EWObservation, context: NSManagedObjectContext) throws -> Observation
+
+    func removeAllForecasts(from context: NSManagedObjectContext, olderThan cutOffDate: Date) throws
+    func removeAllObservations(from context: NSManagedObjectContext, olderThan cutOffDate: Date) throws
 }
 
 extension Publisher where Output == [EWForecast] {
+    func mapForecast(using mapper: DataMapper, in context: NSManagedObjectContext) -> AnyPublisher<[Forecast], Swift.Error> {
+        self
+            .tryMap { forecasts in
+                try mapper.performForecastMapping(forecasts, context: context)
+            }
+            .eraseToAnyPublisher()
+    }
+
     func removeForecastOlderThan(_ date: Date, using dataMapper: DataMapper, in context: NSManagedObjectContext) -> AnyPublisher<[EWForecast], Swift.Error> {
         self
             .tryMap { forecasts in
                 try dataMapper.removeAllForecasts(from: context, olderThan: date)
                 return forecasts
-            }
-            .eraseToAnyPublisher()
-    }
-
-    func mapForecast(using mapper: DataMapper, in context: NSManagedObjectContext) -> AnyPublisher<[Forecast], Swift.Error> {
-        self
-            .tryMap { forecasts in
-                try mapper.performForecastMapping(forecasts, context: context)
             }
             .eraseToAnyPublisher()
     }
@@ -40,6 +42,15 @@ extension Publisher where Output == EWObservation {
         self
             .tryMap { observation in
                 try mapper.performObservationMapping(observationToMap: observation, context: context)
+            }
+            .eraseToAnyPublisher()
+    }
+
+    func removeObservationsOlderThan(_ date: Date, using dataMapper: DataMapper, in context: NSManagedObjectContext) -> AnyPublisher<EWObservation, Swift.Error> {
+        self
+            .tryMap { observations in
+                try dataMapper.removeAllObservations(from: context, olderThan: date)
+                return observations
             }
             .eraseToAnyPublisher()
     }
@@ -60,6 +71,24 @@ final class CoreDataMapper: DataMapper {
     func removeAllForecasts(from context: NSManagedObjectContext, olderThan cutOffDate: Date) throws {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Forecast.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "%K < %@", #keyPath(Forecast.forecastDate), cutOffDate as NSDate)
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        var contextError: Swift.Error?
+
+        do {
+            try context.execute(batchDeleteRequest)
+        }
+        catch {
+            contextError = error
+        }
+
+        if let contextError = contextError {
+            throw contextError
+        }
+    }
+
+    func removeAllObservations(from context: NSManagedObjectContext, olderThan cutOffDate: Date) throws {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Observation.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "%K < %@", #keyPath(Observation.date), cutOffDate as NSDate)
         let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         var contextError: Swift.Error?
 

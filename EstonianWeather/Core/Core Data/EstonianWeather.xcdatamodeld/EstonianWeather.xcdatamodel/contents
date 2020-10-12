@@ -21,6 +21,7 @@
         <relationship name="night" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="DayPartForecast" inverseName="nightForecast" inverseEntity="DayPartForecast"/>
     </entity>
     <entity name="Observation" representedClassName="Observation" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="stations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Station" inverseName="observation" inverseEntity="Station"/>
     </entity>
     <entity name="Phenomenon" representedClassName="Phenomenon" syncable="YES">
@@ -67,7 +68,7 @@
     <elements>
         <element name="DayPartForecast" positionX="-98.69439697265625" positionY="-257.6822662353516" width="128" height="208"/>
         <element name="Forecast" positionX="256.82080078125" positionY="-212.5294342041016" width="128" height="118"/>
-        <element name="Observation" positionX="504.9544677734375" positionY="-118.6074523925781" width="128" height="58"/>
+        <element name="Observation" positionX="504.9544677734375" positionY="-118.6074523925781" width="128" height="73"/>
         <element name="Phenomenon" positionX="294.3947143554688" positionY="-47.3558349609375" width="128" height="103"/>
         <element name="Place" positionX="-2.2120361328125" positionY="74.79168701171875" width="128" height="118"/>
         <element name="Station" positionX="504.2176513671875" positionY="-2.4163818359375" width="128" height="283"/>

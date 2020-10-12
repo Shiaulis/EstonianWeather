@@ -10,6 +10,7 @@ import Foundation
 struct EWObservation {
 
     var stations: [EWStation]?
+    var timeStamp: Date?
 
     struct EWStation {
         var name: String?
