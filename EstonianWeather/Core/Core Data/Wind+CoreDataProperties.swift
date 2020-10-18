@@ -2,7 +2,7 @@
 //  Wind+CoreDataProperties.swift
 //  EstonianWeather
 //
-//  Created by Andrius Shiaulis on 10.10.2020.
+//  Created by Andrius Shiaulis on 12.10.2020.
 //
 //
 
@@ -19,28 +19,28 @@ extension Wind {
     @NSManaged public var direction: String?
     @NSManaged public var gust: String?
     @NSManaged public var name: String?
+    @NSManaged public var speed: NSNumber?
     @NSManaged public var speedmax: NSNumber?
     @NSManaged public var speedmin: NSNumber?
-    @NSManaged public var speed: NSNumber?
     @NSManaged public var datePartForecast: DayPartForecast?
-    @NSManaged public var stations: NSSet?
+    @NSManaged public var observations: NSSet?
 
 }
 
-// MARK: Generated accessors for stations
+// MARK: Generated accessors for observations
 extension Wind {
 
-    @objc(addStationsObject:)
-    @NSManaged public func addToStations(_ value: Station)
+    @objc(addObservationsObject:)
+    @NSManaged public func addToObservations(_ value: Observation)
 
-    @objc(removeStationsObject:)
-    @NSManaged public func removeFromStations(_ value: Station)
+    @objc(removeObservationsObject:)
+    @NSManaged public func removeFromObservations(_ value: Observation)
 
-    @objc(addStations:)
-    @NSManaged public func addToStations(_ values: NSSet)
+    @objc(addObservations:)
+    @NSManaged public func addToObservations(_ values: NSSet)
 
-    @objc(removeStations:)
-    @NSManaged public func removeFromStations(_ values: NSSet)
+    @objc(removeObservations:)
+    @NSManaged public func removeFromObservations(_ values: NSSet)
 
 }
 

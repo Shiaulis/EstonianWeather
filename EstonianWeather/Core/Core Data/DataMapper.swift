@@ -11,12 +11,22 @@ import CoreData
 import Combine
 
 protocol DataMapper {
-    func removeAllForecasts(from context: NSManagedObjectContext, olderThan cutOffDate: Date) throws
     func performForecastMapping(_ forecastsToMap: [EWForecast], context: NSManagedObjectContext) throws -> [Forecast]
-    func performObservationMapping(observationToMap: EWObservation, context: NSManagedObjectContext) throws -> Observation
+    func performObservationMapping(observationsToMap: [EWObservation], context: NSManagedObjectContext) throws -> [Observation]
+
+    func removeAllForecasts(from context: NSManagedObjectContext, olderThan cutOffDate: Date) throws
+    func removeAllObservations(from context: NSManagedObjectContext, olderThan cutOffDate: Date) throws
 }
 
 extension Publisher where Output == [EWForecast] {
+    func mapForecast(using mapper: DataMapper, in context: NSManagedObjectContext) -> AnyPublisher<[Forecast], Swift.Error> {
+        self
+            .tryMap { forecasts in
+                try mapper.performForecastMapping(forecasts, context: context)
+            }
+            .eraseToAnyPublisher()
+    }
+
     func removeForecastOlderThan(_ date: Date, using dataMapper: DataMapper, in context: NSManagedObjectContext) -> AnyPublisher<[EWForecast], Swift.Error> {
         self
             .tryMap { forecasts in
@@ -25,21 +35,22 @@ extension Publisher where Output == [EWForecast] {
             }
             .eraseToAnyPublisher()
     }
+}
 
-    func mapForecast(using mapper: DataMapper, in context: NSManagedObjectContext) -> AnyPublisher<[Forecast], Swift.Error> {
+extension Publisher where Output == [EWObservation] {
+    func mapObservations(using mapper: DataMapper, in context: NSManagedObjectContext) -> AnyPublisher<[Observation], Swift.Error> {
         self
-            .tryMap { forecasts in
-                try mapper.performForecastMapping(forecasts, context: context)
+            .tryMap { observation in
+                try mapper.performObservationMapping(observationsToMap: observation, context: context)
             }
             .eraseToAnyPublisher()
     }
-}
 
-extension Publisher where Output == EWObservation {
-    func mapObservations(using mapper: DataMapper, in context: NSManagedObjectContext) -> AnyPublisher<Observation, Swift.Error> {
+    func removeObservationsOlderThan(_ date: Date, using dataMapper: DataMapper, in context: NSManagedObjectContext) -> AnyPublisher<[EWObservation], Swift.Error> {
         self
-            .tryMap { observation in
-                try mapper.performObservationMapping(observationToMap: observation, context: context)
+            .tryMap { stations in
+                try dataMapper.removeAllObservations(from: context, olderThan: date)
+                return stations
             }
             .eraseToAnyPublisher()
     }
@@ -75,6 +86,24 @@ final class CoreDataMapper: DataMapper {
         }
     }
 
+    func removeAllObservations(from context: NSManagedObjectContext, olderThan cutOffDate: Date) throws {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Observation.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "%K < %@", #keyPath(Observation.observationDate), cutOffDate as NSDate)
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        var contextError: Swift.Error?
+
+        do {
+            try context.execute(batchDeleteRequest)
+        }
+        catch {
+            contextError = error
+        }
+
+        if let contextError = contextError {
+            throw contextError
+        }
+    }
+
     func performForecastMapping(_ forecastsToMap: [EWForecast], context: NSManagedObjectContext) throws -> [Forecast] {
         var contextError: Swift.Error?
         var mappedForecasts: [Forecast] = []
@@ -95,8 +124,34 @@ final class CoreDataMapper: DataMapper {
         return mappedForecasts
     }
 
-    func performObservationMapping(observationToMap: EWObservation, context: NSManagedObjectContext) throws -> Observation {
-        Observation()
+    func performObservationMapping(observationsToMap: [EWObservation], context: NSManagedObjectContext) throws -> [Observation] {
+        var contextError: Swift.Error?
+        var mappedObservations: [Observation] = []
+        context.performAndWait {
+            do {
+                mappedObservations = try self.map(observationsToMap, context: context)
+                try context.save()
+            }
+            catch {
+                contextError = error
+            }
+        }
+
+        if let contextError = contextError {
+            throw contextError
+        }
+
+        return mappedObservations
+    }
+
+    private func map(_ observationsToMap: [EWObservation], context: NSManagedObjectContext) throws -> [Observation] {
+        var mappedObservations: [Observation] = []
+        for observationToMap in observationsToMap {
+            let mappedObservation = try map(observationToMap, context: context)
+            mappedObservations.append(mappedObservation)
+        }
+
+        return mappedObservations
     }
 
     private func map(_ forecastsToMap: [EWForecast], context: NSManagedObjectContext) throws -> [Forecast] {
@@ -109,6 +164,49 @@ final class CoreDataMapper: DataMapper {
         }
 
         return mappedForecasts
+    }
+
+    private func map(_ observationToMap: EWObservation, context: NSManagedObjectContext) throws -> Observation {
+        // We use existing (fetched by the same name) or create a new one
+        let mappedObservation: Observation
+        do {
+            mappedObservation = try existingObservation(for: observationToMap, context: context)
+        }
+        catch Error.emptyResponse {
+            mappedObservation = try create(in: context)
+        }
+
+        mappedObservation.observationDate = observationToMap.observationDate
+        mappedObservation.airPressure = observationToMap.airPressure
+        mappedObservation.airTemperature = NSNumber(double: observationToMap.airTemperature)
+        mappedObservation.latitude = NSNumber(double: observationToMap.latitude)
+        mappedObservation.longitude = NSNumber(double: observationToMap.longitude)
+        mappedObservation.phenomenon = try map(observationToMap.phenomenon, context: context)
+        mappedObservation.precipitations = observationToMap.precipitations
+        mappedObservation.relativeHumidity = NSNumber(double: observationToMap.relativeHumidity)
+        mappedObservation.stationName = observationToMap.stationName
+        mappedObservation.uvIndex = NSNumber(double: observationToMap.uvIndex)
+        mappedObservation.visibility = observationToMap.visibility
+        mappedObservation.waterLevel = observationToMap.waterLevel
+        mappedObservation.waterlLevelEH2000 = observationToMap.waterlLevelEH2000
+        mappedObservation.waterTemperature = NSNumber(double: observationToMap.waterTemperature)
+        if let wind = observationToMap.wind {
+            mappedObservation.wind = try map(wind, context: context)
+        }
+        mappedObservation.wmoCode = observationToMap.wmoCode
+
+        return mappedObservation
+    }
+
+    private func existingObservation(for observationToMap: EWObservation, context: NSManagedObjectContext) throws -> Observation {
+        guard let requestedName = observationToMap.stationName else {
+            throw Error.nonValidData
+        }
+
+        let request: NSFetchRequest<Observation> = Observation.fetchRequest()
+        request.predicate = NSPredicate(format: "%K == %@", #keyPath(Observation.stationName), requestedName)
+
+        return try fetch(request: request)
     }
 
     private func existingForecast(for forecastToMap: EWForecast, context: NSManagedObjectContext) throws -> Forecast {
@@ -253,5 +351,13 @@ private extension NSNumber {
         }
 
         self.init(value: int)
+    }
+
+    convenience init?(double: Double?) {
+        guard let double = double else {
+            return nil
+        }
+
+        self.init(value: double)
     }
 }

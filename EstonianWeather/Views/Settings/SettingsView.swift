@@ -21,6 +21,7 @@ struct SettingsView: View {
                 )
             }
             .navigationBarTitle("settings")
+            .navigationBarColor(.appRose)
         }
     }
 

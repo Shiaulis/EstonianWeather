@@ -25,7 +25,7 @@ struct WidgetForercastProvider: IntentTimelineProvider {
 
     private let coreDataStack = CoreDataStack()
     private let localization = AppLocalization(locale: .current) ?? .english
-    private let provider: ForecastDataProvider = .init()
+    private let provider: DataProvider = .init()
 
     func placeholder(in context: Context) -> ForecastEntry {
         ForecastEntry(date: Date(), configuration: ConfigurationIntent())
@@ -46,7 +46,7 @@ struct WidgetForercastProvider: IntentTimelineProvider {
     }
 
     private func fetchForecasts() -> [ForecastDisplayItem] {
-        let result = self.provider.provide(
+        let result = self.provider.provideForecast(
             with: self.coreDataStack.persistentContainer.viewContext,
             for: self.localization)
 

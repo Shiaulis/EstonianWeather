@@ -66,9 +66,10 @@ final class MainService {
         let context = self.persistentContainer.newBackgroundContext()
 
         self.networkClient.requestPublisher(for: endpoint)
-        // TODOx: Should validate response code as well
+            // TODOx: Should validate response code as well
             .map { $0.data }
             .parseObservations(using: self.parser, date: today)
+            .removeObservationsOlderThan(today, using: self.mapper, in: context)
             .mapObservations(using: self.mapper, in: context)
             .sink { _ in self.logger.logNotImplemented(functionality: "Data request completion", module: .mainService) }
             receiveValue: { _ in }

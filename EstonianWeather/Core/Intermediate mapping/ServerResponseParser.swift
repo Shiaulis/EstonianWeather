@@ -11,7 +11,7 @@ import Combine
 
 protocol ServerResponseParser {
     func parse(forecastData: Data?, receivedDate: Date?, languageCode: String?) -> Result<[EWForecast], Swift.Error>
-    func parse(observationsData: Data?, receivedDate: Date?) -> Result<EWObservation, Swift.Error>
+    func parse(observationData: Data?, receivedDate: Date?) -> Result<[EWObservation], Swift.Error>
 }
 
 extension Publisher where Output == Data {
@@ -24,10 +24,10 @@ extension Publisher where Output == Data {
             .eraseToAnyPublisher()
     }
 
-    func parseObservations(using parser: ServerResponseParser, date: Date) -> AnyPublisher<EWObservation, Swift.Error> {
+    func parseObservations(using parser: ServerResponseParser, date: Date) -> AnyPublisher<[EWObservation], Swift.Error> {
         self
             .tryMap { data in
-                try parser.parse(observationsData: data, receivedDate: date).get()
+                try parser.parse(observationData: data, receivedDate: date).get()
             }
             .eraseToAnyPublisher()
     }
@@ -46,8 +46,9 @@ final class ServerResponseXMLParser: NSObject, ServerResponseParser {
     private var currentPlace: EWForecast.EWDayPartForecast.EWPlace!
     private var currentWind: EWWind!
 
-    private var observartion: EWObservation?
-    private var currentStation: EWObservation.EWStation?
+    private var observations: [EWObservation]?
+    private var observationDate: Date?
+    private var currentObservation: EWObservation?
 
     private var ownError: ServerResponseXMLParser.Error?
 
@@ -63,7 +64,7 @@ final class ServerResponseXMLParser: NSObject, ServerResponseParser {
 
     // MARK: - Public
 
-    func parse(observationsData: Data?, receivedDate: Date? = nil) -> Result<EWObservation, Swift.Error> {
+    func parse(observationData observationsData: Data?, receivedDate: Date? = nil) -> Result<[EWObservation], Swift.Error> {
         guard self.isParsing == false else {
             let error: Error = .attemptToRunMultipleParsing
             self.logger.log(message: "Not expected multiple parsing", error: error, module: .dataParser)
@@ -82,13 +83,13 @@ final class ServerResponseXMLParser: NSObject, ServerResponseParser {
         let success = xmlParser.parse()
         self.isParsing = false
 
-        if let observationToReturn = self.observartion {
-            self.observartion = nil
+        if let stationsToReturn = self.observations {
+            self.observations = nil
             self.receivedDate = nil
 
             if success {
                 self.logger.log(successState: "Parsing finished successfully", module: .dataParser)
-                return .success(observationToReturn)
+                return .success(stationsToReturn)
             }
         }
 
@@ -203,8 +204,8 @@ extension ServerResponseXMLParser: XMLParserDelegate {
             self.currentParsedElementText = ""
         case .winddirection, .windspeed, .windspeedmax:
             self.currentParsedElementText = ""
-            if self.currentStation?.wind == nil {
-                self.currentStation?.wind = .init()
+            if self.currentObservation?.wind == nil {
+                self.currentObservation?.wind = .init()
             }
         case .place:
             self.currentPlace = .init()
@@ -213,15 +214,12 @@ extension ServerResponseXMLParser: XMLParserDelegate {
         case .forecasts:
             break
         case .observations:
-            assert(self.observartion == nil)
-            self.observartion = EWObservation()
+            assert(self.observations == nil)
+            self.observations = []
+            self.observationDate = parseObservationDate(from: attributeDict)
         case .station:
-            assert(self.currentStation == nil)
-            self.currentStation = EWObservation.EWStation()
-
-            if self.observartion?.stations == nil {
-                self.observartion?.stations = []
-            }
+            assert(self.currentObservation == nil)
+            self.currentObservation = EWObservation()
         case .none:
             self.logger.log(information: "⚠️ Unknown element detected with name \"\(elementName)\"", module: .dataParser)
         }
@@ -253,8 +251,8 @@ extension ServerResponseXMLParser: XMLParserDelegate {
             else if self.currentDayPartForecast != nil {
                 self.currentDayPartForecast.phenomenon = phenomenon
             }
-            else if self.currentStation != nil {
-                self.currentStation?.phenomenon = phenomenon
+            else if self.currentObservation != nil {
+                self.currentObservation?.phenomenon = phenomenon
             }
         case .tempmin:
             let tempmin = Int(self.currentParsedElementText)
@@ -290,8 +288,8 @@ extension ServerResponseXMLParser: XMLParserDelegate {
             else if self.currentWind != nil {
                 self.currentWind.name = self.currentParsedElementText
             }
-            else if self.currentStation != nil {
-                self.currentStation?.name = self.currentParsedElementText
+            else if self.currentObservation != nil {
+                self.currentObservation?.stationName = self.currentParsedElementText
             }
         case .wind:
             self.currentDayPartForecast.winds.append(self.currentWind)
@@ -329,70 +327,70 @@ extension ServerResponseXMLParser: XMLParserDelegate {
                 self.currentDayPartForecast.peipsi = self.currentParsedElementText
             }
         case .station:
-            assert(self.currentStation != nil)
-            if let currentStation = self.currentStation {
-                self.observartion?.stations?.append(currentStation)
+            assert(self.currentObservation != nil)
+            if let currentStation = self.currentObservation {
+                self.observations?.append(currentStation)
             }
-            self.currentStation = nil
+            self.currentObservation = nil
         case .wmocode:
-            if self.currentStation != nil {
-                self.currentStation?.wmoCode = self.currentParsedElementText
+            if self.currentObservation != nil {
+                self.currentObservation?.wmoCode = self.currentParsedElementText
             }
         case .longitude:
-            if self.currentStation != nil {
-                self.currentStation?.longitude = Double(self.currentParsedElementText)
+            if self.currentObservation != nil {
+                self.currentObservation?.longitude = Double(self.currentParsedElementText)
             }
         case .latitude:
-            if self.currentStation != nil {
-                self.currentStation?.latitude = Double(self.currentParsedElementText)
+            if self.currentObservation != nil {
+                self.currentObservation?.latitude = Double(self.currentParsedElementText)
             }
         case .visibility:
-            if self.currentStation != nil {
-                self.currentStation?.visibility = self.currentParsedElementText
+            if self.currentObservation != nil {
+                self.currentObservation?.visibility = self.currentParsedElementText
             }
         case .precipitations:
-            if self.currentStation != nil {
-                self.currentStation?.precipitations = self.currentParsedElementText
+            if self.currentObservation != nil {
+                self.currentObservation?.precipitations = self.currentParsedElementText
             }
         case .airpressure:
-            if self.currentStation != nil {
-                self.currentStation?.airPressure = self.currentParsedElementText
+            if self.currentObservation != nil {
+                self.currentObservation?.airPressure = self.currentParsedElementText
             }
         case .relativehumidity:
-            if self.currentStation != nil {
-                self.currentStation?.relativeHumidity = Double(self.currentParsedElementText)
+            if self.currentObservation != nil {
+                self.currentObservation?.relativeHumidity = Double(self.currentParsedElementText)
             }
         case .airtemperature:
-            if self.currentStation != nil {
-                self.currentStation?.airTemperature = Double(self.currentParsedElementText)
+            if self.currentObservation != nil {
+                self.currentObservation?.airTemperature = Double(self.currentParsedElementText)
             }
         case .winddirection:
-            if self.currentStation != nil {
-                self.currentStation?.wind?.direction = self.currentParsedElementText
+            if self.currentObservation != nil {
+                self.currentObservation?.wind?.direction = self.currentParsedElementText
             }
         case .windspeed:
-            if self.currentStation != nil {
-                self.currentStation?.wind?.speed = Int(self.currentParsedElementText)
+            if self.currentObservation != nil {
+                self.currentObservation?.wind?.speed = Int(self.currentParsedElementText)
             }
         case .windspeedmax:
-            if self.currentStation != nil {
-                self.currentStation?.wind?.speedmax = Int(self.currentParsedElementText)
+            if self.currentObservation != nil {
+                self.currentObservation?.wind?.speedmax = Int(self.currentParsedElementText)
             }
         case .waterlevel:
-            if self.currentStation != nil {
-                self.currentStation?.waterLevel = self.currentParsedElementText
+            if self.currentObservation != nil {
+                self.currentObservation?.waterLevel = self.currentParsedElementText
             }
         case .waterlevel_eh2000:
-            if self.currentStation != nil {
-                self.currentStation?.waterlLevelEH2000 = self.currentParsedElementText
+            if self.currentObservation != nil {
+                self.currentObservation?.waterlLevelEH2000 = self.currentParsedElementText
             }
         case .watertemperature:
-            if self.currentStation != nil {
-                self.currentStation?.waterTemperature = Double(self.currentParsedElementText)
+            if self.currentObservation != nil {
+                self.currentObservation?.waterTemperature = Double(self.currentParsedElementText)
             }
         case .uvindex:
-            if self.currentStation != nil {
-                self.currentStation?.uvIndex = Double(self.currentParsedElementText)
+            if self.currentObservation != nil {
+                self.currentObservation?.uvIndex = Double(self.currentParsedElementText)
             }
 
         case .none: break
@@ -411,6 +409,13 @@ extension ServerResponseXMLParser: XMLParserDelegate {
         dateFormatter.locale = .init(identifier: "et-EE")
         dateFormatter.dateFormat = "yyyy-MM-dd"
         return dateFormatter.date(from: dateString)
+    }
+
+    private func parseObservationDate(from attributes: [String: String]) -> Date? {
+        guard let timestampString = attributes["timestamp"] else { return nil }
+        guard let timestamp = Double(timestampString) else { return nil }
+
+        return Date(timeIntervalSince1970: timestamp)
     }
 
 }

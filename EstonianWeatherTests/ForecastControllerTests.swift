@@ -15,7 +15,7 @@ final class ForecastControllerTests: XCTestCase {
     // MARK: - Properties
     private var container: NSPersistentContainer!
     private var forecast: Forecast!
-    private var sut: ForecastDataProvider!
+    private var sut: DataProvider!
     private var displayItems: [ForecastDisplayItem]!
     private var firstDisplayItem: ForecastDisplayItem! { self.displayItems.first }
 
@@ -28,7 +28,7 @@ final class ForecastControllerTests: XCTestCase {
         self.container = NSPersistentContainer.createContainerForTesting()
         self.forecast = try! create(in: self.container.viewContext)
         self.forecast.languageCode = localization.languageCode
-        self.sut = ForecastDataProvider()
+        self.sut = DataProvider()
     }
 
     override func tearDown() {
@@ -42,7 +42,7 @@ final class ForecastControllerTests: XCTestCase {
     // MARK: - Tests forecast display item
 
     func testProvider_whenProvide_returnSuccess() {
-        XCTAssertNoThrow(try self.sut.provide(with: self.container.viewContext, for: self.localization).get())
+        XCTAssertNoThrow(try self.sut.provideForecast(with: self.container.viewContext, for: self.localization).get())
     }
 
     func testProvider_whenProvide_returnsCorrectNumberOfDayParts() {
@@ -161,7 +161,7 @@ final class ForecastControllerTests: XCTestCase {
     // MARK: - When
 
     private func whenRequestDisplayItems() {
-        self.displayItems = try! self.sut.provide(with: self.container.viewContext, for: self.localization).get()
+        self.displayItems = try! self.sut.provideForecast(with: self.container.viewContext, for: self.localization).get()
     }
 
     // MARK: - Private
