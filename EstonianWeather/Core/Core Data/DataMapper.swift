@@ -69,16 +69,18 @@ final class CoreDataMapper: DataMapper {
     }
 
     func removeAllForecasts(from context: NSManagedObjectContext, olderThan cutOffDate: Date) throws {
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Forecast.fetchRequest()
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Forecast")
         fetchRequest.predicate = NSPredicate(format: "%K < %@", #keyPath(Forecast.forecastDate), cutOffDate as NSDate)
         let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        var contextError: Swift.Error?
 
-        do {
-            try context.execute(batchDeleteRequest)
-        }
-        catch {
-            contextError = error
+        var contextError: Swift.Error?
+        context.performAndWait {
+            do {
+                try context.execute(batchDeleteRequest)
+            }
+            catch {
+                contextError = error
+            }
         }
 
         if let contextError = contextError {
@@ -87,16 +89,22 @@ final class CoreDataMapper: DataMapper {
     }
 
     func removeAllObservations(from context: NSManagedObjectContext, olderThan cutOffDate: Date) throws {
+        context.performAndWait {
+            assert(context.hasChanges == false)
+        }
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Observation.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "%K < %@", #keyPath(Observation.observationDate), cutOffDate as NSDate)
         let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        var contextError: Swift.Error?
+        batchDeleteRequest.resultType = .resultTypeObjectIDs
 
-        do {
-            try context.execute(batchDeleteRequest)
-        }
-        catch {
-            contextError = error
+        var contextError: Swift.Error?
+        context.performAndWait {
+            do {
+                try context.execute(batchDeleteRequest)
+            }
+            catch {
+                contextError = error
+            }
         }
 
         if let contextError = contextError {
@@ -206,7 +214,7 @@ final class CoreDataMapper: DataMapper {
         let request: NSFetchRequest<Observation> = Observation.fetchRequest()
         request.predicate = NSPredicate(format: "%K == %@", #keyPath(Observation.stationName), requestedName)
 
-        return try fetch(request: request)
+        return try fetch(request: request, in: context)
     }
 
     private func existingForecast(for forecastToMap: EWForecast, context: NSManagedObjectContext) throws -> Forecast {
@@ -217,15 +225,15 @@ final class CoreDataMapper: DataMapper {
         let request: NSFetchRequest<Forecast> = Forecast.fetchRequest()
         request.predicate = NSPredicate(format: "%K == %@", #keyPath(Forecast.forecastDate), requestedDate as NSDate)
 
-        return try fetch(request: request)
+        return try fetch(request: request, in: context)
     }
 
-    private func existingPhenomenon(for phenomenonToMap: EWPhenomenon) throws -> Phenomenon {
+    private func existingPhenomenon(for phenomenonToMap: EWPhenomenon, in context: NSManagedObjectContext) throws -> Phenomenon {
         let request: NSFetchRequest<Phenomenon> = Phenomenon.fetchRequest()
         request.predicate = NSPredicate(format: "%K == %@", #keyPath(Phenomenon.name), phenomenonToMap.rawValue)
         request.includesPendingChanges = true
 
-        return try fetch(request: request)
+        return try fetch(request: request, in: context)
     }
 
     private func map(_ forecastToMap: EWForecast, context: NSManagedObjectContext) throws -> Forecast {
@@ -294,7 +302,7 @@ final class CoreDataMapper: DataMapper {
     private func map(_ phenomenonToMap: EWPhenomenon?, context: NSManagedObjectContext) throws -> Phenomenon? {
         guard let phenomenonToMap = phenomenonToMap else { return nil }
         do {
-            return try existingPhenomenon(for: phenomenonToMap)
+            return try existingPhenomenon(for: phenomenonToMap, in: context)
         }
         catch Error.emptyResponse {
             let phenomenonToAdd: Phenomenon = try create(in: context)
@@ -324,8 +332,23 @@ final class CoreDataMapper: DataMapper {
         return mappedWind
     }
 
-    private func fetch<T>(request: NSFetchRequest<T>) throws -> T {
-        guard let object = try request.execute().first else {
+    private func fetch<T>(request: NSFetchRequest<T>, in context: NSManagedObjectContext) throws -> T {
+        var objects: [T]?
+        var fetchError: Swift.Error?
+        context.performAndWait {
+            do {
+                objects = try context.fetch(request)
+            }
+            catch {
+                fetchError = error
+            }
+        }
+
+        if let fetchError = fetchError {
+            throw fetchError
+        }
+
+        guard let object = objects?.first else {
             throw Error.emptyResponse
         }
 
