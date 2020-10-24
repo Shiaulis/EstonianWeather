@@ -15,18 +15,18 @@ final class ForecastListController: ForecastListViewModel {
 
     @Published var displayItems: [ForecastDisplayItem] = []
     private var disposables: Set<AnyCancellable> = []
-    private let dataProvider: ForecastDataProvider
-    private let settingsService: SettingsService
+    private let dataProvider: DataProvider
+    private let appViewModel: ApplicationViewModel
 
-    init(dataProvider: ForecastDataProvider = .init(), settingsService: SettingsService = .init()) {
+    init(dataProvider: DataProvider = .init(), appViewModel: ApplicationViewModel) {
         self.dataProvider = dataProvider
-        self.settingsService = settingsService
+        self.appViewModel = appViewModel
 
         listenForData()
     }
 
     func openApplicationSettings() {
-        self.settingsService.openApplicationSettings()
+        self.appViewModel.openApplicationSettings()
     }
 
     private func listenForData() {
@@ -34,9 +34,9 @@ final class ForecastListController: ForecastListViewModel {
             .publisher(for: .NSManagedObjectContextDidSave)
             .tryMap { notification in
                 guard let context = notification.object as? NSManagedObjectContext else { fatalError() }
-                return try self.dataProvider.provide(
+                return try self.dataProvider.provideForecast(
                     with: context,
-                    for: self.settingsService.appLocalization
+                    for: self.appViewModel.appLocalization
                 ).get()
             }
             .receive(on: RunLoop.main)

@@ -9,10 +9,11 @@
 import SwiftUI
 
 enum Tab {
-    case forecastList, settings
+    case observationList, forecastList, settings
 
     private var imageName: String {
         switch self {
+        case .observationList: return "thermometer"
         case .forecastList: return "smoke.fill"
         case .settings: return "gear"
         }
@@ -20,6 +21,7 @@ enum Tab {
 
     private var title: LocalizedStringKey {
         switch self {
+        case .observationList: return "observations"
         case .forecastList: return "forecast"
         case .settings: return "settings"
         }
@@ -35,16 +37,28 @@ enum Tab {
 
 struct TabbarView: View {
 
-    init(forecastListView: ForecastListView<ForecastListController>, settingsView: SettingsView) {
+    init(
+        observationListView: ObservationListView<ObservationListController>,
+        forecastListView: ForecastListView<ForecastListController>,
+        settingsView: SettingsView,
+        appViewModel: ApplicationViewModel
+    ) {
+        self.observationListView = observationListView
         self.forecastListView = forecastListView
         self.settingsView = settingsView
+        self.appViewModel = appViewModel
     }
 
-    let forecastListView: ForecastListView<ForecastListController>
-    let settingsView: SettingsView
+    private let observationListView: ObservationListView<ObservationListController>
+    private let forecastListView: ForecastListView<ForecastListController>
+    private let settingsView: SettingsView
+    private let appViewModel: ApplicationViewModel
 
     var body: some View {
         TabView {
+            if self.appViewModel.isFeatureEnabled(.observations) {
+                self.observationListView.tabItem { Tab.observationList.item() }
+            }
             self.forecastListView.tabItem { Tab.forecastList.item() }
             self.settingsView.tabItem { Tab.settings.item() }
         }
@@ -54,7 +68,52 @@ struct TabbarView: View {
 struct TabbarView_Previews: PreviewProvider {
     static var previews: some View {
         TabbarView(
-            forecastListView: ForecastListView(viewModel: ForecastListController()),
-            settingsView: SettingsView(viewModel: SettingsViewModel(settingsService: SettingsService())))
+            observationListView: ObservationListView(viewModel: ObservationListController()),
+            forecastListView: ForecastListView(viewModel: ForecastListController(appViewModel: MockApplicationViewModel())),
+            settingsView: SettingsView(viewModel: SettingsViewModel(appViewModel: MockApplicationViewModel())),
+            appViewModel: MockApplicationViewModel()
+        )
     }
+}
+
+struct NavigationBarModifier: ViewModifier {
+
+    var backgroundColor: UIColor?
+
+    init( backgroundColor: UIColor?) {
+        self.backgroundColor = backgroundColor
+        let coloredAppearance = UINavigationBarAppearance()
+        coloredAppearance.configureWithTransparentBackground()
+        coloredAppearance.backgroundColor = .clear
+        coloredAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        coloredAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+
+        UINavigationBar.appearance().standardAppearance = coloredAppearance
+        UINavigationBar.appearance().compactAppearance = coloredAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
+        UINavigationBar.appearance().tintColor = .white
+
+    }
+
+    func body(content: Content) -> some View {
+        ZStack {
+            content
+            VStack {
+                GeometryReader { geometry in
+                    Color(self.backgroundColor ?? .clear)
+                        .frame(height: geometry.safeAreaInsets.top)
+                        .edgesIgnoringSafeArea(.top)
+                    Spacer()
+                }
+            }
+        }
+    }
+}
+
+extension View {
+
+    func navigationBarColor(_ backgroundColor: UIColor?) -> some View {
+        self.modifier(NavigationBarModifier(backgroundColor: backgroundColor))
+    }
+
 }

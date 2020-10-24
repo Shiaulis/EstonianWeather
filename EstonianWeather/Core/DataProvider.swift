@@ -1,5 +1,5 @@
 //
-//  ForecastDataProvider.swift
+//  DataProvider.swift
 //  EstonianWeather
 //
 //  Created by Andrius Shiaulis on 17.01.2020.
@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import Combine
 
-final class ForecastDataProvider {
+final class DataProvider {
 
     // MARK: - Properties
 
@@ -18,18 +18,11 @@ final class ForecastDataProvider {
 
     // MARK: - Public
 
-    func provide(with context: NSManagedObjectContext, for localization: AppLocalization) -> Result<[ForecastDisplayItem], Error> {
-        let request: NSFetchRequest<Forecast> = NSFetchRequest<Forecast>(entityName: "Forecast")
+    func provideObservations(with context: NSManagedObjectContext) -> Result<[ObservationDisplayItem], Error> {
+        let request: NSFetchRequest<Observation> = Observation.fetchRequest()
+        request.sortDescriptors = [.init(key: #keyPath(Observation.stationName), ascending: true)]
 
-        request.predicate = .init(format:"%K = %@",
-                                  #keyPath(Forecast.languageCode),
-                                  localization.languageCode)
-
-        request.sortDescriptors = [
-            .init(key: #keyPath(Forecast.forecastDate), ascending: true)
-        ]
-
-        let result: [Forecast]
+        let result: [Observation]
         do {
             result = try context.fetch(request)
         }
@@ -42,7 +35,36 @@ final class ForecastDataProvider {
         return .success(displayItems)
     }
 
+    func provideForecast(with context: NSManagedObjectContext, for localization: AppLocalization) -> Result<[ForecastDisplayItem], Error> {
+        let request: NSFetchRequest<Forecast> = Forecast.fetchRequest()
+        request.predicate = .init(format:"%K = %@", #keyPath(Forecast.languageCode), localization.languageCode)
+        request.sortDescriptors = [.init(key: #keyPath(Forecast.forecastDate), ascending: true)]
+
+        var result: [Forecast]?
+        var contextError: Swift.Error?
+        context.performAndWait {
+            do {
+                result = try context.fetch(request)
+            }
+            catch {
+                contextError = error
+            }
+        }
+
+        if let contextError = contextError {
+            return .failure(contextError)
+        }
+
+        let displayItems = result?.compactMap { self.displayItem(for: $0) } ?? []
+
+        return .success(displayItems)
+    }
+
     // MARK: - Private
+
+    private func displayItem(for observation: Observation) -> ObservationDisplayItem {
+        .init(name: observation.stationName ?? "")
+    }
 
     private func displayItem(for forecast: Forecast) -> ForecastDisplayItem {
         .init(
