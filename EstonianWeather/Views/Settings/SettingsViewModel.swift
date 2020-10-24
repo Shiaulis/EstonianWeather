@@ -13,16 +13,16 @@ final class SettingsViewModel {
     // MARK: - Properties
 
     var currentLanguageName: String {
-        self.settingsService.appLocalization.localizedString ?? ""
+        self.appViewModel.appLocalization.localizedString ?? ""
     }
 
-    private let settingsService: SettingsService
+    private let appViewModel: ApplicationViewModel
 
-    init(settingsService: SettingsService = .init()) {
-        self.settingsService = settingsService
+    init(appViewModel: ApplicationViewModel) {
+        self.appViewModel = appViewModel
     }
 
     func openApplicationSettings() {
-        self.settingsService.openApplicationSettings()
+        self.appViewModel.openApplicationSettings()
     }
 }

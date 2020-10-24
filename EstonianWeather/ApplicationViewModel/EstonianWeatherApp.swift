@@ -11,12 +11,6 @@ enum ApplicationMode {
     case unitTests, uiKit, swiftUI
 }
 
-protocol ApplicationViewModel {
-    var applicationMode: ApplicationMode { get }
-    func forecastDataProvider() -> DataProvider
-    var settingsService: SettingsService { get }
-}
-
 @main
 struct EstonianWeatherApp: App {
     private func tabbarView() -> some View {
@@ -25,15 +19,16 @@ struct EstonianWeatherApp: App {
             return AnyView(Text("Unit testing mode"))
         }
         let dataProvider = applicationViewModel.forecastDataProvider()
-        let forecastViewModel = ForecastListController(dataProvider: dataProvider, settingsService: applicationViewModel.settingsService)
+        let forecastViewModel = ForecastListController(dataProvider: dataProvider, appViewModel: applicationViewModel)
         let forecastListView = ForecastListView(viewModel: forecastViewModel)
         let observationViewModel = ObservationListController(dataProvider: dataProvider)
         let observationListView = ObservationListView(viewModel: observationViewModel)
-        let settingsView = SettingsView(viewModel: SettingsViewModel(settingsService: applicationViewModel.settingsService))
+        let settingsView = SettingsView(viewModel: SettingsViewModel(appViewModel: applicationViewModel))
         let tabbarView = TabbarView(
             observationListView: observationListView,
             forecastListView: forecastListView,
-            settingsView: settingsView
+            settingsView: settingsView,
+            appViewModel: applicationViewModel
         )
 
         return AnyView(tabbarView)
