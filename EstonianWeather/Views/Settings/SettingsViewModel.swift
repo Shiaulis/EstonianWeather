@@ -13,13 +13,16 @@ final class SettingsViewModel {
     // MARK: - Properties
 
     var currentLanguageName: String {
-        Locale.current.localizedString(forLanguageCode: "uk") ?? ""
+        self.settingsService.appLocalization.localizedString ?? ""
     }
 
-    private let settingsURL = URL(string: UIApplication.openSettingsURLString)
+    private let settingsService: SettingsService
+
+    init(settingsService: SettingsService = .init()) {
+        self.settingsService = settingsService
+    }
 
     func openApplicationSettings() {
-        guard let settingsURL = self.settingsURL else { return }
-        UIApplication.shared.open(settingsURL, options: [:])
+        self.settingsService.openApplicationSettings()
     }
 }

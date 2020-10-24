@@ -14,6 +14,7 @@ enum ApplicationMode {
 protocol ApplicationViewModel {
     var applicationMode: ApplicationMode { get }
     func forecastDataProvider() -> ForecastDataProvider
+    var settingsService: SettingsService { get }
 }
 
 @main
@@ -21,9 +22,9 @@ struct EstonianWeatherApp: App {
     private func tabbarView() -> TabbarView {
         let applicationViewModel: ApplicationViewModel = ApplicationController()
         let dataProvider = applicationViewModel.forecastDataProvider()
-        let viewModel = ForecastListController(dataProvider: dataProvider)
+        let viewModel = ForecastListController(dataProvider: dataProvider, settingsService: applicationViewModel.settingsService)
         let forecastListView = ForecastListView(viewModel: viewModel)
-        let settingsView = SettingsView()
+        let settingsView = SettingsView(viewModel: SettingsViewModel(settingsService: applicationViewModel.settingsService))
         let tabbarView = TabbarView(forecastListView: forecastListView, settingsView: settingsView)
 
         return tabbarView

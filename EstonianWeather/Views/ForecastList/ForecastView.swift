@@ -38,10 +38,10 @@ struct ForecastView: View {
 struct ForecastView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ForecastView(item: ForecastDisplayItem.test)
+            ForecastView(item: ForecastDisplayItem.test1)
                 .environment(\.colorScheme, .light)
                 .previewLayout(.fixed(width: 313, height: 600))
-            ForecastView(item: ForecastDisplayItem.test)
+            ForecastView(item: ForecastDisplayItem.test2)
                 .environment(\.colorScheme, .dark)
                 .previewLayout(.fixed(width: 313, height: 600))
         }

@@ -6,19 +6,21 @@
 //
 
 import Foundation
+import UIKit
 
 final class SettingsService {
 
+    let appLocalization: AppLocalization
     private let userDefaults: UserDefaults
     private let coreDataStack: CoreDataStack
 
-    init(userDefaults: UserDefaults, coreDataStack: CoreDataStack) {
+    init(userDefaults: UserDefaults = .standard, coreDataStack: CoreDataStack = .init(), locale: Locale = .current) {
         self.userDefaults = userDefaults
         self.coreDataStack = coreDataStack
+        self.appLocalization = AppLocalization(locale: locale) ?? .english
 
         checkAndExecuteSettings()
         setVersionAndBuildNumber()
-
     }
 
     func checkAndExecuteSettings() {
@@ -37,6 +39,15 @@ final class SettingsService {
         if let build: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String {
             self.userDefaults.set(build, forKey: "build_preference")
         }
+    }
+
+    func openApplicationSettings() {
+        guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else {
+            assertionFailure("Unable to construct settings URL")
+            return
+        }
+
+        UIApplication.shared.open(settingsURL, options: [:])
     }
 
 }

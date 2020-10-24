@@ -10,21 +10,12 @@ import XCTest
 import CoreData
 @testable import EstonianWeather
 
-class CoreDataMapperTests: XCTestCase {
+final class CoreDataMapperTests: XCTestCase {
 
     // MARK: - Properties
     private var container: NSPersistentContainer!
 
-    private lazy var ewForecasts: [EWForecast] = {
-        let parser: WeatherParser = XMLWeatherParser()
-        let bundle = Bundle(for: WeatherParserTests.self)
-        let url = bundle.url(forResource: "TestForecast", withExtension: "xml")!
-        let data = try! Data(contentsOf: url)
-
-        let parseResult = parser.parse(data: data, receivedDate: Date(), languageCode: "ru")
-
-        return try! parseResult.get()
-    }()
+    private var ewForecasts: [EWForecast]!
 
     private var sut: CoreDataMapper!
     private var completionExpectation: XCTestExpectation!
@@ -43,6 +34,9 @@ class CoreDataMapperTests: XCTestCase {
     }
 
     func testMapper_whenAddData_containCorrectAmountOfForecasts() throws {
+        // given
+        try givenCorrectEWForecasts()
+
         // when
         whenPerformMapping()
 
@@ -53,6 +47,9 @@ class CoreDataMapperTests: XCTestCase {
     }
 
     func testMapper_whenAddSameDocumentTwice_containCorrectAmountOfForecasts() throws {
+        // given
+        try givenCorrectEWForecasts()
+
         // when
         whenPerformMapping()
         whenPerformMapping()
@@ -63,11 +60,22 @@ class CoreDataMapperTests: XCTestCase {
         XCTAssertEqual(result.count, 4)
     }
 
+    // MARK: - Given
+
+    private func givenCorrectEWForecasts() throws {
+        let parser: ServerResponseParser = ServerResponseXMLParser()
+        let bundle = Bundle(for: ServerResponseParserTests.self)
+        let url = bundle.url(forResource: "TestForecast", withExtension: "xml")!
+        let data = try! Data(contentsOf: url)
+
+        self.ewForecasts = try parser.parse(forecastData: data, receivedDate: Date(), languageCode: "ru").get()
+    }
+
     // MARK: - When
 
     private func whenPerformMapping() {
         do {
-            _ = try self.sut.performMapping(self.ewForecasts, context: self.container.viewContext)
+            _ = try self.sut.performForecastMapping(self.ewForecasts, context: self.container.viewContext)
         }
         catch {
             XCTFail("Failed to perform mapping. Error: \(error.localizedDescription)")

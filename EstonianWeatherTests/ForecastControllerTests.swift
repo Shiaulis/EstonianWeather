@@ -14,20 +14,18 @@ final class ForecastControllerTests: XCTestCase {
 
     // MARK: - Properties
     private var container: NSPersistentContainer!
-    private var locale: Locale!
     private var forecast: Forecast!
     private var sut: ForecastDataProvider!
     private var displayItems: [ForecastDisplayItem]!
     private var firstDisplayItem: ForecastDisplayItem! { self.displayItems.first }
 
-    private var localization: AppLocalization { AppLocalization(locale: self.locale) ?? .english }
+    private var localization: AppLocalization { .english }
 
     // MARK: - Setup and teardown
 
     override func setUp() {
         super.setUp()
         self.container = NSPersistentContainer.createContainerForTesting()
-        self.locale = .current
         self.forecast = try! create(in: self.container.viewContext)
         self.forecast.languageCode = localization.languageCode
         self.sut = ForecastDataProvider()
@@ -37,7 +35,6 @@ final class ForecastControllerTests: XCTestCase {
         self.displayItems = nil
         self.sut = nil
         self.forecast = nil
-        self.locale = nil
         self.container = nil
         super.tearDown()
     }

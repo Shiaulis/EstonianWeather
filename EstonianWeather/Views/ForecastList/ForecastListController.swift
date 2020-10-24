@@ -16,19 +16,17 @@ final class ForecastListController: ForecastListViewModel {
     @Published var displayItems: [ForecastDisplayItem] = []
     private var disposables: Set<AnyCancellable> = []
     private let dataProvider: ForecastDataProvider
-    private let localization: AppLocalization
-    private let settingsURL = URL(string: UIApplication.openSettingsURLString)
+    private let settingsService: SettingsService
 
-    init(dataProvider: ForecastDataProvider = .init()) {
+    init(dataProvider: ForecastDataProvider = .init(), settingsService: SettingsService = .init()) {
         self.dataProvider = dataProvider
-        self.localization = AppLocalization(locale: Locale.current) ?? .english
+        self.settingsService = settingsService
 
         listenForData()
     }
 
     func openApplicationSettings() {
-        guard let settingsURL = self.settingsURL else { return }
-        UIApplication.shared.open(settingsURL, options: [:])
+        self.settingsService.openApplicationSettings()
     }
 
     private func listenForData() {
@@ -38,7 +36,7 @@ final class ForecastListController: ForecastListViewModel {
                 guard let context = notification.object as? NSManagedObjectContext else { fatalError() }
                 return try self.dataProvider.provide(
                     with: context,
-                    for: self.localization
+                    for: self.settingsService.appLocalization
                 ).get()
             }
             .receive(on: RunLoop.main)

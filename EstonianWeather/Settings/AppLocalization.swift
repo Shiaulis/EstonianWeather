@@ -25,7 +25,9 @@ enum AppLocalization {
         }
     }
 
-    // MARK: - Initialization
+    var localizedString: String? {
+        Locale.current.localizedString(forLanguageCode: self.languageCode)
+    }
 
     init?(locale: Locale) {
         switch locale.languageCode {
@@ -39,4 +41,5 @@ enum AppLocalization {
             return nil
         }
     }
+
 }

@@ -10,7 +10,7 @@ import SwiftUI
 
 struct SettingsView: View {
 
-    let viewModel: SettingsViewModel = .init()
+    let viewModel: SettingsViewModel
 
     var body: some View {
         NavigationView {
@@ -22,12 +22,13 @@ struct SettingsView: View {
             }
             .navigationBarTitle("settings")
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 
 }
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        SettingsView(viewModel: SettingsViewModel(settingsService: SettingsService()))
     }
 }

@@ -12,7 +12,8 @@ import Combine
 
 protocol DataMapper {
     func removeAllForecasts(from context: NSManagedObjectContext, olderThan cutOffDate: Date) throws
-    func performMapping(_ forecastsToMap: [EWForecast], context: NSManagedObjectContext) throws -> [Forecast]
+    func performForecastMapping(_ forecastsToMap: [EWForecast], context: NSManagedObjectContext) throws -> [Forecast]
+    func performObservationMapping(observationToMap: EWObservation, context: NSManagedObjectContext) throws -> Observation
 }
 
 extension Publisher where Output == [EWForecast] {
@@ -25,10 +26,20 @@ extension Publisher where Output == [EWForecast] {
             .eraseToAnyPublisher()
     }
 
-    func map(using mapper: DataMapper, in context: NSManagedObjectContext) -> AnyPublisher<[Forecast], Swift.Error> {
+    func mapForecast(using mapper: DataMapper, in context: NSManagedObjectContext) -> AnyPublisher<[Forecast], Swift.Error> {
         self
             .tryMap { forecasts in
-                try mapper.performMapping(forecasts, context: context)
+                try mapper.performForecastMapping(forecasts, context: context)
+            }
+            .eraseToAnyPublisher()
+    }
+}
+
+extension Publisher where Output == EWObservation {
+    func mapObservations(using mapper: DataMapper, in context: NSManagedObjectContext) -> AnyPublisher<Observation, Swift.Error> {
+        self
+            .tryMap { observation in
+                try mapper.performObservationMapping(observationToMap: observation, context: context)
             }
             .eraseToAnyPublisher()
     }
@@ -64,7 +75,7 @@ final class CoreDataMapper: DataMapper {
         }
     }
 
-    func performMapping(_ forecastsToMap: [EWForecast], context: NSManagedObjectContext) throws -> [Forecast] {
+    func performForecastMapping(_ forecastsToMap: [EWForecast], context: NSManagedObjectContext) throws -> [Forecast] {
         var contextError: Swift.Error?
         var mappedForecasts: [Forecast] = []
         context.performAndWait {
@@ -82,6 +93,10 @@ final class CoreDataMapper: DataMapper {
         }
 
         return mappedForecasts
+    }
+
+    func performObservationMapping(observationToMap: EWObservation, context: NSManagedObjectContext) throws -> Observation {
+        Observation()
     }
 
     private func map(_ forecastsToMap: [EWForecast], context: NSManagedObjectContext) throws -> [Forecast] {
@@ -107,7 +122,7 @@ final class CoreDataMapper: DataMapper {
         return try fetch(request: request)
     }
 
-    private func existingPhenomenon(for phenomenonToMap: EWForecast.EWPhenomenon) throws -> Phenomenon {
+    private func existingPhenomenon(for phenomenonToMap: EWPhenomenon) throws -> Phenomenon {
         let request: NSFetchRequest<Phenomenon> = Phenomenon.fetchRequest()
         request.predicate = NSPredicate(format: "%K == %@", #keyPath(Phenomenon.name), phenomenonToMap.rawValue)
         request.includesPendingChanges = true
@@ -138,8 +153,8 @@ final class CoreDataMapper: DataMapper {
             context.delete(dayToDelete)
         }
 
-        if let nigthToMap = forecastToMap.night {
-            let mappedNight = try map(nigthToMap, context: context)
+        if let nightToMap = forecastToMap.night {
+            let mappedNight = try map(nightToMap, context: context)
             mappedForecast.night = mappedNight
         }
 
@@ -178,7 +193,7 @@ final class CoreDataMapper: DataMapper {
         return mappedDayPartForecast
     }
 
-    private func map(_ phenomenonToMap: EWForecast.EWPhenomenon?, context: NSManagedObjectContext) throws -> Phenomenon? {
+    private func map(_ phenomenonToMap: EWPhenomenon?, context: NSManagedObjectContext) throws -> Phenomenon? {
         guard let phenomenonToMap = phenomenonToMap else { return nil }
         do {
             return try existingPhenomenon(for: phenomenonToMap)
@@ -200,7 +215,7 @@ final class CoreDataMapper: DataMapper {
         return mappedPlace
     }
 
-    private func map(_ windToMap: EWForecast.EWDayPartForecast.EWWind, context: NSManagedObjectContext) throws -> Wind {
+    private func map(_ windToMap: EWWind, context: NSManagedObjectContext) throws -> Wind {
         let mappedWind: Wind = try create(in: context)
         mappedWind.name = windToMap.name
         mappedWind.speedmin = NSNumber(int: windToMap.speedmin)
