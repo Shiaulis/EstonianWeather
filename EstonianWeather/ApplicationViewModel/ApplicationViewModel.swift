@@ -11,6 +11,8 @@ protocol ApplicationViewModel: SettingsApplicationViewModel {
     var applicationMode: ApplicationMode { get }
 
     func forecastDataProvider() -> DataProvider
+
+    func isFeatureEnabled(_ featureFlag: FeatureFlag) -> Bool
 }
 
 protocol SettingsApplicationViewModel {
@@ -25,4 +27,5 @@ final class MockApplicationViewModel: ApplicationViewModel {
 
     func forecastDataProvider() -> DataProvider { .init() }
     func openApplicationSettings() {}
+    func isFeatureEnabled(_ featureFlag: FeatureFlag) -> Bool { false }
 }

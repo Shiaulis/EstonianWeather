@@ -27,7 +27,8 @@ struct EstonianWeatherApp: App {
         let tabbarView = TabbarView(
             observationListView: observationListView,
             forecastListView: forecastListView,
-            settingsView: settingsView
+            settingsView: settingsView,
+            appViewModel: applicationViewModel
         )
 
         return AnyView(tabbarView)

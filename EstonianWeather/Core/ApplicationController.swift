@@ -16,6 +16,7 @@ final class ApplicationController {
 
     private let settingsService: SettingsService
     private let widgetService: WidgetService
+    private let featureFlagService: FeatureFlagService
 
     private let defaultRequestsInterval: TimeInterval = 60 * 60
 
@@ -35,6 +36,7 @@ final class ApplicationController {
         self.coreDataStack = .init()
         self.settingsService = .init(userDefaults: .standard, coreDataStack: self.coreDataStack)
         self.widgetService = .init()
+        self.featureFlagService = .init(storage: RuntimeFeatureFlagStorage())
 
         setTimerForRequests(with: self.defaultRequestsInterval)
         subscribeForNotifications()
@@ -111,6 +113,10 @@ final class ApplicationController {
 }
 
 extension ApplicationController: ApplicationViewModel {
+    func isFeatureEnabled(_ featureFlag: FeatureFlag) -> Bool {
+        self.featureFlagService.isEnabled(featureFlag)
+    }
+
     var appLocalization: AppLocalization {
         self.settingsService.appLocalization
     }
