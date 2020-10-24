@@ -19,8 +19,11 @@ protocol ApplicationViewModel {
 
 @main
 struct EstonianWeatherApp: App {
-    private func tabbarView() -> TabbarView {
+    private func tabbarView() -> some View {
         let applicationViewModel: ApplicationViewModel = ApplicationController()
+        guard applicationViewModel.applicationMode != .unitTests else {
+            return AnyView(Text("Unit testing mode"))
+        }
         let dataProvider = applicationViewModel.forecastDataProvider()
         let forecastViewModel = ForecastListController(dataProvider: dataProvider, settingsService: applicationViewModel.settingsService)
         let forecastListView = ForecastListView(viewModel: forecastViewModel)
@@ -33,7 +36,7 @@ struct EstonianWeatherApp: App {
             settingsView: settingsView
         )
 
-        return tabbarView
+        return AnyView(tabbarView)
     }
 
     var body: some Scene {

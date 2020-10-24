@@ -40,15 +40,22 @@ final class DataProvider {
         request.predicate = .init(format:"%K = %@", #keyPath(Forecast.languageCode), localization.languageCode)
         request.sortDescriptors = [.init(key: #keyPath(Forecast.forecastDate), ascending: true)]
 
-        let result: [Forecast]
-        do {
-            result = try context.fetch(request)
-        }
-        catch {
-            return .failure(error)
+        var result: [Forecast]?
+        var contextError: Swift.Error?
+        context.performAndWait {
+            do {
+                result = try context.fetch(request)
+            }
+            catch {
+                contextError = error
+            }
         }
 
-        let displayItems = result.map { self.displayItem(for: $0) }
+        if let contextError = contextError {
+            return .failure(contextError)
+        }
+
+        let displayItems = result?.compactMap { self.displayItem(for: $0) } ?? []
 
         return .success(displayItems)
     }
