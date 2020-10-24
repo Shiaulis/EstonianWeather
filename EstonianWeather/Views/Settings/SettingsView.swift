@@ -23,6 +23,7 @@ struct SettingsView: View {
             .navigationBarTitle("settings")
             .navigationBarColor(.appRose)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 
 }
