@@ -8,12 +8,12 @@
 import Foundation
 
 enum LoggerModule {
-    case dataParser, mainService, dataMapper
+    case dataParser, mainViewModel, dataMapper
 
     fileprivate var name: String {
         switch self {
         case .dataParser: return "🔎 Data Parser"
-        case .mainService: return "🧑‍🔧 Main Service"
+        case .mainViewModel: return "🧑‍🔧 Main View Model"
         case .dataMapper: return "💿 Data Mapper"
         }
     }

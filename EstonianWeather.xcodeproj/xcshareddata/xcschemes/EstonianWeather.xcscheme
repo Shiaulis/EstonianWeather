@@ -29,7 +29,7 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:EstonianWeather.xctestplan"
+            reference = "container:Root Supporting Files/EstonianWeather.xctestplan"
             default = "YES">
          </TestPlanReference>
       </TestPlans>
