@@ -38,6 +38,8 @@ final class ApplicationController {
         self.widgetService = .init()
         self.featureFlagService = .init(storage: RuntimeFeatureFlagStorage())
 
+        guard self.applicationMode != .unitTests else { return }
+
         setTimerForRequests(with: self.defaultRequestsInterval)
         subscribeForNotifications()
     }
