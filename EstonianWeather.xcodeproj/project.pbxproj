@@ -95,6 +95,7 @@
 		09779CB62532F30500957B1F /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CE3C25227D2500D409FF /* Logger.swift */; };
 		09779CC42532F9C900957B1F /* EstonianWeather.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDFA252269AF00D409FF /* EstonianWeather.xcdatamodeld */; };
 		09779CCA25332E3600957B1F /* ForecastWidgetEntryVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09779CC925332E3600957B1F /* ForecastWidgetEntryVIew.swift */; };
+		099EDB0325646D4B00C3EBE4 /* NavigationBarColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099EDB0225646D4B00C3EBE4 /* NavigationBarColor.swift */; };
 		09B88F47253AD4C4002B7A78 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B88F46253AD4C4002B7A78 /* UIColor+Extension.swift */; };
 		09B88F4C253AD541002B7A78 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B88F46253AD4C4002B7A78 /* UIColor+Extension.swift */; };
 		09BD4839253CA9E000F7819E /* ObservationDisplayItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097215892534D0F000E43B7B /* ObservationDisplayItem.swift */; };
@@ -232,6 +233,7 @@
 		09974221252B93290011193F /* et */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = et; path = et.lproj/EstonianWeatherWidget.strings; sourceTree = "<group>"; };
 		09974227252B932A0011193F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/EstonianWeatherWidget.strings; sourceTree = "<group>"; };
 		0997422D252B932B0011193F /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/EstonianWeatherWidget.strings; sourceTree = "<group>"; };
+		099EDB0225646D4B00C3EBE4 /* NavigationBarColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarColor.swift; sourceTree = "<group>"; };
 		09B88F46253AD4C4002B7A78 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		09C611E2253A407A002A4A60 /* ObservationListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationListViewModel.swift; sourceTree = "<group>"; };
 		09C611E8253A4468002A4A60 /* ObservationListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationListController.swift; sourceTree = "<group>"; };
@@ -365,6 +367,7 @@
 				09D123A2252660EE0050DC34 /* ForecastList */,
 				09D123A6252661010050DC34 /* Settings */,
 				09B88F46253AD4C4002B7A78 /* UIColor+Extension.swift */,
+				099EDB0225646D4B00C3EBE4 /* NavigationBarColor.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -715,6 +718,7 @@
 				0968CE08252269AF00D409FF /* Place+CoreDataProperties.swift in Sources */,
 				0968CE06252269AF00D409FF /* Wind+CoreDataClass.swift in Sources */,
 				0968CDEC252268E600D409FF /* ForecastDisplayItem.swift in Sources */,
+				099EDB0325646D4B00C3EBE4 /* NavigationBarColor.swift in Sources */,
 				0968CE02252269AF00D409FF /* CoreDataStack.swift in Sources */,
 				0968CDD3252267F600D409FF /* LanguageCell.swift in Sources */,
 				09C611E3253A407A002A4A60 /* ObservationListViewModel.swift in Sources */,

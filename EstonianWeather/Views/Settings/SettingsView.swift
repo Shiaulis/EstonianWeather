@@ -21,7 +21,7 @@ struct SettingsView: View {
                 )
             }
             .navigationBarTitle("settings")
-            .navigationBarColor(.appRose)
+            .navigationBarColor(backgroundColor: .appRose, tintColor: .white)
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
