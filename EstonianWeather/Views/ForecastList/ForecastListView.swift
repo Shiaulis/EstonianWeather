@@ -24,9 +24,10 @@ struct ForecastListView<ViewModel: ForecastListViewModel>: View {
                         ForecastView(item: displayItem)
                     }
                 }
+                .padding()
             }
             .navigationTitle("4_days_forecast")
-            .navigationBarColor(backgroundColor: .appRose, tintColor: .white)
+            .navigationBarColor(backgroundColor: Resource.Color.appRose, tintColor: .white)
         }
     }
 

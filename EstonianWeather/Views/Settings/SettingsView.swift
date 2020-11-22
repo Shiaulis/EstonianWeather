@@ -15,13 +15,20 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             Form {
-                LanguageCell(
-                    currentLanguage: self.viewModel.currentLanguageName,
-                    didSelected: self.viewModel.openApplicationSettings
+                Section {
+                    LanguageCell(
+                        currentLanguage: self.viewModel.currentLanguageName,
+                        didSelected: self.viewModel.openApplicationSettings
+                    )
+                }
+                DisclaimerCell(
+                    disclaimerText: self.viewModel.disclaimerText,
+                    url: self.viewModel.disclaimerURL,
+                    urlDescription: self.viewModel.urlDescription
                 )
             }
             .navigationBarTitle("settings")
-            .navigationBarColor(backgroundColor: .appRose, tintColor: .white)
+            .navigationBarColor(backgroundColor: Resource.Color.appRose, tintColor: .white)
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }

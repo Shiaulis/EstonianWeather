@@ -18,6 +18,7 @@ protocol ApplicationViewModel: SettingsApplicationViewModel {
 protocol SettingsApplicationViewModel {
     var appLocalization: AppLocalization { get }
     func openApplicationSettings()
+    func openDisclaimerURL()
 }
 
 final class MockApplicationViewModel: ApplicationViewModel {
@@ -28,4 +29,5 @@ final class MockApplicationViewModel: ApplicationViewModel {
     func forecastDataProvider() -> DataProvider { .init() }
     func openApplicationSettings() {}
     func isFeatureEnabled(_ featureFlag: FeatureFlag) -> Bool { false }
+    func openDisclaimerURL() {}
 }
