@@ -29,7 +29,6 @@ struct LanguageCell: View {
 struct LanguageCell_Previews: PreviewProvider {
     static var previews: some View {
         LanguageCell(currentLanguage: "English", didSelected: {})
-        .previewLayout(.fixed(width: 414, height: 44))
-
+            .previewLayout(.fixed(width: 414, height: 44))
     }
 }

@@ -95,9 +95,10 @@
 		09779CB62532F30500957B1F /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CE3C25227D2500D409FF /* Logger.swift */; };
 		09779CC42532F9C900957B1F /* EstonianWeather.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDFA252269AF00D409FF /* EstonianWeather.xcdatamodeld */; };
 		09779CCA25332E3600957B1F /* ForecastWidgetEntryVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09779CC925332E3600957B1F /* ForecastWidgetEntryVIew.swift */; };
+		09988128256A876F00468C58 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A294CE2569976400545CFB /* Resource.swift */; };
 		099EDB0325646D4B00C3EBE4 /* NavigationBarColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099EDB0225646D4B00C3EBE4 /* NavigationBarColor.swift */; };
-		09B88F47253AD4C4002B7A78 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B88F46253AD4C4002B7A78 /* UIColor+Extension.swift */; };
-		09B88F4C253AD541002B7A78 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B88F46253AD4C4002B7A78 /* UIColor+Extension.swift */; };
+		09A294C92569811000545CFB /* DisclaimerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A294C82569811000545CFB /* DisclaimerCell.swift */; };
+		09A294CF2569976400545CFB /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A294CE2569976400545CFB /* Resource.swift */; };
 		09BD4839253CA9E000F7819E /* ObservationDisplayItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097215892534D0F000E43B7B /* ObservationDisplayItem.swift */; };
 		09C611E3253A407A002A4A60 /* ObservationListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C611E2253A407A002A4A60 /* ObservationListViewModel.swift */; };
 		09C611E9253A4468002A4A60 /* ObservationListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C611E8253A4468002A4A60 /* ObservationListController.swift */; };
@@ -234,7 +235,8 @@
 		09974227252B932A0011193F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/EstonianWeatherWidget.strings; sourceTree = "<group>"; };
 		0997422D252B932B0011193F /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/EstonianWeatherWidget.strings; sourceTree = "<group>"; };
 		099EDB0225646D4B00C3EBE4 /* NavigationBarColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarColor.swift; sourceTree = "<group>"; };
-		09B88F46253AD4C4002B7A78 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		09A294C82569811000545CFB /* DisclaimerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclaimerCell.swift; sourceTree = "<group>"; };
+		09A294CE2569976400545CFB /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		09C611E2253A407A002A4A60 /* ObservationListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationListViewModel.swift; sourceTree = "<group>"; };
 		09C611E8253A4468002A4A60 /* ObservationListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationListController.swift; sourceTree = "<group>"; };
 		09D5E4EA2544259A00FBAC98 /* FeatureFlagService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagService.swift; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 				0968CDD7252268E600D409FF /* Core */,
 				0968CDC5252267F600D409FF /* Views */,
 				097593BE2544244500C21C6B /* Supporting Files */,
+				09A294CE2569976400545CFB /* Resource.swift */,
 			);
 			path = EstonianWeather;
 			sourceTree = "<group>";
@@ -366,7 +369,6 @@
 				097215882534D08B00E43B7B /* ObservationList */,
 				09D123A2252660EE0050DC34 /* ForecastList */,
 				09D123A6252661010050DC34 /* Settings */,
-				09B88F46253AD4C4002B7A78 /* UIColor+Extension.swift */,
 				099EDB0225646D4B00C3EBE4 /* NavigationBarColor.swift */,
 			);
 			path = Views;
@@ -510,6 +512,7 @@
 				0968CDDA252268E600D409FF /* SettingsViewModel.swift */,
 				0968CDCC252267F600D409FF /* LanguageCell.swift */,
 				0968CDC6252267F600D409FF /* SettingsView.swift */,
+				09A294C82569811000545CFB /* DisclaimerCell.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -714,7 +717,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				09B88F47253AD4C4002B7A78 /* UIColor+Extension.swift in Sources */,
 				0968CE08252269AF00D409FF /* Place+CoreDataProperties.swift in Sources */,
 				0968CE06252269AF00D409FF /* Wind+CoreDataClass.swift in Sources */,
 				0968CDEC252268E600D409FF /* ForecastDisplayItem.swift in Sources */,
@@ -744,8 +746,10 @@
 				0968CDCF252267F600D409FF /* TabbarView.swift in Sources */,
 				0975937D25441B5500C21C6B /* WidgetService.swift in Sources */,
 				0968CE03252269AF00D409FF /* DayPartForecast+CoreDataProperties.swift in Sources */,
+				09A294CF2569976400545CFB /* Resource.swift in Sources */,
 				094392832532423F006A37F7 /* Phenomenon+CoreDataProperties.swift in Sources */,
 				0968CD962522667A00D409FF /* EstonianWeatherApp.swift in Sources */,
+				09A294C92569811000545CFB /* DisclaimerCell.swift in Sources */,
 				0968CDEF252268E600D409FF /* ApplicationController.swift in Sources */,
 				0968CDD0252267F600D409FF /* ForecastView.swift in Sources */,
 				09D6C9EE25239F38008C9ABB /* NetworkClient.swift in Sources */,
@@ -800,13 +804,13 @@
 				09779CCA25332E3600957B1F /* ForecastWidgetEntryVIew.swift in Sources */,
 				09779C792532F22600957B1F /* Wind+CoreDataClass.swift in Sources */,
 				09779C8E2532F2BC00957B1F /* ForecastDateFormatter.swift in Sources */,
+				09988128256A876F00468C58 /* Resource.swift in Sources */,
 				09779C892532F2AF00957B1F /* DataProvider.swift in Sources */,
 				09779C782532F22600957B1F /* Phenomenon+CoreDataProperties.swift in Sources */,
 				09779C802532F22600957B1F /* Forecast+CoreDataClass.swift in Sources */,
 				09779CB12532F30000957B1F /* WeatherType.swift in Sources */,
 				09779CA72532F2F400957B1F /* EWWind.swift in Sources */,
 				09BD4839253CA9E000F7819E /* ObservationDisplayItem.swift in Sources */,
-				09B88F4C253AD541002B7A78 /* UIColor+Extension.swift in Sources */,
 				0972159C2534DD7500E43B7B /* Observation+CoreDataProperties.swift in Sources */,
 				09779C772532F22600957B1F /* Place+CoreDataProperties.swift in Sources */,
 				09779C712532F18A00957B1F /* CoreDataStack.swift in Sources */,

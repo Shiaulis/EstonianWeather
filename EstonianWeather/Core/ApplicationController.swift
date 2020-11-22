@@ -124,7 +124,11 @@ extension ApplicationController: ApplicationViewModel {
     }
 
     func openApplicationSettings() {
-        self.settingsService.openApplicationSettings()
+        UIApplication.shared.open(Resource.Address.settings, options: [:])
+    }
+
+    func openDisclaimerURL() {
+        UIApplication.shared.open(Resource.Address.disclaimerURL(for: self.appLocalization), options: [:])
     }
 
     private var isUnitTesting: Bool { ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil }

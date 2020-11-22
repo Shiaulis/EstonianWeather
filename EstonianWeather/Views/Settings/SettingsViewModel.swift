@@ -12,9 +12,11 @@ final class SettingsViewModel {
 
     // MARK: - Properties
 
-    var currentLanguageName: String {
-        self.appViewModel.appLocalization.localizedString ?? ""
-    }
+    var currentLanguageName: String { self.appViewModel.appLocalization.localizedString ?? "" }
+    var disclaimerText: String { NSLocalizedString("source_disclaimer", comment: "") }
+    var urlDescription: String { "https://ilmateenindus.com" }
+
+    var disclaimerURL: URL { Resource.Address.disclaimerURL(for: self.appViewModel.appLocalization) }
 
     private let appViewModel: ApplicationViewModel
 
@@ -24,5 +26,9 @@ final class SettingsViewModel {
 
     func openApplicationSettings() {
         self.appViewModel.openApplicationSettings()
+    }
+
+    func openDisclaimerURL() {
+        self.appViewModel.openDisclaimerURL()
     }
 }
