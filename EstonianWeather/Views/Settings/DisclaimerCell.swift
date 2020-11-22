@@ -15,8 +15,12 @@ struct DisclaimerCell: View {
 
     var body: some View {
         VStack {
-            Text(self.disclaimerText)
-                .multilineTextAlignment(.center)
+            HStack {
+                Spacer()
+                Text(self.disclaimerText)
+                    .multilineTextAlignment(.center)
+                Spacer()
+            }
             Spacer()
             URLButton(url: self.url, urlDescription: self.urlDescription)
         }
@@ -44,8 +48,8 @@ struct DisclaimerCell_Previews: PreviewProvider {
         DisclaimerCell(
             disclaimerText: "Информация о погоде предоставлена Национальной Службой Погоды Эстонии",
             url: Resource.URL.disclaimerURL(for: .russian),
-            urlDescription: "https://ilmateenindus.com")
-            .previewLayout(.fixed(width: 414, height: 88))
+            urlDescription: "https://ilmateenindus.ee")
+            .previewLayout(.fixed(width: 814, height: 88))
 
     }
 }

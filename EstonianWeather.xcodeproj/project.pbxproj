@@ -96,6 +96,7 @@
 		09779CC42532F9C900957B1F /* EstonianWeather.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDFA252269AF00D409FF /* EstonianWeather.xcdatamodeld */; };
 		09779CCA25332E3600957B1F /* ForecastWidgetEntryVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09779CC925332E3600957B1F /* ForecastWidgetEntryVIew.swift */; };
 		09988128256A876F00468C58 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A294CE2569976400545CFB /* Resource.swift */; };
+		09988136256AD72C00468C58 /* AboutMeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09988135256AD72C00468C58 /* AboutMeView.swift */; };
 		099EDB0325646D4B00C3EBE4 /* NavigationBarColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099EDB0225646D4B00C3EBE4 /* NavigationBarColor.swift */; };
 		09A294C92569811000545CFB /* DisclaimerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A294C82569811000545CFB /* DisclaimerCell.swift */; };
 		09A294CF2569976400545CFB /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A294CE2569976400545CFB /* Resource.swift */; };
@@ -234,6 +235,7 @@
 		09974221252B93290011193F /* et */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = et; path = et.lproj/EstonianWeatherWidget.strings; sourceTree = "<group>"; };
 		09974227252B932A0011193F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/EstonianWeatherWidget.strings; sourceTree = "<group>"; };
 		0997422D252B932B0011193F /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/EstonianWeatherWidget.strings; sourceTree = "<group>"; };
+		09988135256AD72C00468C58 /* AboutMeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutMeView.swift; sourceTree = "<group>"; };
 		099EDB0225646D4B00C3EBE4 /* NavigationBarColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarColor.swift; sourceTree = "<group>"; };
 		09A294C82569811000545CFB /* DisclaimerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclaimerCell.swift; sourceTree = "<group>"; };
 		09A294CE2569976400545CFB /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
@@ -510,9 +512,10 @@
 			isa = PBXGroup;
 			children = (
 				0968CDDA252268E600D409FF /* SettingsViewModel.swift */,
-				0968CDCC252267F600D409FF /* LanguageCell.swift */,
 				0968CDC6252267F600D409FF /* SettingsView.swift */,
+				0968CDCC252267F600D409FF /* LanguageCell.swift */,
 				09A294C82569811000545CFB /* DisclaimerCell.swift */,
+				09988135256AD72C00468C58 /* AboutMeView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -718,6 +721,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0968CE08252269AF00D409FF /* Place+CoreDataProperties.swift in Sources */,
+				09988136256AD72C00468C58 /* AboutMeView.swift in Sources */,
 				0968CE06252269AF00D409FF /* Wind+CoreDataClass.swift in Sources */,
 				0968CDEC252268E600D409FF /* ForecastDisplayItem.swift in Sources */,
 				099EDB0325646D4B00C3EBE4 /* NavigationBarColor.swift in Sources */,
@@ -1009,7 +1013,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "EstonianWeather/Supporting Files/EstonianWeather.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_ASSET_PATHS = "\"EstonianWeather/Supporting Files/Preview Content\"";
 				DEVELOPMENT_TEAM = NFA8F38A32;
 				ENABLE_PREVIEWS = YES;
@@ -1035,7 +1039,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "EstonianWeather/Supporting Files/EstonianWeather.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_ASSET_PATHS = "\"EstonianWeather/Supporting Files/Preview Content\"";
 				DEVELOPMENT_TEAM = NFA8F38A32;
 				ENABLE_PREVIEWS = YES;
@@ -1144,7 +1148,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = EstonianWeatherWidget/EstonianWeatherWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = NFA8F38A32;
 				INFOPLIST_FILE = EstonianWeatherWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1168,7 +1172,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = EstonianWeatherWidget/EstonianWeatherWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = NFA8F38A32;
 				INFOPLIST_FILE = EstonianWeatherWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

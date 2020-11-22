@@ -21,6 +21,12 @@ struct SettingsView: View {
                         didSelected: self.viewModel.openApplicationSettings
                     )
                 }
+
+                Section {
+                    NavigationLink(destination: AboutMeView()) {
+                        Text("about_me_title")
+                    }
+                }
                 DisclaimerCell(
                     disclaimerText: self.viewModel.disclaimerText,
                     url: self.viewModel.disclaimerURL,

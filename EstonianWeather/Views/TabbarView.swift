@@ -62,6 +62,7 @@ struct TabbarView: View {
             self.forecastListView.tabItem { Tab.forecastList.item() }
             self.settingsView.tabItem { Tab.settings.item() }
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

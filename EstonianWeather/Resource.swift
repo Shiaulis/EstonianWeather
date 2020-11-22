@@ -20,6 +20,8 @@ struct Resource {
             case .ukrainian: return Foundation.URL(string: "https://www.ilmateenistus.ee/?lang=en")!
             }
         }
+
+        static let email = Foundation.URL(string: "mailto:shiaulis@gmail.com")!
     }
 
     struct Color {
