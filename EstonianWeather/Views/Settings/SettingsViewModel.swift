@@ -16,7 +16,7 @@ final class SettingsViewModel {
     var disclaimerText: String { NSLocalizedString("source_disclaimer", comment: "") }
     var urlDescription: String { "https://ilmateenindus.com" }
 
-    var disclaimerURL: URL { Resource.Address.disclaimerURL(for: self.appViewModel.appLocalization) }
+    var disclaimerURL: URL { Resource.URL.disclaimerURL(for: self.appViewModel.appLocalization) }
 
     private let appViewModel: ApplicationViewModel
 

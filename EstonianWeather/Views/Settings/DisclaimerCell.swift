@@ -43,7 +43,7 @@ struct DisclaimerCell_Previews: PreviewProvider {
     static var previews: some View {
         DisclaimerCell(
             disclaimerText: "Информация о погоде предоставлена Национальной Службой Погоды Эстонии",
-            url: Resource.Address.disclaimerURL(for: .russian),
+            url: Resource.URL.disclaimerURL(for: .russian),
             urlDescription: "https://ilmateenindus.com")
             .previewLayout(.fixed(width: 414, height: 88))
 

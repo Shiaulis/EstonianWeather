@@ -9,15 +9,15 @@ import Foundation
 import UIKit
 
 struct Resource {
-    struct Address {
-        static let settings = URL(string: UIApplication.openSettingsURLString)!
+    struct URL {
+        static let settings = Foundation.URL(string: UIApplication.openSettingsURLString)!
 
-        static func disclaimerURL(for localization: AppLocalization) -> URL {
+        static func disclaimerURL(for localization: AppLocalization) -> Foundation.URL {
             switch localization {
-            case .english: return URL(string: "https://www.ilmateenistus.ee/?lang=en")!
-            case .estonian: return URL(string: "https://www.ilmateenistus.ee/?lang=et")!
-            case .russian: return URL(string: "https://www.ilmateenistus.ee/?lang=ru")!
-            case .ukrainian: return URL(string: "https://www.ilmateenistus.ee/?lang=en")!
+            case .english: return Foundation.URL(string: "https://www.ilmateenistus.ee/?lang=en")!
+            case .estonian: return Foundation.URL(string: "https://www.ilmateenistus.ee/?lang=et")!
+            case .russian: return Foundation.URL(string: "https://www.ilmateenistus.ee/?lang=ru")!
+            case .ukrainian: return Foundation.URL(string: "https://www.ilmateenistus.ee/?lang=en")!
             }
         }
     }
