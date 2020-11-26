@@ -11,18 +11,18 @@ import XCTest
 final class EndpointTests: XCTestCase {
 
     func test_forecastEndpoint_generateURLWithoutThrowing() {
-        XCTAssertNoThrow(try Endpoint.forecast(for: TestableLocale.current.appLocalization).generateURL())
+        XCTAssertNoThrow(try Endpoint.forecast(for: AppLocalization(locale: .current)).generateURL())
     }
 
     func test_forecastEndpoint_returnsCorrectURLForEachLocale() throws {
-        let currentAppLocalization = TestableLocale.current.appLocalization
+        let currentAppLocalization = AppLocalization(locale: .current)
         let generatedURLString = try Endpoint.forecast(for: currentAppLocalization).generateURL().absoluteString
 
         switch TestableLocale.current {
         case .english: XCTAssertEqual(generatedURLString, "https://ilmateenistus.ee/ilma_andmed/xml/forecast.php?lang=eng")
         case .russian: XCTAssertEqual(generatedURLString, "https://ilmateenistus.ee/ilma_andmed/xml/forecast.php?lang=rus")
         case .estonian: XCTAssertEqual(generatedURLString, "https://ilmateenistus.ee/ilma_andmed/xml/forecast.php?lang=est")
-        case .ukrainian: XCTAssertEqual(generatedURLString, "https://ilmateenistus.ee/ilma_andmed/xml/forecast.php?lang=eng")
+        case .anyOther: XCTAssertEqual(generatedURLString, "https://ilmateenistus.ee/ilma_andmed/xml/forecast.php?lang=eng")
         }
     }
 

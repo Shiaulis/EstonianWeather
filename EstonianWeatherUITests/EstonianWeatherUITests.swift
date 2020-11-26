@@ -17,7 +17,7 @@ final class EstonianWeatherUITests: XCTestCase {
             case .english: return "4 Days Forecast"
             case .estonian: return "4 päeva"
             case .russian: return "Прогноз на 4 дня"
-            case .ukrainian: return "Прогноз на 4 дні"
+            case .anyOther: return "4 Days Forecast"
             }
         }
     }

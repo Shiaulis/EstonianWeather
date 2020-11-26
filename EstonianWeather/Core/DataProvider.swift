@@ -14,7 +14,7 @@ final class DataProvider {
 
     // MARK: - Properties
 
-    private let formatter: ForecastDateFormatter = .init(locale: .current)
+    private let formatter: ForecastDateFormatter = .init(localization: .current)
 
     // MARK: - Public
 

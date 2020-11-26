@@ -61,7 +61,6 @@ private extension AppLocalization {
         case .english: return "eng"
         case .estonian: return "est"
         case .russian: return "rus"
-        case .ukrainian: return "eng"
         }
     }
 }

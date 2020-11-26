@@ -12,7 +12,7 @@ enum AppLocalization {
 
     // MARK: - Cases
 
-    case english, russian, estonian, ukrainian
+    case english, russian, estonian
 
     // MARK: - Properties
 
@@ -21,25 +21,36 @@ enum AppLocalization {
         case .english: return "en"
         case .estonian: return "et"
         case .russian: return "ru"
-        case .ukrainian: return "uk"
         }
     }
 
-    var localizedString: String? {
-        Locale.current.localizedString(forLanguageCode: self.languageCode)
-    }
+    var localizedString: String? { AppLocalization.locale.localizedString(forLanguageCode: self.languageCode) }
 
-    init?(locale: Locale) {
+    var locale: Locale { AppLocalization.locale }
+    static private(set) var current: AppLocalization = .english
+
+    private static var locale: Locale = .current
+
+    // MARK: - Init
+
+    init(locale: Locale) {
         switch locale.languageCode {
-        case "en": self = .english
-        case "ru": self = .russian
-        case "et": self = .estonian
-        case "uk": self = .ukrainian
+        case "en":
+            self = .english
+            AppLocalization.locale = locale
+        case "ru":
+            self = .russian
+            AppLocalization.locale = locale
+        case "et":
+            self = .estonian
+            AppLocalization.locale = locale
 
         default:
-            assertionFailure("Locale \(locale.languageCode ?? "") is not implemented")
-            return nil
+            AppLocalization.locale = .init(identifier: "en")
+            self = .english
         }
+
+        AppLocalization.current = self
     }
 
 }

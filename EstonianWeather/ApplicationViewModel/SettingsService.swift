@@ -16,7 +16,7 @@ final class SettingsService {
     init(userDefaults: UserDefaults = .standard, coreDataStack: CoreDataStack = .init(), locale: Locale = .current) {
         self.userDefaults = userDefaults
         self.coreDataStack = coreDataStack
-        self.appLocalization = AppLocalization(locale: locale) ?? .english
+        self.appLocalization = AppLocalization(locale: locale)
 
         checkAndExecuteSettings()
         setVersionAndBuildNumber()

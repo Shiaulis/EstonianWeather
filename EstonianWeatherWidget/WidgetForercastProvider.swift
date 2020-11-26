@@ -24,7 +24,7 @@ struct ForecastEntry: TimelineEntry {
 struct WidgetForercastProvider: IntentTimelineProvider {
 
     private let coreDataStack = CoreDataStack()
-    private let localization = AppLocalization(locale: .current) ?? .english
+    private let localization = AppLocalization(locale: .current)
     private let provider: DataProvider = .init()
 
     func placeholder(in context: Context) -> ForecastEntry {

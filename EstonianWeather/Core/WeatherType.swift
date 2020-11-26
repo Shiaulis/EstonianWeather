@@ -84,7 +84,7 @@ enum WeatherType: String {
     case fewClouds = "Few clouds"
     case variableClouds = "Variable clouds"
     case cloudyWithClearSpells = "Cloudy with clear spells"
-    case cloudy  = "Cloudy"
+    case cloudy = "Cloudy"
     case lightSnowShower = "Light snow shower"
     case moderateSnowShower = "Moderate snow shower"
     case heavySnowShower = "Heavy snow shower"

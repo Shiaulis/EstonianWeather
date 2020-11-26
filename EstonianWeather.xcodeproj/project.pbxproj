@@ -221,7 +221,6 @@
 		0976968A252A667E00FA1764 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0976968F252A668300FA1764 /* et */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = et; path = et.lproj/Localizable.strings; sourceTree = "<group>"; };
 		09769690252A668700FA1764 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
-		09769691252A668800FA1764 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		09769695252A682800FA1764 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		097698B0252A708A00FA1764 /* EstonianWeatherWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = EstonianWeatherWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		097698B2252A708A00FA1764 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -234,7 +233,6 @@
 		09779CC925332E3600957B1F /* ForecastWidgetEntryVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastWidgetEntryVIew.swift; sourceTree = "<group>"; };
 		09974221252B93290011193F /* et */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = et; path = et.lproj/EstonianWeatherWidget.strings; sourceTree = "<group>"; };
 		09974227252B932A0011193F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/EstonianWeatherWidget.strings; sourceTree = "<group>"; };
-		0997422D252B932B0011193F /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/EstonianWeatherWidget.strings; sourceTree = "<group>"; };
 		09988135256AD72C00468C58 /* AboutMeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutMeView.swift; sourceTree = "<group>"; };
 		099EDB0225646D4B00C3EBE4 /* NavigationBarColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarColor.swift; sourceTree = "<group>"; };
 		09A294C82569811000545CFB /* DisclaimerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclaimerCell.swift; sourceTree = "<group>"; };
@@ -638,7 +636,6 @@
 				en,
 				Base,
 				ru,
-				uk,
 				et,
 			);
 			mainGroup = 0968CD892522667A00D409FF;
@@ -868,7 +865,6 @@
 				0976968A252A667E00FA1764 /* en */,
 				0976968F252A668300FA1764 /* et */,
 				09769690252A668700FA1764 /* ru */,
-				09769691252A668800FA1764 /* uk */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -879,7 +875,6 @@
 				B158270D252B57150064A42C /* en */,
 				09974221252B93290011193F /* et */,
 				09974227252B932A0011193F /* ru */,
-				0997422D252B932B0011193F /* uk */,
 			);
 			name = EstonianWeatherWidget.intentdefinition;
 			sourceTree = "<group>";

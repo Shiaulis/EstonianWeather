@@ -12,12 +12,12 @@ final class ForecastDateFormatter {
 
     // MARK: - Properties
 
-    private let locale: Locale
+    private let localization: AppLocalization
 
     // MARK: - Initialization
 
-    init(locale: Locale) {
-        self.locale = locale
+    init(localization: AppLocalization) {
+        self.localization = localization
     }
 
     // MARK: - Public
@@ -25,9 +25,9 @@ final class ForecastDateFormatter {
     func humanReadableDescription(for date: Date?, calendar: Calendar = .current) -> String? {
         guard let date = date else { return nil }
 
-        guard var humanReadableDescription = string(from: date, calendar: calendar, locale: self.locale) else { return nil }
+        guard var humanReadableDescription = string(from: date, calendar: calendar, locale: self.localization.locale) else { return nil }
 
-        if let description = textDescription(from: date, calendar: calendar, locale: self.locale) {
+        if let description = textDescription(from: date, calendar: calendar, locale: self.localization.locale) {
             humanReadableDescription += ", \(description)"
         }
 
@@ -38,7 +38,7 @@ final class ForecastDateFormatter {
         guard let date = date else { return nil }
 
         let formatter: DateFormatter = .init()
-        formatter.locale = locale
+        formatter.locale = self.localization.locale
         formatter.calendar = calendar
         formatter.dateStyle = .short
         formatter.timeStyle = .none
@@ -65,7 +65,7 @@ final class ForecastDateFormatter {
 
     private func string(from date: Date, calendar: Calendar, locale: Locale) -> String? {
         let formatter: DateFormatter = .init()
-        formatter.locale = self.locale
+        formatter.locale = self.localization.locale
         formatter.calendar = calendar
         formatter.setLocalizedDateFormatFromTemplate("dMMMM")
 

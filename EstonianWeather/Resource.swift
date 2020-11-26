@@ -17,7 +17,6 @@ struct Resource {
             case .english: return Foundation.URL(string: "https://www.ilmateenistus.ee/?lang=en")!
             case .estonian: return Foundation.URL(string: "https://www.ilmateenistus.ee/?lang=et")!
             case .russian: return Foundation.URL(string: "https://www.ilmateenistus.ee/?lang=ru")!
-            case .ukrainian: return Foundation.URL(string: "https://www.ilmateenistus.ee/?lang=en")!
             }
         }
 

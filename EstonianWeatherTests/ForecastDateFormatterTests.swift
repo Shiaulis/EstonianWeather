@@ -20,7 +20,7 @@ final class ForecastDateFormatterTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        self.sut = .init(locale: .current)
+        self.sut = .init(localization: .current)
     }
 
     override func tearDown() {
@@ -36,10 +36,10 @@ final class ForecastDateFormatterTests: XCTestCase {
         let receivedDescription = self.sut.humanReadableDescription(for: today)
         // then
         switch TestableLocale.current {
-        case .english: XCTAssertEqual(receivedDescription, "\(expectedString(from: today)), Today")
-        case .estonian: XCTAssertEqual(receivedDescription, "\(expectedString(from: today)), Täna")
-        case .russian: XCTAssertEqual(receivedDescription, "\(expectedString(from: today)), Сегодня")
-        case .ukrainian: XCTAssertEqual(receivedDescription, "\(expectedString(from: today)), Сьогодні")
+        case .english: XCTAssertEqual(receivedDescription?.byWords.last, "Today")
+        case .estonian: XCTAssertEqual(receivedDescription?.byWords.last, "Täna")
+        case .russian: XCTAssertEqual(receivedDescription?.byWords.last, "Сегодня")
+        case .anyOther: XCTAssertEqual(receivedDescription?.byWords.last, "Today")
         }
     }
 
@@ -49,10 +49,10 @@ final class ForecastDateFormatterTests: XCTestCase {
 
         let receivedDescription = self.sut.humanReadableDescription(for: tomorrow)
         switch TestableLocale.current {
-        case .english: XCTAssertEqual(receivedDescription, "\(expectedString(from: tomorrow)), Tomorrow")
-        case .estonian: XCTAssertEqual(receivedDescription, "\(expectedString(from: tomorrow)), Homme")
-        case .russian: XCTAssertEqual(receivedDescription, "\(expectedString(from: tomorrow)), Завтра")
-        case .ukrainian: XCTAssertEqual(receivedDescription, "\(expectedString(from: tomorrow)), Завтра")
+        case .english: XCTAssertEqual(receivedDescription?.byWords.last, "Tomorrow")
+        case .estonian: XCTAssertEqual(receivedDescription?.byWords.last, "Homme")
+        case .russian: XCTAssertEqual(receivedDescription?.byWords.last, "Завтра")
+        case .anyOther: XCTAssertEqual(receivedDescription?.byWords.last, "Tomorrow")
         }
     }
 
@@ -62,4 +62,14 @@ final class ForecastDateFormatterTests: XCTestCase {
         return formatter.string(from: date)
     }
 
+}
+
+private extension StringProtocol { // for Swift 4 you need to add the constrain `where Index == String.Index`
+    var byWords: [SubSequence] {
+        var byWords: [SubSequence] = []
+        enumerateSubstrings(in: startIndex..., options: .byWords) { _, range, _, _ in
+            byWords.append(self[range])
+        }
+        return byWords
+    }
 }
