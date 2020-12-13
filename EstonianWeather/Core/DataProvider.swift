@@ -37,7 +37,7 @@ final class DataProvider {
 
     func provideForecast(with context: NSManagedObjectContext, for localization: AppLocalization) -> Result<[ForecastDisplayItem], Error> {
         let request: NSFetchRequest<Forecast> = Forecast.fetchRequest()
-        request.predicate = .init(format:"%K = %@", #keyPath(Forecast.languageCode), localization.languageCode)
+        request.predicate = .init(format:"%K == %@", #keyPath(Forecast.languageCode), localization.languageCode)
         request.sortDescriptors = [.init(key: #keyPath(Forecast.forecastDate), ascending: true)]
 
         var result: [Forecast]?
@@ -45,6 +45,7 @@ final class DataProvider {
         context.performAndWait {
             do {
                 result = try context.fetch(request)
+                assert(!(result ?? []).isEmpty, "Empty list of objects is not expected")
             }
             catch {
                 contextError = error

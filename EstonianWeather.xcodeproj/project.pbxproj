@@ -382,7 +382,6 @@
 				0968CE3825227CE100D409FF /* Intermediate mapping */,
 				0968CDF3252269AF00D409FF /* Core Data */,
 				0968CDDF252268E600D409FF /* DataProvider.swift */,
-				0968CDE3252268E600D409FF /* ApplicationController.swift */,
 				0968CE3C25227D2500D409FF /* Logger.swift */,
 				09D6C9EC25239F29008C9ABB /* Network */,
 			);
@@ -459,6 +458,7 @@
 			isa = PBXGroup;
 			children = (
 				0968CD952522667A00D409FF /* EstonianWeatherApp.swift */,
+				0968CDE3252268E600D409FF /* ApplicationController.swift */,
 				0975938625441ECD00C21C6B /* ApplicationViewModel.swift */,
 				09769673252A5ADC00FA1764 /* SettingsService.swift */,
 				0975937C25441B5500C21C6B /* WidgetService.swift */,

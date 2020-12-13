@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum AppLocalization {
+enum AppLocalization: CaseIterable {
 
     // MARK: - Cases
 

@@ -31,7 +31,7 @@ final class ForecastListController: ForecastListViewModel {
 
     private func listenForData() {
         NotificationCenter.default
-            .publisher(for: .NSManagedObjectContextDidSave)
+            .publisher(for: .didFinishDownload)
             .tryMap { notification in
                 guard let context = notification.object as? NSManagedObjectContext else { fatalError() }
                 return try self.dataProvider.provideForecast(

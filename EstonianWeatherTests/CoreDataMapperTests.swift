@@ -75,7 +75,7 @@ final class CoreDataMapperTests: XCTestCase {
 
     private func whenPerformMapping() {
         do {
-            _ = try self.sut.performForecastMapping(self.ewForecasts, context: self.container.viewContext)
+            _ = try self.sut.performForecastMapping(self.ewForecasts, context: self.container.viewContext, localization: .english)
         }
         catch {
             XCTFail("Failed to perform mapping. Error: \(error.localizedDescription)")
