@@ -15,3 +15,12 @@
 "about_me_text" = "Hey 👋! My name is Andrius. I'm an iOS Developer from Estonia 🇪🇪. Besides being full-time developer and father of three I'm writing small apps like this. If you have any questions/concerns regarding the app, do not hesitate to contact me.";
 "about_me_title" = "About me";
 "contact_me" = "Contact me";
+"day" = "Day";
+"night" = "Night";
+
+// MARK: - Phenomenons
+"clear" = "Clear";
+"few_clouds" = "Few clouds";
+"variable_clouds" = "Variable clouds";
+"cloudy_with_clear_spells" = "Cloudy with clear spells";
+"cloudy" = "Cloudy";

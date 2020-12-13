@@ -67,11 +67,11 @@ struct PrimaryForecastView: View {
                 }
                 Spacer()
             }
-            HStack {
-                Text(self.weatherDescription)
-                    .font(.caption2)
-                Spacer()
-            }
+//            HStack {
+//                Text(self.weatherDescription)
+//                    .font(.caption2)
+//                Spacer()
+//            }
         }
     }
 }
