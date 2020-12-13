@@ -116,6 +116,7 @@
 		09F969F62532597600DA94D6 /* TestableLocale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E8E0AE2531928F00E2F180 /* TestableLocale.swift */; };
 		B158270B252B57150064A42C /* EstonianWeatherWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = B158270E252B57150064A42C /* EstonianWeatherWidget.intentdefinition */; };
 		B158270C252B57150064A42C /* EstonianWeatherWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = B158270E252B57150064A42C /* EstonianWeatherWidget.intentdefinition */; };
+		B190EB142586A5820025415A /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B190EB132586A5820025415A /* Date+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -251,6 +252,7 @@
 		09E8E0E22531E31700E2F180 /* EWWind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EWWind.swift; sourceTree = "<group>"; };
 		09F969FB25325BCB00DA94D6 /* EstonianWeatherUITests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = EstonianWeatherUITests.xctestplan; sourceTree = "<group>"; };
 		B158270D252B57150064A42C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = en; path = en.lproj/EstonianWeatherWidget.intentdefinition; sourceTree = "<group>"; };
+		B190EB132586A5820025415A /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -321,6 +323,7 @@
 				0968CDC5252267F600D409FF /* Views */,
 				097593BE2544244500C21C6B /* Supporting Files */,
 				09A294CE2569976400545CFB /* Resource.swift */,
+				B190EB132586A5820025415A /* Date+Extensions.swift */,
 			);
 			path = EstonianWeather;
 			sourceTree = "<group>";
@@ -728,6 +731,7 @@
 				0968CE09252269AF00D409FF /* Place+CoreDataClass.swift in Sources */,
 				0968CE01252269AF00D409FF /* Phenomenon+CoreDataClass.swift in Sources */,
 				0968CE07252269AF00D409FF /* EstonianWeather.xcdatamodeld in Sources */,
+				B190EB142586A5820025415A /* Date+Extensions.swift in Sources */,
 				0972158A2534D0F000E43B7B /* ObservationDisplayItem.swift in Sources */,
 				0968CDCE252267F600D409FF /* DayPartView.swift in Sources */,
 				0968CE0B252269AF00D409FF /* Forecast+CoreDataProperties.swift in Sources */,

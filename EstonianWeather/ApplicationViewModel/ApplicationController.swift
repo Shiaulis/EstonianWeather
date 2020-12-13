@@ -54,28 +54,6 @@ final class ApplicationController {
 
     }
 
-    private func requestAndMapForecasts(for localization: AppLocalization) {
-        let endpoint = Endpoint.forecast(for: localization)
-        let today = Date()
-        let context = self.persistentContainer.newBackgroundContext()
-
-        self.networkClient.requestPublisher(for: endpoint)
-            // TODOx: Should validate response code as well
-            .map { $0.data }
-            .parseForecast(using: self.parser, date: today, languageCode: localization.languageCode)
-            // TODOx: For now we will skip removing forecasts until all data would be normalized
-            // We also need to take language into consideratin probably. Or delete only once
-//            .removeForecastOlderThan(today, using: self.mapper, in: context)
-            .mapForecast(using: self.mapper, in: context, localization: localization)
-            .sink { _ in
-                self.widgetService.notifyWidgetsAboutUpdates()
-                self.logger.logNotImplemented(functionality: "Data request completion", module: .mainViewModel)
-                // should we somehow notify UI about this state?
-            }
-            receiveValue: { _ in }
-            .store(in: &self.disposables)
-    }
-
     private func requestAndMapForecastPublisher(for localization: AppLocalization) -> AnyPublisher<[EWForecast], Swift.Error> {
         let endpoint = Endpoint.forecast(for: localization)
         let today = Date()
@@ -84,9 +62,6 @@ final class ApplicationController {
             // TODOx: Should validate response code as well
             .map { $0.data }
             .parseForecast(using: self.parser, date: today, languageCode: localization.languageCode)
-            // TODOx: For now we will skip removing forecasts until all data would be normalized
-            // We also need to take language into consideratin probably. Or delete only once
-//            .removeForecastOlderThan(today, using: self.mapper, in: context)
     }
 
     private func requestAndMapForecasts() {
@@ -97,7 +72,8 @@ final class ApplicationController {
 
         Publishers
             .MergeMany(publishers)
-            .mapForecast(using: self.mapper, in: context, localization: .english)
+            .removeForecastOlderThan(Date.yesterday, using: self.mapper, in: context)
+            .mapForecast(using: self.mapper, in: context)
             .sink { completion in
                 switch completion {
                 case .finished:

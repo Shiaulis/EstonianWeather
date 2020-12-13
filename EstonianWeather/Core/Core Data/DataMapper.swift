@@ -11,7 +11,7 @@ import CoreData
 import Combine
 
 protocol DataMapper {
-    func performForecastMapping(_ forecastsToMap: [EWForecast], context: NSManagedObjectContext, localization: AppLocalization) throws -> [Forecast]
+    func performForecastMapping(_ forecastsToMap: [EWForecast], context: NSManagedObjectContext) throws -> [Forecast]
     func performObservationMapping(observationsToMap: [EWObservation], context: NSManagedObjectContext) throws -> [Observation]
 
     func removeAllForecasts(from context: NSManagedObjectContext, olderThan cutOffDate: Date) throws
@@ -19,12 +19,11 @@ protocol DataMapper {
 }
 
 extension Publisher where Output == [EWForecast] {
-    func mapForecast(using mapper: DataMapper, in context: NSManagedObjectContext, localization: AppLocalization) -> AnyPublisher<[Forecast], Swift.Error> {
-        self
-            .tryMap { forecasts in
-                try mapper.performForecastMapping(forecasts, context: context, localization: localization)
-            }
-            .eraseToAnyPublisher()
+    func mapForecast(using mapper: DataMapper, in context: NSManagedObjectContext) -> AnyPublisher<[Forecast], Swift.Error> {
+        self.tryMap { forecasts in
+            try mapper.performForecastMapping(forecasts, context: context)
+        }
+        .eraseToAnyPublisher()
     }
 
     func removeForecastOlderThan(_ date: Date, using dataMapper: DataMapper, in context: NSManagedObjectContext) -> AnyPublisher<[EWForecast], Swift.Error> {
@@ -112,12 +111,12 @@ final class CoreDataMapper: DataMapper {
         }
     }
 
-    func performForecastMapping(_ forecastsToMap: [EWForecast], context: NSManagedObjectContext, localization: AppLocalization) throws -> [Forecast] {
+    func performForecastMapping(_ forecastsToMap: [EWForecast], context: NSManagedObjectContext) throws -> [Forecast] {
         var contextError: Swift.Error?
         var mappedForecasts: [Forecast] = []
         context.performAndWait {
             do {
-                mappedForecasts = try self.map(forecastsToMap, context: context, localization: localization)
+                mappedForecasts = try self.map(forecastsToMap, context: context)
                 try context.save()
             }
             catch {
@@ -162,13 +161,11 @@ final class CoreDataMapper: DataMapper {
         return mappedObservations
     }
 
-    private func map(_ forecastsToMap: [EWForecast], context: NSManagedObjectContext, localization: AppLocalization) throws -> [Forecast] {
+    private func map(_ forecastsToMap: [EWForecast], context: NSManagedObjectContext) throws -> [Forecast] {
         var mappedForecasts: [Forecast] = []
         for forecastToMap in forecastsToMap {
             let mappedForecast = try map(forecastToMap, context: context)
             mappedForecast.receivedDate = forecastToMap.dateReceived
-//            assert(localization.languageCode == forecastToMap.languageCode,
-//                   "During parsing forecast with language \(forecastToMap.languageCode ?? "??") we expect to see \(localization.languageCode) language code")
             mappedForecasts.append(mappedForecast)
         }
 
@@ -276,10 +273,17 @@ final class CoreDataMapper: DataMapper {
         return mappedForecast
     }
 
+    private func map(_ forecastType: EWForecast.EWDayPartForecast.EWDayPartType) -> String {
+        switch forecastType {
+        case .day: return NSLocalizedString("day", comment: "forecast part type")
+        case .night: return NSLocalizedString("night", comment: "forecast part type")
+        }
+    }
+
     private func map(_ dayPartForecastToMap: EWForecast.EWDayPartForecast, context: NSManagedObjectContext) throws -> DayPartForecast {
         let mappedDayPartForecast: DayPartForecast = try create(in: context)
 
-        mappedDayPartForecast.type = dayPartForecastToMap.type.rawValue
+        mappedDayPartForecast.type = map(dayPartForecastToMap.type)
         mappedDayPartForecast.phenomenon = try map(dayPartForecastToMap.phenomenon, context: context)
         mappedDayPartForecast.text = dayPartForecastToMap.text
         mappedDayPartForecast.sea = dayPartForecastToMap.sea
