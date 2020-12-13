@@ -11,7 +11,7 @@ import CoreData
 import Combine
 
 protocol DataMapper {
-    func performForecastMapping(_ forecastsToMap: [EWForecast], context: NSManagedObjectContext) throws -> [Forecast]
+    func performForecastMapping(_ forecastsToMap: [EWForecast], context: NSManagedObjectContext, localization: AppLocalization) throws -> [Forecast]
     func performObservationMapping(observationsToMap: [EWObservation], context: NSManagedObjectContext) throws -> [Observation]
 
     func removeAllForecasts(from context: NSManagedObjectContext, olderThan cutOffDate: Date) throws
@@ -19,10 +19,10 @@ protocol DataMapper {
 }
 
 extension Publisher where Output == [EWForecast] {
-    func mapForecast(using mapper: DataMapper, in context: NSManagedObjectContext) -> AnyPublisher<[Forecast], Swift.Error> {
+    func mapForecast(using mapper: DataMapper, in context: NSManagedObjectContext, localization: AppLocalization) -> AnyPublisher<[Forecast], Swift.Error> {
         self
             .tryMap { forecasts in
-                try mapper.performForecastMapping(forecasts, context: context)
+                try mapper.performForecastMapping(forecasts, context: context, localization: localization)
             }
             .eraseToAnyPublisher()
     }
@@ -112,12 +112,12 @@ final class CoreDataMapper: DataMapper {
         }
     }
 
-    func performForecastMapping(_ forecastsToMap: [EWForecast], context: NSManagedObjectContext) throws -> [Forecast] {
+    func performForecastMapping(_ forecastsToMap: [EWForecast], context: NSManagedObjectContext, localization: AppLocalization) throws -> [Forecast] {
         var contextError: Swift.Error?
         var mappedForecasts: [Forecast] = []
         context.performAndWait {
             do {
-                mappedForecasts = try self.map(forecastsToMap, context: context)
+                mappedForecasts = try self.map(forecastsToMap, context: context, localization: localization)
                 try context.save()
             }
             catch {
@@ -162,12 +162,13 @@ final class CoreDataMapper: DataMapper {
         return mappedObservations
     }
 
-    private func map(_ forecastsToMap: [EWForecast], context: NSManagedObjectContext) throws -> [Forecast] {
+    private func map(_ forecastsToMap: [EWForecast], context: NSManagedObjectContext, localization: AppLocalization) throws -> [Forecast] {
         var mappedForecasts: [Forecast] = []
         for forecastToMap in forecastsToMap {
             let mappedForecast = try map(forecastToMap, context: context)
             mappedForecast.receivedDate = forecastToMap.dateReceived
-            mappedForecast.languageCode = forecastToMap.languageCode
+//            assert(localization.languageCode == forecastToMap.languageCode,
+//                   "During parsing forecast with language \(forecastToMap.languageCode ?? "??") we expect to see \(localization.languageCode) language code")
             mappedForecasts.append(mappedForecast)
         }
 
@@ -218,12 +219,14 @@ final class CoreDataMapper: DataMapper {
     }
 
     private func existingForecast(for forecastToMap: EWForecast, context: NSManagedObjectContext) throws -> Forecast {
-        guard let requestedDate = forecastToMap.forecastDate else {
-            throw Error.nonValidData
-        }
+        guard let requestedDate = forecastToMap.forecastDate as NSDate? else { throw Error.nonValidData }
+        guard let languageCode = forecastToMap.languageCode else { throw Error.nonValidData }
 
         let request: NSFetchRequest<Forecast> = Forecast.fetchRequest()
-        request.predicate = NSPredicate(format: "%K == %@", #keyPath(Forecast.forecastDate), requestedDate as NSDate)
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(format: "%K == %@", #keyPath(Forecast.forecastDate), requestedDate),
+            NSPredicate(format: "%K == %@", #keyPath(Forecast.languageCode), languageCode)
+        ])
 
         return try fetch(request: request, in: context)
     }
@@ -247,6 +250,7 @@ final class CoreDataMapper: DataMapper {
         }
 
         mappedForecast.forecastDate = forecastToMap.forecastDate
+        mappedForecast.languageCode = forecastToMap.languageCode
 
         // Delete previous if they were existed
         // All winds and places should also be deleted

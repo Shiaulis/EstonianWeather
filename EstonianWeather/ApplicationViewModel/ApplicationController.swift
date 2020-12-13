@@ -46,25 +46,74 @@ final class ApplicationController {
 
     private func requestAndMapData() {
         requestAndMapForecasts()
-        requestObservations()
+
+        if featureFlagService.isEnabled(.observations) {
+            assertionFailure("Not expeced to be triggered yet")
+            requestObservations()
+        }
+
     }
 
-    private func requestAndMapForecasts() {
-        let endpoint = Endpoint.forecast(for: self.settingsService.appLocalization)
+    private func requestAndMapForecasts(for localization: AppLocalization) {
+        let endpoint = Endpoint.forecast(for: localization)
         let today = Date()
         let context = self.persistentContainer.newBackgroundContext()
 
         self.networkClient.requestPublisher(for: endpoint)
             // TODOx: Should validate response code as well
             .map { $0.data }
-            .parseForecast(using: self.parser, date: today, languageCode: self.settingsService.appLocalization.languageCode)
-            .removeForecastOlderThan(today, using: self.mapper, in: context)
-            .mapForecast(using: self.mapper, in: context)
+            .parseForecast(using: self.parser, date: today, languageCode: localization.languageCode)
+            // TODOx: For now we will skip removing forecasts until all data would be normalized
+            // We also need to take language into consideratin probably. Or delete only once
+//            .removeForecastOlderThan(today, using: self.mapper, in: context)
+            .mapForecast(using: self.mapper, in: context, localization: localization)
             .sink { _ in
                 self.widgetService.notifyWidgetsAboutUpdates()
                 self.logger.logNotImplemented(functionality: "Data request completion", module: .mainViewModel)
+                // should we somehow notify UI about this state?
             }
             receiveValue: { _ in }
+            .store(in: &self.disposables)
+    }
+
+    private func requestAndMapForecastPublisher(for localization: AppLocalization) -> AnyPublisher<[EWForecast], Swift.Error> {
+        let endpoint = Endpoint.forecast(for: localization)
+        let today = Date()
+
+        return self.networkClient.requestPublisher(for: endpoint)
+            // TODOx: Should validate response code as well
+            .map { $0.data }
+            .parseForecast(using: self.parser, date: today, languageCode: localization.languageCode)
+            // TODOx: For now we will skip removing forecasts until all data would be normalized
+            // We also need to take language into consideratin probably. Or delete only once
+//            .removeForecastOlderThan(today, using: self.mapper, in: context)
+    }
+
+    private func requestAndMapForecasts() {
+        let context = self.persistentContainer.viewContext
+        let publishers = AppLocalization
+            .allCases
+            .map { requestAndMapForecastPublisher(for: $0) }
+
+        Publishers
+            .MergeMany(publishers)
+            .mapForecast(using: self.mapper, in: context, localization: .english)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    self.widgetService.notifyWidgetsAboutUpdates()
+                    self.logger.logNotImplemented(functionality: "Data request completion", module: .mainViewModel)
+                    // should we somehow notify UI about this state?
+                    NotificationCenter.default.post(name: .didFinishDownload, object: context)
+
+                case .failure:
+                    assertionFailure()
+                }
+
+            }
+            receiveValue: { value in
+                print(value)
+            }
             .store(in: &self.disposables)
     }
 
@@ -145,4 +194,8 @@ extension ApplicationController: ApplicationViewModel {
         DataProvider()
     }
 
+}
+
+extension Notification.Name {
+    static let didFinishDownload = Notification.Name("didFinishDownload")
 }
