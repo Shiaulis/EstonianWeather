@@ -72,7 +72,7 @@ final class ApplicationController {
 
         Publishers
             .MergeMany(publishers)
-            .removeForecastOlderThan(Date.yesterday, using: self.mapper, in: context)
+            .removeForecastOlderThan(Date(), using: self.mapper, in: context)
             .mapForecast(using: self.mapper, in: context)
             .sink { completion in
                 switch completion {
