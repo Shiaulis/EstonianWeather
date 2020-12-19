@@ -14,6 +14,12 @@ final class ApplicationController {
 
     // MARK: - Properties
 
+    var syncStatus: SyncStatus = .ready {
+        didSet {
+            NotificationCenter.default.post(name: .syncStatusDidChange, object: self, userInfo: nil)
+        }
+    }
+
     private let settingsService: SettingsService
     private let widgetService: WidgetService
     private let featureFlagService: FeatureFlagService
@@ -29,6 +35,8 @@ final class ApplicationController {
     private lazy var mapper: DataMapper = { CoreDataMapper(logger: self.logger) }()
     private let logger: Logger = PrintLogger()
     private let networkClient: NetworkClient = URLSessionNetworkClient()
+
+    var viewContext: NSManagedObjectContext { self.coreDataStack.persistentContainer.viewContext }
 
     // MARK: - Initialization
 
@@ -65,6 +73,7 @@ final class ApplicationController {
     }
 
     private func requestAndMapForecasts() {
+        self.syncStatus = .syncing
         let context = self.persistentContainer.viewContext
         let publishers = AppLocalization
             .allCases
@@ -80,9 +89,10 @@ final class ApplicationController {
                     self.widgetService.notifyWidgetsAboutUpdates()
                     self.logger.logNotImplemented(functionality: "Data request completion", module: .mainViewModel)
                     // should we somehow notify UI about this state?
-                    NotificationCenter.default.post(name: .didFinishDownload, object: context)
+                    self.syncStatus = .synced("Synced at \(Date().description)")
 
                 case .failure(let error):
+                    self.syncStatus = .failed(error.localizedDescription)
                     assertionFailure("Failed to fetch data. Error = \(error.localizedDescription)")
                 }
 
@@ -174,5 +184,5 @@ extension ApplicationController: ApplicationViewModel {
 }
 
 extension Notification.Name {
-    static let didFinishDownload = Notification.Name("didFinishDownload")
+    static let syncStatusDidChange = Notification.Name("syncStatusDidChange")
 }

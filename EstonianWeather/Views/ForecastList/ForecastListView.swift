@@ -20,6 +20,7 @@ struct ForecastListView<ViewModel: ForecastListViewModel>: View {
         NavigationView {
             ScrollView {
                 LazyVStack {
+                    SyncStatusView(status: self.viewModel.syncStatus)
                     ForEach(self.viewModel.displayItems) { displayItem in
                         ForecastView(item: displayItem)
                     }
@@ -31,6 +32,37 @@ struct ForecastListView<ViewModel: ForecastListViewModel>: View {
         }
     }
 
+}
+
+struct SyncStatusView: View {
+    let status: SyncStatus
+
+    private var color: Color {
+        switch status {
+        case .synced: return .gray
+        case .syncing: return .green
+        case .failed: return .red
+        case .ready: return .blue
+        }
+    }
+
+    private var description: String {
+        switch status {
+        case .synced: return "Synced"
+        case .syncing: return "Syncing"
+        case .failed: return "Failed"
+        case .ready: return "Ready"
+        }
+    }
+
+    var body: some View {
+        HStack {
+            Spacer()
+            Text(self.description)
+                .foregroundColor(self.color)
+            Spacer()
+        }
+    }
 }
 
 struct ForecastListView_Previews: PreviewProvider {

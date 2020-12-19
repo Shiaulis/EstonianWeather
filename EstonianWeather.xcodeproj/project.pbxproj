@@ -117,6 +117,7 @@
 		B158270B252B57150064A42C /* EstonianWeatherWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = B158270E252B57150064A42C /* EstonianWeatherWidget.intentdefinition */; };
 		B158270C252B57150064A42C /* EstonianWeatherWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = B158270E252B57150064A42C /* EstonianWeatherWidget.intentdefinition */; };
 		B190EB142586A5820025415A /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B190EB132586A5820025415A /* Date+Extensions.swift */; };
+		B1C7323A258E126900C22232 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C73239258E126900C22232 /* BannerView.swift */; };
 		B1D3AC37258D52DC00456FCB /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D6C9E725239EA5008C9ABB /* Endpoint.swift */; };
 		B1D3AC3C258D530600456FCB /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D6C9ED25239F38008C9ABB /* NetworkClient.swift */; };
 		B1D3AC41258D532200456FCB /* ServerResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDE2252268E600D409FF /* ServerResponseParser.swift */; };
@@ -256,6 +257,7 @@
 		09F969FB25325BCB00DA94D6 /* EstonianWeatherUITests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = EstonianWeatherUITests.xctestplan; sourceTree = "<group>"; };
 		B158270D252B57150064A42C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = en; path = en.lproj/EstonianWeatherWidget.intentdefinition; sourceTree = "<group>"; };
 		B190EB132586A5820025415A /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		B1C73239258E126900C22232 /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -371,6 +373,7 @@
 		0968CDC5252267F600D409FF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B1C73238258E11CE00C22232 /* Helper Views */,
 				0968CDC8252267F600D409FF /* TabbarView.swift */,
 				097215882534D08B00E43B7B /* ObservationList */,
 				09D123A2252660EE0050DC34 /* ForecastList */,
@@ -531,6 +534,14 @@
 				09D6C9ED25239F38008C9ABB /* NetworkClient.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		B1C73238258E11CE00C22232 /* Helper Views */ = {
+			isa = PBXGroup;
+			children = (
+				B1C73239258E126900C22232 /* BannerView.swift */,
+			);
+			path = "Helper Views";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -753,6 +764,7 @@
 				09769674252A5ADC00FA1764 /* SettingsService.swift in Sources */,
 				0968CDCF252267F600D409FF /* TabbarView.swift in Sources */,
 				0975937D25441B5500C21C6B /* WidgetService.swift in Sources */,
+				B1C7323A258E126900C22232 /* BannerView.swift in Sources */,
 				0968CE03252269AF00D409FF /* DayPartForecast+CoreDataProperties.swift in Sources */,
 				09A294CF2569976400545CFB /* Resource.swift in Sources */,
 				094392832532423F006A37F7 /* Phenomenon+CoreDataProperties.swift in Sources */,
