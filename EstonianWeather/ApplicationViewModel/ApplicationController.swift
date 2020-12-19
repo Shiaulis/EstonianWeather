@@ -82,8 +82,8 @@ final class ApplicationController {
                     // should we somehow notify UI about this state?
                     NotificationCenter.default.post(name: .didFinishDownload, object: context)
 
-                case .failure:
-                    assertionFailure()
+                case .failure(let error):
+                    assertionFailure("Failed to fetch data. Error = \(error.localizedDescription)")
                 }
 
             }
@@ -97,6 +97,7 @@ final class ApplicationController {
         let endpoint = Endpoint.observations()
         let today = Date()
         let context = self.persistentContainer.newBackgroundContext()
+        context.automaticallyMergesChangesFromParent = true
 
         self.networkClient.requestPublisher(for: endpoint)
             // TODOx: Should validate response code as well
