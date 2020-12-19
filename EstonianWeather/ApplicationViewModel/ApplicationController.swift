@@ -75,6 +75,7 @@ final class ApplicationController {
     private func requestAndMapForecasts() {
         self.syncStatus = .syncing
         let context = self.persistentContainer.viewContext
+        context.mergePolicy = NSMergePolicy(merge: .overwriteMergePolicyType)
         let publishers = AppLocalization
             .allCases
             .map { requestAndMapForecastPublisher(for: $0) }
@@ -89,11 +90,15 @@ final class ApplicationController {
                     self.widgetService.notifyWidgetsAboutUpdates()
                     self.logger.logNotImplemented(functionality: "Data request completion", module: .mainViewModel)
                     // should we somehow notify UI about this state?
-                    self.syncStatus = .synced("Synced at \(Date().description)")
+                    let formatter = DateFormatter()
+                    formatter.dateStyle = .medium
+                    formatter.timeStyle = .medium
+                    formatter.doesRelativeDateFormatting = true
+                    self.syncStatus = .synced("Synced \(formatter.string(from: Date()).lowercased())")
 
                 case .failure(let error):
                     self.syncStatus = .failed(error.localizedDescription)
-                    assertionFailure("Failed to fetch data. Error = \(error.localizedDescription)")
+//                    assertionFailure("Failed to fetch data. Error = \(error.localizedDescription)")
                 }
 
             }
@@ -107,7 +112,9 @@ final class ApplicationController {
         let endpoint = Endpoint.observations()
         let today = Date()
         let context = self.persistentContainer.newBackgroundContext()
+        context.mergePolicy = NSMergePolicy(merge: .overwriteMergePolicyType)
         context.automaticallyMergesChangesFromParent = true
+        context.parent = self.persistentContainer.viewContext
 
         self.networkClient.requestPublisher(for: endpoint)
             // TODOx: Should validate response code as well
@@ -134,7 +141,7 @@ final class ApplicationController {
     private func subscribeForNotifications() {
         NotificationCenter
             .default
-            .publisher(for: UIApplication.didEnterBackgroundNotification, object: self)
+            .publisher(for: UIApplication.didEnterBackgroundNotification)
             .sink { _ in
                 self.timerDisposable = nil
             }
@@ -142,7 +149,7 @@ final class ApplicationController {
 
         NotificationCenter
             .default
-            .publisher(for: UIApplication.didBecomeActiveNotification, object: self)
+            .publisher(for: UIApplication.didBecomeActiveNotification)
             .sink { _ in
                 self.setTimerForRequests(with: self.defaultRequestsInterval)
             }
