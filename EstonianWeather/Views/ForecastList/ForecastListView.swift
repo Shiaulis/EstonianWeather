@@ -50,10 +50,19 @@ struct SyncStatusView: View {
 
     private var description: String {
         switch status {
-        case .synced(let description): return "✅ \(description)"
-        case .syncing: return " 🔄 Syncing"
-        case .failed(let errorDescription): return "⚠️ Failed. Error: \(errorDescription)"
-        case .ready: return "Ready"
+        case .synced(let syncDate):
+            let formatter = DateFormatter()
+            formatter.dateStyle = .medium
+            formatter.timeStyle = .medium
+            formatter.doesRelativeDateFormatting = true
+            let prefix = "✅ \(NSLocalizedString("synced ", comment: ""))"
+            return prefix + formatter.string(from: syncDate)
+        case .syncing:
+            return " 🔄 \(NSLocalizedString("syncing", comment: ""))"
+        case .failed(let errorDescription):
+            return NSLocalizedString("failed_to_sync_error", comment: "") + errorDescription
+        case .ready:
+            return NSLocalizedString("ready", comment: "")
         }
     }
 

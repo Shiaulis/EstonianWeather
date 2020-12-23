@@ -14,14 +14,14 @@ import UIKit
 enum SyncStatus {
     case ready
     case syncing
-    case synced(String)
+    case synced(Date)
     case failed(String)
 }
 
 final class ForecastListController: ForecastListViewModel {
 
     @Published var bannerData: BannerData = BannerData(title: "", detail: "", type: .error)
-    @Published var syncStatus: SyncStatus = .synced("") {
+    @Published var syncStatus: SyncStatus = .ready {
         didSet {
             let context = self.appViewModel.viewContext
             let displayItems = try? self.dataProvider.provideForecast(
