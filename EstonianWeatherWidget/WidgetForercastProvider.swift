@@ -24,18 +24,15 @@ struct ForecastEntry: TimelineEntry {
 
 final class WidgetForercastProvider: IntentTimelineProvider {
 
-    private let coreDataStack = CoreDataStack()
-    private let localization = AppLocalization(locale: .current)
-    private let provider: DataProvider = .init()
-    private let networkClient: NetworkClient = URLSessionNetworkClient()
-    private let parser: ServerResponseParser = ServerResponseXMLParser()
-    private let mapper: DataMapper
-    private let logger: Logger
+    private let coreDataStack: CoreDataStack
+    private let model: Model
+    private var syncStatus: SyncStatus = .ready
+
     private var disposables: Set<AnyCancellable> = []
 
     init() {
-        self.logger = PrintLogger()
-        self.mapper = CoreDataMapper(logger: self.logger)
+        self.coreDataStack = CoreDataStack()
+        self.model = Model(context: self.coreDataStack.persistentContainer.viewContext)
     }
 
     func placeholder(in context: Context) -> ForecastEntry {
@@ -43,62 +40,29 @@ final class WidgetForercastProvider: IntentTimelineProvider {
     }
 
     func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (ForecastEntry) -> Void) {
-        let displayItems = fetchForecasts()
-        let entry = ForecastEntry(displayItems: displayItems, date: Date(), configuration: configuration)
-        completion(entry)
-    }
-
-    func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<ForecastEntry>) -> Void) {
-        requestAndMapForecasts { [weak self] in
-            guard let self = self else { return }
-            let displayItems = self.fetchForecasts()
-            let entry = ForecastEntry(displayItems: displayItems, date: Date(), configuration: configuration)
-
-            let timeline = Timeline(entries: [entry], policy: .atEnd)
-            completion(timeline)
+        requestAndMapForecasts(for: configuration) { entry in
+            completion(entry)
         }
     }
 
-    private func fetchForecasts() -> [ForecastDisplayItem] {
-        let result = self.provider.provideForecast(
-            with: self.coreDataStack.persistentContainer.viewContext,
-            for: self.localization)
-
-        return (try? result.get()) ?? []
+    func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<ForecastEntry>) -> Void) {
+        requestAndMapForecasts(for: configuration) { entry in
+            completion(.init(entries: [entry], policy: .atEnd))
+        }
     }
 
-    private func requestAndMapForecasts(result: @escaping () -> Void) {
-        let context = self.coreDataStack.persistentContainer.viewContext
-        let publishers = [requestAndMapForecastPublisher(for: self.localization)]
-        Publishers
-            .MergeMany(publishers)
-            .removeForecastOlderThan(Date(), using: self.mapper, in: context)
-            .mapForecast(using: self.mapper, in: context)
-            .sink { completion in
-                switch completion {
-                case .finished:
-                    self.logger.logNotImplemented(functionality: "Data request completion", module: .mainViewModel)
-                    // should we somehow notify UI about this state?
-                case .failure:
-                    assertionFailure()
-                }
-
-                result()
+    private func requestAndMapForecasts(for configuration: ConfigurationIntent, completion: @escaping (ForecastEntry) -> Void) {
+        self.syncStatus = .syncing
+        self.model.provideForecasts { result in
+            switch result {
+            case .success(let forecastDisplayItems):
+                self.syncStatus = .synced(Date())
+                completion(.init(displayItems: forecastDisplayItems, date: Date(), configuration: configuration))
+            case .failure(let error):
+                self.syncStatus = .failed(error.localizedDescription)
+                completion(.init(displayItems: [], date: Date(), configuration: configuration))
             }
-            receiveValue: { value in
-                print(value)
-            }
-            .store(in: &self.disposables)
-    }
-
-    private func requestAndMapForecastPublisher(for localization: AppLocalization) -> AnyPublisher<[EWForecast], Swift.Error> {
-        let endpoint = Endpoint.forecast(for: localization)
-        let today = Date()
-
-        return self.networkClient.requestPublisher(for: endpoint)
-            // TODOx: Should validate response code as well
-            .map { $0.data }
-            .parseForecast(using: self.parser, date: today, languageCode: localization.languageCode)
+        }
     }
 
 }

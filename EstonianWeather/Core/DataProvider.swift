@@ -67,7 +67,7 @@ final class DataProvider {
         .init(name: observation.stationName ?? "")
     }
 
-    private func displayItem(for forecast: Forecast) -> ForecastDisplayItem {
+    func displayItem(for forecast: Forecast) -> ForecastDisplayItem {
         .init(
             naturalDateDescription: self.formatter.humanReadableDescription(for: forecast.forecastDate) ?? "",
             shortDateDescription: self.formatter.shortReadableDescription(for: forecast.forecastDate) ?? "",
