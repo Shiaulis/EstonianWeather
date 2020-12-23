@@ -14,6 +14,8 @@ final class ApplicationController {
 
     // MARK: - Properties
 
+    let model: Model
+
     var syncStatus: SyncStatus = .ready {
         didSet {
             NotificationCenter.default.post(name: .syncStatusDidChange, object: self, userInfo: nil)
@@ -45,63 +47,9 @@ final class ApplicationController {
         self.settingsService = .init(userDefaults: .standard, coreDataStack: self.coreDataStack)
         self.widgetService = .init()
         self.featureFlagService = .init(storage: RuntimeFeatureFlagStorage())
+        self.model = Model(context: self.coreDataStack.persistentContainer.viewContext)
 
         guard self.applicationMode != .unitTests else { return }
-
-        setTimerForRequests(with: self.defaultRequestsInterval)
-        subscribeForNotifications()
-    }
-
-    private func requestAndMapData() {
-        requestAndMapForecasts()
-
-        if featureFlagService.isEnabled(.observations) {
-            assertionFailure("Not expeced to be triggered yet")
-            requestObservations()
-        }
-
-    }
-
-    private func requestAndMapForecastPublisher(for localization: AppLocalization) -> AnyPublisher<[EWForecast], Swift.Error> {
-        let endpoint = Endpoint.forecast(for: localization)
-        let today = Date()
-
-        return self.networkClient.requestPublisher(for: endpoint)
-            // TODOx: Should validate response code as well
-            .map { $0.data }
-            .parseForecast(using: self.parser, date: today, languageCode: localization.languageCode)
-    }
-
-    private func requestAndMapForecasts() {
-        self.syncStatus = .syncing
-        let context = self.persistentContainer.viewContext
-        context.mergePolicy = NSMergePolicy(merge: .overwriteMergePolicyType)
-        let publishers = AppLocalization
-            .allCases
-            .map { requestAndMapForecastPublisher(for: $0) }
-
-        Publishers
-            .MergeMany(publishers)
-            .removeForecastOlderThan(Date(), using: self.mapper, in: context)
-            .mapForecast(using: self.mapper, in: context)
-            .sink { completion in
-                switch completion {
-                case .finished:
-                    self.widgetService.notifyWidgetsAboutUpdates()
-                    self.logger.logNotImplemented(functionality: "Data request completion", module: .mainViewModel)
-                    // should we somehow notify UI about this state?
-                    self.syncStatus = .synced(Date())
-
-                case .failure(let error):
-                    self.syncStatus = .failed(error.localizedDescription)
-//                    assertionFailure("Failed to fetch data. Error = \(error.localizedDescription)")
-                }
-
-            }
-            receiveValue: { value in
-                print(value)
-            }
-            .store(in: &self.disposables)
     }
 
     private func requestObservations() {
@@ -126,31 +74,6 @@ final class ApplicationController {
             .store(in: &self.disposables)
     }
 
-    private func setTimerForRequests(with interval: TimeInterval) {
-        self.requestAndMapData()
-        self.timerDisposable =
-        Timer
-            .publish(every: interval, on: RunLoop.main, in: .default)
-            .sink { _ in self.requestAndMapData() }
-    }
-
-    private func subscribeForNotifications() {
-        NotificationCenter
-            .default
-            .publisher(for: UIApplication.didEnterBackgroundNotification)
-            .sink { _ in
-                self.timerDisposable = nil
-            }
-            .store(in: &self.disposables)
-
-        NotificationCenter
-            .default
-            .publisher(for: UIApplication.didBecomeActiveNotification)
-            .sink { _ in
-                self.setTimerForRequests(with: self.defaultRequestsInterval)
-            }
-            .store(in: &self.disposables)
-    }
 }
 
 extension ApplicationController: ApplicationViewModel {

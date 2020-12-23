@@ -12,6 +12,7 @@ protocol ApplicationViewModel: SettingsApplicationViewModel {
     var applicationMode: ApplicationMode { get }
     var syncStatus: SyncStatus { get }
     var viewContext: NSManagedObjectContext { get }
+    var model: Model { get }
 
     func forecastDataProvider() -> DataProvider
     func isFeatureEnabled(_ featureFlag: FeatureFlag) -> Bool
@@ -29,6 +30,7 @@ final class MockApplicationViewModel: ApplicationViewModel {
     var syncStatus: SyncStatus = .failed("error")
     var applicationMode: ApplicationMode = .swiftUI
     var appLocalization: AppLocalization = .english
+    var model: Model = .init(context: NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType))
 
     func forecastDataProvider() -> DataProvider { .init() }
     func openApplicationSettings() {}
