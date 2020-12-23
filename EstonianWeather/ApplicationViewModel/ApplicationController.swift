@@ -90,11 +90,7 @@ final class ApplicationController {
                     self.widgetService.notifyWidgetsAboutUpdates()
                     self.logger.logNotImplemented(functionality: "Data request completion", module: .mainViewModel)
                     // should we somehow notify UI about this state?
-                    let formatter = DateFormatter()
-                    formatter.dateStyle = .medium
-                    formatter.timeStyle = .medium
-                    formatter.doesRelativeDateFormatting = true
-                    self.syncStatus = .synced("Synced \(formatter.string(from: Date()).lowercased())")
+                    self.syncStatus = .synced(Date())
 
                 case .failure(let error):
                     self.syncStatus = .failed(error.localizedDescription)
