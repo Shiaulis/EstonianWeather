@@ -13,7 +13,7 @@ struct EstonianWeatherWidgetEntryView: View {
 
     var body: some View {
         ZStack {
-            Color.black
+            Color(Resource.Color.appRose)
             VStack(spacing: 2) {
                 HeaderView()
                 HStack(spacing: 2) {
@@ -67,14 +67,20 @@ struct ForecastWeatherDayView: View {
                     .font(.system(size: 12))
             }
             .padding(.init(top: 16, leading: 4, bottom: 16, trailing: 4))
-            .foregroundColor(.black)
+            .foregroundColor(Color.init(.label))
+            .background(Color.init(.secondarySystemGroupedBackground))
         }
     }
 }
 
 struct ForecastWidgetEntryVIew_Previews: PreviewProvider {
     static var previews: some View {
-        EstonianWeatherWidgetEntryView(entry: .test)
-            .previewContext(WidgetPreviewContext(family: .systemMedium))
+        Group {
+            EstonianWeatherWidgetEntryView(entry: .test)
+                .previewContext(WidgetPreviewContext(family: .systemMedium))
+            EstonianWeatherWidgetEntryView(entry: .test)
+                .previewContext(WidgetPreviewContext(family: .systemMedium))
+                .environment(\.colorScheme, .dark)
+        }
     }
 }
