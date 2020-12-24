@@ -19,7 +19,7 @@ struct ForecastEntry: TimelineEntry {
         self.configuration = configuration
     }
 
-    static let test: ForecastEntry = .init(displayItems: [.test1, .test1, .test2, .test2], date: Date(), configuration: ConfigurationIntent())
+    static let test: ForecastEntry = .init(displayItems: [.test1, .test3, .test2, .test2], date: Date(), configuration: ConfigurationIntent())
 }
 
 final class WidgetForercastProvider: IntentTimelineProvider {

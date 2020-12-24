@@ -41,7 +41,7 @@ extension ForecastDisplayItem {
     static var test1: ForecastDisplayItem {
         .init(
             naturalDateDescription: "Today, 17 January",
-            shortDateDescription: "Today",
+            shortDateDescription: "Послезавтра",
             day: ForecastDisplayItem.DayPartForecastDisplayItem.test2,
             night: ForecastDisplayItem.DayPartForecastDisplayItem.test
         )
@@ -52,6 +52,15 @@ extension ForecastDisplayItem {
             naturalDateDescription: "19 January",
             shortDateDescription: "19.01",
             day: ForecastDisplayItem.DayPartForecastDisplayItem.test2,
+            night: ForecastDisplayItem.DayPartForecastDisplayItem.test
+        )
+    }
+
+    static var test3: ForecastDisplayItem {
+        .init(
+            naturalDateDescription: "19 January",
+            shortDateDescription: "19.01",
+            day: ForecastDisplayItem.DayPartForecastDisplayItem.test3,
             night: ForecastDisplayItem.DayPartForecastDisplayItem.test
         )
     }
@@ -99,6 +108,45 @@ extension ForecastDisplayItem.DayPartForecastDisplayItem {
         )
     }
 
+    static var test3: ForecastDisplayItem.DayPartForecastDisplayItem {
+        .init(
+            shortDateDescription: "Послезавтра",
+            type: "Day",
+            weatherIconName: "cloud.sun.bolt.fill",
+            weatherDescription: "Rain",
+            temperatureRange: "–20|+30",
+            description:
+            """
+            Partly cloudy. At first locally some rain. West wind 5-11,
+            on coasts in gusts 15, at first on northern coast up to 18 m/s.
+            Air temperature -2..+3∞C. Slippery roads!
+            """,
+            places: [
+                ForecastDisplayItem.DayPartForecastDisplayItem.PlaceDisplayItem.test1,
+                ForecastDisplayItem.DayPartForecastDisplayItem.PlaceDisplayItem.test2
+            ]
+        )
+    }
+
+    static var test4: ForecastDisplayItem.DayPartForecastDisplayItem {
+        .init(
+            shortDateDescription: "Послезавтра",
+            type: "Day",
+            weatherIconName: "cloud.sun.bolt.fill",
+            weatherDescription: "Rain",
+            temperatureRange: "–20|+30",
+            description:
+            """
+            Partly cloudy. At first locally some rain. West wind 5-11,
+            on coasts in gusts 15, at first on northern coast up to 18 m/s.
+            Air temperature -2..+3∞C. Slippery roads!
+            """,
+            places: [
+                ForecastDisplayItem.DayPartForecastDisplayItem.PlaceDisplayItem.test1,
+                ForecastDisplayItem.DayPartForecastDisplayItem.PlaceDisplayItem.test2
+            ]
+        )
+    }
 }
 
 extension ForecastDisplayItem.DayPartForecastDisplayItem.PlaceDisplayItem {

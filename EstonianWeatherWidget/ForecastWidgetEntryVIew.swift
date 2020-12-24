@@ -10,19 +10,42 @@ import WidgetKit
 
 struct EstonianWeatherWidgetEntryView: View {
     var entry: ForecastEntry
+    @Environment(\.widgetFamily) private var family
 
+    private var displayItems: [ForecastDisplayItem] {
+        switch self.family {
+        case .systemSmall: return [self.entry.displayItems.first].compactMap { $0 }
+        case .systemMedium: return self.entry.displayItems
+        case .systemLarge: return []
+        @unknown default: return []
+        }
+    }
+
+    var shouldShowSmallWidget: Bool {
+        switch self.family {
+        case .systemSmall: return true
+        default: return false
+        }
+    }
+
+    @ViewBuilder
     var body: some View {
-        ZStack {
-            Color(Resource.Color.appRose)
-            VStack(spacing: 2) {
-                HeaderView()
-                HStack(spacing: 2) {
-                    ForEach(self.entry.displayItems) { displayItem in
-                        // replace test item
-                        ForecastWeatherDayView(displayItem: displayItem.day ?? .test)
+        if self.family == .systemSmall {
+            ForecastFullWeatherView(displayItem: self.displayItems.first!)
+        }
+        else {
+            ZStack {
+                Color(Resource.Color.appRose)
+                VStack(spacing: 2) {
+                    //                HeaderView()
+                    HStack(spacing: 2) {
+                        ForEach(self.displayItems) { displayItem in
+                            // replace test item
+                            ForecastWeatherDayView(displayItem: displayItem.day ?? .test)
+                        }
                     }
-                }
 
+                }
             }
         }
     }
@@ -30,15 +53,26 @@ struct EstonianWeatherWidgetEntryView: View {
 
 private struct HeaderView: View {
 
+    @Environment(\.widgetFamily) private var family
+
+    private var text: String {
+        switch self.family {
+        case .systemSmall: return NSLocalizedString("forecast", comment: "")
+        case .systemMedium: return NSLocalizedString("estonian_weather_forecast", comment: "")
+        case .systemLarge: return ""
+        @unknown default: return ""
+        }
+    }
+
     var body: some View {
         ZStack {
             Color(Resource.Color.appRose)
                 .layoutPriority(-1)
             HStack {
                 Spacer()
-                Text("estonian_weather_forecast")
+                Text("")
                     .foregroundColor(.white)
-                    .padding(6)
+                    .font(.system(size: 14))
                 Spacer()
             }
         }
@@ -46,40 +80,77 @@ private struct HeaderView: View {
     }
 }
 
-struct ForecastWeatherDayView: View {
+private struct ForecastFullWeatherView: View {
+    let displayItem: ForecastDisplayItem
+
+    var body: some View {
+        ZStack {
+            Color(UIColor.secondarySystemBackground)
+            VStack {
+                Text(self.displayItem.naturalDateDescription)
+                    .font(.system(size: 12))
+                    .minimumScaleFactor(0.4)
+                    .lineLimit(1)
+                Spacer()
+                Image(systemName: self.displayItem.dayParts.first!.weatherIconName)
+                    .font(.system(size: 60))
+                    .minimumScaleFactor(0.4)
+                    .lineLimit(1)
+                Spacer()
+                Text(self.displayItem.dayParts.first!.temperatureRange)
+                    .font(.system(size: 24))
+                    .minimumScaleFactor(0.4)
+                    .lineLimit(1)
+            }
+            .foregroundColor(Color(.label))
+            .padding(16)
+        }
+    }
+}
+
+private struct ForecastWeatherDayView: View {
     let displayItem: ForecastDisplayItem.DayPartForecastDisplayItem
 
     var body: some View {
         ZStack {
-            Color(UIColor(red: 0.97, green: 0.95, blue: 0.94, alpha: 1.00))
+            Color(UIColor.secondarySystemBackground)
             VStack {
                 HStack {
-                    Spacer()
                     Text(self.displayItem.shortDateDescription)
                         .font(.system(size: 12))
-                    Spacer()
+                        .minimumScaleFactor(0.4)
+                        .lineLimit(1)
                 }
                 Spacer()
                 Image(systemName: self.displayItem.weatherIconName)
-                    .font(.system(size: 30))
+                    .font(.system(size: 40))
+                    .minimumScaleFactor(0.4)
+                    .lineLimit(1)
                 Spacer()
                 Text(self.displayItem.temperatureRange)
-                    .font(.system(size: 12))
+                    .font(.system(size: 18))
+                    .minimumScaleFactor(0.4)
+                    .lineLimit(1)
             }
-            .padding(.init(top: 16, leading: 4, bottom: 16, trailing: 4))
+            .padding(.init(top: 16, leading: 2, bottom: 16, trailing: 2))
             .foregroundColor(Color(.label))
-            .background(Color(.secondarySystemGroupedBackground))
         }
     }
 }
 
-struct ForecastWidgetEntryVIew_Previews: PreviewProvider {
+private struct ForecastWidgetEntryVIew_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             EstonianWeatherWidgetEntryView(entry: .test)
                 .previewContext(WidgetPreviewContext(family: .systemMedium))
             EstonianWeatherWidgetEntryView(entry: .test)
                 .previewContext(WidgetPreviewContext(family: .systemMedium))
+                .environment(\.colorScheme, .dark)
+            ForecastFullWeatherView(displayItem: .test1)
+                .previewContext(WidgetPreviewContext(family: .systemSmall))
+                .environment(\.colorScheme, .light)
+            ForecastFullWeatherView(displayItem: .test1)
+                .previewContext(WidgetPreviewContext(family: .systemSmall))
                 .environment(\.colorScheme, .dark)
         }
     }

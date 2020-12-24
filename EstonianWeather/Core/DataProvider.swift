@@ -119,7 +119,7 @@ final class DataProvider {
         case (.none, .some(let max)): string = temperatureString(for: max)
         case (.some(let min), .none): string = temperatureString(for: min)
         case (.none, .none): return nil
-        case (.some(let min), .some(let max)): string = "\(temperatureString(for: min)) | \(temperatureString(for: max))"
+        case (.some(let min), .some(let max)): string = "\(temperatureString(for: min)) | \(temperatureString(for: max))"
         }
 
         return string
