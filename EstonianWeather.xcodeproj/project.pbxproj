@@ -126,6 +126,7 @@
 		B1D3AC37258D52DC00456FCB /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D6C9E725239EA5008C9ABB /* Endpoint.swift */; };
 		B1D3AC3C258D530600456FCB /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D6C9ED25239F38008C9ABB /* NetworkClient.swift */; };
 		B1D3AC41258D532200456FCB /* ServerResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDE2252268E600D409FF /* ServerResponseParser.swift */; };
+		B1F58A9A2594A732004117F9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0976968B252A667E00FA1764 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -712,6 +713,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				097698BB252A708C00FA1764 /* Assets.xcassets in Resources */,
+				B1F58A9A2594A732004117F9 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

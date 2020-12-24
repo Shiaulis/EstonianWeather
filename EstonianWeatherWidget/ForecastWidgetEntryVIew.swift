@@ -36,7 +36,7 @@ private struct HeaderView: View {
                 .layoutPriority(-1)
             HStack {
                 Spacer()
-                Text("Estonian Weather Forecast")
+                Text("estonian_weather_forecast")
                     .foregroundColor(.white)
                     .padding(6)
                 Spacer()

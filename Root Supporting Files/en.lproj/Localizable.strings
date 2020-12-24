@@ -17,6 +17,7 @@
 "contact_me" = "Contact me";
 "day" = "Day";
 "night" = "Night";
+"estonian_weather_forecast" = "Estonian Weather Forecast";
 
 // MARK: - Syncing
 "synced" = "Synced";
