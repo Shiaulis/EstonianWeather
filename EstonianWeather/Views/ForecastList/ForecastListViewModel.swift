@@ -16,6 +16,7 @@ protocol ForecastListViewModel: ObservableObject {
 }
 
 final class MockForecastListViewModel: ForecastListViewModel {
+
     let syncStatus: SyncStatus = .failed("Error")
     let displayItems: [ForecastDisplayItem] = [ForecastDisplayItem.test1]
     let bannerData: BannerData = .init(title: "test", detail: "test", type: .error)

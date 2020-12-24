@@ -32,7 +32,7 @@ final class WidgetForercastProvider: IntentTimelineProvider {
 
     init() {
         self.coreDataStack = CoreDataStack()
-        self.model = Model(context: self.coreDataStack.persistentContainer.viewContext)
+        self.model = Model(context: self.coreDataStack.persistentContainer.viewContext, appLocalization: .init(locale: .current))
     }
 
     func placeholder(in context: Context) -> ForecastEntry {

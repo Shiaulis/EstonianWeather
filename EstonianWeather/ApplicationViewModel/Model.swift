@@ -14,13 +14,15 @@ final class Model {
     private var disposables: Set<AnyCancellable> = []
 
     private let context: NSManagedObjectContext
+    private let appLocalization: AppLocalization
     private let mapper: DataMapper
     private let networkClient: NetworkClient
     private let parser: ServerResponseParser
     private let dataProvider: DataProvider
 
-    init(context: NSManagedObjectContext) {
+    init(context: NSManagedObjectContext, appLocalization: AppLocalization) {
         self.context = context
+        self.appLocalization = appLocalization
         self.context.mergePolicy = NSMergePolicy(merge: .overwriteMergePolicyType)
         let logger = PrintLogger()
         self.mapper = CoreDataMapper(logger: logger)
@@ -31,13 +33,11 @@ final class Model {
 
     func provideForecasts(result: @escaping (Result<[ForecastDisplayItem], Error>) -> Void) {
         var receivedForecastDisplayItems: [ForecastDisplayItem] = []
-        let publishers = AppLocalization
-            .allCases
-            .map { requestAndMapForecastPublisher(for: $0) }
+        let publishers = [requestAndMapForecastPublisher(for: self.appLocalization)]
 
         Publishers
             .MergeMany(publishers)
-            .removeForecastOlderThan(Date(), using: self.mapper, in: context)
+            .removeForecastOlderThan(Date(), using: self.mapper, in: self.context)
             .mapForecast(using: self.mapper, in: context)
             .receive(on: RunLoop.main)
             .sink { completion in

@@ -67,8 +67,8 @@ struct ForecastWeatherDayView: View {
                     .font(.system(size: 12))
             }
             .padding(.init(top: 16, leading: 4, bottom: 16, trailing: 4))
-            .foregroundColor(Color.init(.label))
-            .background(Color.init(.secondarySystemGroupedBackground))
+            .foregroundColor(Color(.label))
+            .background(Color(.secondarySystemGroupedBackground))
         }
     }
 }
