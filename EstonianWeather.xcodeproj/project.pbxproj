@@ -305,15 +305,15 @@
 		0968CD892522667A00D409FF = {
 			isa = PBXGroup;
 			children = (
-				0972766F254583C100016EB0 /* LICENSE */,
-				09D68CF02544AB7100F9DF78 /* README.md */,
-				0975939D254423B600C21C6B /* Root Supporting Files */,
 				0968CD942522667A00D409FF /* EstonianWeather */,
 				097698B6252A708A00FA1764 /* EstonianWeatherWidget */,
 				0968CDA62522667B00D409FF /* EstonianWeatherTests */,
 				0968CDB12522667B00D409FF /* EstonianWeatherUITests */,
 				097698B1252A708A00FA1764 /* Frameworks */,
 				0968CD932522667A00D409FF /* Products */,
+				0972766F254583C100016EB0 /* LICENSE */,
+				09D68CF02544AB7100F9DF78 /* README.md */,
+				0975939D254423B600C21C6B /* Root Supporting Files */,
 			);
 			sourceTree = "<group>";
 		};
