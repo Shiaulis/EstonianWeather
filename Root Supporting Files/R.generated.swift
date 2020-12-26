@@ -207,7 +207,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 19 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 20 localization keys.
     struct localizable {
       /// en translation: About me
       ///
@@ -253,6 +253,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, et, ru
       static let aboutMeDescription = Rswift.StringResource(key: "About me description", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "et", "ru"], comment: nil)
+      /// en translation: Icon made by Freepik from:
+      ///
+      /// Locales: en, et, ru
+      static let iconDisclaimer = Rswift.StringResource(key: "Icon disclaimer", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "et", "ru"], comment: nil)
       /// en translation: Night
       ///
       /// Locales: en, et, ru
@@ -451,6 +455,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("About me description", bundle: bundle, comment: "")
       }
 
+      /// en translation: Icon made by Freepik from:
+      ///
+      /// Locales: en, et, ru
+      static func iconDisclaimer(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Icon disclaimer", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Icon disclaimer"
+        }
+
+        return NSLocalizedString("Icon disclaimer", bundle: bundle, comment: "")
+      }
+
       /// en translation: Night
       ///
       /// Locales: en, et, ru
@@ -606,7 +625,9 @@ struct _R: Rswift.Validatable {
     }
 
     #if os(iOS) || os(tvOS)
-    struct lauchScreen: Rswift.StoryboardResourceType, Rswift.Validatable {
+    struct lauchScreen: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
+      typealias InitialController = UIKit.UIViewController
+
       let bundle = R.hostingBundle
       let name = "LauchScreen"
 

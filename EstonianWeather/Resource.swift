@@ -12,12 +12,16 @@ struct Resource {
     struct URL {
         static let settings = Foundation.URL(string: UIApplication.openSettingsURLString)!
 
-        static func disclaimerURL(for localization: AppLocalization) -> Foundation.URL {
+        static func sourceDisclaimerURL(for localization: AppLocalization) -> Foundation.URL {
             switch localization {
             case .english: return Foundation.URL(string: "https://www.ilmateenistus.ee/?lang=en")!
             case .estonian: return Foundation.URL(string: "https://www.ilmateenistus.ee/?lang=et")!
             case .russian: return Foundation.URL(string: "https://www.ilmateenistus.ee/?lang=ru")!
             }
+        }
+
+        static func iconDisclaimerURL() -> Foundation.URL {
+            Foundation.URL(string: "https://www.flaticon.com/authors/freepik")!
         }
 
         static let email = Foundation.URL(string: "mailto:shiaulis@gmail.com")!

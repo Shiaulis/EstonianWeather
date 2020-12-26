@@ -13,10 +13,14 @@ final class SettingsViewModel {
     // MARK: - Properties
 
     var currentLanguageName: String { self.appViewModel.appLocalization.localizedString ?? "" }
-    let disclaimerText: String = R.string.localizable.sourceDisclaimer()
-    let urlDescription: String = "https://ilmateenindus.ee"
 
-    var disclaimerURL: URL { Resource.URL.disclaimerURL(for: self.appViewModel.appLocalization) }
+    let sourceDisclaimerText: String = R.string.localizable.sourceDisclaimer()
+    let urlDescription: String = "www.ilmateenindus.ee"
+    var sourceDisclaimerURL: URL { Resource.URL.sourceDisclaimerURL(for: self.appViewModel.appLocalization) }
+
+    let iconDisclaimerText = R.string.localizable.iconDisclaimer()
+    let iconURLDescription: String = "www.flaticon.com"
+    var iconDisclaimerURL: URL { Resource.URL.iconDisclaimerURL() }
 
     private let appViewModel: ApplicationViewModel
 
@@ -28,7 +32,7 @@ final class SettingsViewModel {
         self.appViewModel.openApplicationSettings()
     }
 
-    func openDisclaimerURL() {
-        self.appViewModel.openDisclaimerURL()
+    func openSourceDisclaimerURL() {
+        self.appViewModel.openSourceDisclaimerURL()
     }
 }

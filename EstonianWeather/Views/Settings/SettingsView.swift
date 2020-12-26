@@ -27,11 +27,22 @@ struct SettingsView: View {
                         Text(R.string.localizable.aboutMeTitle())
                     }
                 }
-                DisclaimerCell(
-                    disclaimerText: self.viewModel.disclaimerText,
-                    url: self.viewModel.disclaimerURL,
-                    urlDescription: self.viewModel.urlDescription
-                )
+
+                Section {
+                    DisclaimerCell(
+                        disclaimerText: self.viewModel.sourceDisclaimerText,
+                        url: self.viewModel.sourceDisclaimerURL,
+                        urlDescription: self.viewModel.urlDescription
+                    )
+                }
+
+                Section {
+                    DisclaimerCell(
+                        disclaimerText: self.viewModel.iconDisclaimerText,
+                        url: self.viewModel.iconDisclaimerURL,
+                        urlDescription: self.viewModel.iconURLDescription
+                    )
+                }
             }
             .navigationBarTitle(R.string.localizable.settings())
             .navigationBarColor(backgroundColor: Resource.Color.appRose, tintColor: .white)
