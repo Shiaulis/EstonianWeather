@@ -16,7 +16,7 @@ struct EstonianWeatherApp: App {
     private func tabbarView() -> some View {
         let applicationViewModel: ApplicationViewModel = ApplicationController()
         guard applicationViewModel.applicationMode != .unitTests else {
-            return AnyView(Text("Unit testing mode"))
+            return AnyView(Text(R.string.localizable.unitTestingMode()))
         }
         let dataProvider = applicationViewModel.forecastDataProvider()
         let forecastViewModel = ForecastListController(dataProvider: dataProvider, appViewModel: applicationViewModel)

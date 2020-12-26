@@ -19,11 +19,11 @@ enum Tab {
         }
     }
 
-    private var title: LocalizedStringKey {
+    private var title: String {
         switch self {
-        case .observationList: return "observations"
-        case .forecastList: return "forecast"
-        case .settings: return "settings"
+        case .observationList: return R.string.localizable.observations()
+        case .forecastList: return R.string.localizable.forecast()
+        case .settings: return R.string.localizable.settings()
         }
     }
 
