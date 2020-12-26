@@ -14,7 +14,16 @@ import UIKit
 final class ForecastListController: ForecastListViewModel {
 
     @Published var bannerData: BannerData = BannerData(title: "", detail: "", type: .error)
-    @Published var syncStatus: SyncStatus = .ready
+    @Published var syncStatus: SyncStatus = .ready {
+        didSet {
+            switch self.syncStatus {
+            case .synced: self.shouldShowSyncStatus = false
+            default: self.shouldShowSyncStatus = self.displayItems.isEmpty
+            }
+        }
+
+    }
+    @Published var shouldShowSyncStatus: Bool = false
 
     @Published var displayItems: [ForecastDisplayItem] = []
     private var disposables: Set<AnyCancellable> = []
@@ -55,6 +64,14 @@ final class ForecastListController: ForecastListViewModel {
         NotificationCenter
             .default
             .publisher(for: UIApplication.didBecomeActiveNotification)
+            .sink { [weak self] _ in
+                self?.fetchRemoteForecasts()
+            }
+            .store(in: &self.disposables)
+
+        NotificationCenter
+            .default
+            .publisher(for: UIApplication.significantTimeChangeNotification)
             .sink { [weak self] _ in
                 self?.fetchRemoteForecasts()
             }
