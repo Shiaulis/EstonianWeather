@@ -19,15 +19,8 @@ struct ForecastView: View {
     var body: some View {
         ZStack {
             VStack {
-                HStack {
-                    Text(self.item.naturalDateDescription)
-                    Spacer()
-                }
-                .font(.headline)
-
-                VStack {
-                    DayPartView(item: self.item.dayParts[0])
-                    DayPartView(item: self.item.dayParts[1])
+                ForEach(self.item.dayParts) { dayPart in
+                    DayPartView(item: dayPart)
                 }
             }
             .padding(.vertical)
@@ -40,10 +33,10 @@ struct ForecastView_Previews: PreviewProvider {
         Group {
             ForecastView(item: ForecastDisplayItem.test1)
                 .environment(\.colorScheme, .light)
-                .previewLayout(.fixed(width: 313, height: 600))
+                .previewLayout(.fixed(width: 313, height: 400))
             ForecastView(item: ForecastDisplayItem.test2)
                 .environment(\.colorScheme, .dark)
-                .previewLayout(.fixed(width: 313, height: 600))
+                .previewLayout(.fixed(width: 313, height: 400))
         }
     }
 }

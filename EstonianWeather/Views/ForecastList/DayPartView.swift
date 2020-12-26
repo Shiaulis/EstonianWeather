@@ -22,7 +22,6 @@ struct DayPartView: View {
             )
             SecondaryForecastView(descriptionText: self.item.description)
         }
-        .background(Color(UIColor.systemBackground))
     }
 }
 

@@ -23,19 +23,15 @@ struct ForecastListView<ViewModel: ForecastListViewModel>: View {
                     ListPlaceholder(status: self.viewModel.syncStatus)
                 }
                 else {
-                    ScrollView {
-                        if self.viewModel.shouldShowSyncStatus {
-
-                        }
-                        else {
-                            LazyVStack {
-                                ForEach(self.viewModel.displayItems) { displayItem in
-                                    ForecastView(item: displayItem)
+                    Form {
+                            ForEach(self.viewModel.displayItems) { displayItem in
+                                Section(header: Text(displayItem.naturalDateDescription).font(.headline)) {
+                                    ForEach(displayItem.dayParts) { dayPart in
+                                        DayPartView(item: dayPart)
+                                    }
                                 }
                             }
-                            .padding()
                         }
-                    }
                 }
             }
             .navigationTitle(R.string.localizable.fourDaysForecast())
@@ -65,7 +61,6 @@ struct ListPlaceholder: View {
             return R.string.localizable.ready()
         }
     }
-
 
     var body: some View {
         VStack {
