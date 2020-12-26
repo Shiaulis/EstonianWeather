@@ -9,5 +9,5 @@ currently being supported with security updates.
 | ------- | ------------------ |
 | 1.0.x   | :white_check_mark: |
 
-## Persnal Data
+## Personal Data
 The application doesn't store or transfer any personal data.
