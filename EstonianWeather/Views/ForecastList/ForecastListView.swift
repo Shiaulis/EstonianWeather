@@ -18,22 +18,68 @@ struct ForecastListView<ViewModel: ForecastListViewModel>: View {
 
     var body: some View {
         NavigationView {
-            VStack {
-                SyncStatusView(status: self.viewModel.syncStatus)
-                ScrollView {
-                    LazyVStack {
-                        ForEach(self.viewModel.displayItems) { displayItem in
-                            ForecastView(item: displayItem)
+            ZStack {
+                if self.viewModel.shouldShowSyncStatus {
+                    ListPlaceholder(status: self.viewModel.syncStatus)
+                }
+                else {
+                    ScrollView {
+                        if self.viewModel.shouldShowSyncStatus {
+
+                        }
+                        else {
+                            LazyVStack {
+                                ForEach(self.viewModel.displayItems) { displayItem in
+                                    ForecastView(item: displayItem)
+                                }
+                            }
+                            .padding()
                         }
                     }
-                    .padding()
                 }
-                .navigationTitle(R.string.localizable.fourDaysForecast())
-                .navigationBarColor(backgroundColor: Resource.Color.appRose, tintColor: .white)
             }
+            .navigationTitle(R.string.localizable.fourDaysForecast())
+            .navigationBarColor(backgroundColor: Resource.Color.appRose, tintColor: .white)
         }
     }
 
+}
+
+struct ListPlaceholder: View {
+    let status: SyncStatus
+
+    private var description: String {
+        switch status {
+        case .synced: return ""
+//            let formatter = DateFormatter()
+//            formatter.dateStyle = .medium
+//            formatter.timeStyle = .medium
+//            formatter.doesRelativeDateFormatting = true
+//            let prefix = "✅ \(R.string.localizable.synced()) "
+//            return prefix + formatter.string(from: syncDate)
+        case .syncing:
+            return " \(R.string.localizable.syncing())"
+        case .failed(let errorDescription):
+            return R.string.localizable.failedToSyncError() + " " + errorDescription
+        case .ready:
+            return R.string.localizable.ready()
+        }
+    }
+
+
+    var body: some View {
+        VStack {
+            Spacer()
+            HStack {
+                Spacer()
+                Text(self.description)
+                    .font(.headline)
+                    .foregroundColor(.gray)
+                Spacer()
+            }
+            Spacer()
+        }
+    }
 }
 
 struct SyncStatusView: View {
@@ -71,7 +117,7 @@ struct SyncStatusView: View {
             Spacer()
             Text(self.description)
                 .foregroundColor(self.color)
-                .font(.caption)
+                .font(.caption2)
                 .padding(.bottom, 4)
             Spacer()
         }
