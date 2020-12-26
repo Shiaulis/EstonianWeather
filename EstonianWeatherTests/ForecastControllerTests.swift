@@ -63,7 +63,7 @@ final class ForecastControllerTests: XCTestCase {
         givenForecastWithDayAndNight()
         let minTemperature = -5
         let maxTemperature = 5
-        let expectedSting = "-\(abs(minTemperature))° | \(maxTemperature)°"
+        let expectedSting = "-\(abs(minTemperature))° | \(maxTemperature)°"
         self.forecast.night?.tempmin = NSNumber(value: minTemperature)
         self.forecast.night?.tempmax = NSNumber(value: maxTemperature)
 
@@ -116,7 +116,7 @@ final class ForecastControllerTests: XCTestCase {
         givenForecastWithNigthContainTwoPlaces()
         let minTemperature = -5
         let maxTemperature = 5
-        let expectedSting = "-\(abs(minTemperature))° | \(maxTemperature)°"
+        let expectedSting = "-\(abs(minTemperature))° | \(maxTemperature)°"
         self.forecast.night?.places?.first?.tempmin = NSNumber(value: minTemperature)
         self.forecast.night?.places?.first?.tempmax = NSNumber(value: maxTemperature)
 
