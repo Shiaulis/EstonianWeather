@@ -88,6 +88,23 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
 
+  #if os(iOS) || os(tvOS)
+  /// This `R.storyboard` struct is generated, and contains static references to 1 storyboards.
+  struct storyboard {
+    /// Storyboard `LauchScreen`.
+    static let lauchScreen = _R.storyboard.lauchScreen()
+
+    #if os(iOS) || os(tvOS)
+    /// `UIStoryboard(name: "LauchScreen", bundle: ...)`
+    static func lauchScreen(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.lauchScreen)
+    }
+    #endif
+
+    fileprivate init() {}
+  }
+  #endif
+
   /// This `R.color` struct is generated, and contains static references to 1 colors.
   struct color {
     /// Color `AccentColor`.
@@ -146,10 +163,19 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 1 images.
+  /// This `R.image` struct is generated, and contains static references to 2 images.
   struct image {
+    /// Image `launchImage`.
+    static let launchImage = Rswift.ImageResource(bundle: R.hostingBundle, name: "launchImage")
     /// Image `shiaulis`.
     static let shiaulis = Rswift.ImageResource(bundle: R.hostingBundle, name: "shiaulis")
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "launchImage", bundle: ..., traitCollection: ...)`
+    static func launchImage(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.launchImage, compatibleWith: traitCollection)
+    }
+    #endif
 
     #if os(iOS) || os(tvOS)
     /// `UIImage(named: "shiaulis", bundle: ..., traitCollection: ...)`
@@ -553,7 +579,7 @@ struct R: Rswift.Validatable {
 
   fileprivate struct intern: Rswift.Validatable {
     fileprivate static func validate() throws {
-      // There are no resources to validate
+      try _R.validate()
     }
 
     fileprivate init() {}
@@ -564,6 +590,39 @@ struct R: Rswift.Validatable {
   fileprivate init() {}
 }
 
-struct _R {
+struct _R: Rswift.Validatable {
+  static func validate() throws {
+    #if os(iOS) || os(tvOS)
+    try storyboard.validate()
+    #endif
+  }
+
+  #if os(iOS) || os(tvOS)
+  struct storyboard: Rswift.Validatable {
+    static func validate() throws {
+      #if os(iOS) || os(tvOS)
+      try lauchScreen.validate()
+      #endif
+    }
+
+    #if os(iOS) || os(tvOS)
+    struct lauchScreen: Rswift.StoryboardResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let name = "LauchScreen"
+
+      static func validate() throws {
+        if UIKit.UIImage(named: "launchImage", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'launchImage' is used in storyboard 'LauchScreen', but couldn't be loaded.") }
+        if #available(iOS 11.0, tvOS 11.0, *) {
+        }
+      }
+
+      fileprivate init() {}
+    }
+    #endif
+
+    fileprivate init() {}
+  }
+  #endif
+
   fileprivate init() {}
 }
