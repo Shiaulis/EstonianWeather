@@ -24,7 +24,7 @@ struct SettingsView: View {
 
                 Section {
                     NavigationLink(destination: AboutMeView()) {
-                        Text("about_me_title")
+                        Text(R.string.localizable.aboutMeTitle())
                     }
                 }
                 DisclaimerCell(
@@ -33,7 +33,7 @@ struct SettingsView: View {
                     urlDescription: self.viewModel.urlDescription
                 )
             }
-            .navigationBarTitle("settings")
+            .navigationBarTitle(R.string.localizable.settings())
             .navigationBarColor(backgroundColor: Resource.Color.appRose, tintColor: .white)
         }
         .navigationViewStyle(StackNavigationViewStyle())

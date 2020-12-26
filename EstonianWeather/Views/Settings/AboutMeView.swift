@@ -21,13 +21,13 @@ struct AboutMeView: View {
                         .padding()
                     Spacer()
                 }
-                Text("about_me_text")
+                Text(R.string.localizable.aboutMeDescription())
                     .padding()
                 ContactMeButton()
                 Spacer()
             }
         }
-        .navigationBarTitle("about_me_title")
+        .navigationBarTitle(R.string.localizable.aboutMeTitle())
     }
 }
 
@@ -35,7 +35,7 @@ private struct ContactMeButton: View {
 
     var body: some View {
         Button(action: buttonAction) {
-            Text("contact_me")
+            Text(R.string.localizable.contactMe())
         }
     }
 
@@ -48,7 +48,7 @@ struct AboutMeView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             AboutMeView()
-                .navigationTitle("about_me")
+                .navigationTitle(R.string.localizable.aboutMeTitle())
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }

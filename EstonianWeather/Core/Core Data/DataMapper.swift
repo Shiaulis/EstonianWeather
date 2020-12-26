@@ -275,8 +275,8 @@ final class CoreDataMapper: DataMapper {
 
     private func map(_ forecastType: EWForecast.EWDayPartForecast.EWDayPartType) -> String {
         switch forecastType {
-        case .day: return NSLocalizedString("day", comment: "forecast part type")
-        case .night: return NSLocalizedString("night", comment: "forecast part type")
+        case .day: return NSLocalizedString("Day", comment: "forecast part type")
+        case .night: return NSLocalizedString("Night", comment: "forecast part type")
         }
     }
 

@@ -30,6 +30,7 @@ opt_in_rules:
 
 excluded:
   - "EstonianWeather/Core/Core Data"
+  - "Root\ Supporting\ Files/R.generated.swift"
 
 custom_rules:
   space_after_opening_brace:

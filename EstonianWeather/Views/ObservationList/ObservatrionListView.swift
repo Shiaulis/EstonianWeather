@@ -24,7 +24,7 @@ struct ObservationListView<ViewModel: ObservationListViewModel>: View {
                     }
                 }
             }
-            .navigationBarTitle("observations")
+            .navigationBarTitle(R.string.localizable.observations())
             .navigationBarColor(backgroundColor: Resource.Color.appRose, tintColor: .white)
         }
     }

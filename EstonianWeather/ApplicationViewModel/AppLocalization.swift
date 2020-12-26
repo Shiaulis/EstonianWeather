@@ -24,7 +24,7 @@ enum AppLocalization: CaseIterable {
         }
     }
 
-    var localizedString: String? { AppLocalization.locale.localizedString(forLanguageCode: self.languageCode) }
+    var localizedString: String? { AppLocalization.locale.localizedString(forLanguageCode: self.languageCode)?.capitalized }
 
     var locale: Locale { AppLocalization.locale }
     static private(set) var current: AppLocalization = .english

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -116,6 +116,9 @@
 		09F969F62532597600DA94D6 /* TestableLocale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E8E0AE2531928F00E2F180 /* TestableLocale.swift */; };
 		B158270B252B57150064A42C /* EstonianWeatherWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = B158270E252B57150064A42C /* EstonianWeatherWidget.intentdefinition */; };
 		B158270C252B57150064A42C /* EstonianWeatherWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = B158270E252B57150064A42C /* EstonianWeatherWidget.intentdefinition */; };
+		B190251125972FB400ACD2E1 /* Rswift in Frameworks */ = {isa = PBXBuildFile; productRef = B190251025972FB400ACD2E1 /* Rswift */; };
+		B190252E259731E500ACD2E1 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B190252D259731E500ACD2E1 /* R.generated.swift */; };
+		B190255625973FAE00ACD2E1 /* Rswift in Frameworks */ = {isa = PBXBuildFile; productRef = B190255525973FAE00ACD2E1 /* Rswift */; };
 		B190EB142586A5820025415A /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B190EB132586A5820025415A /* Date+Extensions.swift */; };
 		B1C7323A258E126900C22232 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C73239258E126900C22232 /* BannerView.swift */; };
 		B1CA14122593921C009ABBCA /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CA14112593921C009ABBCA /* Model.swift */; };
@@ -262,6 +265,7 @@
 		09E8E0E22531E31700E2F180 /* EWWind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EWWind.swift; sourceTree = "<group>"; };
 		09F969FB25325BCB00DA94D6 /* EstonianWeatherUITests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = EstonianWeatherUITests.xctestplan; sourceTree = "<group>"; };
 		B158270D252B57150064A42C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = en; path = en.lproj/EstonianWeatherWidget.intentdefinition; sourceTree = "<group>"; };
+		B190252D259731E500ACD2E1 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		B190EB132586A5820025415A /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		B1C73239258E126900C22232 /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		B1CA14112593921C009ABBCA /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -273,6 +277,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B190251125972FB400ACD2E1 /* Rswift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +299,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B190255625973FAE00ACD2E1 /* Rswift in Frameworks */,
 				097698B5252A708A00FA1764 /* SwiftUI.framework in Frameworks */,
 				097698B3252A708A00FA1764 /* WidgetKit.framework in Frameworks */,
 			);
@@ -311,9 +317,9 @@
 				0968CDB12522667B00D409FF /* EstonianWeatherUITests */,
 				097698B1252A708A00FA1764 /* Frameworks */,
 				0968CD932522667A00D409FF /* Products */,
+				0975939D254423B600C21C6B /* Root Supporting Files */,
 				0972766F254583C100016EB0 /* LICENSE */,
 				09D68CF02544AB7100F9DF78 /* README.md */,
-				0975939D254423B600C21C6B /* Root Supporting Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -454,6 +460,7 @@
 		0975939D254423B600C21C6B /* Root Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B190252D259731E500ACD2E1 /* R.generated.swift */,
 				09769695252A682800FA1764 /* Settings.bundle */,
 				0976968B252A667E00FA1764 /* Localizable.strings */,
 				0968CE2425226A2B00D409FF /* EstonianWeather.xctestplan */,
@@ -561,6 +568,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0968CDB72522667B00D409FF /* Build configuration list for PBXNativeTarget "EstonianWeather" */;
 			buildPhases = (
+				B19025162597302200ACD2E1 /* Generate R.swift */,
 				0968CD8E2522667A00D409FF /* Sources */,
 				0968CD8F2522667A00D409FF /* Frameworks */,
 				0968CD902522667A00D409FF /* Resources */,
@@ -573,6 +581,9 @@
 				097698C0252A708C00FA1764 /* PBXTargetDependency */,
 			);
 			name = EstonianWeather;
+			packageProductDependencies = (
+				B190251025972FB400ACD2E1 /* Rswift */,
+			);
 			productName = EstonianWeather;
 			productReference = 0968CD922522667A00D409FF /* EstonianWeather.app */;
 			productType = "com.apple.product-type.application";
@@ -626,6 +637,9 @@
 			dependencies = (
 			);
 			name = EstonianWeatherWidgetExtension;
+			packageProductDependencies = (
+				B190255525973FAE00ACD2E1 /* Rswift */,
+			);
 			productName = EstonianWeatherWidgetExtension;
 			productReference = 097698B0252A708A00FA1764 /* EstonianWeatherWidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -666,6 +680,9 @@
 				et,
 			);
 			mainGroup = 0968CD892522667A00D409FF;
+			packageReferences = (
+				B190250F25972FB400ACD2E1 /* XCRemoteSwiftPackageReference "R.swift" */,
+			);
 			productRefGroup = 0968CD932522667A00D409FF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -738,6 +755,26 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
+		B19025162597302200ACD2E1 /* Generate R.swift */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$TEMP_DIR/rswift-lastrun",
+			);
+			name = "Generate R.swift";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$SRCROOT/Root Supporting Files/R.generated.swift",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SRCROOT/rswift\" generate \"$SRCROOT/Root Supporting Files/R.generated.swift\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -756,6 +793,7 @@
 				09C611E3253A407A002A4A60 /* ObservationListViewModel.swift in Sources */,
 				0968CE09252269AF00D409FF /* Place+CoreDataClass.swift in Sources */,
 				0968CE01252269AF00D409FF /* Phenomenon+CoreDataClass.swift in Sources */,
+				B190252E259731E500ACD2E1 /* R.generated.swift in Sources */,
 				0968CE07252269AF00D409FF /* EstonianWeather.xcdatamodeld in Sources */,
 				B190EB142586A5820025415A /* Date+Extensions.swift in Sources */,
 				0972158A2534D0F000E43B7B /* ObservationDisplayItem.swift in Sources */,
@@ -1271,6 +1309,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B190250F25972FB400ACD2E1 /* XCRemoteSwiftPackageReference "R.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mac-cain13/R.swift.Library";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B190251025972FB400ACD2E1 /* Rswift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B190250F25972FB400ACD2E1 /* XCRemoteSwiftPackageReference "R.swift" */;
+			productName = Rswift;
+		};
+		B190255525973FAE00ACD2E1 /* Rswift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B190250F25972FB400ACD2E1 /* XCRemoteSwiftPackageReference "R.swift" */;
+			productName = Rswift;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		0968CDFA252269AF00D409FF /* EstonianWeather.xcdatamodeld */ = {

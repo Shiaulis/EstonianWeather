@@ -6,21 +6,24 @@
   
 */
 
-"4_days_forecast" = "4 Days Forecast";
-"forecast" = "Forecast";
-"settings" = "Settings";
-"current_language" = "Current language";
-"observations" = "Observations";
-"source_disclaimer" = "The weather information is provided by\nEstonian Weather Service";
-"about_me_text" = "Hey 👋! My name is Andrius. I'm an iOS Developer from Estonia 🇪🇪. Besides being full-time developer and father of three I'm writing small apps like this. If you have any questions/concerns regarding the app, do not hesitate to contact me.";
-"about_me_title" = "About me";
-"contact_me" = "Contact me";
-"day" = "Day";
-"night" = "Night";
-"estonian_weather_forecast" = "Estonian Weather Forecast";
+"Four days forecast" = "Four Days Forecast";
+"Forecast" = "Forecast";
+"Settings" = "Settings";
+"Current language" = "Current language";
+"Observations" = "Observations";
+"Source disclaimer" = "The weather information is provided by\nEstonian Weather Service";
+"About me description" = "Hey 👋! My name is Andrius. I'm an iOS Developer from Estonia 🇪🇪. Besides being full-time developer and father of three I'm writing small apps like this. If you have any questions/concerns regarding the app, do not hesitate to contact me.";
+"About me title" = "About me";
+"Contact me" = "Contact me";
+"Day" = "Day";
+"Night" = "Night";
+"Estonian Weather Forecast" = "Estonian Weather Forecast";
 
-// MARK: - Syncing
-"synced" = "Synced";
-"syncing" = "Syncing";
-"failed_to_sync_error" = "Failed to sync. Error: ";
-"ready" = "Ready";
+"Synced" = "Synced";
+"Syncing" = "Syncing";
+"Failed to sync. Error:" = "Failed to sync. Error:";
+"Ready" = "Ready";
+"Unit testing mode" = "Unit testing mode";
+
+"Forecast Widget" = "Forecast Widget";
+"Check Estonian weather forecast." = "Check Estonian weather forecast.";

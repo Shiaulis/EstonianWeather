@@ -28,7 +28,7 @@ struct ForecastListView<ViewModel: ForecastListViewModel>: View {
                     }
                     .padding()
                 }
-                .navigationTitle("4_days_forecast")
+                .navigationTitle(R.string.localizable.fourDaysForecast())
                 .navigationBarColor(backgroundColor: Resource.Color.appRose, tintColor: .white)
             }
         }
@@ -55,14 +55,14 @@ struct SyncStatusView: View {
             formatter.dateStyle = .medium
             formatter.timeStyle = .medium
             formatter.doesRelativeDateFormatting = true
-            let prefix = "✅ \(NSLocalizedString("synced ", comment: ""))"
+            let prefix = "✅ \(R.string.localizable.synced()) "
             return prefix + formatter.string(from: syncDate)
         case .syncing:
-            return " 🔄 \(NSLocalizedString("syncing", comment: ""))"
+            return " 🔄 \(R.string.localizable.syncing())"
         case .failed(let errorDescription):
-            return NSLocalizedString("failed_to_sync_error", comment: "") + errorDescription
+            return R.string.localizable.failedToSyncError() + " " + errorDescription
         case .ready:
-            return NSLocalizedString("ready", comment: "")
+            return R.string.localizable.ready()
         }
     }
 
