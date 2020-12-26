@@ -1,0 +1,10 @@
+/* 
+  AppStoreDescription.strings
+  EstonianWeather
+
+  Created by Andrius Shiaulis on 26.12.2020.
+  
+*/
+
+"appstore_description" = "Have an access to the weather information in Estonia. Eesti Ilm is a simple app that gives an instant information about forecasts, provided by Estonian Weather Service. The application icon made by Freepick from www.flaticon.com";
+"keywords" = "weather, forecast, Estonia";

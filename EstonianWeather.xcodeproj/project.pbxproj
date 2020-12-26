@@ -267,6 +267,7 @@
 		09F969FB25325BCB00DA94D6 /* EstonianWeatherUITests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = EstonianWeatherUITests.xctestplan; sourceTree = "<group>"; };
 		B158270D252B57150064A42C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = en; path = en.lproj/EstonianWeatherWidget.intentdefinition; sourceTree = "<group>"; };
 		B17DE2062597A7A800FB14CD /* LauchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LauchScreen.storyboard; sourceTree = "<group>"; };
+		B17DE2202597D21A00FB14CD /* AppStoreDescription.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = AppStoreDescription.strings; path = AppStore/AppStoreDescription.strings; sourceTree = "<group>"; };
 		B190252D259731E500ACD2E1 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		B190EB132586A5820025415A /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		B1C73239258E126900C22232 /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
@@ -313,6 +314,7 @@
 		0968CD892522667A00D409FF = {
 			isa = PBXGroup;
 			children = (
+				B17DE2202597D21A00FB14CD /* AppStoreDescription.strings */,
 				0968CD942522667A00D409FF /* EstonianWeather */,
 				097698B6252A708A00FA1764 /* EstonianWeatherWidget */,
 				0968CDA62522667B00D409FF /* EstonianWeatherTests */,
