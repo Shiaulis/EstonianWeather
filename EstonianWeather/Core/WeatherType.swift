@@ -15,55 +15,55 @@ enum WeatherType: String {
     var imageName: String? {
         switch self {
         case .clear:
-            return "sun.max.fill"
+            return "sun.max"
         case .fewClouds:
-            return "cloud.sun.fill"
+            return "cloud.sun"
         case .variableClouds:
-            return "cloud.sun.fill"
+            return "cloud.sun"
         case .cloudyWithClearSpells:
-            return "cloud.sun.fill"
+            return "cloud.sun"
         case .cloudy:
-            return "smoke.fill"
+            return "smoke"
         case .lightSnowShower:
-            return "cloud.snow.fill"
+            return "cloud.snow"
         case .moderateSnowShower:
-            return "cloud.snow.fill"
+            return "cloud.snow"
         case .heavySnowShower:
-            return "cloud.snow.fill"
+            return "cloud.snow"
         case .lightShower:
-            return "cloud.drizzle.fill"
+            return "cloud.drizzle"
         case .moderateShower:
-            return "cloud.rain.fill"
+            return "cloud.rain"
         case .heavyShower:
-            return "cloud.heavyrain.fill"
+            return "cloud.heavyrain"
         case .lightRain:
-            return "cloud.drizzle.fill"
+            return "cloud.drizzle"
         case .moderateRain:
-            return "cloud.rain.fill"
+            return "cloud.rain"
         case .heavyRain:
-            return "cloud.heavyrain.fill"
+            return "cloud.heavyrain"
         case .riskOfGlaze:
             return "thermometer.snowflake"
         case .lightSleet:
-            return "cloud.sleet.fill"
+            return "cloud.sleet"
         case .moderateSleet:
-            return "cloud.sleet.fill"
+            return "cloud.sleet"
         case .lightSnowfall:
-            return "cloud.snow.fill"
+            return "cloud.snow"
         case .moderateSnowfall:
-            return "cloud.snow.fill"
+            return "cloud.snow"
         case .heavySnowfall:
-            return "cloud.snow.fill"
+            return "cloud.snow"
         case .snowstorm:
-            return "cloud.snow.fill"
+            return "cloud.snow"
         case .driftingSnow:
-            return "cloud.snow.fill"
+            return "cloud.snow"
         case .hail:
-            return "cloud.hail.fill"
+            return "cloud.hail"
         case .mist:
-            return "cloud.fog.fill"
+            return "cloud.fog"
         case .fog:
-            return "cloud.fog.fill"
+            return "cloud.fog"
         case .thunder:
             return "wind"
         case .thunderstorm:
