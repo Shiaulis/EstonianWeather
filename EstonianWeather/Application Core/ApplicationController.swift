@@ -22,16 +22,13 @@ final class ApplicationController {
 
     private var disposables: Set<AnyCancellable> = []
 
-    let localization: AppLocalization
-
     // MARK: - Initialization
 
     init() {
         self.widgetService = .init()
         self.persistenceService = .init()
         self.settingsService = .init(userDefaults: .standard, persistenceService: self.persistenceService)
-        self.localization = AppLocalization(locale: .current)
-        self.model = ApplicationModel(persistenceService: self.persistenceService, appLocalization: self.localization)
+        self.model = ApplicationModel(persistenceService: self.persistenceService)
     }
 
 }
@@ -49,7 +46,7 @@ extension ApplicationController {
     }
 
     func forecastDataProvider() -> DataProvider {
-        DataProvider(formatter: ForecastDateFormatter(localization: self.localization))
+        DataProvider(formatter: ForecastDateFormatter())
     }
 
 }

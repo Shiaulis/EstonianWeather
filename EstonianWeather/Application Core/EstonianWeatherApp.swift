@@ -18,14 +18,14 @@ struct EstonianWeatherApp: App {
 
     var body: some Scene {
         WindowGroup {
-            if self.applicationController.applicationMode == .unitTests {
-                AnyView(Text(R.string.localizable.unitTestingMode()))
-            }
-            else {
+            if self.applicationController.applicationMode != .unitTests {
                 TabbarView(
                     forecastListView: ForecastListView(viewModel: ForecastListViewModel(model:applicationController.model)),
-                    settingsView: SettingsView(viewModel: SettingsViewModel(localization: applicationController.localization))
+                    settingsView: SettingsView(viewModel: SettingsViewModel())
                 )
+            }
+            else {
+                AnyView(Text(R.string.localizable.unitTestingMode()))
             }
         }
     }

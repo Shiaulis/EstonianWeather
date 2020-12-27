@@ -12,27 +12,23 @@ final class SettingsViewModel {
 
     // MARK: - Properties
 
-    var currentLanguageName: String { self.localization.localizedString ?? "" }
+    var currentLanguageName: String { self.locale.localizedString(forLanguageCode: self.locale.languageCode ?? "") ?? "" }
 
     let sourceDisclaimerText: String = R.string.localizable.sourceDisclaimer()
     let urlDescription: String = "www.ilmateenindus.ee"
-    var sourceDisclaimerURL: URL { .sourceDisclaimerURL(for: self.localization) }
+    let sourceDisclaimerURL: URL = .sourceDisclaimerURL
 
     let iconDisclaimerText = R.string.localizable.iconDisclaimer()
     let iconURLDescription: String = "www.flaticon.com"
     let iconDisclaimerURL: URL = .iconDisclaimerURL
 
-    private let localization: AppLocalization
-
-    init(localization: AppLocalization) {
-        self.localization = localization
-    }
+    private let locale: Locale = .current
 
     func openApplicationSettings() {
         UIApplication.shared.open(URL.settings, options: [:])
     }
 
     func openSourceDisclaimerURL() {
-        UIApplication.shared.open(URL.sourceDisclaimerURL(for: self.localization), options: [:])
+        UIApplication.shared.open(.sourceDisclaimerURL, options: [:])
     }
 }

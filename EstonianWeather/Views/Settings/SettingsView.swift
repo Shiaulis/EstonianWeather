@@ -54,6 +54,6 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView(viewModel: SettingsViewModel(localization: .russian))
+        SettingsView(viewModel: SettingsViewModel())
     }
 }

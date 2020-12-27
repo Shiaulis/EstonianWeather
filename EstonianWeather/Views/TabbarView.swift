@@ -59,7 +59,7 @@ struct TabbarView_Previews: PreviewProvider {
     static var previews: some View {
         TabbarView(
             forecastListView: ForecastListView(viewModel: ForecastListViewModel(model: MockModel())),
-            settingsView: SettingsView(viewModel: SettingsViewModel(localization: .russian))
+            settingsView: SettingsView(viewModel: SettingsViewModel())
         )
     }
 }

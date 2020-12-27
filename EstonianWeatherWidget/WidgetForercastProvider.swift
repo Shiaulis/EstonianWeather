@@ -30,7 +30,7 @@ final class WidgetForercastProvider: IntentTimelineProvider {
     private var disposables: Set<AnyCancellable> = []
 
     init() {
-        self.model = ApplicationModel(persistenceService: PersistenceService(), appLocalization: .init(locale: .current))
+        self.model = ApplicationModel(persistenceService: PersistenceService())
     }
 
     func placeholder(in context: Context) -> ForecastEntry {

@@ -13,17 +13,6 @@
       "options" : {
         "language" : "ru"
       }
-    },
-    {
-      "id" : "DDB07C1E-FFDE-4FBD-A325-4DB7F318A36C",
-      "name" : "Ukrainian locale",
-      "options" : {
-        "language" : "uk",
-        "locationScenario" : {
-          "identifier" : "London, England",
-          "referenceType" : "built-in"
-        }
-      }
     }
   ],
   "defaultOptions" : {
@@ -47,6 +36,9 @@
   },
   "testTargets" : [
     {
+      "skippedTests" : [
+        "ForecastControllerTests"
+      ],
       "target" : {
         "containerPath" : "container:EstonianWeather.xcodeproj",
         "identifier" : "0968CDA22522667B00D409FF",

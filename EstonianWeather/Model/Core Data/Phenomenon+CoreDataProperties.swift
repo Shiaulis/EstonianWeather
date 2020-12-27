@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 extension Phenomenon {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Phenomenon> {
@@ -74,6 +73,6 @@ extension Phenomenon {
 
 }
 
-extension Phenomenon : Identifiable {
+extension Phenomenon: Identifiable {
 
 }

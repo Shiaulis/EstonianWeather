@@ -45,7 +45,8 @@ extension Publisher where Output == [EWObservation] {
             .eraseToAnyPublisher()
     }
 
-    func removeObservationsOlderThan(_ date: Date, using dataMapper: DataMapper, in context: NSManagedObjectContext) -> AnyPublisher<[EWObservation], Swift.Error> {
+    func removeObservationsOlderThan(_ date: Date, using dataMapper: DataMapper, in context: NSManagedObjectContext)
+    -> AnyPublisher<[EWObservation], Swift.Error> {
         self
             .tryMap { stations in
                 try dataMapper.removeAllObservations(from: context, olderThan: date)
