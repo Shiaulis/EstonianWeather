@@ -35,7 +35,7 @@ struct ForecastListView: View {
                 }
             }
             .navigationTitle(R.string.localizable.fourDaysForecast())
-            .navigationBarColor(backgroundColor: Resource.Color.appRose, tintColor: .white)
+            .navigationBarColor(backgroundColor: .appRose, tintColor: .white)
         }
     }
 
@@ -46,13 +46,9 @@ struct ListPlaceholder: View {
 
     private var description: String {
         switch status {
-        case .synced: return ""
-//            let formatter = DateFormatter()
-//            formatter.dateStyle = .medium
-//            formatter.timeStyle = .medium
-//            formatter.doesRelativeDateFormatting = true
-//            let prefix = "✅ \(R.string.localizable.synced()) "
-//            return prefix + formatter.string(from: syncDate)
+        case .synced:
+            assertionFailure("We do not expect to take this status description")
+            return ""
         case .syncing:
             return " \(R.string.localizable.syncing())"
         case .failed(let errorDescription):
@@ -116,7 +112,7 @@ struct SyncStatusView: View {
                 .padding(.bottom, 4)
             Spacer()
         }
-        .background(Color(Resource.Color.appRose))
+        .background(Color(.appRose))
     }
 }
 

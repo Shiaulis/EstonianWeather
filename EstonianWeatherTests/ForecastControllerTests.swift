@@ -28,7 +28,7 @@ final class ForecastControllerTests: XCTestCase {
         self.container = NSPersistentContainer.createContainerForTesting()
         self.forecast = try! create(in: self.container.viewContext)
         self.forecast.languageCode = localization.languageCode
-        self.sut = DataProvider()
+        self.sut = DataProvider(formatter: ForecastDateFormatter(localization: localization))
     }
 
     override func tearDown() {

@@ -45,7 +45,7 @@ struct SettingsView: View {
                 }
             }
             .navigationBarTitle(R.string.localizable.settings())
-            .navigationBarColor(backgroundColor: Resource.Color.appRose, tintColor: .white)
+            .navigationBarColor(backgroundColor: .appRose, tintColor: .white)
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }

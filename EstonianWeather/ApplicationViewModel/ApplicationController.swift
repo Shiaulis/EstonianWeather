@@ -49,7 +49,7 @@ extension ApplicationController {
     }
 
     func forecastDataProvider() -> DataProvider {
-        DataProvider()
+        DataProvider(formatter: ForecastDateFormatter(localization: self.localization))
     }
 
 }

@@ -40,7 +40,7 @@ private struct ContactMeButton: View {
     }
 
     private func buttonAction() {
-        UIApplication.shared.open(Resource.URL.email)
+        UIApplication.shared.open(URL.email)
     }
 }
 

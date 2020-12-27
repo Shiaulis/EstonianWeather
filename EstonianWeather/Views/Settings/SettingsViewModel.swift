@@ -16,11 +16,11 @@ final class SettingsViewModel {
 
     let sourceDisclaimerText: String = R.string.localizable.sourceDisclaimer()
     let urlDescription: String = "www.ilmateenindus.ee"
-    var sourceDisclaimerURL: URL { Resource.URL.sourceDisclaimerURL(for: self.localization) }
+    var sourceDisclaimerURL: URL { .sourceDisclaimerURL(for: self.localization) }
 
     let iconDisclaimerText = R.string.localizable.iconDisclaimer()
     let iconURLDescription: String = "www.flaticon.com"
-    var iconDisclaimerURL: URL { Resource.URL.iconDisclaimerURL() }
+    let iconDisclaimerURL: URL = .iconDisclaimerURL
 
     private let localization: AppLocalization
 
@@ -29,10 +29,10 @@ final class SettingsViewModel {
     }
 
     func openApplicationSettings() {
-        UIApplication.shared.open(Resource.URL.settings, options: [:])
+        UIApplication.shared.open(URL.settings, options: [:])
     }
 
     func openSourceDisclaimerURL() {
-        UIApplication.shared.open(Resource.URL.sourceDisclaimerURL(for: self.localization), options: [:])
+        UIApplication.shared.open(URL.sourceDisclaimerURL(for: self.localization), options: [:])
     }
 }
