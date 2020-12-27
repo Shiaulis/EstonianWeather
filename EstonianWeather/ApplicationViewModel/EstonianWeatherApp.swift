@@ -19,7 +19,8 @@ struct EstonianWeatherApp: App {
             return AnyView(Text(R.string.localizable.unitTestingMode()))
         }
         let dataProvider = applicationViewModel.forecastDataProvider()
-        let forecastViewModel = ForecastListController(dataProvider: dataProvider, appViewModel: applicationViewModel)
+
+        let forecastViewModel = ForecastListViewModel(model:applicationViewModel.model)
         let forecastListView = ForecastListView(viewModel: forecastViewModel)
         let observationViewModel = ObservationListController(dataProvider: dataProvider)
         let observationListView = ObservationListView(viewModel: observationViewModel)

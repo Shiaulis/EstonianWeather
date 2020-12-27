@@ -31,7 +31,7 @@ final class MockApplicationViewModel: ApplicationViewModel {
     var syncStatus: SyncStatus = .failed("error")
     var applicationMode: ApplicationMode = .swiftUI
     var appLocalization: AppLocalization = .english
-    var model: Model = .init(context: NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType), appLocalization: .russian)
+    var model: Model = ApplicationModel(context: NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType), appLocalization: .russian)
 
     func forecastDataProvider() -> DataProvider { .init() }
     func openApplicationSettings() {}

@@ -47,7 +47,7 @@ final class ApplicationController {
         self.settingsService = .init(userDefaults: .standard, coreDataStack: self.coreDataStack)
         self.widgetService = .init()
         self.featureFlagService = .init(storage: RuntimeFeatureFlagStorage())
-        self.model = Model(context: self.coreDataStack.persistentContainer.viewContext, appLocalization: self.settingsService.appLocalization)
+        self.model = ApplicationModel(context: self.coreDataStack.persistentContainer.viewContext, appLocalization: self.settingsService.appLocalization)
 
         guard self.applicationMode != .unitTests else { return }
     }
