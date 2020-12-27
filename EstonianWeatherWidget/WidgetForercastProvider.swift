@@ -24,15 +24,13 @@ struct ForecastEntry: TimelineEntry {
 
 final class WidgetForercastProvider: IntentTimelineProvider {
 
-    private let coreDataStack: CoreDataStack
     private let model: Model
     private var syncStatus: SyncStatus = .ready
 
     private var disposables: Set<AnyCancellable> = []
 
     init() {
-        self.coreDataStack = CoreDataStack()
-        self.model = ApplicationModel(context: self.coreDataStack.persistentContainer.viewContext, appLocalization: .init(locale: .current))
+        self.model = ApplicationModel(persistenceService: PersistenceService(), appLocalization: .init(locale: .current))
     }
 
     func placeholder(in context: Context) -> ForecastEntry {

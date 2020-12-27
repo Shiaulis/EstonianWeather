@@ -7,16 +7,15 @@
 
 import Foundation
 
+/// This service provide information for settings in globad device settings. Values are taken from Settings.bundle
 final class SettingsService {
 
-    let appLocalization: AppLocalization
     private let userDefaults: UserDefaults
-    private let coreDataStack: CoreDataStack
+    private let persistenceService: PersistenceService
 
-    init(userDefaults: UserDefaults = .standard, coreDataStack: CoreDataStack = .init(), locale: Locale = .current) {
+    init(userDefaults: UserDefaults = .standard, persistenceService: PersistenceService) {
         self.userDefaults = userDefaults
-        self.coreDataStack = coreDataStack
-        self.appLocalization = AppLocalization(locale: locale)
+        self.persistenceService = persistenceService
 
         checkAndExecuteSettings()
         setVersionAndBuildNumber()
@@ -27,7 +26,7 @@ final class SettingsService {
             self.userDefaults.set(false, forKey: SettingsBundleKeys.Reset)
             let appDomain: String? = Bundle.main.bundleIdentifier
             self.userDefaults.removePersistentDomain(forName: appDomain!)
-            self.coreDataStack.recreateDatabase()
+            self.persistenceService.recreateDatabase()
         }
     }
 
