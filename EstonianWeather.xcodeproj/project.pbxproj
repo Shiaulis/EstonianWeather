@@ -60,7 +60,6 @@
 		0972159C2534DD7500E43B7B /* Observation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097215982534DD7500E43B7B /* Observation+CoreDataProperties.swift */; };
 		09727670254583C100016EB0 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 0972766F254583C100016EB0 /* LICENSE */; };
 		0975937D25441B5500C21C6B /* WidgetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0975937C25441B5500C21C6B /* WidgetService.swift */; };
-		0975938725441ECD00C21C6B /* ApplicationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0975938625441ECD00C21C6B /* ApplicationViewModel.swift */; };
 		097593E4254424F100C21C6B /* AppLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDE1252268E600D409FF /* AppLocalization.swift */; };
 		09769674252A5ADC00FA1764 /* SettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09769673252A5ADC00FA1764 /* SettingsService.swift */; };
 		09769689252A667E00FA1764 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0976968B252A667E00FA1764 /* Localizable.strings */; };
@@ -229,7 +228,6 @@
 		097215982534DD7500E43B7B /* Observation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observation+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		0972766F254583C100016EB0 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		0975937C25441B5500C21C6B /* WidgetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetService.swift; sourceTree = "<group>"; };
-		0975938625441ECD00C21C6B /* ApplicationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationViewModel.swift; sourceTree = "<group>"; };
 		09769673252A5ADC00FA1764 /* SettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsService.swift; sourceTree = "<group>"; };
 		09769680252A61F500FA1764 /* EstonianWeather.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EstonianWeather.entitlements; sourceTree = "<group>"; };
 		0976968A252A667E00FA1764 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -340,8 +338,8 @@
 		0968CD942522667A00D409FF /* EstonianWeather */ = {
 			isa = PBXGroup;
 			children = (
-				097593D7254424AF00C21C6B /* ApplicationViewModel */,
-				0968CDD7252268E600D409FF /* Core */,
+				097593D7254424AF00C21C6B /* Application Core */,
+				0968CDD7252268E600D409FF /* Model */,
 				0968CDC5252267F600D409FF /* Views */,
 				097593BE2544244500C21C6B /* Supporting Files */,
 				B13DCFDE2598FE3500BC02E9 /* Class Extensions */,
@@ -398,9 +396,10 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		0968CDD7252268E600D409FF /* Core */ = {
+		0968CDD7252268E600D409FF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B1CA14112593921C009ABBCA /* Model.swift */,
 				0968CDDB252268E600D409FF /* WeatherType.swift */,
 				0968CDDC252268E600D409FF /* ForecastDateFormatter.swift */,
 				0968CE3825227CE100D409FF /* Intermediate mapping */,
@@ -410,7 +409,7 @@
 				09D6C9EC25239F29008C9ABB /* Network */,
 				B1CA14212593AEFB009ABBCA /* SyncStatus.swift */,
 			);
-			path = Core;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		0968CDF3252269AF00D409FF /* Core Data */ = {
@@ -482,19 +481,17 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		097593D7254424AF00C21C6B /* ApplicationViewModel */ = {
+		097593D7254424AF00C21C6B /* Application Core */ = {
 			isa = PBXGroup;
 			children = (
 				0968CD952522667A00D409FF /* EstonianWeatherApp.swift */,
 				0968CDE3252268E600D409FF /* ApplicationController.swift */,
-				0975938625441ECD00C21C6B /* ApplicationViewModel.swift */,
 				09769673252A5ADC00FA1764 /* SettingsService.swift */,
 				0975937C25441B5500C21C6B /* WidgetService.swift */,
 				0968CDE1252268E600D409FF /* AppLocalization.swift */,
 				09D5E4EA2544259A00FBAC98 /* FeatureFlagService.swift */,
-				B1CA14112593921C009ABBCA /* Model.swift */,
 			);
-			path = ApplicationViewModel;
+			path = "Application Core";
 			sourceTree = "<group>";
 		};
 		097698B1252A708A00FA1764 /* Frameworks */ = {
@@ -839,7 +836,6 @@
 				0968CE0C252269AF00D409FF /* DayPartForecast+CoreDataClass.swift in Sources */,
 				0968CDE8252268E600D409FF /* ForecastDateFormatter.swift in Sources */,
 				0968CDE4252268E600D409FF /* ForecastListViewModel.swift in Sources */,
-				0975938725441ECD00C21C6B /* ApplicationViewModel.swift in Sources */,
 				0968CDED252268E600D409FF /* AppLocalization.swift in Sources */,
 				0968CE05252269AF00D409FF /* Wind+CoreDataProperties.swift in Sources */,
 				0968CDE6252268E600D409FF /* SettingsViewModel.swift in Sources */,
