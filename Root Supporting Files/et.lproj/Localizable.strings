@@ -6,23 +6,23 @@
   
 */
 
-"Four days forecast" = "Four Days Forecast";
-"Forecast" = "Forecast";
-"Settings" = "Settings";
-"Current language" = "Current language";
-"Observations" = "Observations";
-"Source disclaimer" = "The weather information is provided by\nEstonian Weather Service";
-"About me description" = "Hey 👋! My name is Andrius. I'm an iOS Developer from Estonia 🇪🇪. Besides being full-time developer and father of three I'm writing small apps like this. If you have any questions/concerns regarding the app, do not hesitate to contact me.";
-"About me title" = "About me";
-"Contact me" = "Contact me";
-"Day" = "Day";
-"Night" = "Night";
+"Four days forecast" = "Nelja päeva prognoos";
+"Forecast" = "Prognoos";
+"Settings" = "Seaded";
+"Current language" = "Praegune keel";
+"Observations" = "Vaatlusandmed";
+"Source disclaimer" = "Ilmateabe toob teieni\nRiigi Ilmateenistus";
+"About me description" = "Tere 👋! Minu nimi on Andrius. Olen Eestis elav ja tegutsev iOSi arendaja. Lisaks täiskohaga tööle arendajana kasvatan kolme last ja vabal ajal meeldib mulle kirjutada sellised väikesi äppe. Kui teil on seoses äpiga mingeid küsimusi või muresid, võtke minuga kindlasti ühendust.";
+"About me title" = "Minust";
+"Contact me" = "Võta ühendust";
+"Day" = "Päev";
+"Night" = "Öö";
 "Estonian Weather Forecast" = "Estonian Weather Forecast";
 
-"Synced" = "Synced";
-"Syncing" = "Syncing";
-"Failed to sync. Error:" = "Failed to sync. Error:";
-"Ready" = "Ready";
+"Synced" = "Sünkroonitud";
+"Syncing" = "Sünkroonimine";
+"Failed to sync. Error:" = "Sünkroonimine ebaõnnestus. Viga:";
+"Ready" = "Valmis";
 "Unit testing mode" = "Unit testing mode";
 
 "Forecast Widget" = "Forecast Widget";
