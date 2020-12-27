@@ -1,0 +1,10 @@
+/* 
+  AppStoreDescription.strings
+  EstonianWeather
+
+  Created by Andrius Shiaulis on 26.12.2020.
+  
+*/
+
+"appstore_description" = "Получите доступ к информации о погоде в Эстонии. Eesti Ilm - это простое приложение, которое даёт доступ к актуальной информации о прогнозах, предоставленных Эстонской службой погоды. Дизайн иконки приложения Freepick www.flaticon.com";
+"keywords" = "погода, прогноз, Эстония";
