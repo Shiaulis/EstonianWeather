@@ -35,7 +35,7 @@ struct EstonianWeatherWidgetEntryView: View {
         }
         else {
             ZStack {
-                Color(Resource.Color.appRose)
+                Color(.appRose)
                 VStack(spacing: 2) {
                     //                HeaderView()
                     HStack(spacing: 2) {
@@ -66,7 +66,7 @@ private struct HeaderView: View {
 
     var body: some View {
         ZStack {
-            Color(Resource.Color.appRose)
+            Color(.appRose)
                 .layoutPriority(-1)
             HStack {
                 Spacer()

@@ -14,7 +14,7 @@ final class ObservationListController: ObservationListViewModel {
     private let dataProvider: DataProvider
     private var disposables: Set<AnyCancellable> = []
 
-    init(dataProvider: DataProvider = .init()) {
+    init(dataProvider: DataProvider) {
         self.dataProvider = dataProvider
 
         listenForData()

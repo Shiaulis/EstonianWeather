@@ -32,7 +32,7 @@ final class ApplicationModel: Model {
         self.mapper = CoreDataMapper(logger: logger)
         self.networkClient = URLSessionNetworkClient()
         self.parser = ServerResponseXMLParser(logger: logger)
-        self.dataProvider = DataProvider()
+        self.dataProvider = DataProvider(formatter: ForecastDateFormatter(localization: self.appLocalization))
     }
 
     func provideForecasts(result: @escaping (Result<[ForecastDisplayItem], Error>) -> Void) {

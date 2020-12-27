@@ -25,7 +25,7 @@ struct ObservationListView<ViewModel: ObservationListViewModel>: View {
                 }
             }
             .navigationBarTitle(R.string.localizable.observations())
-            .navigationBarColor(backgroundColor: Resource.Color.appRose, tintColor: .white)
+            .navigationBarColor(backgroundColor: .appRose, tintColor: .white)
         }
     }
 
