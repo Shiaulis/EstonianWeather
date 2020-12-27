@@ -14,11 +14,12 @@ extension URL {
     static let iconDisclaimerURL = URL(string: "https://www.flaticon.com/authors/freepik")!
     static let email = URL(string: "mailto:shiaulis@gmail.com")!
 
-    static func sourceDisclaimerURL(for localization: AppLocalization) -> URL {
-        switch localization {
-        case .english: return URL(string: "https://www.ilmateenistus.ee/?lang=en")!
-        case .estonian: return URL(string: "https://www.ilmateenistus.ee/?lang=et")!
-        case .russian: return URL(string: "https://www.ilmateenistus.ee/?lang=ru")!
+    static var sourceDisclaimerURL: URL {
+        switch Locale.current.languageCode {
+        case "en": return URL(string: "https://www.ilmateenistus.ee/?lang=en")!
+        case "ru": return URL(string: "https://www.ilmateenistus.ee/?lang=ru")!
+        case "et": return URL(string: "https://www.ilmateenistus.ee/?lang=et")!
+        default: return URL(string: "https://www.ilmateenistus.ee/?lang=en")!
         }
     }
 

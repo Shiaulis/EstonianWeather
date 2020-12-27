@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 extension Wind {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Wind> {
@@ -44,6 +43,6 @@ extension Wind {
 
 }
 
-extension Wind : Identifiable {
+extension Wind: Identifiable {
 
 }

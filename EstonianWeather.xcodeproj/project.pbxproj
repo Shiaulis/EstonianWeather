@@ -28,7 +28,6 @@
 		0968CDEA252268E600D409FF /* DataMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDDE252268E600D409FF /* DataMapper.swift */; };
 		0968CDEB252268E600D409FF /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDDF252268E600D409FF /* DataProvider.swift */; };
 		0968CDEC252268E600D409FF /* ForecastDisplayItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDE0252268E600D409FF /* ForecastDisplayItem.swift */; };
-		0968CDED252268E600D409FF /* AppLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDE1252268E600D409FF /* AppLocalization.swift */; };
 		0968CDEE252268E600D409FF /* ServerResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDE2252268E600D409FF /* ServerResponseParser.swift */; };
 		0968CDEF252268E600D409FF /* ApplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDE3252268E600D409FF /* ApplicationController.swift */; };
 		0968CE01252269AF00D409FF /* Phenomenon+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDF4252269AF00D409FF /* Phenomenon+CoreDataClass.swift */; };
@@ -60,7 +59,6 @@
 		0972159C2534DD7500E43B7B /* Observation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097215982534DD7500E43B7B /* Observation+CoreDataProperties.swift */; };
 		09727670254583C100016EB0 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 0972766F254583C100016EB0 /* LICENSE */; };
 		0975937D25441B5500C21C6B /* WidgetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0975937C25441B5500C21C6B /* WidgetService.swift */; };
-		097593E4254424F100C21C6B /* AppLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDE1252268E600D409FF /* AppLocalization.swift */; };
 		09769674252A5ADC00FA1764 /* SettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09769673252A5ADC00FA1764 /* SettingsService.swift */; };
 		09769689252A667E00FA1764 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0976968B252A667E00FA1764 /* Localizable.strings */; };
 		09769696252A682800FA1764 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 09769695252A682800FA1764 /* Settings.bundle */; };
@@ -113,6 +111,7 @@
 		09E8E0E32531E31700E2F180 /* EWWind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E8E0E22531E31700E2F180 /* EWWind.swift */; };
 		09F969F62532597600DA94D6 /* TestableLocale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E8E0AE2531928F00E2F180 /* TestableLocale.swift */; };
 		B13DCFD92598FDB200BC02E9 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AFFAF92598FC3100ACA10E /* UIColor+Extensions.swift */; };
+		B13DCFF825990B0700BC02E9 /* Locale+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13DCFF725990B0700BC02E9 /* Locale+Extensions.swift */; };
 		B158270B252B57150064A42C /* EstonianWeatherWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = B158270E252B57150064A42C /* EstonianWeatherWidget.intentdefinition */; };
 		B158270C252B57150064A42C /* EstonianWeatherWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = B158270E252B57150064A42C /* EstonianWeatherWidget.intentdefinition */; };
 		B17DE2072597A7A800FB14CD /* LauchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B17DE2062597A7A800FB14CD /* LauchScreen.storyboard */; };
@@ -199,7 +198,6 @@
 		0968CDDE252268E600D409FF /* DataMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataMapper.swift; sourceTree = "<group>"; };
 		0968CDDF252268E600D409FF /* DataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		0968CDE0252268E600D409FF /* ForecastDisplayItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastDisplayItem.swift; sourceTree = "<group>"; };
-		0968CDE1252268E600D409FF /* AppLocalization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLocalization.swift; sourceTree = "<group>"; };
 		0968CDE2252268E600D409FF /* ServerResponseParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerResponseParser.swift; sourceTree = "<group>"; };
 		0968CDE3252268E600D409FF /* ApplicationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationController.swift; sourceTree = "<group>"; };
 		0968CDF4252269AF00D409FF /* Phenomenon+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Phenomenon+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -262,6 +260,7 @@
 		09E8E0D82531E29900E2F180 /* EWPhenomenon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EWPhenomenon.swift; sourceTree = "<group>"; };
 		09E8E0E22531E31700E2F180 /* EWWind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EWWind.swift; sourceTree = "<group>"; };
 		09F969FB25325BCB00DA94D6 /* EstonianWeatherUITests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = EstonianWeatherUITests.xctestplan; sourceTree = "<group>"; };
+		B13DCFF725990B0700BC02E9 /* Locale+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Locale+Extensions.swift"; sourceTree = "<group>"; };
 		B158270D252B57150064A42C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = en; path = en.lproj/EstonianWeatherWidget.intentdefinition; sourceTree = "<group>"; };
 		B17DE2062597A7A800FB14CD /* LauchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LauchScreen.storyboard; sourceTree = "<group>"; };
 		B190252D259731E500ACD2E1 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
@@ -488,7 +487,6 @@
 				0968CDE3252268E600D409FF /* ApplicationController.swift */,
 				09769673252A5ADC00FA1764 /* SettingsService.swift */,
 				0975937C25441B5500C21C6B /* WidgetService.swift */,
-				0968CDE1252268E600D409FF /* AppLocalization.swift */,
 				09D5E4EA2544259A00FBAC98 /* FeatureFlagService.swift */,
 			);
 			path = "Application Core";
@@ -558,6 +556,7 @@
 				09A294CE2569976400545CFB /* URL+Extensions.swift */,
 				B190EB132586A5820025415A /* Date+Extensions.swift */,
 				B1AFFAF92598FC3100ACA10E /* UIColor+Extensions.swift */,
+				B13DCFF725990B0700BC02E9 /* Locale+Extensions.swift */,
 			);
 			path = "Class Extensions";
 			sourceTree = "<group>";
@@ -792,6 +791,7 @@
 				0968CE02252269AF00D409FF /* PersistenceService.swift in Sources */,
 				0968CDD3252267F600D409FF /* LanguageCell.swift in Sources */,
 				B1CA14122593921C009ABBCA /* Model.swift in Sources */,
+				B13DCFF825990B0700BC02E9 /* Locale+Extensions.swift in Sources */,
 				09C611E3253A407A002A4A60 /* ObservationListViewModel.swift in Sources */,
 				0968CE09252269AF00D409FF /* Place+CoreDataClass.swift in Sources */,
 				0968CE01252269AF00D409FF /* Phenomenon+CoreDataClass.swift in Sources */,
@@ -836,7 +836,6 @@
 				0968CE0C252269AF00D409FF /* DayPartForecast+CoreDataClass.swift in Sources */,
 				0968CDE8252268E600D409FF /* ForecastDateFormatter.swift in Sources */,
 				0968CDE4252268E600D409FF /* ForecastListViewModel.swift in Sources */,
-				0968CDED252268E600D409FF /* AppLocalization.swift in Sources */,
 				0968CE05252269AF00D409FF /* Wind+CoreDataProperties.swift in Sources */,
 				0968CDE6252268E600D409FF /* SettingsViewModel.swift in Sources */,
 				0968CDEE252268E600D409FF /* ServerResponseParser.swift in Sources */,
@@ -903,7 +902,6 @@
 				09779CA22532F2EC00957B1F /* EWObservation.swift in Sources */,
 				097698B8252A708A00FA1764 /* ForecastWidget.swift in Sources */,
 				09779C7D2532F22600957B1F /* Wind+CoreDataProperties.swift in Sources */,
-				097593E4254424F100C21C6B /* AppLocalization.swift in Sources */,
 				B1D3AC41258D532200456FCB /* ServerResponseParser.swift in Sources */,
 				09779CB62532F30500957B1F /* Logger.swift in Sources */,
 				09779CAC2532F2F900957B1F /* EWPhenomenon.swift in Sources */,

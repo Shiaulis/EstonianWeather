@@ -40,10 +40,10 @@ extension Endpoint {
 
     // https://ilmateenistus.ee/ilma_andmed/xml/forecast.php?lang=rus
 
-    static func forecast(for localization: AppLocalization) -> Endpoint {
+    static func forecast(for locale: Locale = .current) -> Endpoint {
         .init(
             path: "/ilma_andmed/xml/forecast.php",
-            urlQueryItems: [.init(name: "lang", value: localization.queryItemLanguageCode())],
+            urlQueryItems: [.init(name: "lang", value: locale.queryItemLanguageCode())],
             method: .post
         )
     }
@@ -55,12 +55,13 @@ extension Endpoint {
     }
 }
 
-private extension AppLocalization {
+private extension Locale {
     func queryItemLanguageCode() -> String {
-        switch self {
-        case .english: return "eng"
-        case .estonian: return "est"
-        case .russian: return "rus"
+        switch self.languageCode {
+        case "en": return "eng"
+        case "et": return "est"
+        case "ru": return "rus"
+        default: return "eng"
         }
     }
 }

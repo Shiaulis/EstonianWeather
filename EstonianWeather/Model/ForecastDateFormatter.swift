@@ -12,34 +12,36 @@ final class ForecastDateFormatter {
 
     // MARK: - Properties
 
-    private let localization: AppLocalization
+    private let locale: Locale
+    private let calendar: Calendar
 
     // MARK: - Initialization
 
-    init(localization: AppLocalization) {
-        self.localization = localization
+    init(locale: Locale = .current, calendar: Calendar = .current) {
+        self.locale = locale
+        self.calendar = calendar
     }
 
     // MARK: - Public
 
-    func humanReadableDescription(for date: Date?, calendar: Calendar = .current) -> String? {
+    func humanReadableDescription(for date: Date?) -> String? {
         guard let date = date else { return nil }
 
-        guard var humanReadableDescription = string(from: date, calendar: calendar, locale: self.localization.locale) else { return nil }
+        guard var humanReadableDescription = string(from: date, calendar: self.calendar, locale: self.locale) else { return nil }
 
-        if let description = textDescription(from: date, calendar: calendar, locale: self.localization.locale) {
+        if let description = textDescription(from: date, calendar: self.calendar, locale: self.locale) {
             humanReadableDescription += ", \(description)"
         }
 
         return humanReadableDescription
     }
 
-    func shortReadableDescription(for date: Date?, calendar: Calendar = .current) -> String? {
+    func shortReadableDescription(for date: Date?) -> String? {
         guard let date = date else { return nil }
 
         let formatter: DateFormatter = .init()
-        formatter.locale = self.localization.locale
-        formatter.calendar = calendar
+        formatter.locale = self.locale
+        formatter.calendar = self.calendar
         formatter.dateStyle = .short
         formatter.timeStyle = .none
         formatter.doesRelativeDateFormatting = true
@@ -65,7 +67,7 @@ final class ForecastDateFormatter {
 
     private func string(from date: Date, calendar: Calendar, locale: Locale) -> String? {
         let formatter: DateFormatter = .init()
-        formatter.locale = self.localization.locale
+        formatter.locale = self .locale
         formatter.calendar = calendar
         formatter.setLocalizedDateFormatFromTemplate("dMMMM")
 

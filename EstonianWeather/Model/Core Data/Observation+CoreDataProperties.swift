@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 extension Observation {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Observation> {
@@ -35,6 +34,6 @@ extension Observation {
 
 }
 
-extension Observation : Identifiable {
+extension Observation: Identifiable {
 
 }

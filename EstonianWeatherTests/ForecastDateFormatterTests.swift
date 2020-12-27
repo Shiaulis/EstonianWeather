@@ -20,7 +20,7 @@ final class ForecastDateFormatterTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        self.sut = .init(localization: .english)
+        self.sut = .init()
     }
 
     override func tearDown() {

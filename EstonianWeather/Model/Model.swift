@@ -18,26 +18,26 @@ final class ApplicationModel: Model {
     private var disposables: Set<AnyCancellable> = []
 
     private let context: NSManagedObjectContext
-    private let appLocalization: AppLocalization
     private let mapper: DataMapper
     private let networkClient: NetworkClient
     private let parser: ServerResponseParser
     private let dataProvider: DataProvider
+    private let locale: Locale
 
-    init(persistenceService: PersistenceService, appLocalization: AppLocalization) {
+    init(persistenceService: PersistenceService, locale: Locale = .current) {
         self.context = persistenceService.persistentContainer.viewContext
-        self.appLocalization = appLocalization
         self.context.mergePolicy = NSMergePolicy(merge: .overwriteMergePolicyType)
+        self.locale = locale
         let logger = PrintLogger()
         self.mapper = CoreDataMapper(logger: logger)
         self.networkClient = URLSessionNetworkClient()
         self.parser = ServerResponseXMLParser(logger: logger)
-        self.dataProvider = DataProvider(formatter: ForecastDateFormatter(localization: self.appLocalization))
+        self.dataProvider = DataProvider(formatter: ForecastDateFormatter(locale: locale))
     }
 
     func provideForecasts(result: @escaping (Result<[ForecastDisplayItem], Error>) -> Void) {
         var receivedForecastDisplayItems: [ForecastDisplayItem] = []
-        let publishers = [requestAndMapForecastPublisher(for: self.appLocalization)]
+        let publishers = [requestAndMapForecastPublisher(for: self.locale)]
 
         Publishers
             .MergeMany(publishers)
@@ -61,14 +61,14 @@ final class ApplicationModel: Model {
 
     }
 
-    private func requestAndMapForecastPublisher(for localization: AppLocalization) -> AnyPublisher<[EWForecast], Swift.Error> {
-        let endpoint = Endpoint.forecast(for: localization)
+    private func requestAndMapForecastPublisher(for locale: Locale) -> AnyPublisher<[EWForecast], Swift.Error> {
+        let endpoint = Endpoint.forecast(for: locale)
         let today = Date()
 
         return self.networkClient.requestPublisher(for: endpoint)
             // TODOx: Should validate response code as well
             .map { $0.data }
-            .parseForecast(using: self.parser, date: today, languageCode: localization.languageCode)
+            .parseForecast(using: self.parser, date: today, languageCode: locale.languageCode ?? "")
     }
 
 }
