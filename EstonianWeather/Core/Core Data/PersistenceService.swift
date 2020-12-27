@@ -13,19 +13,19 @@ struct AppGroup {
     static let defaultGroupIdentifier = "group.shiaulis.EstonianWeather"
 }
 
-final class CoreDataStack {
+final class PersistenceService {
 
     private(set) var persistentContainer: NSPersistentContainer
     private static let databaseName = "EstonianWeather"
-    private let storeURL = URL.storeURL(for: AppGroup.defaultGroupIdentifier, databaseName: CoreDataStack.databaseName)
+    private let storeURL = URL.storeURL(for: AppGroup.defaultGroupIdentifier, databaseName: PersistenceService.databaseName)
 
     init() {
-        self.persistentContainer = .init(name: CoreDataStack.databaseName)
+        self.persistentContainer = .init(name: PersistenceService.databaseName)
         initialize()
     }
 
     private func initialize() {
-        self.persistentContainer = .init(name: CoreDataStack.databaseName)
+        self.persistentContainer = .init(name: PersistenceService.databaseName)
         let storeDescription = NSPersistentStoreDescription(url: self.storeURL)
         self.persistentContainer.persistentStoreDescriptions = [storeDescription]
         self.persistentContainer.loadPersistentStores { _, error in

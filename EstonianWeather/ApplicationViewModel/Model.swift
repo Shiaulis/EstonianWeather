@@ -24,8 +24,8 @@ final class ApplicationModel: Model {
     private let parser: ServerResponseParser
     private let dataProvider: DataProvider
 
-    init(context: NSManagedObjectContext, appLocalization: AppLocalization) {
-        self.context = context
+    init(persistenceService: PersistenceService, appLocalization: AppLocalization) {
+        self.context = persistenceService.persistentContainer.viewContext
         self.appLocalization = appLocalization
         self.context.mergePolicy = NSMergePolicy(merge: .overwriteMergePolicyType)
         let logger = PrintLogger()

@@ -19,6 +19,10 @@ protocol FeatureFlagStorage {
 
 final class FeatureFlagService {
 
+    static private(set) var shared: FeatureFlagService = {
+        FeatureFlagService(storage: RuntimeFeatureFlagStorage())
+    }()
+
     private let storage: FeatureFlagStorage
 
     init(storage: FeatureFlagStorage) {

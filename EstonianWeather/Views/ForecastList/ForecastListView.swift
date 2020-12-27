@@ -120,11 +120,12 @@ struct SyncStatusView: View {
     }
 }
 
-struct ForecastListView_Previews: PreviewProvider {
-    static var previews: some View {
-        ForecastListView(viewModel: ForecastListViewModel(model: MockApplicationViewModel().model))
-    }
-}
+// FIXME: Fix preview
+//struct ForecastListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ForecastListView(viewModel: ForecastListViewModel(model: MockApplicationViewModel().model))
+//    }
+//}
 
 struct SettingsButton: View {
 

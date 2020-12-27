@@ -13,31 +13,20 @@ enum ApplicationMode {
 
 @main
 struct EstonianWeatherApp: App {
-    private func tabbarView() -> some View {
-        let applicationViewModel: ApplicationViewModel = ApplicationController()
-        guard applicationViewModel.applicationMode != .unitTests else {
-            return AnyView(Text(R.string.localizable.unitTestingMode()))
-        }
-        let dataProvider = applicationViewModel.forecastDataProvider()
 
-        let forecastViewModel = ForecastListViewModel(model:applicationViewModel.model)
-        let forecastListView = ForecastListView(viewModel: forecastViewModel)
-        let observationViewModel = ObservationListController(dataProvider: dataProvider)
-        let observationListView = ObservationListView(viewModel: observationViewModel)
-        let settingsView = SettingsView(viewModel: SettingsViewModel(appViewModel: applicationViewModel))
-        let tabbarView = TabbarView(
-            observationListView: observationListView,
-            forecastListView: forecastListView,
-            settingsView: settingsView,
-            appViewModel: applicationViewModel
-        )
-
-        return AnyView(tabbarView)
-    }
+    private let applicationController = ApplicationController()
 
     var body: some Scene {
         WindowGroup {
-            tabbarView()
+            if self.applicationController.applicationMode == .unitTests {
+                AnyView(Text(R.string.localizable.unitTestingMode()))
+            }
+            else {
+                TabbarView(
+                    forecastListView: ForecastListView(viewModel: ForecastListViewModel(model:applicationController.model)),
+                    settingsView: SettingsView(viewModel: SettingsViewModel(localization: applicationController.localization))
+                )
+            }
         }
     }
 }

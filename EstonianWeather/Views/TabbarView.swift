@@ -33,32 +33,21 @@ enum Tab {
             Text(self.title)
         }
     }
+
 }
 
 struct TabbarView: View {
 
-    init(
-        observationListView: ObservationListView<ObservationListController>,
-        forecastListView: ForecastListView,
-        settingsView: SettingsView,
-        appViewModel: ApplicationViewModel
-    ) {
-        self.observationListView = observationListView
-        self.forecastListView = forecastListView
-        self.settingsView = settingsView
-        self.appViewModel = appViewModel
-    }
-
-    private let observationListView: ObservationListView<ObservationListController>
     private let forecastListView: ForecastListView
     private let settingsView: SettingsView
-    private let appViewModel: ApplicationViewModel
+
+    init(forecastListView: ForecastListView, settingsView: SettingsView) {
+        self.forecastListView = forecastListView
+        self.settingsView = settingsView
+    }
 
     var body: some View {
         TabView {
-            if self.appViewModel.isFeatureEnabled(.observations) {
-                self.observationListView.tabItem { Tab.observationList.item() }
-            }
             self.forecastListView.tabItem { Tab.forecastList.item() }
             self.settingsView.tabItem { Tab.settings.item() }
         }
@@ -66,13 +55,14 @@ struct TabbarView: View {
     }
 }
 
-struct TabbarView_Previews: PreviewProvider {
-    static var previews: some View {
-        TabbarView(
-            observationListView: ObservationListView(viewModel: ObservationListController()),
-            forecastListView: ForecastListView(viewModel: ForecastListViewModel(model: MockApplicationViewModel().model)),
-            settingsView: SettingsView(viewModel: SettingsViewModel(appViewModel: MockApplicationViewModel())),
-            appViewModel: MockApplicationViewModel()
-        )
-    }
-}
+// FIXME: fix preview
+//struct TabbarView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TabbarView(
+//            observationListView: ObservationListView(viewModel: ObservationListController()),
+//            forecastListView: ForecastListView(viewModel: ForecastListViewModel(model: MockApplicationViewModel().model)),
+//            settingsView: SettingsView(viewModel: SettingsViewModel(appViewModel: MockApplicationViewModel())),
+//            appViewModel: MockApplicationViewModel()
+//        )
+//    }
+//}

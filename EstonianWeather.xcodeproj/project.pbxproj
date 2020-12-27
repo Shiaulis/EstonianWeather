@@ -32,7 +32,7 @@
 		0968CDEE252268E600D409FF /* ServerResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDE2252268E600D409FF /* ServerResponseParser.swift */; };
 		0968CDEF252268E600D409FF /* ApplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDE3252268E600D409FF /* ApplicationController.swift */; };
 		0968CE01252269AF00D409FF /* Phenomenon+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDF4252269AF00D409FF /* Phenomenon+CoreDataClass.swift */; };
-		0968CE02252269AF00D409FF /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDF5252269AF00D409FF /* CoreDataStack.swift */; };
+		0968CE02252269AF00D409FF /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDF5252269AF00D409FF /* PersistenceService.swift */; };
 		0968CE03252269AF00D409FF /* DayPartForecast+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDF6252269AF00D409FF /* DayPartForecast+CoreDataProperties.swift */; };
 		0968CE04252269AF00D409FF /* Forecast+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDF7252269AF00D409FF /* Forecast+CoreDataClass.swift */; };
 		0968CE05252269AF00D409FF /* Wind+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDF8252269AF00D409FF /* Wind+CoreDataProperties.swift */; };
@@ -72,7 +72,7 @@
 		097698C1252A708C00FA1764 /* EstonianWeatherWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 097698B0252A708A00FA1764 /* EstonianWeatherWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		09779C5E2532E87E00957B1F /* EstonianWeatherWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09779C542532E82300957B1F /* EstonianWeatherWidgetBundle.swift */; };
 		09779C642532EC8C00957B1F /* WidgetForercastProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09779C632532EC8C00957B1F /* WidgetForercastProvider.swift */; };
-		09779C712532F18A00957B1F /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDF5252269AF00D409FF /* CoreDataStack.swift */; };
+		09779C712532F18A00957B1F /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDF5252269AF00D409FF /* PersistenceService.swift */; };
 		09779C762532F22600957B1F /* DayPartForecast+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDF6252269AF00D409FF /* DayPartForecast+CoreDataProperties.swift */; };
 		09779C772532F22600957B1F /* Place+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDFC252269AF00D409FF /* Place+CoreDataProperties.swift */; };
 		09779C782532F22600957B1F /* Phenomenon+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0943927D2532423F006A37F7 /* Phenomenon+CoreDataProperties.swift */; };
@@ -203,7 +203,7 @@
 		0968CDE2252268E600D409FF /* ServerResponseParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerResponseParser.swift; sourceTree = "<group>"; };
 		0968CDE3252268E600D409FF /* ApplicationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationController.swift; sourceTree = "<group>"; };
 		0968CDF4252269AF00D409FF /* Phenomenon+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Phenomenon+CoreDataClass.swift"; sourceTree = "<group>"; };
-		0968CDF5252269AF00D409FF /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		0968CDF5252269AF00D409FF /* PersistenceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		0968CDF6252269AF00D409FF /* DayPartForecast+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DayPartForecast+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		0968CDF7252269AF00D409FF /* Forecast+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Forecast+CoreDataClass.swift"; sourceTree = "<group>"; };
 		0968CDF8252269AF00D409FF /* Wind+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Wind+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -420,7 +420,7 @@
 				097215972534DD7500E43B7B /* Observation+CoreDataClass.swift */,
 				097215982534DD7500E43B7B /* Observation+CoreDataProperties.swift */,
 				0968CDFA252269AF00D409FF /* EstonianWeather.xcdatamodeld */,
-				0968CDF5252269AF00D409FF /* CoreDataStack.swift */,
+				0968CDF5252269AF00D409FF /* PersistenceService.swift */,
 				0968CDDE252268E600D409FF /* DataMapper.swift */,
 				0968CDF4252269AF00D409FF /* Phenomenon+CoreDataClass.swift */,
 				0943927D2532423F006A37F7 /* Phenomenon+CoreDataProperties.swift */,
@@ -791,7 +791,7 @@
 				0968CE06252269AF00D409FF /* Wind+CoreDataClass.swift in Sources */,
 				0968CDEC252268E600D409FF /* ForecastDisplayItem.swift in Sources */,
 				099EDB0325646D4B00C3EBE4 /* NavigationBarColor.swift in Sources */,
-				0968CE02252269AF00D409FF /* CoreDataStack.swift in Sources */,
+				0968CE02252269AF00D409FF /* PersistenceService.swift in Sources */,
 				0968CDD3252267F600D409FF /* LanguageCell.swift in Sources */,
 				B1CA14122593921C009ABBCA /* Model.swift in Sources */,
 				09C611E3253A407A002A4A60 /* ObservationListViewModel.swift in Sources */,
@@ -891,7 +891,7 @@
 				B1CA14172593AE47009ABBCA /* Model.swift in Sources */,
 				B1D3AC3C258D530600456FCB /* NetworkClient.swift in Sources */,
 				09779C772532F22600957B1F /* Place+CoreDataProperties.swift in Sources */,
-				09779C712532F18A00957B1F /* CoreDataStack.swift in Sources */,
+				09779C712532F18A00957B1F /* PersistenceService.swift in Sources */,
 				0972159A2534DD7500E43B7B /* Observation+CoreDataClass.swift in Sources */,
 				09779C9D2532F2E300957B1F /* EWForecast.swift in Sources */,
 				09779C7A2532F22600957B1F /* DayPartForecast+CoreDataClass.swift in Sources */,
