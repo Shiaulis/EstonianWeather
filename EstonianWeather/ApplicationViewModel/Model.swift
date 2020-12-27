@@ -72,3 +72,11 @@ final class ApplicationModel: Model {
     }
 
 }
+
+final class MockModel: Model {
+
+    func provideForecasts(result: @escaping (Result<[ForecastDisplayItem], Error>) -> Void) {
+        result(.success([.test1, .test2, .test3]))
+    }
+
+}

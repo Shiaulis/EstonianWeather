@@ -55,14 +55,11 @@ struct TabbarView: View {
     }
 }
 
-// FIXME: fix preview
-//struct TabbarView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        TabbarView(
-//            observationListView: ObservationListView(viewModel: ObservationListController()),
-//            forecastListView: ForecastListView(viewModel: ForecastListViewModel(model: MockApplicationViewModel().model)),
-//            settingsView: SettingsView(viewModel: SettingsViewModel(appViewModel: MockApplicationViewModel())),
-//            appViewModel: MockApplicationViewModel()
-//        )
-//    }
-//}
+struct TabbarView_Previews: PreviewProvider {
+    static var previews: some View {
+        TabbarView(
+            forecastListView: ForecastListView(viewModel: ForecastListViewModel(model: MockModel())),
+            settingsView: SettingsView(viewModel: SettingsViewModel(localization: .russian))
+        )
+    }
+}
