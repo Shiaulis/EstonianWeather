@@ -8,11 +8,11 @@
 
 import SwiftUI
 
-struct ForecastListView<ViewModel: ForecastListViewModel>: View {
+struct ForecastListView: View {
 
     // MARK: - Properties
 
-    @ObservedObject var viewModel: ViewModel
+    @ObservedObject var viewModel: ForecastListViewModel
 
     // MARK: - Body
 
@@ -122,7 +122,7 @@ struct SyncStatusView: View {
 
 struct ForecastListView_Previews: PreviewProvider {
     static var previews: some View {
-        ForecastListView(viewModel: MockForecastListViewModel())
+        ForecastListView(viewModel: ForecastListViewModel(model: MockApplicationViewModel().model))
     }
 }
 

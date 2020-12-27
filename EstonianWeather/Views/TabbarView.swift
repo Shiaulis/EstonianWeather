@@ -39,7 +39,7 @@ struct TabbarView: View {
 
     init(
         observationListView: ObservationListView<ObservationListController>,
-        forecastListView: ForecastListView<ForecastListController>,
+        forecastListView: ForecastListView,
         settingsView: SettingsView,
         appViewModel: ApplicationViewModel
     ) {
@@ -50,7 +50,7 @@ struct TabbarView: View {
     }
 
     private let observationListView: ObservationListView<ObservationListController>
-    private let forecastListView: ForecastListView<ForecastListController>
+    private let forecastListView: ForecastListView
     private let settingsView: SettingsView
     private let appViewModel: ApplicationViewModel
 
@@ -70,7 +70,7 @@ struct TabbarView_Previews: PreviewProvider {
     static var previews: some View {
         TabbarView(
             observationListView: ObservationListView(viewModel: ObservationListController()),
-            forecastListView: ForecastListView(viewModel: ForecastListController(appViewModel: MockApplicationViewModel())),
+            forecastListView: ForecastListView(viewModel: ForecastListViewModel(model: MockApplicationViewModel().model)),
             settingsView: SettingsView(viewModel: SettingsViewModel(appViewModel: MockApplicationViewModel())),
             appViewModel: MockApplicationViewModel()
         )

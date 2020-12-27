@@ -9,7 +9,11 @@ import Foundation
 import Combine
 import CoreData
 
-final class Model {
+protocol Model {
+    func provideForecasts(result: @escaping (Result<[ForecastDisplayItem], Error>) -> Void)
+}
+
+final class ApplicationModel: Model {
 
     private var disposables: Set<AnyCancellable> = []
 
