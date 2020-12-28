@@ -67,7 +67,7 @@ private struct PlaceholderView: View {
             Spacer()
             HStack {
                 Spacer()
-                Text(NSLocalizedString("Syncing", comment: ""))
+                Text(NSLocalizedString("No data available", comment: ""))
                 Spacer()
             }
             Spacer()
