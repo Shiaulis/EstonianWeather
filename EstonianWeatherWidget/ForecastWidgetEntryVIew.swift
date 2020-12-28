@@ -31,22 +31,46 @@ struct EstonianWeatherWidgetEntryView: View {
     @ViewBuilder
     var body: some View {
         if self.family == .systemSmall {
-            ForecastFullWeatherView(displayItem: self.displayItems.first!)
+            if !self.displayItems.isEmpty {
+                ForecastFullWeatherView(displayItem: self.displayItems.first!)
+            }
+            else {
+                PlaceholderView()
+            }
         }
         else {
-            ZStack {
-                Color(.appRose)
-                VStack(spacing: 2) {
-                    //                HeaderView()
-                    HStack(spacing: 2) {
-                        ForEach(self.displayItems) { displayItem in
-                            // replace test item
-                            ForecastWeatherDayView(displayItem: displayItem.day ?? .test)
+            if !self.displayItems.isEmpty {
+                ZStack {
+                    Color(.appRose)
+                    VStack(spacing: 2) {
+                        //                HeaderView()
+                        HStack(spacing: 2) {
+                            ForEach(self.displayItems) { displayItem in
+                                // replace test item
+                                ForecastWeatherDayView(displayItem: displayItem.day ?? .test)
+                            }
                         }
-                    }
 
+                    }
                 }
             }
+            else {
+                PlaceholderView()
+            }
+        }
+    }
+}
+
+private struct PlaceholderView: View {
+    var body: some View {
+        VStack {
+            Spacer()
+            HStack {
+                Spacer()
+                Text(NSLocalizedString("Syncing", comment: ""))
+                Spacer()
+            }
+            Spacer()
         }
     }
 }

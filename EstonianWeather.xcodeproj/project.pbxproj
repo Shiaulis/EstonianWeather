@@ -508,12 +508,12 @@
 			children = (
 				B158270E252B57150064A42C /* EstonianWeatherWidget.intentdefinition */,
 				09406F9725336E5000FB1E1C /* EstonianWeatherWidgetExtension.entitlements */,
+				09779C542532E82300957B1F /* EstonianWeatherWidgetBundle.swift */,
 				09779C632532EC8C00957B1F /* WidgetForercastProvider.swift */,
+				09779CC925332E3600957B1F /* ForecastWidgetEntryVIew.swift */,
 				097698B7252A708A00FA1764 /* ForecastWidget.swift */,
 				097698BA252A708C00FA1764 /* Assets.xcassets */,
 				097698BC252A708C00FA1764 /* Info.plist */,
-				09779C542532E82300957B1F /* EstonianWeatherWidgetBundle.swift */,
-				09779CC925332E3600957B1F /* ForecastWidgetEntryVIew.swift */,
 			);
 			path = EstonianWeatherWidget;
 			sourceTree = "<group>";

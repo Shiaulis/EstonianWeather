@@ -34,19 +34,22 @@ final class WidgetForercastProvider: IntentTimelineProvider {
     }
 
     func placeholder(in context: Context) -> ForecastEntry {
-        ForecastEntry(date: Date(), configuration: ConfigurationIntent())
+        ForecastEntry(displayItems: [.test1, .test2, .test3], date: Date(), configuration: ConfigurationIntent())
     }
 
     func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (ForecastEntry) -> Void) {
-        requestAndMapForecasts(for: configuration) { entry in
-            completion(entry)
-        }
+        let entry = ForecastEntry(displayItems: currentForecastsFromDatabase(), date: Date(), configuration: ConfigurationIntent())
+        completion(entry)
     }
 
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<ForecastEntry>) -> Void) {
         requestAndMapForecasts(for: configuration) { entry in
             completion(.init(entries: [entry], policy: .atEnd))
         }
+    }
+
+    private func currentForecastsFromDatabase() -> [ForecastDisplayItem] {
+        self.model.currentForecasts
     }
 
     private func requestAndMapForecasts(for configuration: ConfigurationIntent, completion: @escaping (ForecastEntry) -> Void) {

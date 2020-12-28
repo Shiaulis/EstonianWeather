@@ -10,10 +10,22 @@ import Combine
 import CoreData
 
 protocol Model {
+    var currentForecasts: [ForecastDisplayItem] { get }
+
     func provideForecasts(result: @escaping (Result<[ForecastDisplayItem], Error>) -> Void)
 }
 
 final class ApplicationModel: Model {
+
+    var currentForecasts: [ForecastDisplayItem] {
+        do {
+            return try self.dataProvider.provideForecast(with: self.context, for: .current).get()
+        }
+        catch {
+            assertionFailure()
+            return []
+        }
+    }
 
     private var disposables: Set<AnyCancellable> = []
 
@@ -74,6 +86,8 @@ final class ApplicationModel: Model {
 }
 
 final class MockModel: Model {
+
+    var currentForecasts: [ForecastDisplayItem] { [] }
 
     func provideForecasts(result: @escaping (Result<[ForecastDisplayItem], Error>) -> Void) {
         result(.success([.test1, .test2, .test3]))
