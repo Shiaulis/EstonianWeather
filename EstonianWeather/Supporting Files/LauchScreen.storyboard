@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pDi-zr-VXl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pDi-zr-VXl">
     <device id="ipad12_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -13,26 +13,35 @@
             <objects>
                 <viewController id="pDi-zr-VXl" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="o94-wC-e55">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1251"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchImage" translatesAutoresizingMaskIntoConstraints="NO" id="7N1-AX-wWj">
-                                <rect key="frame" x="362" y="546.5" width="300" height="253"/>
+                                <rect key="frame" x="362" y="499" width="300" height="253"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="7N1-AX-wWj" secondAttribute="height" multiplier="19:16" id="rCH-BJ-h1J"/>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="wIK-bW-7xw"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Eesti Ilm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cYe-Yq-sDm">
+                                <rect key="frame" x="451" y="772" width="122" height="41"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2Zp-fB-URa"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="7N1-AX-wWj" firstAttribute="centerX" secondItem="2Zp-fB-URa" secondAttribute="centerX" id="IAh-IJ-O5q"/>
+                            <constraint firstItem="cYe-Yq-sDm" firstAttribute="centerX" secondItem="7N1-AX-wWj" secondAttribute="centerX" id="KZb-Rs-yIC"/>
                             <constraint firstItem="7N1-AX-wWj" firstAttribute="centerY" secondItem="2Zp-fB-URa" secondAttribute="centerY" id="Ob1-s4-tF0"/>
                             <constraint firstItem="7N1-AX-wWj" firstAttribute="width" relation="lessThanOrEqual" secondItem="o94-wC-e55" secondAttribute="width" multiplier="0.5" id="Uqh-1u-yfj"/>
+                            <constraint firstItem="cYe-Yq-sDm" firstAttribute="top" secondItem="7N1-AX-wWj" secondAttribute="bottom" constant="20" id="X90-K7-LMk"/>
                             <constraint firstItem="7N1-AX-wWj" firstAttribute="height" relation="lessThanOrEqual" secondItem="o94-wC-e55" secondAttribute="height" multiplier="0.5" id="vMJ-lA-OBu"/>
                         </constraints>
                     </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XYL-pY-n4k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -40,8 +49,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="launchImage" width="512" height="512"/>
-        <systemColor name="systemBackgroundColor">
+        <image name="launchImage" width="714" height="642"/>
+        <systemColor name="secondarySystemGroupedBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
