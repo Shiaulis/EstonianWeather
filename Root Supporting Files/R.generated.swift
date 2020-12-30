@@ -207,7 +207,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 20 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 22 localization keys.
     struct localizable {
       /// en translation: About me
       ///
@@ -257,10 +257,18 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, et, ru
       static let iconDisclaimer = Rswift.StringResource(key: "Icon disclaimer", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "et", "ru"], comment: nil)
+      /// en translation: Loading
+      ///
+      /// Locales: en, et, ru
+      static let loading = Rswift.StringResource(key: "Loading", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "et", "ru"], comment: nil)
       /// en translation: Night
       ///
       /// Locales: en, et, ru
       static let night = Rswift.StringResource(key: "Night", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "et", "ru"], comment: nil)
+      /// en translation: No data available
+      ///
+      /// Locales: en
+      static let noDataAvailable = Rswift.StringResource(key: "No data available", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Observations
       ///
       /// Locales: en, et, ru
@@ -470,6 +478,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Icon disclaimer", bundle: bundle, comment: "")
       }
 
+      /// en translation: Loading
+      ///
+      /// Locales: en, et, ru
+      static func loading(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("Loading", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "Loading"
+        }
+
+        return NSLocalizedString("Loading", bundle: bundle, comment: "")
+      }
+
       /// en translation: Night
       ///
       /// Locales: en, et, ru
@@ -483,6 +506,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("Night", bundle: bundle, comment: "")
+      }
+
+      /// en translation: No data available
+      ///
+      /// Locales: en
+      static func noDataAvailable(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("No data available", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "No data available"
+        }
+
+        return NSLocalizedString("No data available", bundle: bundle, comment: "")
       }
 
       /// en translation: Observations

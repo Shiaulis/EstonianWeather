@@ -9,7 +9,7 @@ import SwiftUI
 import WidgetKit
 
 struct EstonianWeatherWidgetEntryView: View {
-    var entry: ForecastEntry
+    let entry: ForecastEntry
     @Environment(\.widgetFamily) private var family
 
     private var displayItems: [ForecastDisplayItem] {
@@ -41,13 +41,12 @@ struct EstonianWeatherWidgetEntryView: View {
         else {
             if !self.displayItems.isEmpty {
                 ZStack {
+                    // This gives separator color
                     Color(.appRose)
                     VStack(spacing: 2) {
-                        //                HeaderView()
                         HStack(spacing: 2) {
-                            ForEach(self.displayItems) { displayItem in
-                                // replace test item
-                                ForecastWeatherDayView(displayItem: displayItem.day ?? .test)
+                            ForEach(self.displayItems.compactMap { $0.day }) { displayItem in
+                                ForecastWeatherDayView(displayItem: displayItem)
                             }
                         }
 
@@ -116,12 +115,12 @@ private struct ForecastFullWeatherView: View {
                     .minimumScaleFactor(0.4)
                     .lineLimit(1)
                 Spacer()
-                Image(systemName: self.displayItem.dayParts.first!.weatherIconName)
+                Image(systemName: self.displayItem.day?.weatherIconName ?? "")
                     .font(.system(size: 60))
                     .minimumScaleFactor(0.4)
                     .lineLimit(1)
                 Spacer()
-                Text(self.displayItem.dayParts.first!.temperatureRange)
+                Text(self.displayItem.day?.temperatureRange ?? "")
                     .font(.system(size: 24))
                     .minimumScaleFactor(0.4)
                     .lineLimit(1)

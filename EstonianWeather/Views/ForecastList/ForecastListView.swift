@@ -50,7 +50,7 @@ struct ListPlaceholder: View {
             assertionFailure("We do not expect to take this status description")
             return ""
         case .syncing:
-            return " \(R.string.localizable.syncing())"
+            return " \(R.string.localizable.loading())"
         case .failed(let errorDescription):
             return R.string.localizable.failedToSyncError() + " " + errorDescription
         case .ready:
@@ -95,7 +95,7 @@ struct SyncStatusView: View {
             let prefix = "✅ \(R.string.localizable.synced()) "
             return prefix + formatter.string(from: syncDate)
         case .syncing:
-            return " 🔄 \(R.string.localizable.syncing())"
+            return " 🔄 \(R.string.localizable.loading)"
         case .failed(let errorDescription):
             return R.string.localizable.failedToSyncError() + " " + errorDescription
         case .ready:

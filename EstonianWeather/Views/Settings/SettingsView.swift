@@ -35,14 +35,6 @@ struct SettingsView: View {
                         urlDescription: self.viewModel.urlDescription
                     )
                 }
-
-                Section {
-                    DisclaimerCell(
-                        disclaimerText: self.viewModel.iconDisclaimerText,
-                        url: self.viewModel.iconDisclaimerURL,
-                        urlDescription: self.viewModel.iconURLDescription
-                    )
-                }
             }
             .navigationBarTitle(R.string.localizable.settings())
             .navigationBarColor(backgroundColor: .appRose, tintColor: .white)

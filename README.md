@@ -14,7 +14,10 @@
 <img src="https://img.shields.io/github/license/erikmartens/NearbyWeather.svg?style=flat" alt="License: MIT">
 </p>
 <p align="center">
-<a href="https://testflight.apple.com/join/CMLvzuYL"><img src="Images/testflight_badge.png" alt="Download on the TestFlight"/></a>
+<a href="https://apps.apple.com/ee/app/eesti-ilm/id1534551991"><img src="Images/appstore_badge.png" alt="Download from the AppStore" height="128"/></a>
+</p>
+<p align="center">
+<a href="https://testflight.apple.com/join/CMLvzuYL"><img src="Images/testflight_badge.png" alt="Download from the TestFlight" height="128"/></a>
 </p>
 
 <p align="center">
@@ -27,7 +30,11 @@ Eesti Ilm is a simple weather app,that shows infromation from [Estonian Weather 
 
 ## App Releases
 
-Right now the app is released in TestFlight only. Please use [the link](https://testflight.apple.com/join/CMLvzuYL) to subscribe on app beta testing. After main feature list will be finished the app will be released in AppStore as well.
+### v.1.2
+The very first AppStore release. Contains 4-days forecast screen + 2 widgets
+
+## Beta Testing
+Please use [the link](https://testflight.apple.com/join/CMLvzuYL) to subscribe on app beta testing.
 
 ## How to Contribute
 
@@ -37,7 +44,7 @@ We looking forward to receiving your contributions. Feel free to file an issue i
 
 ## Licensing
 
-Copyright © 2020 Andrius Shiaulis.
+Copyright © 2021 Andrius Shiaulis.
 
 Licensed under the **MIT License** (the "License"); you may not use this file except in compliance with the License.
 

@@ -21,6 +21,7 @@
 
 "Synced" = "Synced";
 "Syncing" = "Syncing";
+"Loading" = "Loading";
 "Failed to sync. Error:" = "Failed to sync. Error:";
 "Ready" = "Ready";
 "Unit testing mode" = "Unit testing mode";
@@ -29,3 +30,4 @@
 "Check Estonian weather forecast." = "Check Estonian weather forecast.";
 
 "Icon disclaimer" = "Icon made by Freepik from:";
+"No data available" = "No data available";

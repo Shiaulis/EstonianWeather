@@ -21,6 +21,7 @@
 
 "Synced" = "Sünkroonitud";
 "Syncing" = "Sünkroonimine";
+"Loading" = "Laadimine";
 "Failed to sync. Error:" = "Sünkroonimine ebaõnnestus. Viga:";
 "Ready" = "Valmis";
 "Unit testing mode" = "Unit testing mode";
