@@ -20,8 +20,8 @@ struct EstonianWeatherApp: App {
         WindowGroup {
             if self.applicationController.applicationMode != .unitTests {
                 TabbarView(
-                    forecastListView: ForecastListView(viewModel: ForecastListViewModel(model:applicationController.model)),
-                    settingsView: SettingsView(viewModel: SettingsViewModel())
+                    forecastListView: ForecastListView(viewModel: ForecastListViewModel(model:self.applicationController.model)),
+                    settingsView: SettingsView(viewModel: SettingsViewModel(ratingService: self.applicationController.ratingService))
                 )
             }
             else {

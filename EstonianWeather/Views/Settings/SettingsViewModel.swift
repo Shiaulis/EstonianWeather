@@ -23,6 +23,15 @@ final class SettingsViewModel {
     let iconDisclaimerURL: URL = .iconDisclaimerURL
 
     private let locale: Locale = .current
+    private let ratingService: AppStoreRatingService
+
+    // MARK: - Init
+
+    init(ratingService: AppStoreRatingService) {
+        self.ratingService = ratingService
+    }
+
+    // MARK: - Public methods
 
     func openApplicationSettings() {
         UIApplication.shared.open(URL.settings, options: [:])
@@ -30,5 +39,9 @@ final class SettingsViewModel {
 
     func openSourceDisclaimerURL() {
         UIApplication.shared.open(.sourceDisclaimerURL, options: [:])
+    }
+
+    func makeAttemptToShowRating(in windowScene: UIWindowScene) {
+        self.ratingService.makeAttemptToShowRating(in: windowScene)
     }
 }

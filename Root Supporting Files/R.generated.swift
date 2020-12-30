@@ -267,8 +267,8 @@ struct R: Rswift.Validatable {
       static let night = Rswift.StringResource(key: "Night", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "et", "ru"], comment: nil)
       /// en translation: No data available
       ///
-      /// Locales: en
-      static let noDataAvailable = Rswift.StringResource(key: "No data available", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// Locales: en, et, ru
+      static let noDataAvailable = Rswift.StringResource(key: "No data available", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "et", "ru"], comment: nil)
       /// en translation: Observations
       ///
       /// Locales: en, et, ru
@@ -510,7 +510,7 @@ struct R: Rswift.Validatable {
 
       /// en translation: No data available
       ///
-      /// Locales: en
+      /// Locales: en, et, ru
       static func noDataAvailable(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("No data available", bundle: hostingBundle, comment: "")

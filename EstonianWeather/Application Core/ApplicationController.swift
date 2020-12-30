@@ -15,6 +15,7 @@ final class ApplicationController {
     // MARK: - Properties
 
     let model: Model
+    let ratingService: AppStoreRatingService
 
     private let settingsService: SettingsService
     private let widgetService: WidgetService
@@ -27,8 +28,11 @@ final class ApplicationController {
     init() {
         self.widgetService = .init()
         self.persistenceService = .init()
+        self.ratingService = .init(logger: PrintLogger())
         self.settingsService = .init(userDefaults: .standard, persistenceService: self.persistenceService)
         self.model = ApplicationModel(persistenceService: self.persistenceService)
+
+        self.ratingService.incrementLauchCounter()
     }
 
 }
