@@ -125,6 +125,7 @@
 		B1CA141C2593AE6C009ABBCA /* WidgetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0975937C25441B5500C21C6B /* WidgetService.swift */; };
 		B1CA14222593AEFB009ABBCA /* SyncStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CA14212593AEFB009ABBCA /* SyncStatus.swift */; };
 		B1CA14272593AEFF009ABBCA /* SyncStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CA14212593AEFB009ABBCA /* SyncStatus.swift */; };
+		B1D283C1259D1C68005AA4C9 /* AppStoreRatingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D283C0259D1C68005AA4C9 /* AppStoreRatingService.swift */; };
 		B1D3AC37258D52DC00456FCB /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D6C9E725239EA5008C9ABB /* Endpoint.swift */; };
 		B1D3AC3C258D530600456FCB /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D6C9ED25239F38008C9ABB /* NetworkClient.swift */; };
 		B1D3AC41258D532200456FCB /* ServerResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDE2252268E600D409FF /* ServerResponseParser.swift */; };
@@ -270,6 +271,7 @@
 		B1AFFAF92598FC3100ACA10E /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		B1CA14112593921C009ABBCA /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		B1CA14212593AEFB009ABBCA /* SyncStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncStatus.swift; sourceTree = "<group>"; };
+		B1D283C0259D1C68005AA4C9 /* AppStoreRatingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreRatingService.swift; sourceTree = "<group>"; };
 		B1D652F7259943B40071A57E /* Privacy Policy.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Privacy Policy.md"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -490,6 +492,7 @@
 				09769673252A5ADC00FA1764 /* SettingsService.swift */,
 				0975937C25441B5500C21C6B /* WidgetService.swift */,
 				09D5E4EA2544259A00FBAC98 /* FeatureFlagService.swift */,
+				B1D283C0259D1C68005AA4C9 /* AppStoreRatingService.swift */,
 			);
 			path = "Application Core";
 			sourceTree = "<group>";
@@ -806,6 +809,7 @@
 				09D5E4EB2544259A00FBAC98 /* FeatureFlagService.swift in Sources */,
 				0968CE04252269AF00D409FF /* Forecast+CoreDataClass.swift in Sources */,
 				0968CDD1252267F600D409FF /* ForecastListView.swift in Sources */,
+				B1D283C1259D1C68005AA4C9 /* AppStoreRatingService.swift in Sources */,
 				0968CDD2252267F600D409FF /* PlaceView.swift in Sources */,
 				09D6C9E825239EA5008C9ABB /* Endpoint.swift in Sources */,
 				0968CDCD252267F600D409FF /* SettingsView.swift in Sources */,
