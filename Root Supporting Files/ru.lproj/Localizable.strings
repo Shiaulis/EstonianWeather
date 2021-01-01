@@ -6,7 +6,7 @@
   
 */
 
-"Four days forecast" = "Прогноз на 4 дня";
+"Four day forecast" = "Прогноз на 4 дня";
 "Forecast" = "Прогноз";
 "Settings" = "Настройки";
 "Current language" = "Текущий язык";
@@ -29,5 +29,4 @@
 "Forecast Widget" = "Виджет прогноза погоды";
 "Check Estonian weather forecast." = "Проверяйте прогноз погоды в Эстонии.";
 
-"Icon disclaimer" = "Дизайн иконки Freepik. Источник:";
 "No data available" = "Данные недоступны";

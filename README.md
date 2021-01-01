@@ -9,9 +9,9 @@
 <img src="https://img.shields.io/badge/Platform-iOS%2014.0+-lightgrey.svg" alt="Platform: iOS">
 <a href="https://developer.apple.com/swift/"><img src="https://img.shields.io/badge/Swift-5-orange.svg?style=flat" alt="Swift"/></a>
 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/shiaulis/estonianweather">
-<img alt="GitHub issues" src="https://img.shields.io/github/issues/shiaulis/estonianweather">
 <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/shiaulis/EstonianWeather">
 <img src="https://img.shields.io/github/license/erikmartens/NearbyWeather.svg?style=flat" alt="License: MIT">
+<a title="Crowdin" target="_blank" href="https://crowdin.com/project/eesti-ilm"><img src="https://badges.crowdin.net/eesti-ilm/localized.svg"></a>
 </p>
 <p align="center">
 <a href="https://apps.apple.com/ee/app/eesti-ilm/id1534551991"><img src="Images/appstore_badge.png" alt="Download from the AppStore" height="128"/></a>
