@@ -207,7 +207,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 22 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 21 localization keys.
     struct localizable {
       /// en translation: About me
       ///
@@ -245,18 +245,14 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, et, ru
       static let forecastWidget = Rswift.StringResource(key: "Forecast Widget", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "et", "ru"], comment: nil)
-      /// en translation: Four Days Forecast
+      /// en translation: Four Day Forecast
       ///
       /// Locales: en, et, ru
-      static let fourDaysForecast = Rswift.StringResource(key: "Four days forecast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "et", "ru"], comment: nil)
+      static let fourDayForecast = Rswift.StringResource(key: "Four day forecast", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "et", "ru"], comment: nil)
       /// en translation: Hey 👋! My name is Andrius. I'm an iOS Developer from Estonia 🇪🇪. Besides being full-time developer and father of three I'm writing small apps like this. If you have any questions/concerns regarding the app, do not hesitate to contact me.
       ///
       /// Locales: en, et, ru
       static let aboutMeDescription = Rswift.StringResource(key: "About me description", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "et", "ru"], comment: nil)
-      /// en translation: Icon made by Freepik from:
-      ///
-      /// Locales: en, et, ru
-      static let iconDisclaimer = Rswift.StringResource(key: "Icon disclaimer", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "et", "ru"], comment: nil)
       /// en translation: Loading
       ///
       /// Locales: en, et, ru
@@ -433,19 +429,19 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("Forecast Widget", bundle: bundle, comment: "")
       }
 
-      /// en translation: Four Days Forecast
+      /// en translation: Four Day Forecast
       ///
       /// Locales: en, et, ru
-      static func fourDaysForecast(preferredLanguages: [String]? = nil) -> String {
+      static func fourDayForecast(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Four days forecast", bundle: hostingBundle, comment: "")
+          return NSLocalizedString("Four day forecast", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "Four days forecast"
+          return "Four day forecast"
         }
 
-        return NSLocalizedString("Four days forecast", bundle: bundle, comment: "")
+        return NSLocalizedString("Four day forecast", bundle: bundle, comment: "")
       }
 
       /// en translation: Hey 👋! My name is Andrius. I'm an iOS Developer from Estonia 🇪🇪. Besides being full-time developer and father of three I'm writing small apps like this. If you have any questions/concerns regarding the app, do not hesitate to contact me.
@@ -461,21 +457,6 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("About me description", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Icon made by Freepik from:
-      ///
-      /// Locales: en, et, ru
-      static func iconDisclaimer(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Icon disclaimer", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "Icon disclaimer"
-        }
-
-        return NSLocalizedString("Icon disclaimer", bundle: bundle, comment: "")
       }
 
       /// en translation: Loading
