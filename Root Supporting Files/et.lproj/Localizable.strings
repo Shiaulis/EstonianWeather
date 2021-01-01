@@ -6,7 +6,7 @@
   
 */
 
-"Four days forecast" = "Nelja päeva prognoos";
+"Four day forecast" = "Nelja päeva prognoos";
 "Forecast" = "Prognoos";
 "Settings" = "Seaded";
 "Current language" = "Praegune keel";
@@ -17,7 +17,7 @@
 "Contact me" = "Võta ühendust";
 "Day" = "Päev";
 "Night" = "Öö";
-"Estonian Weather Forecast" = "Estonian Weather Forecast";
+"Estonian Weather Forecast" = "Eesti Ilmaennustus";
 
 "Synced" = "Sünkroonitud";
 "Syncing" = "Sünkroonimine";
@@ -29,5 +29,4 @@
 "Forecast Widget" = "Forecast Widget";
 "Check Estonian weather forecast." = "Check Estonian weather forecast.";
 
-"Icon disclaimer" = "Icon made by Freepik from:";
-"No data available" = "No data available";
+"No data available" = "Andmed puuduvad";
