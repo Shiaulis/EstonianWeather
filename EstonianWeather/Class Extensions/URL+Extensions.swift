@@ -11,7 +11,6 @@ import UIKit
 extension URL {
 
     static let settings = URL(string: UIApplication.openSettingsURLString)!
-    static let iconDisclaimerURL = URL(string: "https://www.flaticon.com/authors/freepik")!
     static let email = URL(string: "mailto:shiaulis@gmail.com")!
 
     static var sourceDisclaimerURL: URL {

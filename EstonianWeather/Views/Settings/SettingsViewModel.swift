@@ -18,10 +18,6 @@ final class SettingsViewModel {
     let urlDescription: String = "www.ilmateenindus.ee"
     let sourceDisclaimerURL: URL = .sourceDisclaimerURL
 
-    let iconDisclaimerText = R.string.localizable.iconDisclaimer()
-    let iconURLDescription: String = "www.flaticon.com"
-    let iconDisclaimerURL: URL = .iconDisclaimerURL
-
     private let locale: Locale = .current
     private let ratingService: AppStoreRatingService
 
