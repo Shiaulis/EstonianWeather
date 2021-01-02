@@ -6,3 +6,7 @@ EstonianWeather.xcodeproj/project.xcworkspace/xcuserdata/andriusshiaulis.xcuserd
 *.xcuserstate
 
 fastlane/report.xml
+
+EstonianWeather.ipa
+
+EstonianWeather.app.dSYM.zip
