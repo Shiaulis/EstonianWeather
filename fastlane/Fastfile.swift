@@ -11,23 +11,38 @@ import Foundation
 final class Fastfile: LaneFile {
     func betaLane() {
         desc("Push a new beta build to TestFlight")
-        ensureGitStatusClean()
-        bumpAndCommitNewVersion()
         buildApp(scheme: "EstonianWeather")
-        uploadToTestflight(username: "shiaulis@gmail.com")
+        uploadToTestflight(
+            username: "shiaulis@gmail.com",
+            distributeExternal: true,
+            groups: ["External Testers"]
+        )
     }
 
-    func releaseLane() {
-        desc("Push a new release build to the App Store")
+    func uploadMinorBuildLane() {
+        desc("Push a new build to the Appstore Connect")
         ensureGitStatusClean()
         let buildNumber = incrementBuildNumber()
 
-        let newVersion = incrementVersionNumber(bumpType: "patch")
+        let newVersion = incrementVersionNumber(
+            bumpType: "minor"
+        )
+
         commitVersionBump(
             message: "Version bump to \(newVersion)(\(buildNumber))",
             xcodeproj: "EstonianWeather.xcodeproj"
         )
-        buildApp(scheme: "EstonianWeather")
+
+        buildApp(
+            scheme: "EstonianWeather"
+        )
+
+        uploadToTestflight(
+            username: "shiaulis@gmail.com",
+            distributeExternal: true,
+            groups: ["External Testers"]
+        )
+
         uploadToAppStore(
             username: "shiaulis@gmail.com",
             appVersion: newVersion,
@@ -36,18 +51,5 @@ final class Fastfile: LaneFile {
             app: "com.shiaulis.EstonianWeather"
         )
         
-    }
-}
-
-extension Fastfile {
-
-    private func bumpAndCommitNewVersion() {
-        ensureGitStatusClean()
-        let buildNumber = incrementBuildNumber(xcodeproj: "EstonianWeather.xcodeproj")
-        let newVersion = incrementVersionNumber(bumpType: "patch")
-        commitVersionBump(
-            message: "Version bump to \(newVersion)(\(buildNumber)",
-            xcodeproj: "EstonianWeather.xcodeproj"
-        )
     }
 }
