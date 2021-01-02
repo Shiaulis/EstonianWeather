@@ -1,0 +1,1 @@
+Have access to the weather information in Estonia. Eesti Ilm is a simple app that gives instant information about forecasts, provided by the Estonian Weather Service http://ilmateenistus.ee
