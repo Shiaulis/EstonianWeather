@@ -4,5 +4,40 @@
     
     
     
+      
+      <testcase classname="fastlane.lanes" name="0: ensure_git_status_clean" time="0.01934">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="1: ensure_git_status_clean" time="0.015388">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="2: increment_build_number" time="1.105016">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="3: increment_version_number" time="0.719566">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="4: commit_version_bump" time="0.147432">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="5: build_app" time="34.708265">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="6: upload_to_testflight" time="249.702479">
+        
+      </testcase>
+    
   </testsuite>
 </testsuites>
