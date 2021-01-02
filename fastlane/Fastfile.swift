@@ -98,4 +98,26 @@ final class Fastfile: LaneFile {
             app: "com.shiaulis.EstonianWeather"
         )
     }
+
+    func submitReviewLane() {
+        let currentBuildNumber = getBuildNumber()
+        uploadToAppStore(
+            username: "shiaulis@gmail.com",
+            appIdentifier: "com.shiaulis.EstonianWeather",
+            buildNumber: currentBuildNumber,
+            skipBinaryUpload: true,
+            skipScreenshots: true,
+            skipMetadata: true,
+            skipAppVersionUpdate: true,
+            submitForReview: true,
+            automaticRelease: false,
+            resetRatings: false,
+            submissionInformation: [
+                "export_compliance_uses_encryption": false,
+                "add_id_info_uses_idfa": false
+            ],
+            teamName: "Andrius Shiaulis",
+            app: "com.shiaulis.EstonianWeather"
+        )
+    }
 }
