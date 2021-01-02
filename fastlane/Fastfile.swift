@@ -87,4 +87,15 @@ final class Fastfile: LaneFile {
         )
         
     }
+
+    func uploadMetadataLane() {
+        uploadToAppStore(
+            username: "shiaulis@gmail.com",
+            appIdentifier: "com.shiaulis.EstonianWeather",
+            skipAppVersionUpdate: true,
+            overwriteScreenshots: true,
+            teamName: "Andrius Shiaulis",
+            app: "com.shiaulis.EstonianWeather"
+        )
+    }
 }

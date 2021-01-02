@@ -1,1 +1,1 @@
-weather, forecast, Estonia, ilm, prognoos, Eesti
+weather, forecast, Estonia, ilm, prognoos, Eesti, widget
