@@ -227,8 +227,8 @@ extension ServerResponseXMLParser: XMLParserDelegate {
         self.currentParsedElement = element
     }
 
-    //swiftlint:disable cyclomatic_complexity
-    //swiftlint:disable function_body_length
+    // swiftlint:disable cyclomatic_complexity
+    // swiftlint:disable function_body_length
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         switch Element(elementName) {
         case .forecasts, .observations:
@@ -399,8 +399,8 @@ extension ServerResponseXMLParser: XMLParserDelegate {
         self.currentParsedElement = nil
         self.currentParsedElementText = nil
     }
-    //swiftlint:enable cyclomatic_complexity
-    //swiftlint:enable function_body_length
+    // swiftlint:enable cyclomatic_complexity
+    // swiftlint:enable function_body_length
 
     private func parseForecastDate(from attributes: [String: String]) -> Date? {
         guard let dateString = attributes["date"] else { return nil }
@@ -431,7 +431,7 @@ extension ServerResponseXMLParser {
         case unknownError
     }
 
-    //swiftlint:disable identifier_name
+    // swiftlint:disable identifier_name
     private enum Element: String {
 
         // forecast
@@ -445,7 +445,7 @@ extension ServerResponseXMLParser {
             self.init(rawValue: name)
         }
     }
-    //swiftlint:enable identifier_name
+    // swiftlint:enable identifier_name
 
 }
 
