@@ -64,7 +64,7 @@ final class CoreDataMapperTests: XCTestCase {
 
     private func givenCorrectEWForecasts() throws {
         let parser: ServerResponseParser = ServerResponseXMLParser()
-        let bundle = Bundle(for: ServerResponseParserTests.self)
+        let bundle = Bundle(for: Self.self)
         let url = bundle.url(forResource: "TestForecast", withExtension: "xml")!
         let data = try! Data(contentsOf: url)
 

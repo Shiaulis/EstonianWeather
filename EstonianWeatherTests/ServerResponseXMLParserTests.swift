@@ -1,5 +1,5 @@
 //
-//  ServerResponseParserTests.swift
+//  ServerResponseXMLParserTests.swift
 //  EstonianWeatherTests
 //
 //  Created by Andrius Shiaulis on 12.01.2020.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import EstonianWeather
 
-final class ServerResponseParserTests: XCTestCase {
+final class ServerResponseXMLParserTests: XCTestCase {
 
     // MARK: - Properties
 
@@ -109,13 +109,13 @@ final class ServerResponseParserTests: XCTestCase {
     // MARK: - Given
 
     private func givenCorrectForecastData() {
-        let bundle = Bundle(for: ServerResponseParserTests.self)
+        let bundle = Bundle(for: Self.self)
         let url = bundle.url(forResource: "TestForecast", withExtension: "xml")!
         self.data = try? Data(contentsOf: url)
     }
 
     private func givenCorrectObservationsData() {
-        let bundle = Bundle(for: ServerResponseParserTests.self)
+        let bundle = Bundle(for: Self.self)
         let url = bundle.url(forResource: "TestObservations", withExtension: "xml")!
         self.data = try? Data(contentsOf: url)
     }

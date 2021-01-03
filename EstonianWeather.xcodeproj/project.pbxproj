@@ -44,7 +44,7 @@
 		0968CE1725226A0600D409FF /* NSPersistentContainer+tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CE1025226A0500D409FF /* NSPersistentContainer+tests.swift */; };
 		0968CE1825226A0600D409FF /* ForecastControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CE1125226A0500D409FF /* ForecastControllerTests.swift */; };
 		0968CE1925226A0600D409FF /* CoreDataMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CE1225226A0500D409FF /* CoreDataMapperTests.swift */; };
-		0968CE1A25226A0600D409FF /* ServerResponseParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CE1325226A0600D409FF /* ServerResponseParserTests.swift */; };
+		0968CE1A25226A0600D409FF /* ServerResponseXMLParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CE1325226A0600D409FF /* ServerResponseXMLParserTests.swift */; };
 		0968CE1B25226A0600D409FF /* MockPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CE1425226A0600D409FF /* MockPersistentContainer.swift */; };
 		0968CE1C25226A0600D409FF /* ForecastDateFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CE1525226A0600D409FF /* ForecastDateFormatterTests.swift */; };
 		0968CE1D25226A0600D409FF /* TestForecast.xml in Resources */ = {isa = PBXBuildFile; fileRef = 0968CE1625226A0600D409FF /* TestForecast.xml */; };
@@ -214,7 +214,7 @@
 		0968CE1025226A0500D409FF /* NSPersistentContainer+tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSPersistentContainer+tests.swift"; sourceTree = "<group>"; };
 		0968CE1125226A0500D409FF /* ForecastControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastControllerTests.swift; sourceTree = "<group>"; };
 		0968CE1225226A0500D409FF /* CoreDataMapperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataMapperTests.swift; sourceTree = "<group>"; };
-		0968CE1325226A0600D409FF /* ServerResponseParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerResponseParserTests.swift; sourceTree = "<group>"; };
+		0968CE1325226A0600D409FF /* ServerResponseXMLParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerResponseXMLParserTests.swift; sourceTree = "<group>"; };
 		0968CE1425226A0600D409FF /* MockPersistentContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockPersistentContainer.swift; sourceTree = "<group>"; };
 		0968CE1525226A0600D409FF /* ForecastDateFormatterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastDateFormatterTests.swift; sourceTree = "<group>"; };
 		0968CE1625226A0600D409FF /* TestForecast.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TestForecast.xml; sourceTree = "<group>"; };
@@ -366,7 +366,7 @@
 				0968CE1025226A0500D409FF /* NSPersistentContainer+tests.swift */,
 				0968CE1625226A0600D409FF /* TestForecast.xml */,
 				09E8E0B42531A3A900E2F180 /* TestObservations.xml */,
-				0968CE1325226A0600D409FF /* ServerResponseParserTests.swift */,
+				0968CE1325226A0600D409FF /* ServerResponseXMLParserTests.swift */,
 				0968CDA72522667B00D409FF /* EstonianWeatherTests.swift */,
 				0968CDA92522667B00D409FF /* Info.plist */,
 				09DCE56A252D075500FD330B /* EndpointTests.swift */,
@@ -852,7 +852,7 @@
 				0968CDA82522667B00D409FF /* EstonianWeatherTests.swift in Sources */,
 				09DCE56B252D075500FD330B /* EndpointTests.swift in Sources */,
 				0968CE1825226A0600D409FF /* ForecastControllerTests.swift in Sources */,
-				0968CE1A25226A0600D409FF /* ServerResponseParserTests.swift in Sources */,
+				0968CE1A25226A0600D409FF /* ServerResponseXMLParserTests.swift in Sources */,
 				09E8E0AF2531928F00E2F180 /* TestableLocale.swift in Sources */,
 				0968CE1925226A0600D409FF /* CoreDataMapperTests.swift in Sources */,
 				0968CE1C25226A0600D409FF /* ForecastDateFormatterTests.swift in Sources */,
