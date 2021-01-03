@@ -21,7 +21,7 @@
 </p>
 
 <p align="center">
-<img src="Images/screenshot_forecast.png" alt="Eesti Ilm Screenshot">
+<img src="Images/app_preview.png" alt="Eesti Ilm Screenshot">
 </p>
 
 ## About the App
@@ -29,6 +29,12 @@
 Eesti Ilm is a simple weather app,that shows infromation from [Estonian Weather Service](http://www.ilmateenistus.ee/?lang=en)
 
 ## App Releases
+
+### v.1.3.1
+Fixed typo on the main screeen, launch screen improvements
+
+### v.1.3
+Replaced application icon, improved widget behaviour
 
 ### v.1.2
 The very first AppStore release. Contains 4-days forecast screen + 2 widgets
