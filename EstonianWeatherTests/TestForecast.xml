@@ -1,173 +1,177 @@
 <?xml version="1.0" encoding="iso-8859-1" ?>
 <forecasts>
-	<forecast date="2020-01-13">
-		<night>
-			<phenomenon>Light shower</phenomenon>
-			<tempmin>-2</tempmin>
-			<tempmax>3</tempmax>
-			<text>Partly cloudy. At first locally some rain. West wind 5-11, on coasts in gusts 15, at first on northern coast up to 18 m/s. Air temperature -2..+3°C. Slippery roads! </text>
-			<place>
-				<name>Harku</name>
-				<phenomenon>Variable clouds</phenomenon>
-				<tempmin>1</tempmin>
-			</place>
-			<place>
-				<name>Jõhvi</name>
-				<phenomenon>Variable clouds</phenomenon>
-				<tempmin>-1</tempmin>
-			</place>
-			<place>
-				<name>Tartu</name>
-				<phenomenon>Variable clouds</phenomenon>
-				<tempmin>1</tempmin>
-			</place>
-			<place>
-				<name>Pärnu</name>
-				<phenomenon>Variable clouds</phenomenon>
-				<tempmin>0</tempmin>
-			</place>
-			<place>
-				<name>Kuressaare</name>
-				<phenomenon>Variable clouds</phenomenon>
-				<tempmin>3</tempmin>
-			</place>
-			<place>
-				<name>Türi</name>
-				<phenomenon>Variable clouds</phenomenon>
-				<tempmin>-1</tempmin>
-			</place>
-			<wind>
-				<name>Kuusiku</name>
-				<direction>West wind</direction>
-				<speedmin>5</speedmin>
-				<speedmax>9</speedmax>
-				<gust></gust>
-			</wind>
-			<wind>
-				<name>Väike-Maarja</name>
-				<direction>West wind</direction>
-				<speedmin>6</speedmin>
-				<speedmax>10</speedmax>
-				<gust></gust>
-			</wind>
-			<wind>
-				<name>Võrtsjärv</name>
-				<direction>West wind</direction>
-				<speedmin>5</speedmin>
-				<speedmax>10</speedmax>
-				<gust></gust>
-			</wind>
-			<sea>Forecast for Baltic Sea valid 24 hours from 07:00 UTC Jan 12 to 07:00 UTC Jan 13, 2020.
+    <forecast date="2021-01-18">
+        <night>
+            <phenomenon>Light snowfall</phenomenon>
+            <tempmin>-11</tempmin>
+            <tempmax>0</tempmax>
+            <text>Cloudy with clear spells. Snow in many places. Wind around west 2-8, on islands and coast in gusts 13 m/s. Air temperature -5..-11, on coast locally 0..-3°C.</text>
+            <place>
+                <name>Harku</name>
+                <phenomenon>Cloudy</phenomenon>
+                <tempmin>-7</tempmin>
+            </place>
+            <place>
+                <name>Jõhvi</name>
+                <phenomenon>Moderate snowfall</phenomenon>
+                <tempmin>-7</tempmin>
+            </place>
+            <place>
+                <name>Tartu</name>
+                <phenomenon>Cloudy</phenomenon>
+                <tempmin>-8</tempmin>
+            </place>
+            <place>
+                <name>Pärnu</name>
+                <phenomenon>Light snowfall</phenomenon>
+                <tempmin>-5</tempmin>
+            </place>
+            <place>
+                <name>Kuressaare</name>
+                <phenomenon>Moderate snowfall</phenomenon>
+                <tempmin>-3</tempmin>
+            </place>
+            <place>
+                <name>Türi</name>
+                <phenomenon>Cloudy with clear spells</phenomenon>
+                <tempmin>-7</tempmin>
+            </place>
+            <wind>
+                <name>Kuusiku</name>
+                <direction>Southwest wind</direction>
+                <speedmin>2</speedmin>
+                <speedmax>5</speedmax>
+                <gust></gust>
+            </wind>
+            <wind>
+                <name>Väike-Maarja</name>
+                <direction>West wind</direction>
+                <speedmin>2</speedmin>
+                <speedmax>6</speedmax>
+                <gust></gust>
+            </wind>
+            <wind>
+                <name>Võrtsjärv</name>
+                <direction>West wind</direction>
+                <speedmin>2</speedmin>
+                <speedmax>5</speedmax>
+                <gust></gust>
+            </wind>
+            <sea>Jan 17, 2021 17:15 UTC
 
-Weather summary: edge of Low spreading over Scandinavia to Baltic Sea.
+Forecast for Baltic Sea valid 24 hours from 19:00 Jan 17 to 19:00 UTC Jan 18, 2021.
 
-Warnings: Northern Baltic, Gulf of Finland: southwest 14 to 18, in gusts to 27 m/s. Wave height 2 to 5, on Sea to 6 m. Moonsund, Northern Gulf of Riga: southwest 13 to 16, in gusts to 25 m/s. Wave height 2 to 5 m.
+Weather summary: weak Trough of Low over Baltic Sea.
 
-Northern Baltic, Gulf of Finland: southwest 14 to 19, in gusts 24 to 27 m/s, in afternoon veering gradually west and decreasing by evening 8 to 12, in gusts 18 m/s, at night west, southwest wind 7 to 11, in gusts 16 m/s. Wave height today 2 to 5 m, on Sea 3 to 6 m, at night and in morning 1.5 to 3 m. Rain, around noon from Sea probability for precipitation will gradually decrease. At night on Gulf of Finland locally some rain. Visibility moderate.
+No warnings.
 
-Moonsund, Northern Gulf of Riga: southwest 12 to 17, in gusts 22 to 25 m/s, in afternoon veering gradually west and decreasing by evening 8 to 12, in gusts 18 m/s, at night west, southwest wind 7 to 10, in gusts to 15 m/s. Wave height today 2 to 5 m, at night 1 to 2.5 m, in morning 0.6 to 1.5 m. Rain, before noon also sleet, in evening probability for precipitation decreasing. At night and in morning dry. Visibility moderate.</sea>
-			<peipsi>West wind 6-11, in gusts 14 m/s, by morning decreasing. Wave height 0.8-1.3 m. At first locally rain. Visibility from moderate to good. Air temperature 0..+2°C.</peipsi>
-		</night>
-		<day>
-			<phenomenon>Cloudy with clear spells</phenomenon>
-			<tempmin>1</tempmin>
-			<tempmax>5</tempmax>
-			<text>Cloudy with clear spells and dry. Southwest, west wind 4-10, on coasts in gusts up to 15 m/s. Air temperature +1..+5°C.</text>
-			<place>
-				<name>Harku</name>
-				<phenomenon>Cloudy with clear spells</phenomenon>
-				<tempmax>3</tempmax>
-			</place>
-			<place>
-				<name>Jõhvi</name>
-				<phenomenon>Cloudy with clear spells</phenomenon>
-				<tempmax>1</tempmax>
-			</place>
-			<place>
-				<name>Tartu</name>
-				<phenomenon>Cloudy with clear spells</phenomenon>
-				<tempmax>3</tempmax>
-			</place>
-			<place>
-				<name>Pärnu</name>
-				<phenomenon>Cloudy with clear spells</phenomenon>
-				<tempmax>3</tempmax>
-			</place>
-			<place>
-				<name>Kuressaare</name>
-				<phenomenon>Cloudy with clear spells</phenomenon>
-				<tempmax>5</tempmax>
-			</place>
-			<place>
-				<name>Türi</name>
-				<phenomenon>Cloudy with clear spells</phenomenon>
-				<tempmax>3</tempmax>
-			</place>
-			<wind>
-				<name>Kuusiku</name>
-				<direction>West wind</direction>
-				<speedmin>4</speedmin>
-				<speedmax>7</speedmax>
-				<gust></gust>
-			</wind>
-			<wind>
-				<name>Väike-Maarja</name>
-				<direction>West wind</direction>
-				<speedmin>4</speedmin>
-				<speedmax>8</speedmax>
-				<gust></gust>
-			</wind>
-			<wind>
-				<name>Võrtsjärv</name>
-				<direction>Southwest wind</direction>
-				<speedmin>4</speedmin>
-				<speedmax>8</speedmax>
-				<gust></gust>
-			</wind>
-			<sea></sea>
-			<peipsi>West, southwest wind 4-9 m/s. Wave height 0.4-0.9 m. Mainly dry. Visibility from moderate to good. Air temperature +1..+3°C.</peipsi>
-		</day>
-	</forecast>
-	<forecast date="2020-01-14">
-		<night>
-			<phenomenon>Cloudy with clear spells</phenomenon>
-			<tempmin>-1</tempmin>
-			<tempmax>4</tempmax>
-			<text>Cloudy with clear spells. Locally possible light rain. Southwest, west wind 5-11, on the coast in gusts 14 m/s. Air temperature -1..+4°C.</text>
-		</night>
-		<day>
-			<phenomenon>Moderate shower</phenomenon>
-			<tempmin>1</tempmin>
-			<tempmax>5</tempmax>
-			<text>Cloudy with clear spells. In the evening rain and sleet in the western part. South, southwest wind is increasing 8-14, on the islands and coast gusts up to 20 m/s. Air temperature 1..5°C.</text>
-		</day>
-	</forecast>
-	<forecast date="2020-01-15">
-		<night>
-			<phenomenon>Moderate sleet</phenomenon>
-			<tempmin>1</tempmin>
-			<tempmax>5</tempmax>
-			<text>Overcast with rain and sleet. South, southwest wind 7-13, on the islands and coast gusts up to 18 m/s. Air temperature 1..5°C.</text>
-		</night>
-		<day>
-			<phenomenon>Moderate rain</phenomenon>
-			<tempmin>4</tempmin>
-			<tempmax>8</tempmax>
-			<text>Cloudy with clear spells. Rain at times. South, southwest wind 8-13, in gusts 17, on the islands and coast 12-17, gusts up to 22 m/s. Air temperature 4..8°C.</text>
-		</day>
-	</forecast>
-	<forecast date="2020-01-16">
-		<night>
-			<phenomenon>Moderate rain</phenomenon>
-			<tempmin>3</tempmin>
-			<tempmax>6</tempmax>
-			<text>Cloudy with clear spells. Rain. Southwest, west wind 6-12, on the islands and coast in gusts 15-18 m/s. Air temperature 3..6°C.</text>
-		</night>
-		<day>
-			<phenomenon>Variable clouds</phenomenon>
-			<tempmin>3</tempmin>
-			<tempmax>6</tempmax>
-			<text>Partly cloudy. Mainly dry. Southwest, west wind 6-12, on the islands and coast in gusts 15-18 m/s. Air temperature 3..6°C.</text>
-		</day>
-	</forecast>
+Northern Baltic, Gulf of Finland, Moonsund, Northern Gulf of Riga:
+wind around west 4-9, in gusts up to 13 m/s. Snow in many places, in daytime at sea possible sleet too. Visibility mainly moderate.
+</sea>
+            <peipsi>Wind around west 2-7 m/s. Light snow. Visibility moderate. Air temperature -6..-8°C.</peipsi>
+        </night>
+        <day>
+            <phenomenon>Light snowfall</phenomenon>
+            <tempmin>-10</tempmin>
+            <tempmax>2</tempmax>
+            <text>Cloudy with clear spells. Snow in many places, on islands possible sleet too. Southwest wind 3-9, on islands and coast in gusts 13 m/s. Air temperature -1..-7, in the southern part to -10, on islands coast locally +2°C.
+
+</text>
+            <place>
+                <name>Harku</name>
+                <phenomenon>Moderate sleet</phenomenon>
+                <tempmax>-2</tempmax>
+            </place>
+            <place>
+                <name>Jõhvi</name>
+                <phenomenon>Cloudy with clear spells</phenomenon>
+                <tempmax>-4</tempmax>
+            </place>
+            <place>
+                <name>Tartu</name>
+                <phenomenon>Cloudy with clear spells</phenomenon>
+                <tempmax>-7</tempmax>
+            </place>
+            <place>
+                <name>Pärnu</name>
+                <phenomenon>Moderate snowfall</phenomenon>
+                <tempmax>-2</tempmax>
+            </place>
+            <place>
+                <name>Kuressaare</name>
+                <phenomenon>Light snow shower</phenomenon>
+                <tempmax>-1</tempmax>
+            </place>
+            <place>
+                <name>Türi</name>
+                <phenomenon>Moderate snowfall</phenomenon>
+                <tempmax>-3</tempmax>
+            </place>
+            <wind>
+                <name>Kuusiku</name>
+                <direction>Southwest wind</direction>
+                <speedmin>3</speedmin>
+                <speedmax>6</speedmax>
+                <gust></gust>
+            </wind>
+            <wind>
+                <name>Väike-Maarja</name>
+                <direction>Southwest wind</direction>
+                <speedmin>3</speedmin>
+                <speedmax>7</speedmax>
+                <gust></gust>
+            </wind>
+            <wind>
+                <name>Võrtsjärv</name>
+                <direction>Southwest wind</direction>
+                <speedmin>3</speedmin>
+                <speedmax>7</speedmax>
+                <gust></gust>
+            </wind>
+            <sea></sea>
+            <peipsi>Southwest wind 3-7 m/s. Light snow. Visibility moderate. Air temperature -5..-6°C.</peipsi>
+        </day>
+    </forecast>
+    <forecast date="2021-01-19">
+        <night>
+            <phenomenon>Light snowfall</phenomenon>
+            <tempmin>-15</tempmin>
+            <tempmax>2</tempmax>
+            <text>Cloudy with clear spells. Snow in many places, on islands sleet too. Southwest, south wind 3-9, on coast in gusts 13 m/s. Air temperature in western and northern Estonia -3..-9, on the coast of islands locally 0..+2, in eastern and southern Estonia -9..-15°C. </text>
+        </night>
+        <day>
+            <phenomenon>Light snowfall</phenomenon>
+            <tempmin>-12</tempmin>
+            <tempmax>-1</tempmax>
+            <text>Cloudy with clear spells. Snow in many places, on islands sleet too, afternoon the probability for precipiation decreasing. South, southwest wind 4-9, on coast in gusts up to 14 m/s, in the evening backing on islands southeast and some increasing. Air temperature in western Estonia -1..-7, central and eastern Estonia -7..-12°C.</text>
+        </day>
+    </forecast>
+    <forecast date="2021-01-20">
+        <night>
+            <phenomenon>Variable clouds</phenomenon>
+            <tempmin>-18</tempmin>
+            <tempmax>-3</tempmax>
+            <text>Partly cloudy. Locally some snow. South, southeast wind 5-11, on islands and coastal areas in gusts up to 16 m/s. Air temperature on islands -3..-8, in mainland -9..-15, locally -18°C.</text>
+        </night>
+        <day>
+            <phenomenon>Moderate snowfall</phenomenon>
+            <tempmin>-12</tempmin>
+            <tempmax>-1</tempmax>
+            <text>Clouding up. From islands snow and snow drift. Southeast wind 5-12, on islands and coastal areas in gusts 15-18 m/s. Air temperature on islands -1..-5, in mainland -5..-10, eastern part locally -12°C, in the evening rising.</text>
+        </day>
+    </forecast>
+    <forecast date="2021-01-21">
+        <night>
+            <phenomenon>Moderate snowfall</phenomenon>
+            <tempmin>-10</tempmin>
+            <tempmax>5</tempmax>
+            <text>Overcast. Snow and snow drift, from islands turnes to sleet and rain, glazed ice. Southeast wind 5-12, on coast in gusts 15-18 m/s, after midnight veering from islands to south, souhtwest. Air temperature on islands 0..+5, in mainland -1..-7, eastern Estonia up to -10°C.</text>
+        </night>
+        <day>
+            <phenomenon>Light sleet</phenomenon>
+            <tempmin>0</tempmin>
+            <tempmax>5</tempmax>
+            <text>Cloudy wiht bright spells. Snow, sleet and rain, glazed ice. In the evening precipitation dying out. Wind is veering to south, southwest in all regions 5-10, on coast in gusts up to 15 m/s. Air temperatur will rise between 0..+5°C.</text>
+        </day>
+    </forecast>
 </forecasts>
