@@ -27,7 +27,7 @@ private enum Element: String {
 // swiftlint:enable identifier_name
 
 protocol ServerResponseParser {
-    func parse(data: Data) throws -> [Forecast]
+    func parseAndStoreToContext(data: Data) throws
 }
 
 final class SWXMLParser {
@@ -50,10 +50,9 @@ final class SWXMLParser {
 
 extension SWXMLParser: ServerResponseParser {
 
-    func parse(data: Data) throws -> [Forecast] {
+    func parseAndStoreToContext(data: Data) throws {
         self.logger.log(information: "Parsing started", module: .dataParser)
         let xml = SWXMLHash.lazy(data)
-        let forecasts: [Forecast]
         do {
             forecasts = try self.forecasts(from: xml)
             self.logger.log(information: "Parsing finished", module: .dataParser)
@@ -62,8 +61,6 @@ extension SWXMLParser: ServerResponseParser {
             self.logger.log(message: "Parsing failed", error: error, module: .dataParser)
             throw error
         }
-
-        return forecasts
     }
 
 }

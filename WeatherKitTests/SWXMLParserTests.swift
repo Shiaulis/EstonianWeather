@@ -34,7 +34,17 @@ final class SWXMLParserTests: XCTestCase {
         XCTAssertNoThrow(try self.sut.parse(data: self.data))
     }
 
+    func testParser_correctData_correctPhenomenon() throws {
+        provideCorrectData()
+
+        
+    }
+
     private func provideCorrectData() {
         self.data = Bundle(for: Self.self).data(for: .testForecast)
+    }
+
+    private func whenParse() throws {
+        try self.sut.parse(data: self.data)
     }
 }
