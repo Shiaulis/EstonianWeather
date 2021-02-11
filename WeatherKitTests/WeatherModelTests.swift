@@ -17,8 +17,4 @@ final class WeatherModelTests: XCTestCase {
         self.sut = .init()
     }
 
-    func testExample() throws {
-//        XCTAssertNotNil(self.sut.provideForecast())
-    }
-
 }

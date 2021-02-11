@@ -119,7 +119,6 @@
 		B1304B1925B3A654002D4EA5 /* SWXMLHash in Frameworks */ = {isa = PBXBuildFile; productRef = B1304B1825B3A654002D4EA5 /* SWXMLHash */; };
 		B1304B2025B44180002D4EA5 /* ServerResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1304B1F25B44180002D4EA5 /* ServerResponseParser.swift */; };
 		B1304B2725B44191002D4EA5 /* SWXMLParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1304B2625B44191002D4EA5 /* SWXMLParserTests.swift */; };
-		B1304B3425B44F64002D4EA5 /* NSPersistentContainer+tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CE1025226A0500D409FF /* NSPersistentContainer+tests.swift */; };
 		B1304B6725B45586002D4EA5 /* Observation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097215972534DD7500E43B7B /* Observation+CoreDataClass.swift */; };
 		B1304B6825B45586002D4EA5 /* DayPartForecast+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDF6252269AF00D409FF /* DayPartForecast+CoreDataProperties.swift */; };
 		B1304B6925B45586002D4EA5 /* Phenomenon+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0943927D2532423F006A37F7 /* Phenomenon+CoreDataProperties.swift */; };
@@ -163,6 +162,8 @@
 		B1D3AC3C258D530600456FCB /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D6C9ED25239F38008C9ABB /* NetworkClient.swift */; };
 		B1D3AC41258D532200456FCB /* ServerResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDE2252268E600D409FF /* ServerResponseParser.swift */; };
 		B1F58A9A2594A732004117F9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0976968B252A667E00FA1764 /* Localizable.strings */; };
+		B1FBF7B125B5F05D0076B22A /* NSObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FBF7B025B5F05D0076B22A /* NSObject+Extensions.swift */; };
+		B1FBF7B925B5F0AA0076B22A /* NSPersistentContainer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FBF7B825B5F0AA0076B22A /* NSPersistentContainer+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -363,6 +364,8 @@
 		B1CA14212593AEFB009ABBCA /* SyncStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncStatus.swift; sourceTree = "<group>"; };
 		B1D283C0259D1C68005AA4C9 /* AppStoreRatingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreRatingService.swift; sourceTree = "<group>"; };
 		B1D652F7259943B40071A57E /* Privacy Policy.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Privacy Policy.md"; sourceTree = "<group>"; };
+		B1FBF7B025B5F05D0076B22A /* NSObject+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Extensions.swift"; sourceTree = "<group>"; };
+		B1FBF7B825B5F0AA0076B22A /* NSPersistentContainer+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPersistentContainer+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -707,6 +710,8 @@
 				B1304BC025B49660002D4EA5 /* NSManagedObject+Extensions.swift */,
 				B1304B9225B49606002D4EA5 /* Info.plist */,
 				B1304BC825B49696002D4EA5 /* NSManagedObjectContext+Extensions.swift */,
+				B1FBF7B025B5F05D0076B22A /* NSObject+Extensions.swift */,
+				B1FBF7B825B5F0AA0076B22A /* NSPersistentContainer+Extensions.swift */,
 			);
 			path = HelperKit;
 			sourceTree = "<group>";
@@ -1220,7 +1225,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1304BD725B49781002D4EA5 /* Bundle.Resource+Extensions.swift in Sources */,
-				B1304B3425B44F64002D4EA5 /* NSPersistentContainer+tests.swift in Sources */,
 				B1304B2725B44191002D4EA5 /* SWXMLParserTests.swift in Sources */,
 				B1304AD825B39DA5002D4EA5 /* WeatherModelTests.swift in Sources */,
 			);
@@ -1231,8 +1235,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1304BC125B49660002D4EA5 /* NSManagedObject+Extensions.swift in Sources */,
+				B1FBF7B925B5F0AA0076B22A /* NSPersistentContainer+Extensions.swift in Sources */,
 				B1304BC925B49696002D4EA5 /* NSManagedObjectContext+Extensions.swift in Sources */,
 				B1304BA725B4962C002D4EA5 /* Bundle+Extensions.swift in Sources */,
+				B1FBF7B125B5F05D0076B22A /* NSObject+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
