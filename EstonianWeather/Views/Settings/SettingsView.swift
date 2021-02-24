@@ -7,13 +7,11 @@
 //
 
 import SwiftUI
-import StoreKit
+import InAppPurchaseKit
 
 struct SettingsView: View {
 
     let viewModel: SettingsViewModel
-    @State private var purchased = false
-    @ObservedObject private var products = ProductsDB.shared
 
     var body: some View {
         NavigationView {
@@ -30,13 +28,12 @@ struct SettingsView: View {
                         Text(R.string.localizable.aboutMeTitle())
                     }
                     List {
-                        ForEach((0 ..< self.products.items.count), id: \.self) { column in
-                            let product = self.products.items[column]
+                        ForEach((0 ..< self.viewModel.products.count), id: \.self) { column in
+                            let product = self.viewModel.products[column]
 
-                            Text(description(for: product))
-                                .onTapGesture {
-                                    _ = IAPManager.shared.purchase(product: self.products.items[column])
-                                }
+                            Button(description(for: product)) {
+                                self.viewModel.makePurchase(for: product)
+                            }
                         }
                     }
                 }
@@ -51,9 +48,6 @@ struct SettingsView: View {
             }
             .navigationBarTitle(R.string.localizable.settings())
             .navigationBarColor(backgroundColor: .appRose, tintColor: .white)
-            .onAppear {
-                IAPManager.shared.getProducts()
-            }
             .onDisappear(perform: {
                             if let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {
                                 self.viewModel.makeAttemptToShowRating(in: scene)
@@ -64,7 +58,7 @@ struct SettingsView: View {
         .navigationViewStyle(StackNavigationViewStyle())
     }
 
-    private func description(for product: SKProduct) -> String {
+    private func description(for product: Product) -> String {
         let title = product.localizedTitle
         let priceTitle = product.localizedPrice
 
@@ -76,14 +70,5 @@ struct SettingsView: View {
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView(viewModel: SettingsViewModel(ratingService: AppStoreRatingService()))
-    }
-}
-
-extension SKProduct {
-    var localizedPrice: String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.locale = priceLocale
-        return formatter.string(from: price)!
     }
 }
