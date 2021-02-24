@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import CoreData
+import LoggerKit
 
 protocol Model {
     var currentForecasts: [ForecastDisplayItem] { get }

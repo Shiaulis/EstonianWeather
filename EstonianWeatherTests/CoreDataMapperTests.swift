@@ -8,6 +8,7 @@
 
 import XCTest
 import CoreData
+import LoggerKit
 @testable import EstonianWeather
 
 final class CoreDataMapperTests: XCTestCase {

@@ -8,6 +8,7 @@
 
 import Foundation
 import Combine
+import LoggerKit
 
 protocol ServerResponseParser {
     func parse(forecastData: Data?, receivedDate: Date?, languageCode: String?) -> Result<[EWForecast], Swift.Error>
