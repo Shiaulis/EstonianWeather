@@ -7,6 +7,7 @@
 
 import Foundation
 import StoreKit
+import LoggerKit
 
 final class AppStoreRatingService {
 

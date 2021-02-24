@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum LoggerModule {
+public enum LoggerModule {
     case dataParser, mainViewModel, dataMapper, ratingService
 
     fileprivate var name: String {
@@ -20,7 +20,7 @@ enum LoggerModule {
     }
 }
 
-protocol Logger {
+public protocol Logger {
 
     func log(message: String, error: Error, module: LoggerModule)
     func logNotImplemented(functionality: String, module: LoggerModule)
@@ -29,7 +29,9 @@ protocol Logger {
 
 }
 
-final class PrintLogger {
+public final class PrintLogger {
+
+    public init() {}
 
     private var currentDate: String {
         let dateFormatter = DateFormatter()
@@ -45,20 +47,20 @@ final class PrintLogger {
 
 extension PrintLogger: Logger {
 
-    func log(message: String, error: Error, module: LoggerModule) {
+    public func log(message: String, error: Error, module: LoggerModule) {
         log("❌ \(module.name): \(message) Error: \(error.localizedDescription)")
         assertionFailure()
     }
 
-    func logNotImplemented(functionality: String, module: LoggerModule) {
+    public func logNotImplemented(functionality: String, module: LoggerModule) {
         log("🚧 \(module.name): \(functionality) not implemented yet")
     }
 
-    func log(information: String, module: LoggerModule) {
+    public func log(information: String, module: LoggerModule) {
         log("ℹ️ \(module.name): \(information)")
     }
 
-    func log(successState: String, module: LoggerModule) {
+    public func log(successState: String, module: LoggerModule) {
         log("✅ \(module.name): \(successState)")
     }
 
