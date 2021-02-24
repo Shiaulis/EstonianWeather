@@ -1,0 +1,29 @@
+{
+  "products" : [
+    {
+      "displayPrice" : "5.49",
+      "familyShareable" : false,
+      "internalID" : "BC1B4D49",
+      "localizations" : [
+        {
+          "description" : "Support application development",
+          "displayName" : "Buy me a drink",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.shiaulis.estonianweather.buyadrink",
+      "referenceName" : "Buy a drink for the developer",
+      "type" : "Consumable"
+    }
+  ],
+  "settings" : {
+
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 1,
+    "minor" : 0
+  }
+}
