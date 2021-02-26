@@ -1,7 +1,8 @@
 
 *.xcbkptlist
 
-EstonianWeather.xcodeproj/project.xcworkspace/xcuserdata/andriusshiaulis.xcuserdatad/UserInterfaceState.xcuserstate
+EstonianWeather.xcodeproj/project.xcworkspace/xcuserdata/
+EstonianWeather.xcodeproj/xcuserdata/
 
 *.xcuserstate
 
@@ -12,3 +13,5 @@ EstonianWeather.ipa
 EstonianWeather.app.dSYM.zip
 
 fastlane/Preview.html
+
+
