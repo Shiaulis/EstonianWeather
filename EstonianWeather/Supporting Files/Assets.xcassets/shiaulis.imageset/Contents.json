@@ -1,8 +1,19 @@
 {
   "images" : [
     {
-      "filename" : "shiaulis.pdf",
-      "idiom" : "universal"
+      "filename" : "shiaulis.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "shiaulis@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "shiaulis@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {
