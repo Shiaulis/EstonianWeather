@@ -113,13 +113,14 @@
 		B158270B252B57150064A42C /* EstonianWeatherWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = B158270E252B57150064A42C /* EstonianWeatherWidget.intentdefinition */; };
 		B158270C252B57150064A42C /* EstonianWeatherWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = B158270E252B57150064A42C /* EstonianWeatherWidget.intentdefinition */; };
 		B16A48FA25E6B64200B7BA31 /* LoggerKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B16A48F825E6B64200B7BA31 /* LoggerKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B16A48FD25E6B64200B7BA31 /* LoggerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B16A48F625E6B64200B7BA31 /* LoggerKit.framework */; };
-		B16A48FE25E6B64200B7BA31 /* LoggerKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B16A48F625E6B64200B7BA31 /* LoggerKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B16A490725E6B65500B7BA31 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CE3C25227D2500D409FF /* Logger.swift */; };
 		B16A494125E6BD2D00B7BA31 /* InAppPurchaseKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B16A493F25E6BD2D00B7BA31 /* InAppPurchaseKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B16A494425E6BD2D00B7BA31 /* InAppPurchaseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B16A493D25E6BD2C00B7BA31 /* InAppPurchaseKit.framework */; };
 		B16A494525E6BD2D00B7BA31 /* InAppPurchaseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B16A493D25E6BD2C00B7BA31 /* InAppPurchaseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B16A495925E6BDF200B7BA31 /* InAppPurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16A495825E6BDF200B7BA31 /* InAppPurchaseManager.swift */; };
+		B17BE3C825EA55C2005FDCCD /* LoggerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B16A48F625E6B64200B7BA31 /* LoggerKit.framework */; };
+		B17BE3CD25EA55CA005FDCCD /* LoggerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B16A48F625E6B64200B7BA31 /* LoggerKit.framework */; };
+		B17BE3CE25EA55CA005FDCCD /* LoggerKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B16A48F625E6B64200B7BA31 /* LoggerKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B189D17F25E40BCD007DF2AB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B189D17E25E40BCD007DF2AB /* StoreKit.framework */; };
 		B190251125972FB400ACD2E1 /* Rswift in Frameworks */ = {isa = PBXBuildFile; productRef = B190251025972FB400ACD2E1 /* Rswift */; };
 		B190252E259731E500ACD2E1 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B190252D259731E500ACD2E1 /* R.generated.swift */; };
@@ -174,6 +175,13 @@
 			remoteGlobalIDString = B16A493C25E6BD2C00B7BA31;
 			remoteInfo = InAppPurchaseKit;
 		};
+		B17BE3CA25EA55C2005FDCCD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0968CD8A2522667A00D409FF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B16A48F525E6B64200B7BA31;
+			remoteInfo = LoggerKit;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -194,8 +202,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B16A48FE25E6B64200B7BA31 /* LoggerKit.framework in Embed Frameworks */,
 				B16A494525E6BD2D00B7BA31 /* InAppPurchaseKit.framework in Embed Frameworks */,
+				B17BE3CE25EA55CA005FDCCD /* LoggerKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -322,8 +330,8 @@
 			files = (
 				B190251125972FB400ACD2E1 /* Rswift in Frameworks */,
 				B16A494425E6BD2D00B7BA31 /* InAppPurchaseKit.framework in Frameworks */,
-				B16A48FD25E6B64200B7BA31 /* LoggerKit.framework in Frameworks */,
 				B189D17F25E40BCD007DF2AB /* StoreKit.framework in Frameworks */,
+				B17BE3CD25EA55CA005FDCCD /* LoggerKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,6 +370,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B17BE3C825EA55C2005FDCCD /* LoggerKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -782,6 +791,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				B17BE3CB25EA55C2005FDCCD /* PBXTargetDependency */,
 			);
 			name = InAppPurchaseKit;
 			productName = InAppPurchaseKit;
@@ -1121,6 +1131,11 @@
 			isa = PBXTargetDependency;
 			target = B16A493C25E6BD2C00B7BA31 /* InAppPurchaseKit */;
 			targetProxy = B16A494225E6BD2D00B7BA31 /* PBXContainerItemProxy */;
+		};
+		B17BE3CB25EA55C2005FDCCD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B16A48F525E6B64200B7BA31 /* LoggerKit */;
+			targetProxy = B17BE3CA25EA55C2005FDCCD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
