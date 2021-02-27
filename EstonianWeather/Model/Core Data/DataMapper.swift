@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 import Combine
-import LoggerKit
+import Logger
 
 protocol DataMapper {
     func performForecastMapping(_ forecastsToMap: [EWForecast], context: NSManagedObjectContext) throws -> [Forecast]

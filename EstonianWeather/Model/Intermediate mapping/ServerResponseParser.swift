@@ -8,7 +8,7 @@
 
 import Foundation
 import Combine
-import LoggerKit
+import Logger
 
 protocol ServerResponseParser {
     func parse(forecastData: Data?, receivedDate: Date?, languageCode: String?) -> Result<[EWForecast], Swift.Error>
@@ -68,7 +68,7 @@ final class ServerResponseXMLParser: NSObject, ServerResponseParser {
     func parse(observationData observationsData: Data?, receivedDate: Date? = nil) -> Result<[EWObservation], Swift.Error> {
         guard self.isParsing == false else {
             let error: Error = .attemptToRunMultipleParsing
-            self.logger.log(message: "Not expected multiple parsing", error: error, module: .dataParser)
+            self.logger.log(message: "Not expected multiple parsing", error: error, module: MainLoggerModule.dataParser)
             return .failure(error)
         }
 
@@ -89,7 +89,7 @@ final class ServerResponseXMLParser: NSObject, ServerResponseParser {
             self.receivedDate = nil
 
             if success {
-                self.logger.log(successState: "Parsing finished successfully", module: .dataParser)
+                self.logger.log(successState: "Parsing finished successfully", module: MainLoggerModule.dataParser)
                 return .success(stationsToReturn)
             }
         }
@@ -108,7 +108,7 @@ final class ServerResponseXMLParser: NSObject, ServerResponseParser {
     func parse(forecastData: Data?, receivedDate: Date? = nil, languageCode: String? = nil) -> Result<[EWForecast], Swift.Error> {
         guard self.isParsing == false else {
             let error: Error = .attemptToRunMultipleParsing
-            self.logger.log(message: "Not expected multiple parsing", error: error, module: .dataParser)
+            self.logger.log(message: "Not expected multiple parsing", error: error, module: MainLoggerModule.dataParser)
             return .failure(error)
         }
 
@@ -133,7 +133,7 @@ final class ServerResponseXMLParser: NSObject, ServerResponseParser {
             self.receivedLanguageCode = nil
 
             if success {
-                self.logger.log(successState: "Parsing finished successfully", module: .dataParser)
+                self.logger.log(successState: "Parsing finished successfully", module: MainLoggerModule.dataParser)
                 return .success(forecastsToReturn)
             }
         }
@@ -165,7 +165,7 @@ final class ServerResponseXMLParser: NSObject, ServerResponseParser {
         let logString =
             "Parsing started for data with length \(dataCount), received date \"\(receivedDateString)\", language code \"\(receivedLanguageCodeString)\""
 
-        self.logger.log(information: logString, module: .dataParser)
+        self.logger.log(information: logString, module: MainLoggerModule.dataParser)
     }
 
 }
@@ -222,7 +222,7 @@ extension ServerResponseXMLParser: XMLParserDelegate {
             assert(self.currentObservation == nil)
             self.currentObservation = EWObservation()
         case .none:
-            self.logger.log(information: "⚠️ Unknown element detected with name \"\(elementName)\"", module: .dataParser)
+            self.logger.log(information: "⚠️ Unknown element detected with name \"\(elementName)\"", module: MainLoggerModule.dataParser)
         }
 
         self.currentParsedElement = element

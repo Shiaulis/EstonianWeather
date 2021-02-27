@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-import InAppPurchaseKit
+import PurchaseKit
 
 struct SettingsView: View {
 
