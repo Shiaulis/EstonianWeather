@@ -9,7 +9,7 @@
 import Combine
 import UIKit
 import CoreData
-import LoggerKit
+import Logger
 
 final class ApplicationController {
 

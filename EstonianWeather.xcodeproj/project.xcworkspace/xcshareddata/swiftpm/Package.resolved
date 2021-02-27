@@ -2,6 +2,24 @@
   "object": {
     "pins": [
       {
+        "package": "Logger",
+        "repositoryURL": "https://github.com/Shiaulis/Logger",
+        "state": {
+          "branch": "main",
+          "revision": "9b26d78aab7d6778ad626f47ae10b559fec8cbbb",
+          "version": null
+        }
+      },
+      {
+        "package": "PurchaseKit",
+        "repositoryURL": "https://github.com/Shiaulis/PurchaseKit",
+        "state": {
+          "branch": "main",
+          "revision": "3d9fb1bc294b3d4d6d9d37161b5dccaf71ceaa97",
+          "version": null
+        }
+      },
+      {
         "package": "R.swift.Library",
         "repositoryURL": "https://github.com/mac-cain13/R.swift.Library",
         "state": {

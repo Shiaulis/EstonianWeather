@@ -7,7 +7,7 @@
 
 import Foundation
 import StoreKit
-import LoggerKit
+import Logger
 
 final class AppStoreRatingService {
 
@@ -23,7 +23,7 @@ final class AppStoreRatingService {
         count += 1
         UserDefaults.standard.set(count, forKey: UserDefaultsKeys.processCompletedCountKey)
 
-        self.logger.log(information: "Application launched \(count) time(s)", module: .ratingService)
+        self.logger.log(information: "Application launched \(count) time(s)", module: MainLoggerModule.ratingService)
     }
 
     func makeAttemptToShowRating(in windowScene: UIWindowScene) {
@@ -40,7 +40,7 @@ final class AppStoreRatingService {
             DispatchQueue.main.asyncAfter(deadline: twoSecondsFromNow) {
                 SKStoreReviewController.requestReview(in: windowScene)
                 UserDefaults.standard.set(currentVersion, forKey: UserDefaultsKeys.lastVersionPromptedForReviewKey)
-                self.logger.log(information: "Made request to show rating", module: .ratingService)
+                self.logger.log(information: "Made request to show rating", module: MainLoggerModule.ratingService)
             }
         }
     }

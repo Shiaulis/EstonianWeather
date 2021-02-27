@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import LoggerKit
-import InAppPurchaseKit
+import Logger
+import PurchaseKit
 
 final class SettingsViewModel {
 
