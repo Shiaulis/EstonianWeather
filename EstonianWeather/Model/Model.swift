@@ -41,7 +41,7 @@ final class ApplicationModel: Model {
         self.context = persistenceService.persistentContainer.viewContext
         self.context.mergePolicy = NSMergePolicy(merge: .overwriteMergePolicyType)
         self.locale = locale
-        let logger = PrintLogger()
+        let logger = PrintLogger(moduleName: "ApplicationModel")
         self.mapper = CoreDataMapper(logger: logger)
         self.networkClient = URLSessionNetworkClient()
         self.parser = ServerResponseXMLParser(logger: logger)

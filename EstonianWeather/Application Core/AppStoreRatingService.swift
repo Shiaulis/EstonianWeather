@@ -13,7 +13,7 @@ final class AppStoreRatingService {
 
     private let logger: Logger
 
-    init(logger: Logger = PrintLogger()) {
+    init(logger: Logger = PrintLogger(moduleName: "AppStoreRatingService")) {
         self.logger = logger
     }
 
@@ -23,7 +23,7 @@ final class AppStoreRatingService {
         count += 1
         UserDefaults.standard.set(count, forKey: UserDefaultsKeys.processCompletedCountKey)
 
-        self.logger.log(information: "Application launched \(count) time(s)", module: MainLoggerModule.ratingService)
+        self.logger.log(information: "Application launched \(count) time(s)")
     }
 
     func makeAttemptToShowRating(in windowScene: UIWindowScene) {
@@ -40,7 +40,7 @@ final class AppStoreRatingService {
             DispatchQueue.main.asyncAfter(deadline: twoSecondsFromNow) {
                 SKStoreReviewController.requestReview(in: windowScene)
                 UserDefaults.standard.set(currentVersion, forKey: UserDefaultsKeys.lastVersionPromptedForReviewKey)
-                self.logger.log(information: "Made request to show rating", module: MainLoggerModule.ratingService)
+                self.logger.log(information: "Made request to show rating")
             }
         }
     }

@@ -29,7 +29,7 @@ final class ApplicationController {
     init() {
         self.widgetService = .init()
         self.persistenceService = .init()
-        self.ratingService = .init(logger: PrintLogger())
+        self.ratingService = .init(logger: PrintLogger(moduleName: "ratingService"))
         self.settingsService = .init(userDefaults: .standard, persistenceService: self.persistenceService)
         self.model = ApplicationModel(persistenceService: self.persistenceService)
 

@@ -24,7 +24,7 @@ final class CoreDataMapperTests: XCTestCase {
     override func setUp() {
         super.setUp()
         self.container = NSPersistentContainer.createContainerForTesting()
-        self.sut = CoreDataMapper(logger: PrintLogger())
+        self.sut = CoreDataMapper(logger: PrintLogger(moduleName: "CoreDataMapper"))
     }
 
     override func tearDown() {

@@ -30,7 +30,7 @@ final class SettingsViewModel {
 
     init(ratingService: AppStoreRatingService) {
         self.ratingService = ratingService
-        self.purchasemanager = .init(inAppPurchaseIdentifiers: ["com.shiaulis.estonianweather.buyadrink"], logger: PrintLogger())
+        self.purchasemanager = .init(inAppPurchaseIdentifiers: ["com.shiaulis.estonianweather.buyadrink"], logger: PrintLogger(moduleName: "SettingsViewModel"))
 
         self.purchasemanager.getProducts { completion in
             switch completion {

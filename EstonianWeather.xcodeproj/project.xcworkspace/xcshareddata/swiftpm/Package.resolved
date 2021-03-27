@@ -6,7 +6,7 @@
         "repositoryURL": "https://github.com/Shiaulis/Logger",
         "state": {
           "branch": "main",
-          "revision": "9b26d78aab7d6778ad626f47ae10b559fec8cbbb",
+          "revision": "7568844eeadce273f4540b0cd30ad4ea27354908",
           "version": null
         }
       },
@@ -15,7 +15,7 @@
         "repositoryURL": "https://github.com/Shiaulis/PurchaseKit",
         "state": {
           "branch": "main",
-          "revision": "3d9fb1bc294b3d4d6d9d37161b5dccaf71ceaa97",
+          "revision": "422e9ed745e8d6e307572a1f2e3ec8e700582789",
           "version": null
         }
       },
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/mac-cain13/R.swift.Library",
         "state": {
           "branch": null,
-          "revision": "5025163d8f60d3c56124c309db0246ba421aa8c6",
-          "version": "5.3.0"
+          "revision": "8998cfe77f4fce79ee6dfab0c88a7d551659d8fb",
+          "version": "5.4.0"
         }
       }
     ]
