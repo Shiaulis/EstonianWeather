@@ -118,6 +118,7 @@
 		B190252E259731E500ACD2E1 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B190252D259731E500ACD2E1 /* R.generated.swift */; };
 		B190255625973FAE00ACD2E1 /* Rswift in Frameworks */ = {isa = PBXBuildFile; productRef = B190255525973FAE00ACD2E1 /* Rswift */; };
 		B190EB142586A5820025415A /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B190EB132586A5820025415A /* Date+Extensions.swift */; };
+		B19E6BA3260FA6FC0079D974 /* WeatherKit in Frameworks */ = {isa = PBXBuildFile; productRef = B19E6BA2260FA6FC0079D974 /* WeatherKit */; };
 		B1AFFAFA2598FC3100ACA10E /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AFFAF92598FC3100ACA10E /* UIColor+Extensions.swift */; };
 		B1B4741225EA93DC0049D953 /* Logger in Frameworks */ = {isa = PBXBuildFile; productRef = B1B4741125EA93DC0049D953 /* Logger */; };
 		B1CA14122593921C009ABBCA /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CA14112593921C009ABBCA /* Model.swift */; };
@@ -283,6 +284,7 @@
 			files = (
 				B190251125972FB400ACD2E1 /* Rswift in Frameworks */,
 				B189D17F25E40BCD007DF2AB /* StoreKit.framework in Frameworks */,
+				B19E6BA3260FA6FC0079D974 /* WeatherKit in Frameworks */,
 				B1B4741225EA93DC0049D953 /* Logger in Frameworks */,
 				B1D2279F25EA90660086B689 /* PurchaseKit in Frameworks */,
 			);
@@ -595,6 +597,7 @@
 				B190251025972FB400ACD2E1 /* Rswift */,
 				B1D2279E25EA90660086B689 /* PurchaseKit */,
 				B1B4741125EA93DC0049D953 /* Logger */,
+				B19E6BA2260FA6FC0079D974 /* WeatherKit */,
 			);
 			productName = EstonianWeather;
 			productReference = 0968CD922522667A00D409FF /* EstonianWeather.app */;
@@ -697,6 +700,7 @@
 				B190250F25972FB400ACD2E1 /* XCRemoteSwiftPackageReference "R.swift" */,
 				B1D2279D25EA90660086B689 /* XCRemoteSwiftPackageReference "PurchaseKit" */,
 				B1B4741025EA93DC0049D953 /* XCRemoteSwiftPackageReference "Logger" */,
+				B19E6BA1260FA6FC0079D974 /* XCRemoteSwiftPackageReference "WeatherKit" */,
 			);
 			productRefGroup = 0968CD932522667A00D409FF /* Products */;
 			projectDirPath = "";
@@ -1346,6 +1350,14 @@
 				minimumVersion = 5.3.0;
 			};
 		};
+		B19E6BA1260FA6FC0079D974 /* XCRemoteSwiftPackageReference "WeatherKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Shiaulis/WeatherKit";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		B1B4741025EA93DC0049D953 /* XCRemoteSwiftPackageReference "Logger" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Shiaulis/Logger";
@@ -1379,6 +1391,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B190250F25972FB400ACD2E1 /* XCRemoteSwiftPackageReference "R.swift" */;
 			productName = Rswift;
+		};
+		B19E6BA2260FA6FC0079D974 /* WeatherKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B19E6BA1260FA6FC0079D974 /* XCRemoteSwiftPackageReference "WeatherKit" */;
+			productName = WeatherKit;
 		};
 		B1B4741125EA93DC0049D953 /* Logger */ = {
 			isa = XCSwiftPackageProductDependency;

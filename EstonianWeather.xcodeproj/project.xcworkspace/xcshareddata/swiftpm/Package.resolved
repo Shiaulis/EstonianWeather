@@ -27,6 +27,24 @@
           "revision": "8998cfe77f4fce79ee6dfab0c88a7d551659d8fb",
           "version": "5.4.0"
         }
+      },
+      {
+        "package": "SWXMLHash",
+        "repositoryURL": "https://github.com/drmohundro/SWXMLHash",
+        "state": {
+          "branch": null,
+          "revision": "9183170d20857753d4f331b0ca63f73c60764bf3",
+          "version": "5.0.2"
+        }
+      },
+      {
+        "package": "WeatherKit",
+        "repositoryURL": "https://github.com/Shiaulis/WeatherKit",
+        "state": {
+          "branch": "main",
+          "revision": "286b18e31a8666cc9f2170f888c46b57c92e2393",
+          "version": null
+        }
       }
     ]
   },
