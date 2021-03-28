@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import WeatherKit
 
 struct ForecastListView: View {
 
@@ -113,12 +114,6 @@ struct SyncStatusView: View {
             Spacer()
         }
         .background(Color(.appRose))
-    }
-}
-
-struct ForecastListView_Previews: PreviewProvider {
-    static var previews: some View {
-        ForecastListView(viewModel: ForecastListViewModel(model: MockModel()))
     }
 }
 

@@ -7,20 +7,30 @@
 //
 
 import SwiftUI
+import WeatherKit
+
+private extension DayPartForecastDisplayItem.DayPartType {
+    var name: String {
+        switch self {
+        case .day: return R.string.localizable.day()
+        case .night: return R.string.localizable.night()
+        }
+    }
+}
 
 struct DayPartView: View {
 
-    let item: ForecastDisplayItem.DayPartForecastDisplayItem
+    let item: WeatherKit.DayPartForecastDisplayItem
 
     var body: some View {
         VStack {
-            DayPartTitleView(title: self.item.type)
+            DayPartTitleView(title: self.item.type.name)
             PrimaryForecastView(
-                temperatureRange: self.item.temperatureRange,
-                weatherDescription: self.item.weatherDescription,
-                weatherIconName: self.item.weatherIconName
+                temperatureRange: self.item.temperatureRange ?? "",
+                weatherDescription: self.item.weatherDescription ?? "",
+                weatherIconName: self.item.weatherIconName ?? ""
             )
-            SecondaryForecastView(descriptionText: self.item.description)
+            SecondaryForecastView(descriptionText: self.item.description ?? "")
         }
     }
 }
@@ -28,9 +38,9 @@ struct DayPartView: View {
 struct DayPartView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            DayPartView(item: ForecastDisplayItem.DayPartForecastDisplayItem.test)
+            DayPartView(item: DayPartForecastDisplayItem.test)
                 .previewLayout(.fixed(width: 414, height: 200))
-            DayPartView(item: ForecastDisplayItem.DayPartForecastDisplayItem.test)
+            DayPartView(item: DayPartForecastDisplayItem.test)
                 .previewLayout(.fixed(width: 414, height: 200))
                 .environment(\.colorScheme, .dark)
         }

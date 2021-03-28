@@ -7,12 +7,13 @@
 
 import SwiftUI
 import WidgetKit
+import WeatherKit
 
 struct EstonianWeatherWidgetEntryView: View {
     let entry: ForecastEntry
     @Environment(\.widgetFamily) private var family
 
-    private var displayItems: [ForecastDisplayItem] {
+    private var displayItems: [WeatherKit.ForecastDisplayItem] {
         switch self.family {
         case .systemSmall: return [self.entry.displayItems.first].compactMap { $0 }
         case .systemMedium: return self.entry.displayItems
@@ -45,7 +46,7 @@ struct EstonianWeatherWidgetEntryView: View {
                     Color(.appRose)
                     VStack(spacing: 2) {
                         HStack(spacing: 2) {
-                            ForEach(self.displayItems.compactMap { $0.day }) { displayItem in
+                            ForEach(self.displayItems.compactMap { $0 }) { displayItem in
                                 ForecastWeatherDayView(displayItem: displayItem)
                             }
                         }
@@ -104,7 +105,7 @@ private struct HeaderView: View {
 }
 
 private struct ForecastFullWeatherView: View {
-    let displayItem: ForecastDisplayItem
+    let displayItem: WeatherKit.ForecastDisplayItem
 
     var body: some View {
         ZStack {
@@ -132,7 +133,11 @@ private struct ForecastFullWeatherView: View {
 }
 
 private struct ForecastWeatherDayView: View {
-    let displayItem: ForecastDisplayItem.DayPartForecastDisplayItem
+    let displayItem: WeatherKit.ForecastDisplayItem
+
+    var dayDisplayItem: WeatherKit.DayPartForecastDisplayItem? {
+        self.displayItem.day
+    }
 
     var body: some View {
         ZStack {
@@ -145,12 +150,12 @@ private struct ForecastWeatherDayView: View {
                         .lineLimit(1)
                 }
                 Spacer()
-                Image(systemName: self.displayItem.weatherIconName)
+                Image(systemName: self.dayDisplayItem?.weatherIconName ?? "")
                     .font(.system(size: 40))
                     .minimumScaleFactor(0.4)
                     .lineLimit(1)
                 Spacer()
-                Text(self.displayItem.temperatureRange)
+                Text(self.dayDisplayItem?.temperatureRange ?? "")
                     .font(.system(size: 18))
                     .minimumScaleFactor(0.4)
                     .lineLimit(1)
@@ -161,7 +166,7 @@ private struct ForecastWeatherDayView: View {
     }
 }
 
-private struct ForecastWidgetEntryVIew_Previews: PreviewProvider {
+private struct ForecastWidgetEntryView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             EstonianWeatherWidgetEntryView(entry: .test)

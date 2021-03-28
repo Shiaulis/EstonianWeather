@@ -10,10 +10,11 @@ import Foundation
 import Combine
 import CoreData
 import UIKit
+import WeatherKit
 
 final class ForecastListViewModel: ObservableObject {
 
-    @Published private(set) var displayItems: [ForecastDisplayItem] = []
+    @Published private(set) var displayItems: [WeatherKit.ForecastDisplayItem] = []
     @Published private(set) var shouldShowSyncStatus: Bool = false
     @Published private(set) var syncStatus: SyncStatus = .ready {
         didSet {
@@ -25,10 +26,10 @@ final class ForecastListViewModel: ObservableObject {
 
     }
 
-    private let model: Model
+    private let model: WeatherModel
     private var disposables: Set<AnyCancellable> = []
 
-    init(model: Model) {
+    init(model: WeatherModel) {
         self.model = model
 
         fetchRemoteForecasts()
@@ -38,12 +39,14 @@ final class ForecastListViewModel: ObservableObject {
     private func fetchRemoteForecasts() {
         self.syncStatus = .syncing
         self.model.provideForecasts { result in
-            switch result {
-            case .success(let forecastDisplayItems):
-                self.displayItems = forecastDisplayItems
-                self.syncStatus = .synced(Date())
-            case .failure(let error):
-                self.syncStatus = .failed(error.localizedDescription)
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let forecastDisplayItems):
+                    self.displayItems = forecastDisplayItems
+                    self.syncStatus = .synced(Date())
+                case .failure(let error):
+                    self.syncStatus = .failed(error.localizedDescription)
+                }
             }
         }
     }
