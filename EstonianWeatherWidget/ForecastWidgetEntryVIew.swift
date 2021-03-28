@@ -13,7 +13,7 @@ struct EstonianWeatherWidgetEntryView: View {
     let entry: ForecastEntry
     @Environment(\.widgetFamily) private var family
 
-    private var displayItems: [WeatherKit.ForecastDisplayItem] {
+    private var displayItems: [ForecastDisplayItem] {
         switch self.family {
         case .systemSmall: return [self.entry.displayItems.first].compactMap { $0 }
         case .systemMedium: return self.entry.displayItems
@@ -105,7 +105,7 @@ private struct HeaderView: View {
 }
 
 private struct ForecastFullWeatherView: View {
-    let displayItem: WeatherKit.ForecastDisplayItem
+    let displayItem: ForecastDisplayItem
 
     var body: some View {
         ZStack {
@@ -133,9 +133,9 @@ private struct ForecastFullWeatherView: View {
 }
 
 private struct ForecastWeatherDayView: View {
-    let displayItem: WeatherKit.ForecastDisplayItem
+    let displayItem: ForecastDisplayItem
 
-    var dayDisplayItem: WeatherKit.DayPartForecastDisplayItem? {
+    var dayDisplayItem: DayPartForecastDisplayItem? {
         self.displayItem.day
     }
 

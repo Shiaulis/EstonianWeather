@@ -16,12 +16,11 @@ final class ApplicationController {
 
     // MARK: - Properties
 
-    let model: WeatherKit.WeatherModel
+    let model: WeatherModel
     let ratingService: AppStoreRatingService
 
     private let settingsService: SettingsService
     private let widgetService: WidgetService
-    private let persistenceService: PersistenceService
 
     private var disposables: Set<AnyCancellable> = []
 
@@ -29,42 +28,19 @@ final class ApplicationController {
 
     init() {
         self.widgetService = .init()
-        self.persistenceService = .init()
         self.ratingService = .init(logger: PrintLogger(moduleName: "ratingService"))
-        self.settingsService = .init(userDefaults: .standard, persistenceService: self.persistenceService)
-        self.model = WeatherKit.NetwokWeatherModel(
+        self.settingsService = .init(userDefaults: .standard)
+        self.model = NetwokWeatherModel(
             weatherLocale: WeatherLocale(locale: .current) ?? .english,
-            responseParser: WeatherKit.SWXMLResponseParser(),
-            networkClient: WeatherKit.URLSessionNetworkClient())
+            responseParser: SWXMLResponseParser(),
+            networkClient: URLSessionNetworkClient())
 
         self.ratingService.incrementLauchCounter()
     }
 
 }
 
-extension ApplicationController {
-
-    private var isUnitTesting: Bool { ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil }
-
-    var applicationMode: ApplicationMode {
-        if self.isUnitTesting {
-            return .unitTests
-        }
-
-        return .swiftUI
-    }
-
-    func forecastDataProvider() -> DataProvider {
-        DataProvider(formatter: ForecastDateFormatter())
-    }
-
-}
-
-extension Notification.Name {
-    static let syncStatusDidChange = Notification.Name("syncStatusDidChange")
-}
-
-extension WeatherKit.WeatherLocale {
+extension WeatherLocale {
     init?(locale: Locale) {
         switch locale.languageCode {
         case "en": self = .english

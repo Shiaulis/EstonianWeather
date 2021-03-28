@@ -20,7 +20,7 @@ private extension DayPartForecastDisplayItem.DayPartType {
 
 struct DayPartView: View {
 
-    let item: WeatherKit.DayPartForecastDisplayItem
+    let item: DayPartForecastDisplayItem
 
     var body: some View {
         VStack {

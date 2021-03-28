@@ -7,20 +7,21 @@
 //
 
 import SwiftUI
+import WeatherKit
 
 struct PlaceView: View {
 
-    let place: ForecastDisplayItem.DayPartForecastDisplayItem.PlaceDisplayItem
+    let place: PlaceDisplayItem
 
     var body: some View {
         HStack {
             Spacer()
-            Text(place.name)
+            Text(place.name ?? "")
             Spacer()
-            Image(place.weatherIconName)
+            Image(place.weatherIconName ?? "")
                 .resizable()
                 .frame(width: 20, height: 20)
-            Text(place.temperature)
+            Text(place.temperature ?? "")
                 .padding(.horizontal)
         }
     }
@@ -28,7 +29,7 @@ struct PlaceView: View {
 
 struct PlaceView_Previews: PreviewProvider {
     static var previews: some View {
-        PlaceView(place: ForecastDisplayItem.DayPartForecastDisplayItem.PlaceDisplayItem.test1)
+        PlaceView(place: PlaceDisplayItem.test1)
         .previewLayout(.fixed(width: 300, height: 150))
     }
 }
