@@ -14,7 +14,7 @@ import WeatherKit
 
 final class ForecastListViewModel: ObservableObject {
 
-    @Published private(set) var displayItems: [WeatherKit.ForecastDisplayItem] = []
+    @Published private(set) var displayItems: [ForecastDisplayItem] = []
     @Published private(set) var shouldShowSyncStatus: Bool = false
     @Published private(set) var syncStatus: SyncStatus = .ready {
         didSet {

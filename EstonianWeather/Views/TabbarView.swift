@@ -61,10 +61,10 @@ struct TabbarView_Previews: PreviewProvider {
         TabbarView(
             forecastListView: ForecastListView(
                 viewModel: ForecastListViewModel(
-                    model: WeatherKit.NetwokWeatherModel(
+                    model: NetwokWeatherModel(
                         weatherLocale: .english,
-                        responseParser: WeatherKit.SWXMLResponseParser(),
-                        networkClient: WeatherKit.URLSessionNetworkClient()
+                        responseParser: SWXMLResponseParser(),
+                        networkClient: URLSessionNetworkClient()
                     )
                 )
             ),

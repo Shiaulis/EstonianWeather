@@ -12,9 +12,9 @@ import WeatherKit
 struct ForecastEntry: TimelineEntry {
     let date: Date
     let configuration: ConfigurationIntent
-    let displayItems: [WeatherKit.ForecastDisplayItem]
+    let displayItems: [ForecastDisplayItem]
 
-    init(displayItems: [WeatherKit.ForecastDisplayItem] = [], date: Date, configuration: ConfigurationIntent) {
+    init(displayItems: [ForecastDisplayItem] = [], date: Date, configuration: ConfigurationIntent) {
         self.displayItems = displayItems
         self.date = date
         self.configuration = configuration
@@ -25,16 +25,16 @@ struct ForecastEntry: TimelineEntry {
 
 final class WidgetForercastProvider: IntentTimelineProvider {
 
-    private let model: WeatherKit.WeatherModel
+    private let model: WeatherModel
     private var syncStatus: SyncStatus = .ready
 
     private var disposables: Set<AnyCancellable> = []
 
     init() {
-        self.model = WeatherKit.NetwokWeatherModel(
+        self.model = NetwokWeatherModel(
             weatherLocale: .english,
-            responseParser: WeatherKit.SWXMLResponseParser(),
-            networkClient: WeatherKit.URLSessionNetworkClient()
+            responseParser: SWXMLResponseParser(),
+            networkClient: URLSessionNetworkClient()
         )
     }
 
@@ -53,7 +53,7 @@ final class WidgetForercastProvider: IntentTimelineProvider {
         }
     }
 
-    private func currentForecastsFromDatabase() -> [WeatherKit.ForecastDisplayItem] {
+    private func currentForecastsFromDatabase() -> [ForecastDisplayItem] {
         self.model.currentForecasts
     }
 

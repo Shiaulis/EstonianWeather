@@ -11,11 +11,9 @@ import Foundation
 final class SettingsService {
 
     private let userDefaults: UserDefaults
-    private let persistenceService: PersistenceService
 
-    init(userDefaults: UserDefaults = .standard, persistenceService: PersistenceService) {
+    init(userDefaults: UserDefaults = .standard) {
         self.userDefaults = userDefaults
-        self.persistenceService = persistenceService
 
         checkAndExecuteSettings()
         setVersionAndBuildNumber()
@@ -26,7 +24,6 @@ final class SettingsService {
             self.userDefaults.set(false, forKey: SettingsBundleKeys.Reset)
             let appDomain: String? = Bundle.main.bundleIdentifier
             self.userDefaults.removePersistentDomain(forName: appDomain!)
-            self.persistenceService.recreateDatabase()
         }
     }
 

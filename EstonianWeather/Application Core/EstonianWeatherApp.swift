@@ -7,18 +7,16 @@
 
 import SwiftUI
 
-enum ApplicationMode {
-    case unitTests, uiKit, swiftUI
-}
-
 @main
 struct EstonianWeatherApp: App {
+
+    private var isUnitTesting: Bool { ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil }
 
     private let applicationController = ApplicationController()
 
     var body: some Scene {
         WindowGroup {
-            if self.applicationController.applicationMode != .unitTests {
+            if !self.isUnitTesting {
                 TabbarView(
                     forecastListView: ForecastListView(
                         viewModel: ForecastListViewModel(model:self.applicationController.model)
