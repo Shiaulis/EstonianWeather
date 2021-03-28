@@ -10,12 +10,13 @@ import Combine
 import UIKit
 import CoreData
 import Logger
+import WeatherKit
 
 final class ApplicationController {
 
     // MARK: - Properties
 
-    let model: Model
+    let model: WeatherKit.WeatherModel
     let ratingService: AppStoreRatingService
 
     private let settingsService: SettingsService
@@ -31,7 +32,10 @@ final class ApplicationController {
         self.persistenceService = .init()
         self.ratingService = .init(logger: PrintLogger(moduleName: "ratingService"))
         self.settingsService = .init(userDefaults: .standard, persistenceService: self.persistenceService)
-        self.model = ApplicationModel(persistenceService: self.persistenceService)
+        self.model = WeatherKit.NetwokWeatherModel(
+            weatherLocale: WeatherLocale(locale: .current) ?? .english,
+            responseParser: WeatherKit.SWXMLResponseParser(),
+            networkClient: WeatherKit.URLSessionNetworkClient())
 
         self.ratingService.incrementLauchCounter()
     }
@@ -58,4 +62,17 @@ extension ApplicationController {
 
 extension Notification.Name {
     static let syncStatusDidChange = Notification.Name("syncStatusDidChange")
+}
+
+extension WeatherKit.WeatherLocale {
+    init?(locale: Locale) {
+        switch locale.languageCode {
+        case "en": self = .english
+        case "ru": self = .russian
+        case "et": self = .estonian
+        default:
+            assertionFailure("Other locale is not expected")
+            return nil
+        }
+    }
 }

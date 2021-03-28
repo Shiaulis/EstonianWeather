@@ -18,7 +18,7 @@ struct ForecastWidget: Widget {
         }
         .configurationDisplayName("Forecast Widget")
         .description("Check Estonian weather forecast.")
-        .supportedFamilies([.systemMedium, .systemSmall])
+        .supportedFamilies([.systemSmall, .systemMedium])
     }
 }
 

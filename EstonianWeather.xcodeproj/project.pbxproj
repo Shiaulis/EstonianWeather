@@ -108,6 +108,7 @@
 		09E8E0D92531E29900E2F180 /* EWPhenomenon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E8E0D82531E29900E2F180 /* EWPhenomenon.swift */; };
 		09E8E0E32531E31700E2F180 /* EWWind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E8E0E22531E31700E2F180 /* EWWind.swift */; };
 		09F969F62532597600DA94D6 /* TestableLocale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E8E0AE2531928F00E2F180 /* TestableLocale.swift */; };
+		B13AC712260FB76800E427E5 /* WeatherKit in Frameworks */ = {isa = PBXBuildFile; productRef = B13AC711260FB76800E427E5 /* WeatherKit */; };
 		B13DCFD92598FDB200BC02E9 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AFFAF92598FC3100ACA10E /* UIColor+Extensions.swift */; };
 		B13DCFF825990B0700BC02E9 /* Locale+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13DCFF725990B0700BC02E9 /* Locale+Extensions.swift */; };
 		B158270B252B57150064A42C /* EstonianWeatherWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = B158270E252B57150064A42C /* EstonianWeatherWidget.intentdefinition */; };
@@ -121,8 +122,6 @@
 		B19E6BA3260FA6FC0079D974 /* WeatherKit in Frameworks */ = {isa = PBXBuildFile; productRef = B19E6BA2260FA6FC0079D974 /* WeatherKit */; };
 		B1AFFAFA2598FC3100ACA10E /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AFFAF92598FC3100ACA10E /* UIColor+Extensions.swift */; };
 		B1B4741225EA93DC0049D953 /* Logger in Frameworks */ = {isa = PBXBuildFile; productRef = B1B4741125EA93DC0049D953 /* Logger */; };
-		B1CA14122593921C009ABBCA /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CA14112593921C009ABBCA /* Model.swift */; };
-		B1CA14172593AE47009ABBCA /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CA14112593921C009ABBCA /* Model.swift */; };
 		B1CA141C2593AE6C009ABBCA /* WidgetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0975937C25441B5500C21C6B /* WidgetService.swift */; };
 		B1CA14222593AEFB009ABBCA /* SyncStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CA14212593AEFB009ABBCA /* SyncStatus.swift */; };
 		B1CA14272593AEFF009ABBCA /* SyncStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CA14212593AEFB009ABBCA /* SyncStatus.swift */; };
@@ -161,7 +160,7 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		097698C2252A708C00FA1764 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
@@ -271,7 +270,6 @@
 		B19AC27C2598AE61007203FB /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/AppStoreDescription.strings; sourceTree = "<group>"; };
 		B1AFFAF92598FC3100ACA10E /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		B1C2356425E676ED0097FEDD /* TestConfiguration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestConfiguration.storekit; sourceTree = "<group>"; };
-		B1CA14112593921C009ABBCA /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		B1CA14212593AEFB009ABBCA /* SyncStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncStatus.swift; sourceTree = "<group>"; };
 		B1D283C0259D1C68005AA4C9 /* AppStoreRatingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreRatingService.swift; sourceTree = "<group>"; };
 		B1D652F7259943B40071A57E /* Privacy Policy.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Privacy Policy.md"; sourceTree = "<group>"; };
@@ -310,6 +308,7 @@
 			files = (
 				B190255625973FAE00ACD2E1 /* Rswift in Frameworks */,
 				097698B5252A708A00FA1764 /* SwiftUI.framework in Frameworks */,
+				B13AC712260FB76800E427E5 /* WeatherKit in Frameworks */,
 				B18439DD25EA9645009E5D6C /* Logger in Frameworks */,
 				097698B3252A708A00FA1764 /* WidgetKit.framework in Frameworks */,
 			);
@@ -409,7 +408,6 @@
 		0968CDD7252268E600D409FF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B1CA14112593921C009ABBCA /* Model.swift */,
 				0968CDDB252268E600D409FF /* WeatherType.swift */,
 				0968CDDC252268E600D409FF /* ForecastDateFormatter.swift */,
 				0968CE3825227CE100D409FF /* Intermediate mapping */,
@@ -655,6 +653,7 @@
 			packageProductDependencies = (
 				B190255525973FAE00ACD2E1 /* Rswift */,
 				B18439DC25EA9645009E5D6C /* Logger */,
+				B13AC711260FB76800E427E5 /* WeatherKit */,
 			);
 			productName = EstonianWeatherWidgetExtension;
 			productReference = 097698B0252A708A00FA1764 /* EstonianWeatherWidgetExtension.appex */;
@@ -808,7 +807,6 @@
 				099EDB0325646D4B00C3EBE4 /* NavigationBarColor.swift in Sources */,
 				0968CE02252269AF00D409FF /* PersistenceService.swift in Sources */,
 				0968CDD3252267F600D409FF /* LanguageCell.swift in Sources */,
-				B1CA14122593921C009ABBCA /* Model.swift in Sources */,
 				B13DCFF825990B0700BC02E9 /* Locale+Extensions.swift in Sources */,
 				09C611E3253A407A002A4A60 /* ObservationListViewModel.swift in Sources */,
 				0968CE09252269AF00D409FF /* Place+CoreDataClass.swift in Sources */,
@@ -903,7 +901,6 @@
 				B13DCFD92598FDB200BC02E9 /* UIColor+Extensions.swift in Sources */,
 				0972159C2534DD7500E43B7B /* Observation+CoreDataProperties.swift in Sources */,
 				B1CA141C2593AE6C009ABBCA /* WidgetService.swift in Sources */,
-				B1CA14172593AE47009ABBCA /* Model.swift in Sources */,
 				B1D3AC3C258D530600456FCB /* NetworkClient.swift in Sources */,
 				09779C772532F22600957B1F /* Place+CoreDataProperties.swift in Sources */,
 				09779C712532F18A00957B1F /* PersistenceService.swift in Sources */,
@@ -1377,6 +1374,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B13AC711260FB76800E427E5 /* WeatherKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B19E6BA1260FA6FC0079D974 /* XCRemoteSwiftPackageReference "WeatherKit" */;
+			productName = WeatherKit;
+		};
 		B18439DC25EA9645009E5D6C /* Logger */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B1B4741025EA93DC0049D953 /* XCRemoteSwiftPackageReference "Logger" */;

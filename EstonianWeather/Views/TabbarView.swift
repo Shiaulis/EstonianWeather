@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import WeatherKit
 
 enum Tab {
     case observationList, forecastList, settings
@@ -58,7 +59,15 @@ struct TabbarView: View {
 struct TabbarView_Previews: PreviewProvider {
     static var previews: some View {
         TabbarView(
-            forecastListView: ForecastListView(viewModel: ForecastListViewModel(model: MockModel())),
+            forecastListView: ForecastListView(
+                viewModel: ForecastListViewModel(
+                    model: WeatherKit.NetwokWeatherModel(
+                        weatherLocale: .english,
+                        responseParser: WeatherKit.SWXMLResponseParser(),
+                        networkClient: WeatherKit.URLSessionNetworkClient()
+                    )
+                )
+            ),
             settingsView: SettingsView(viewModel: SettingsViewModel(ratingService: AppStoreRatingService()))
         )
     }
