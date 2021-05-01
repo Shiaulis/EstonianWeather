@@ -24,25 +24,17 @@ struct DayPartView: View {
 
     var body: some View {
         VStack {
-            DayPartTitleView(title: self.item.type.name)
-            PrimaryForecastView(
-                temperatureRange: self.item.temperatureRange ?? "",
-                weatherDescription: self.item.weatherDescription ?? "",
-                weatherIconName: self.item.weatherIconName ?? ""
-            )
+            HStack {
+                Text(self.item.type.name)
+                    .font(.title)
+                Spacer()
+                Text(self.item.temperatureRange ?? "")
+                    .font(.title)
+                Image(systemName: self.item.weatherIconName ?? "")
+                    .font(.largeTitle)
+            }
+            .padding(.vertical, 4)
             SecondaryForecastView(descriptionText: self.item.description ?? "")
-        }
-    }
-}
-
-struct DayPartView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            DayPartView(item: DayPartForecastDisplayItem.test)
-                .previewLayout(.fixed(width: 414, height: 200))
-            DayPartView(item: DayPartForecastDisplayItem.test)
-                .previewLayout(.fixed(width: 414, height: 200))
-                .environment(\.colorScheme, .dark)
         }
     }
 }
@@ -68,19 +60,13 @@ struct PrimaryForecastView: View {
         VStack {
             HStack {
                 Text(self.temperatureRange)
-                    .font(.largeTitle)
+                    .font(.headline)
                 VStack {
                     Image(systemName: self.weatherIconName)
                         .font(.largeTitle)
 
                 }
-                Spacer()
             }
-//            HStack {
-//                Text(self.weatherDescription)
-//                    .font(.caption2)
-//                Spacer()
-//            }
         }
     }
 }
@@ -92,8 +78,20 @@ struct SecondaryForecastView: View {
         VStack {
             Text(self.descriptionText)
                 .multilineTextAlignment(.leading)
-                .font(.caption)
+                .font(.body)
                 .fixedSize(horizontal: false, vertical: true)
+        }
+    }
+}
+
+struct DayPartView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            DayPartView(item: DayPartForecastDisplayItem.test)
+                .previewLayout(.fixed(width: 414, height: 200))
+            DayPartView(item: DayPartForecastDisplayItem.test)
+                .previewLayout(.fixed(width: 414, height: 200))
+                .environment(\.colorScheme, .dark)
         }
     }
 }
