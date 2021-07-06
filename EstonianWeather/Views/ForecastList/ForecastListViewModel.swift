@@ -14,6 +14,12 @@ import WeatherKit
 
 final class ForecastListViewModel: ObservableObject {
 
+    enum SyncStatus {
+        case ready(dislayItems: [ForecastDisplayItem])
+        case refreshing
+        case failed(errorMessage: String)
+    }
+
     @Published private(set) var syncStatus: SyncStatus = .refreshing
 
     private let model: WeatherModel
