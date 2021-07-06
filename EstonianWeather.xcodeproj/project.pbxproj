@@ -863,7 +863,7 @@
 				DEVELOPMENT_TEAM = NFA8F38A32;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "EstonianWeather/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -889,7 +889,7 @@
 				DEVELOPMENT_TEAM = NFA8F38A32;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "EstonianWeather/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -996,7 +996,7 @@
 				CURRENT_PROJECT_VERSION = 36;
 				DEVELOPMENT_TEAM = NFA8F38A32;
 				INFOPLIST_FILE = EstonianWeatherWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1021,7 +1021,7 @@
 				CURRENT_PROJECT_VERSION = 36;
 				DEVELOPMENT_TEAM = NFA8F38A32;
 				INFOPLIST_FILE = EstonianWeatherWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
