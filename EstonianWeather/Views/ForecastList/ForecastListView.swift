@@ -19,44 +19,41 @@ struct ForecastListView: View {
 
     var body: some View {
         NavigationView {
-            ZStack {
-                if self.viewModel.shouldShowSyncStatus {
-                    ListPlaceholder(status: self.viewModel.syncStatus)
-                }
-                else {
-                    Form {
-                            ForEach(self.viewModel.displayItems) { displayItem in
-                                Section(header: Text(displayItem.naturalDateDescription).font(.headline)) {
-                                    ForEach(displayItem.dayParts) { dayPart in
-                                        DayPartView(item: dayPart)
-                                    }
-                                }
-                            }
-                        }
+            Group {
+                switch self.viewModel.syncStatus {
+                case .refreshing:
+                    ListPlaceholder(description: R.string.localizable.loading())
+                case .ready(let displayItems):
+                    list(for: displayItems)
+                case .failed(let errorMessage):
+                    ListPlaceholder(
+                        description: R.string.localizable.failedToSyncError() + ": " + errorMessage
+                    )
                 }
             }
+            .refreshable { await self.viewModel.fetchRemoteForecasts() }
             .navigationTitle(R.string.localizable.fourDayForecast())
+        }
+    }
+
+    @ViewBuilder
+    private func list(for displayItems: [ForecastDisplayItem]) -> some View {
+        Form {
+            ForEach(displayItems) { displayItem in
+                Section(header: Text(displayItem.naturalDateDescription).font(.headline)) {
+                    ForEach(displayItem.dayParts) { dayPart in
+                        DayPartView(item: dayPart)
+                    }
+                }
+            }
         }
     }
 
 }
 
 struct ListPlaceholder: View {
-    let status: SyncStatus
 
-    private var description: String {
-        switch status {
-        case .synced:
-            assertionFailure("We do not expect to take this status description")
-            return ""
-        case .syncing:
-            return " \(R.string.localizable.loading())"
-        case .failed(let errorDescription):
-            return R.string.localizable.failedToSyncError() + " " + errorDescription
-        case .ready:
-            return R.string.localizable.ready()
-        }
-    }
+    let description: String
 
     var body: some View {
         VStack {
@@ -68,48 +65,6 @@ struct ListPlaceholder: View {
                     .foregroundColor(.gray)
                 Spacer()
             }
-            Spacer()
-        }
-    }
-}
-
-struct SyncStatusView: View {
-    let status: SyncStatus
-
-    private var color: Color {
-        switch status {
-        case .synced: return .white
-        case .syncing: return .white
-        case .failed: return .white
-        case .ready: return .white
-        }
-    }
-
-    private var description: String {
-        switch status {
-        case .synced(let syncDate):
-            let formatter = DateFormatter()
-            formatter.dateStyle = .medium
-            formatter.timeStyle = .medium
-            formatter.doesRelativeDateFormatting = true
-            let prefix = "✅ \(R.string.localizable.synced()) "
-            return prefix + formatter.string(from: syncDate)
-        case .syncing:
-            return " 🔄 \(R.string.localizable.loading)"
-        case .failed(let errorDescription):
-            return R.string.localizable.failedToSyncError() + " " + errorDescription
-        case .ready:
-            return R.string.localizable.ready()
-        }
-    }
-
-    var body: some View {
-        HStack {
-            Spacer()
-            Text(self.description)
-                .foregroundColor(self.color)
-                .font(.caption2)
-                .padding(.bottom, 4)
             Spacer()
         }
     }

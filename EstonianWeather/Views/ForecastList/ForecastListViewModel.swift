@@ -14,17 +14,7 @@ import WeatherKit
 
 final class ForecastListViewModel: ObservableObject {
 
-    @Published private(set) var displayItems: [ForecastDisplayItem] = []
-    @Published private(set) var shouldShowSyncStatus: Bool = false
-    @Published private(set) var syncStatus: SyncStatus = .ready {
-        didSet {
-            switch self.syncStatus {
-            case .synced: self.shouldShowSyncStatus = false
-            default: self.shouldShowSyncStatus = self.displayItems.isEmpty
-            }
-        }
-
-    }
+    @Published private(set) var syncStatus: SyncStatus = .refreshing
 
     private let model: WeatherModel
     private var disposables: Set<AnyCancellable> = []
@@ -32,20 +22,18 @@ final class ForecastListViewModel: ObservableObject {
     init(model: WeatherModel) {
         self.model = model
 
-        fetchRemoteForecasts()
+        async { await fetchRemoteForecasts() }
         subscribeForNotifications()
     }
 
-    private func fetchRemoteForecasts() {
-        self.syncStatus = .syncing
+    func fetchRemoteForecasts() async {
         self.model.provideForecasts { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let forecastDisplayItems):
-                    self.displayItems = forecastDisplayItems
-                    self.syncStatus = .synced(Date())
+                    self.syncStatus = .ready(dislayItems: forecastDisplayItems)
                 case .failure(let error):
-                    self.syncStatus = .failed(error.localizedDescription)
+                    self.syncStatus = .failed(errorMessage: error.localizedDescription)
                 }
             }
         }
@@ -54,17 +42,9 @@ final class ForecastListViewModel: ObservableObject {
     private func subscribeForNotifications() {
         NotificationCenter
             .default
-            .publisher(for: UIApplication.didBecomeActiveNotification)
-            .sink { [weak self] _ in
-                self?.fetchRemoteForecasts()
-            }
-            .store(in: &self.disposables)
-
-        NotificationCenter
-            .default
             .publisher(for: UIApplication.significantTimeChangeNotification)
-            .sink { [weak self] _ in
-                self?.fetchRemoteForecasts()
+            .sink { _ in
+                async { [weak self] in await self?.fetchRemoteForecasts() }
             }
             .store(in: &self.disposables)
     }

@@ -6,10 +6,10 @@
 //
 
 import Foundation
+import WeatherKit
 
 enum SyncStatus {
-    case ready
-    case syncing
-    case synced(Date)
-    case failed(String)
+    case ready(dislayItems: [ForecastDisplayItem])
+    case refreshing
+    case failed(errorMessage: String)
 }

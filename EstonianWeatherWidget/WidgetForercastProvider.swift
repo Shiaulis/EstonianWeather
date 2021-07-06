@@ -26,7 +26,6 @@ struct ForecastEntry: TimelineEntry {
 final class WidgetForercastProvider: IntentTimelineProvider {
 
     private let model: WeatherModel
-    private var syncStatus: SyncStatus = .ready
 
     private var disposables: Set<AnyCancellable> = []
 
@@ -58,14 +57,11 @@ final class WidgetForercastProvider: IntentTimelineProvider {
     }
 
     private func requestAndMapForecasts(for configuration: ConfigurationIntent, completion: @escaping (ForecastEntry) -> Void) {
-        self.syncStatus = .syncing
         self.model.provideForecasts { result in
             switch result {
             case .success(let forecastDisplayItems):
-                self.syncStatus = .synced(Date())
                 completion(.init(displayItems: forecastDisplayItems, date: Date(), configuration: configuration))
-            case .failure(let error):
-                self.syncStatus = .failed(error.localizedDescription)
+            case .failure:
                 completion(.init(displayItems: [], date: Date(), configuration: configuration))
             }
         }
