@@ -11,7 +11,7 @@ import OSLog
 
 final class AppStoreRatingService {
 
-    private let logger = Logger(category: .ratingService)
+    private let logger = Logger(category: .rating)
     private let userDefaults: UserDefaults
 
     init(userDefaults: UserDefaults) {

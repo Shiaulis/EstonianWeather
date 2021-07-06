@@ -14,7 +14,8 @@ extension Logger {
     }
 
     enum Category: String {
-        case ratingService
+        case rating
+        case purchase
     }
 
     init(subsystem: Subsystem = .mainApp, category: Category) {
