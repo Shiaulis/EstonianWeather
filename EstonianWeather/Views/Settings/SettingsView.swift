@@ -47,7 +47,6 @@ struct SettingsView: View {
                 }
             }
             .navigationBarTitle(R.string.localizable.settings())
-            .navigationBarColor(backgroundColor: .appRose, tintColor: .white)
             .onDisappear(perform: {
                             if let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {
                                 self.viewModel.makeAttemptToShowRating(in: scene)
