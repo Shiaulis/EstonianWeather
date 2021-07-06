@@ -68,6 +68,6 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView(viewModel: SettingsViewModel(ratingService: AppStoreRatingService()))
+        SettingsView(viewModel: SettingsViewModel(ratingService: AppStoreRatingService(userDefaults: .standard)))
     }
 }

@@ -60,6 +60,8 @@
 		B1D283C1259D1C68005AA4C9 /* AppStoreRatingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D283C0259D1C68005AA4C9 /* AppStoreRatingService.swift */; };
 		B1F58A9A2594A732004117F9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0976968B252A667E00FA1764 /* Localizable.strings */; };
 		E00C451026948A1A00B73149 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00C450F26948A1A00B73149 /* Bundle+Extensions.swift */; };
+		E00C45152694C75800B73149 /* Logger+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00C45142694C75800B73149 /* Logger+Extensions.swift */; };
+		E00C45172694CAF800B73149 /* UsedDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00C45162694CAF800B73149 /* UsedDefaults+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +162,8 @@
 		B1D283C0259D1C68005AA4C9 /* AppStoreRatingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreRatingService.swift; sourceTree = "<group>"; };
 		B1D652F7259943B40071A57E /* Privacy Policy.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Privacy Policy.md"; sourceTree = "<group>"; };
 		E00C450F26948A1A00B73149 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
+		E00C45142694C75800B73149 /* Logger+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Logger+Extensions.swift"; sourceTree = "<group>"; };
+		E00C45162694CAF800B73149 /* UsedDefaults+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UsedDefaults+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -372,6 +376,8 @@
 				B1AFFAF92598FC3100ACA10E /* UIColor+Extensions.swift */,
 				B13DCFF725990B0700BC02E9 /* Locale+Extensions.swift */,
 				E00C450F26948A1A00B73149 /* Bundle+Extensions.swift */,
+				E00C45142694C75800B73149 /* Logger+Extensions.swift */,
+				E00C45162694CAF800B73149 /* UsedDefaults+Extensions.swift */,
 			);
 			path = "Class Extensions";
 			sourceTree = "<group>";
@@ -622,8 +628,10 @@
 				B1AFFAFA2598FC3100ACA10E /* UIColor+Extensions.swift in Sources */,
 				0968CD962522667A00D409FF /* EstonianWeatherApp.swift in Sources */,
 				09A294C92569811000545CFB /* DisclaimerCell.swift in Sources */,
+				E00C45172694CAF800B73149 /* UsedDefaults+Extensions.swift in Sources */,
 				0968CDD0252267F600D409FF /* ForecastView.swift in Sources */,
 				B1CA14222593AEFB009ABBCA /* SyncStatus.swift in Sources */,
+				E00C45152694C75800B73149 /* Logger+Extensions.swift in Sources */,
 				0968CDE4252268E600D409FF /* ForecastListViewModel.swift in Sources */,
 				0968CDE6252268E600D409FF /* SettingsViewModel.swift in Sources */,
 			);

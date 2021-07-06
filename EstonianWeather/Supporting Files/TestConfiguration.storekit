@@ -1,4 +1,8 @@
 {
+  "identifier" : "5414017E",
+  "nonRenewingSubscriptions" : [
+
+  ],
   "products" : [
     {
       "displayPrice" : "5.49",
@@ -9,6 +13,11 @@
           "description" : "Support application development",
           "displayName" : "Buy me a drink",
           "locale" : "en_US"
+        },
+        {
+          "description" : "Поддержать разработку приложения",
+          "displayName" : "Купить мне напиток",
+          "locale" : "ru"
         }
       ],
       "productID" : "com.shiaulis.estonianweather.buyadrink",
@@ -24,6 +33,6 @@
   ],
   "version" : {
     "major" : 1,
-    "minor" : 0
+    "minor" : 1
   }
 }
