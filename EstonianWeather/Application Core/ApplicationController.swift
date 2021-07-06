@@ -19,15 +19,11 @@ final class ApplicationController {
     let model: WeatherModel
     let ratingService: AppStoreRatingService
 
-    private let widgetService: WidgetService
     private let userDefaults: UserDefaults
-
-    private var disposables: Set<AnyCancellable> = []
 
     // MARK: - Initialization
 
     init() {
-        self.widgetService = .init()
         self.ratingService = .init(logger: PrintLogger(moduleName: "ratingService"))
         self.userDefaults = .standard
         self.model = NetwokWeatherModel(
@@ -52,7 +48,7 @@ final class ApplicationController {
 
 }
 
-extension WeatherLocale {
+private extension WeatherLocale {
     init?(locale: Locale) {
         switch locale.languageCode {
         case "en": self = .english
