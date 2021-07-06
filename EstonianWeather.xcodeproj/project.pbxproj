@@ -20,7 +20,6 @@
 		0968CDD3252267F600D409FF /* LanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDCC252267F600D409FF /* LanguageCell.swift */; };
 		0968CDE4252268E600D409FF /* ForecastListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDD8252268E600D409FF /* ForecastListViewModel.swift */; };
 		0968CDE6252268E600D409FF /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDDA252268E600D409FF /* SettingsViewModel.swift */; };
-		0968CDEF252268E600D409FF /* ApplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968CDE3252268E600D409FF /* ApplicationController.swift */; };
 		0968CE1D25226A0600D409FF /* TestForecast.xml in Resources */ = {isa = PBXBuildFile; fileRef = 0968CE1625226A0600D409FF /* TestForecast.xml */; };
 		0968CE2625226A2B00D409FF /* EstonianWeather.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 0968CE2425226A2B00D409FF /* EstonianWeather.xctestplan */; };
 		09727670254583C100016EB0 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 0972766F254583C100016EB0 /* LICENSE */; };
@@ -122,7 +121,6 @@
 		0968CDCC252267F600D409FF /* LanguageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageCell.swift; sourceTree = "<group>"; };
 		0968CDD8252268E600D409FF /* ForecastListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForecastListViewModel.swift; sourceTree = "<group>"; };
 		0968CDDA252268E600D409FF /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
-		0968CDE3252268E600D409FF /* ApplicationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationController.swift; sourceTree = "<group>"; };
 		0968CE1625226A0600D409FF /* TestForecast.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TestForecast.xml; sourceTree = "<group>"; };
 		0968CE2425226A2B00D409FF /* EstonianWeather.xctestplan */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EstonianWeather.xctestplan; sourceTree = "<group>"; };
 		0972766F254583C100016EB0 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -311,7 +309,6 @@
 			isa = PBXGroup;
 			children = (
 				0968CD952522667A00D409FF /* EstonianWeatherApp.swift */,
-				0968CDE3252268E600D409FF /* ApplicationController.swift */,
 				B1CA14212593AEFB009ABBCA /* SyncStatus.swift */,
 				B1D283C0259D1C68005AA4C9 /* AppStoreRatingService.swift */,
 			);
@@ -625,7 +622,6 @@
 				B1AFFAFA2598FC3100ACA10E /* UIColor+Extensions.swift in Sources */,
 				0968CD962522667A00D409FF /* EstonianWeatherApp.swift in Sources */,
 				09A294C92569811000545CFB /* DisclaimerCell.swift in Sources */,
-				0968CDEF252268E600D409FF /* ApplicationController.swift in Sources */,
 				0968CDD0252267F600D409FF /* ForecastView.swift in Sources */,
 				B1CA14222593AEFB009ABBCA /* SyncStatus.swift in Sources */,
 				0968CDE4252268E600D409FF /* ForecastListViewModel.swift in Sources */,
