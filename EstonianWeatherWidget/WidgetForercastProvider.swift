@@ -32,7 +32,7 @@ final class WidgetForercastProvider: IntentTimelineProvider {
     init() {
         self.model = NetwokWeatherModel(
             weatherLocale: .english,
-            responseParser: SWXMLResponseParser(),
+            responseParser: SWXMLResponseParser(logger: .init(subsystem: .widget, category: .weatherModel)),
             networkClient: URLSessionNetworkClient()
         )
     }

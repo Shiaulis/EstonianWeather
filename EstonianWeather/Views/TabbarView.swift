@@ -63,7 +63,7 @@ struct TabbarView_Previews: PreviewProvider {
                 viewModel: ForecastListViewModel(
                     model: NetwokWeatherModel(
                         weatherLocale: .english,
-                        responseParser: SWXMLResponseParser(),
+                        responseParser: SWXMLResponseParser(logger: .init()),
                         networkClient: URLSessionNetworkClient()
                     )
                 )

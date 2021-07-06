@@ -60,6 +60,7 @@
 		E00C451026948A1A00B73149 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00C450F26948A1A00B73149 /* Bundle+Extensions.swift */; };
 		E00C45152694C75800B73149 /* Logger+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00C45142694C75800B73149 /* Logger+Extensions.swift */; };
 		E00C45172694CAF800B73149 /* UsedDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00C45162694CAF800B73149 /* UsedDefaults+Extensions.swift */; };
+		E00C45182694FB5200B73149 /* Logger+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00C45142694C75800B73149 /* Logger+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -654,6 +655,7 @@
 				09779CCA25332E3600957B1F /* ForecastWidgetEntryVIew.swift in Sources */,
 				B1CA14272593AEFF009ABBCA /* SyncStatus.swift in Sources */,
 				09988128256A876F00468C58 /* URL+Extensions.swift in Sources */,
+				E00C45182694FB5200B73149 /* Logger+Extensions.swift in Sources */,
 				B13DCFD92598FDB200BC02E9 /* UIColor+Extensions.swift in Sources */,
 				09779C642532EC8C00957B1F /* WidgetForercastProvider.swift in Sources */,
 				B158270C252B57150064A42C /* EstonianWeatherWidget.intentdefinition in Sources */,
