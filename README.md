@@ -30,6 +30,9 @@ Eesti Ilm is a simple weather app,that shows infromation from [Estonian Weather 
 
 ## App Releases
 
+### v.1.4
+Increase build target to iOS 15, major and minor code refactoring
+
 ### v.1.3.1
 Fixed typo on the main screeen, launch screen improvements
 
