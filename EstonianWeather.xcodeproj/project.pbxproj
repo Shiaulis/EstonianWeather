@@ -38,7 +38,6 @@
 		09779CCA25332E3600957B1F /* ForecastWidgetEntryVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09779CC925332E3600957B1F /* ForecastWidgetEntryVIew.swift */; };
 		09988128256A876F00468C58 /* URL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A294CE2569976400545CFB /* URL+Extensions.swift */; };
 		09988136256AD72C00468C58 /* AboutMeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09988135256AD72C00468C58 /* AboutMeView.swift */; };
-		099EDB0325646D4B00C3EBE4 /* NavigationBarColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099EDB0225646D4B00C3EBE4 /* NavigationBarColor.swift */; };
 		09A294C92569811000545CFB /* DisclaimerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A294C82569811000545CFB /* DisclaimerCell.swift */; };
 		09A294CF2569976400545CFB /* URL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A294CE2569976400545CFB /* URL+Extensions.swift */; };
 		09E8E0AF2531928F00E2F180 /* TestableLocale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E8E0AE2531928F00E2F180 /* TestableLocale.swift */; };
@@ -148,7 +147,6 @@
 		09974221252B93290011193F /* et */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = et; path = et.lproj/EstonianWeatherWidget.strings; sourceTree = "<group>"; };
 		09974227252B932A0011193F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/EstonianWeatherWidget.strings; sourceTree = "<group>"; };
 		09988135256AD72C00468C58 /* AboutMeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutMeView.swift; sourceTree = "<group>"; };
-		099EDB0225646D4B00C3EBE4 /* NavigationBarColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarColor.swift; sourceTree = "<group>"; };
 		09A294C82569811000545CFB /* DisclaimerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclaimerCell.swift; sourceTree = "<group>"; };
 		09A294CE2569976400545CFB /* URL+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extensions.swift"; sourceTree = "<group>"; };
 		09D68CF02544AB7100F9DF78 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -284,7 +282,6 @@
 				0968CDC8252267F600D409FF /* TabbarView.swift */,
 				09D123A2252660EE0050DC34 /* ForecastList */,
 				09D123A6252661010050DC34 /* Settings */,
-				099EDB0225646D4B00C3EBE4 /* NavigationBarColor.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -616,7 +613,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				09988136256AD72C00468C58 /* AboutMeView.swift in Sources */,
-				099EDB0325646D4B00C3EBE4 /* NavigationBarColor.swift in Sources */,
 				0968CDD3252267F600D409FF /* LanguageCell.swift in Sources */,
 				B13DCFF825990B0700BC02E9 /* Locale+Extensions.swift in Sources */,
 				B190252E259731E500ACD2E1 /* R.generated.swift in Sources */,

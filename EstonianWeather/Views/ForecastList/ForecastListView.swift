@@ -36,7 +36,6 @@ struct ForecastListView: View {
                 }
             }
             .navigationTitle(R.string.localizable.fourDayForecast())
-            .navigationBarColor(backgroundColor: .appRose, tintColor: .white)
         }
     }
 
@@ -113,7 +112,6 @@ struct SyncStatusView: View {
                 .padding(.bottom, 4)
             Spacer()
         }
-        .background(Color(.appRose))
     }
 }
 
