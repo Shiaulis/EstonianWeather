@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import Logger
 import PurchaseKit
+import OSLog
 
 final class SettingsViewModel {
 
@@ -30,7 +30,10 @@ final class SettingsViewModel {
 
     init(ratingService: AppStoreRatingService) {
         self.ratingService = ratingService
-        self.purchasemanager = .init(inAppPurchaseIdentifiers: ["com.shiaulis.estonianweather.buyadrink"], logger: PrintLogger(moduleName: "SettingsViewModel"))
+        self.purchasemanager = .init(
+            inAppPurchaseIdentifiers: ["com.shiaulis.estonianweather.buyadrink"],
+            logger: .init(category: .purchase)
+        )
 
         self.purchasemanager.getProducts { completion in
             switch completion {

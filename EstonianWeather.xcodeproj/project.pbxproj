@@ -45,7 +45,6 @@
 		B13DCFF825990B0700BC02E9 /* Locale+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13DCFF725990B0700BC02E9 /* Locale+Extensions.swift */; };
 		B158270B252B57150064A42C /* EstonianWeatherWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = B158270E252B57150064A42C /* EstonianWeatherWidget.intentdefinition */; };
 		B158270C252B57150064A42C /* EstonianWeatherWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = B158270E252B57150064A42C /* EstonianWeatherWidget.intentdefinition */; };
-		B18439DD25EA9645009E5D6C /* Logger in Frameworks */ = {isa = PBXBuildFile; productRef = B18439DC25EA9645009E5D6C /* Logger */; };
 		B189D17F25E40BCD007DF2AB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B189D17E25E40BCD007DF2AB /* StoreKit.framework */; };
 		B190251125972FB400ACD2E1 /* Rswift in Frameworks */ = {isa = PBXBuildFile; productRef = B190251025972FB400ACD2E1 /* Rswift */; };
 		B190252E259731E500ACD2E1 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B190252D259731E500ACD2E1 /* R.generated.swift */; };
@@ -53,7 +52,6 @@
 		B190EB142586A5820025415A /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B190EB132586A5820025415A /* Date+Extensions.swift */; };
 		B19E6BA3260FA6FC0079D974 /* WeatherKit in Frameworks */ = {isa = PBXBuildFile; productRef = B19E6BA2260FA6FC0079D974 /* WeatherKit */; };
 		B1AFFAFA2598FC3100ACA10E /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AFFAF92598FC3100ACA10E /* UIColor+Extensions.swift */; };
-		B1B4741225EA93DC0049D953 /* Logger in Frameworks */ = {isa = PBXBuildFile; productRef = B1B4741125EA93DC0049D953 /* Logger */; };
 		B1CA14222593AEFB009ABBCA /* SyncStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CA14212593AEFB009ABBCA /* SyncStatus.swift */; };
 		B1CA14272593AEFF009ABBCA /* SyncStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CA14212593AEFB009ABBCA /* SyncStatus.swift */; };
 		B1D2279F25EA90660086B689 /* PurchaseKit in Frameworks */ = {isa = PBXBuildFile; productRef = B1D2279E25EA90660086B689 /* PurchaseKit */; };
@@ -174,7 +172,6 @@
 				B190251125972FB400ACD2E1 /* Rswift in Frameworks */,
 				B189D17F25E40BCD007DF2AB /* StoreKit.framework in Frameworks */,
 				B19E6BA3260FA6FC0079D974 /* WeatherKit in Frameworks */,
-				B1B4741225EA93DC0049D953 /* Logger in Frameworks */,
 				B1D2279F25EA90660086B689 /* PurchaseKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -200,7 +197,6 @@
 				B190255625973FAE00ACD2E1 /* Rswift in Frameworks */,
 				097698B5252A708A00FA1764 /* SwiftUI.framework in Frameworks */,
 				B13AC712260FB76800E427E5 /* WeatherKit in Frameworks */,
-				B18439DD25EA9645009E5D6C /* Logger in Frameworks */,
 				097698B3252A708A00FA1764 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -405,7 +401,6 @@
 			packageProductDependencies = (
 				B190251025972FB400ACD2E1 /* Rswift */,
 				B1D2279E25EA90660086B689 /* PurchaseKit */,
-				B1B4741125EA93DC0049D953 /* Logger */,
 				B19E6BA2260FA6FC0079D974 /* WeatherKit */,
 			);
 			productName = EstonianWeather;
@@ -463,7 +458,6 @@
 			name = EstonianWeatherWidgetExtension;
 			packageProductDependencies = (
 				B190255525973FAE00ACD2E1 /* Rswift */,
-				B18439DC25EA9645009E5D6C /* Logger */,
 				B13AC711260FB76800E427E5 /* WeatherKit */,
 			);
 			productName = EstonianWeatherWidgetExtension;
@@ -509,7 +503,6 @@
 			packageReferences = (
 				B190250F25972FB400ACD2E1 /* XCRemoteSwiftPackageReference "R.swift" */,
 				B1D2279D25EA90660086B689 /* XCRemoteSwiftPackageReference "PurchaseKit" */,
-				B1B4741025EA93DC0049D953 /* XCRemoteSwiftPackageReference "Logger" */,
 				B19E6BA1260FA6FC0079D974 /* XCRemoteSwiftPackageReference "WeatherKit" */,
 			);
 			productRefGroup = 0968CD932522667A00D409FF /* Products */;
@@ -775,7 +768,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -833,7 +826,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -904,7 +897,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NFA8F38A32;
 				INFOPLIST_FILE = EstonianWeatherTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -926,7 +919,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NFA8F38A32;
 				INFOPLIST_FILE = EstonianWeatherTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -947,6 +940,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NFA8F38A32;
 				INFOPLIST_FILE = EstonianWeatherUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -967,6 +961,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NFA8F38A32;
 				INFOPLIST_FILE = EstonianWeatherUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1097,14 +1092,6 @@
 				kind = branch;
 			};
 		};
-		B1B4741025EA93DC0049D953 /* XCRemoteSwiftPackageReference "Logger" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Shiaulis/Logger";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 		B1D2279D25EA90660086B689 /* XCRemoteSwiftPackageReference "PurchaseKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Shiaulis/PurchaseKit";
@@ -1121,11 +1108,6 @@
 			package = B19E6BA1260FA6FC0079D974 /* XCRemoteSwiftPackageReference "WeatherKit" */;
 			productName = WeatherKit;
 		};
-		B18439DC25EA9645009E5D6C /* Logger */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B1B4741025EA93DC0049D953 /* XCRemoteSwiftPackageReference "Logger" */;
-			productName = Logger;
-		};
 		B190251025972FB400ACD2E1 /* Rswift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B190250F25972FB400ACD2E1 /* XCRemoteSwiftPackageReference "R.swift" */;
@@ -1140,11 +1122,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B19E6BA1260FA6FC0079D974 /* XCRemoteSwiftPackageReference "WeatherKit" */;
 			productName = WeatherKit;
-		};
-		B1B4741125EA93DC0049D953 /* Logger */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B1B4741025EA93DC0049D953 /* XCRemoteSwiftPackageReference "Logger" */;
-			productName = Logger;
 		};
 		B1D2279E25EA90660086B689 /* PurchaseKit */ = {
 			isa = XCSwiftPackageProductDependency;
