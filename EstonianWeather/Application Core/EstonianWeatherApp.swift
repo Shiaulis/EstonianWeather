@@ -31,7 +31,9 @@ struct EstonianWeatherApp: App {
         self.appMode = isUnitTesting ? .unitTesting : .regular
         self.weatherModel = Self.weatherModel()
         self.userDefaults = .standard
-        self.ratingService = .init(logger: PrintLogger(moduleName: "ratingService"))
+        self.ratingService = .init(userDefaults: self.userDefaults)
+
+        self.ratingService.incrementLauchCounter()
     }
 
     // MARK: - Body
@@ -62,11 +64,11 @@ struct EstonianWeatherApp: App {
 
     private func storeVersionAndBuildNumberToUserDefaults() {
         if let version = Bundle.main.string(for: .bundleShortVersionString) {
-            self.userDefaults.set(version, forKey: "version_preference")
+            self.userDefaults.set(version, for: .version_preference)
         }
 
         if let build: String = Bundle.main.string(for: .bundleVersion) {
-            self.userDefaults.set(build, forKey: "build_preference")
+            self.userDefaults.set(build, for: .build_preference)
         }
     }
 

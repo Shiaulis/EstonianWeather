@@ -68,7 +68,7 @@ struct TabbarView_Previews: PreviewProvider {
                     )
                 )
             ),
-            settingsView: SettingsView(viewModel: SettingsViewModel(ratingService: AppStoreRatingService()))
+            settingsView: SettingsView(viewModel: SettingsViewModel(ratingService: AppStoreRatingService(userDefaults: .standard)))
         )
     }
 }
