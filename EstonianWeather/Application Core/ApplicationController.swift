@@ -19,8 +19,8 @@ final class ApplicationController {
     let model: WeatherModel
     let ratingService: AppStoreRatingService
 
-    private let settingsService: SettingsService
     private let widgetService: WidgetService
+    private let userDefaults: UserDefaults
 
     private var disposables: Set<AnyCancellable> = []
 
@@ -29,13 +29,25 @@ final class ApplicationController {
     init() {
         self.widgetService = .init()
         self.ratingService = .init(logger: PrintLogger(moduleName: "ratingService"))
-        self.settingsService = .init(userDefaults: .standard)
+        self.userDefaults = .standard
         self.model = NetwokWeatherModel(
             weatherLocale: WeatherLocale(locale: .current) ?? .english,
             responseParser: SWXMLResponseParser(),
             networkClient: URLSessionNetworkClient())
 
         self.ratingService.incrementLauchCounter()
+
+        storeVersionAndBuildNumberToUserDefaults()
+    }
+
+    private func storeVersionAndBuildNumberToUserDefaults() {
+        if let version = Bundle.main.string(for: .bundleShortVersionString) {
+            self.userDefaults.set(version, forKey: "version_preference")
+        }
+
+        if let build: String = Bundle.main.string(for: .bundleVersion) {
+            self.userDefaults.set(build, forKey: "build_preference")
+        }
     }
 
 }
