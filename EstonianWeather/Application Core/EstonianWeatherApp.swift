@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Logger
 import WeatherKit
 
 private enum AppMode {
