@@ -2,15 +2,6 @@
   "object": {
     "pins": [
       {
-        "package": "Logger",
-        "repositoryURL": "https://github.com/Shiaulis/Logger.git",
-        "state": {
-          "branch": "main",
-          "revision": "7568844eeadce273f4540b0cd30ad4ea27354908",
-          "version": null
-        }
-      },
-      {
         "package": "PurchaseKit",
         "repositoryURL": "https://github.com/Shiaulis/PurchaseKit",
         "state": {
@@ -42,7 +33,7 @@
         "repositoryURL": "https://github.com/Shiaulis/WeatherKit",
         "state": {
           "branch": "main",
-          "revision": "6f0f15231e9f56ff7115e7cd871e1259a3e87fc6",
+          "revision": "ad3efafd01e754ea9ad25ca554cfcb7c5785ca76",
           "version": null
         }
       }

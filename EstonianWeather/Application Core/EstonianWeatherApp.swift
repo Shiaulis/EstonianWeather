@@ -74,7 +74,7 @@ struct EstonianWeatherApp: App {
     private static func weatherModel() -> WeatherModel {
         NetwokWeatherModel(
             weatherLocale: WeatherLocale(locale: .current) ?? .english,
-            responseParser: SWXMLResponseParser(),
+            responseParser: SWXMLResponseParser(logger: .init(category: .weatherModel)),
             networkClient: URLSessionNetworkClient()
         )
     }

@@ -16,6 +16,7 @@ extension Logger {
     enum Category: String {
         case rating
         case purchase
+        case weatherModel
     }
 
     init(subsystem: Subsystem = .mainApp, category: Category) {
