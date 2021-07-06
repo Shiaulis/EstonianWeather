@@ -28,9 +28,10 @@ final class AppStoreRatingService {
 
     func makeAttemptToShowRating(in windowScene: UIWindowScene) {
         // Get the current bundle version for the app
-        let infoDictionaryKey = kCFBundleVersionKey as String
-        guard let currentVersion = Bundle.main.object(forInfoDictionaryKey: infoDictionaryKey) as? String
-            else { fatalError("Expected to find a bundle version in the info dictionary") }
+        guard let currentVersion = Bundle.main.string(for: .bundleVersion) else {
+            assertionFailure("Expected to find a bundle version in the info dictionary")
+            return
+        }
 
         let lastVersionPromptedForReview = UserDefaults.standard.string(forKey: UserDefaultsKeys.lastVersionPromptedForReviewKey)
         let count = UserDefaults.standard.integer(forKey: UserDefaultsKeys.processCompletedCountKey)
