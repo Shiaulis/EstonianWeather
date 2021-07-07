@@ -26,6 +26,7 @@ struct ForecastEntry: TimelineEntry {
 final class WidgetForercastProvider: IntentTimelineProvider {
 
     private let model: WeatherModel
+    private var lastFetchedDisplayItems: [ForecastDisplayItem] = []
 
     private var disposables: Set<AnyCancellable> = []
 
@@ -42,7 +43,7 @@ final class WidgetForercastProvider: IntentTimelineProvider {
     }
 
     func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (ForecastEntry) -> Void) {
-        let entry = ForecastEntry(displayItems: currentForecastsFromDatabase(), date: Date(), configuration: ConfigurationIntent())
+        let entry = ForecastEntry(displayItems: self.lastFetchedDisplayItems, date: Date(), configuration: ConfigurationIntent())
         completion(entry)
     }
 
@@ -52,16 +53,13 @@ final class WidgetForercastProvider: IntentTimelineProvider {
         }
     }
 
-    private func currentForecastsFromDatabase() -> [ForecastDisplayItem] {
-        self.model.currentForecasts
-    }
-
     private func requestAndMapForecasts(for configuration: ConfigurationIntent, completion: @escaping (ForecastEntry) -> Void) {
-        self.model.provideForecasts { result in
-            switch result {
-            case .success(let forecastDisplayItems):
-                completion(.init(displayItems: forecastDisplayItems, date: Date(), configuration: configuration))
-            case .failure:
+        async {
+            do {
+                self.lastFetchedDisplayItems = try await self.model.forecasts()
+                completion(.init(displayItems: self.lastFetchedDisplayItems, date: Date(), configuration: configuration))
+            }
+            catch {
                 completion(.init(displayItems: [], date: Date(), configuration: configuration))
             }
         }

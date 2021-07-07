@@ -32,16 +32,14 @@ final class ForecastListViewModel: ObservableObject {
         subscribeForNotifications()
     }
 
+    @MainActor
     func fetchRemoteForecasts() async {
-        self.model.provideForecasts { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let forecastDisplayItems):
-                    self.syncStatus = .ready(dislayItems: forecastDisplayItems)
-                case .failure(let error):
-                    self.syncStatus = .failed(errorMessage: error.localizedDescription)
-                }
-            }
+        do {
+            let displayItems = try await self.model.forecasts()
+            self.syncStatus = .ready(dislayItems: displayItems)
+        }
+        catch {
+            self.syncStatus = .failed(errorMessage: error.localizedDescription)
         }
     }
 
