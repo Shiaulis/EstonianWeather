@@ -18,22 +18,21 @@ struct ForecastListView: View {
     // MARK: - Body
 
     var body: some View {
-        NavigationView {
-            Group {
-                switch self.viewModel.syncStatus {
-                case .refreshing:
-                    ListPlaceholder(description: R.string.localizable.loading())
-                case .ready(let displayItems):
-                    list(for: displayItems)
-                case .failed(let errorMessage):
-                    ListPlaceholder(
-                        description: R.string.localizable.failedToSyncError() + ": " + errorMessage
-                    )
-                }
+        Group {
+            switch self.viewModel.syncStatus {
+            case .refreshing:
+                ListPlaceholder(description: R.string.localizable.loading())
+            case .ready(let displayItems):
+                list(for: displayItems)
+            case .failed(let errorMessage):
+                ListPlaceholder(
+                    description: R.string.localizable.failedToSyncError() + ": " + errorMessage
+                )
             }
-            .refreshable { await self.viewModel.fetchRemoteForecasts() }
-            .navigationTitle(R.string.localizable.fourDayForecast())
         }
+        .refreshable { await self.viewModel.fetchRemoteForecasts() }
+        .navigationTitle(R.string.localizable.fourDayForecast())
+        .navigationBarTitleDisplayMode(.large)
     }
 
     @ViewBuilder

@@ -7,68 +7,50 @@
 //
 
 import SwiftUI
+import Combine
 import WeatherKit
 
-enum Tab {
-    case observationList, forecastList, settings
+protocol TabbarViewModel {
+    var selectedTab: Tab { get }
+    var forecastListViewModel: ForecastListViewModel { get }
+    var settingsViewModel: SettingsViewModel { get }
 
-    private var imageName: String {
-        switch self {
-        case .observationList: return "thermometer"
-        case .forecastList: return "smoke.fill"
-        case .settings: return "gear"
-        }
-    }
-
-    private var title: String {
-        switch self {
-        case .observationList: return R.string.localizable.observations()
-        case .forecastList: return R.string.localizable.forecast()
-        case .settings: return R.string.localizable.settings()
-        }
-    }
-
-    func item() -> some View {
-        VStack {
-            Image(systemName: self.imageName)
-            Text(self.title)
-        }
-    }
-
+    func didSwitchTo(_ tab: Tab)
 }
 
 struct TabbarView: View {
 
-    private let forecastListView: ForecastListView
-    private let settingsView: SettingsView
+    private var selectedTabBinding: Binding<Tab> {
+            .init {
+                self.viewModel.selectedTab
+            } set: { newTab in
+                self.viewModel.didSwitchTo(newTab)
+            }
+    }
+    private let viewModel: TabbarViewModel
 
-    init(forecastListView: ForecastListView, settingsView: SettingsView) {
-        self.forecastListView = forecastListView
-        self.settingsView = settingsView
+    init(viewModel: TabbarViewModel) {
+        self.viewModel = viewModel
     }
 
     var body: some View {
-        TabView {
-            self.forecastListView.tabItem { Tab.forecastList.item() }
-            self.settingsView.tabItem { Tab.settings.item() }
+        TabView(selection: selectedTabBinding) {
+            ForEach(Tab.allCases) { tab in
+                view(for: tab)
+                    .tabItem { Label(tab.title, systemImage: tab.imageName) }
+                    .tag(tab)
+            }
         }
-        .navigationViewStyle(StackNavigationViewStyle())
     }
-}
 
-struct TabbarView_Previews: PreviewProvider {
-    static var previews: some View {
-        TabbarView(
-            forecastListView: ForecastListView(
-                viewModel: ForecastListViewModel(
-                    model: NetwokWeatherModel(
-                        weatherLocale: .english,
-                        responseParser: SWXMLResponseParser(logger: .init()),
-                        networkClient: URLSessionNetworkClient()
-                    )
-                )
-            ),
-            settingsView: SettingsView(viewModel: SettingsViewModel(ratingService: AppStoreRatingService(userDefaults: .standard)))
-        )
+    private func view(for tab: Tab) -> some View {
+        NavigationView {
+            switch tab {
+            case .forecastList: ForecastListView(viewModel: self.viewModel.forecastListViewModel)
+            case .settings: SettingsView(viewModel: self.viewModel.settingsViewModel)
+            }
+        }
+        .navigationViewStyle(.stack)
     }
+
 }
