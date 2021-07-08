@@ -171,7 +171,25 @@ struct R: Rswift.Validatable {
 
     struct uiApplicationSceneManifest {
       static let _key = "UIApplicationSceneManifest"
-      static let uiApplicationSupportsMultipleScenes = true
+      static let uiApplicationSupportsMultipleScenes = false
+
+      struct uiSceneConfigurations {
+        static let _key = "UISceneConfigurations"
+
+        struct uiWindowSceneSessionRoleApplication {
+          struct defaultConfiguration {
+            static let _key = "Default Configuration"
+            static let uiSceneConfigurationName = infoPlistString(path: ["UIApplicationSceneManifest", "UISceneConfigurations", "UIWindowSceneSessionRoleApplication", "Default Configuration"], key: "UISceneConfigurationName") ?? "Default Configuration"
+            static let uiSceneDelegateClassName = infoPlistString(path: ["UIApplicationSceneManifest", "UISceneConfigurations", "UIWindowSceneSessionRoleApplication", "Default Configuration"], key: "UISceneDelegateClassName") ?? "$(PRODUCT_MODULE_NAME).SceneDelegate"
+
+            fileprivate init() {}
+          }
+
+          fileprivate init() {}
+        }
+
+        fileprivate init() {}
+      }
 
       fileprivate init() {}
     }
