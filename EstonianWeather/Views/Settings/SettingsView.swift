@@ -57,9 +57,15 @@ struct SettingsView: View {
 
     private func description(for product: Product) -> String {
         let title = product.localizedTitle
-        let priceTitle = product.localizedPrice
+        let priceTitle: String
+        if let localizedPrice = product.localizedPrice {
+            priceTitle = " (\(localizedPrice))"
+        }
+        else {
+            priceTitle = ""
+        }
 
-        return "\(title) (\(priceTitle))"
+        return title + priceTitle
     }
 
 }
