@@ -27,7 +27,7 @@ struct SettingsView: View {
                     Text(R.string.localizable.aboutMeTitle())
                 }
                 List {
-                    ForEach((0 ..< self.viewModel.products.count), id: \.self) { column in
+                    ForEach(0 ..< self.viewModel.products.count, id: \.self) { column in
                         let product = self.viewModel.products[column]
 
                         Button(description(for: product)) {

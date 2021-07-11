@@ -30,6 +30,6 @@ struct PlaceView: View {
 struct PlaceView_Previews: PreviewProvider {
     static var previews: some View {
         PlaceView(place: PlaceDisplayItem.test1)
-        .previewLayout(.fixed(width: 300, height: 150))
+            .previewLayout(.fixed(width: 300, height: 150))
     }
 }

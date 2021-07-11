@@ -36,7 +36,7 @@ final class EstonianWeatherUITests: XCTestCase {
             self.navigationBarTitle.label,
             ExpectedStrings.navigationTitle(for: .current),
             "Unexpected navigation bar title for \(TestableLocale.current.rawValue) locale"
-            )
+        )
     }
 
     func testLaunchPerformance() throws {

@@ -21,12 +21,13 @@ protocol TabbarViewModel {
 struct TabbarView: View {
 
     private var selectedTabBinding: Binding<Tab> {
-            .init {
-                self.viewModel.selectedTab
-            } set: { newTab in
-                self.viewModel.didSwitchTo(newTab)
-            }
+        .init {
+            self.viewModel.selectedTab
+        } set: { newTab in
+            self.viewModel.didSwitchTo(newTab)
+        }
     }
+
     private let viewModel: TabbarViewModel
 
     init(viewModel: TabbarViewModel) {

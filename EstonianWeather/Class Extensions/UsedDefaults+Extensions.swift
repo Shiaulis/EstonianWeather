@@ -39,4 +39,5 @@ extension UserDefaults {
     }
 
 }
+
 // swiftlint:enable identifier_name

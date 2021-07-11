@@ -28,6 +28,6 @@ enum Tab: Int, CaseIterable, Identifiable {
     }
 
     var indexPath: IndexPath {
-            .init(row: self.rawValue, section: 0)
+        .init(row: self.rawValue, section: 0)
     }
 }

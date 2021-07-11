@@ -62,7 +62,7 @@ final class SidebarViewController: UICollectionViewController {
 
     private func configureDataSource() {
         let rowRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Tab> {
-            (cell, _, tab) in
+            cell, _, tab in
 
             var contentConfiguration = UIListContentConfiguration.sidebarSubtitleCell()
             contentConfiguration.text = tab.title
@@ -71,7 +71,7 @@ final class SidebarViewController: UICollectionViewController {
         }
 
         self.dataSource = DataSource(collectionView: self.collectionView) {
-            (collectionView, indexPath, tab) -> UICollectionViewCell in
+            collectionView, indexPath, tab -> UICollectionViewCell in
             collectionView.dequeueConfiguredReusableCell(using: rowRegistration, for: indexPath, item: tab)
         }
     }
@@ -91,7 +91,7 @@ final class SidebarViewController: UICollectionViewController {
     // MARK: - Private static methods
 
     private static func createLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewCompositionalLayout() { (_, layoutEnvironment) -> NSCollectionLayoutSection? in
+        let layout = UICollectionViewCompositionalLayout { _, layoutEnvironment -> NSCollectionLayoutSection? in
             var configuration = UICollectionLayoutListConfiguration(appearance: .sidebar)
             configuration.showsSeparators = false
             let section = NSCollectionLayoutSection.list(using: configuration, layoutEnvironment: layoutEnvironment)
